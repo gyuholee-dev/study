@@ -1,0 +1,42 @@
+------------------------------ XAMPP 설치 ------------------------------ 
+XAMPP 설치
+https://www.apachefriends.org/index.html
+- 다운로드 후 설치
+- 컨트롤패널 열어서 Apache, MySQL 스타트
+
+- 컨피그(관리자 권한 필요) 
+- Apache, MySQL 오토스타트 설정
+
+------------------------------ 윈도우 터미널 설치 (선택) ------------------------------ 
+https://www.lainyzine.com/ko/article/how-to-install-windows-terminal-powershell-wsl2/
+- https://www.microsoft.com/ko-kr/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab 
+- 설정에서 기본 프로필을 명령 프롬프트로 변경
+- shell:AppsFolder 에서 바탕화면으로 바로가기 생성
+- https://lucycle.tistory.com/349
+
+------------------------------ SSH 설정 ------------------------------ 
+https://charging.tistory.com/94
+- 윈도우 선택적 기능에서 SSH 클라이언트 설치
+
+https://www.lainyzine.com/ko/article/how-to-run-openssh-server-and-connect-with-ssh-on-windows-10/
+- 관리자 모드 파워쉘에서 실행
+- OpenSSH 기능 활성화
+$ Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+- sshd 서비스 실행
+$ Start-Service sshd
+- 부팅시 서비스 자동실행
+$ Set-Service -Name sshd -StartupType 'Automatic'
+-방화벽 설정 확인: Enabled : True 
+$ Get-NetFirewallRule -Name OpenSSH-Server-In-TCP
+
+------------------------------ SSH 접속테스트 ------------------------------ 
+- ssh 동작 확인
+$ ssh
+- 사용자 확인
+$ whoami
+- 접속 테스트
+$ ssh [USERNAME]@[HOST] [COMMAND]
+- 로컬호스트일 경우 윈도우 유저네임 및 localhost 로 입력후 윈도우 유저패스워드 입력
+
+
+

@@ -1,0 +1,155 @@
+데이터베이스
+
+기본개념
+데이터베이스=케비넷
+테이블=바인더
+
+-데이터가 엑셀처럼 논리적으로 저장된다.
+-식별자, 열(칼럼), 행(로우) 구조로 각각의 값을 가짐.
+https://coding-factory.tistory.com/77
+
+-데이터를 찾고, 선택하고, 만들고, 삭제할수 있어야 한다.
+-php로 MySQL 을 조작하는걸 배울 예정.
+https://popcorn16.tistory.com/239
+
+
+유니코드와 UTF-8
+한글은 ANSI코드에서 2바이트 문자다
+1바이트=8bit (binary digit)
+8bit 는 바이너리 코드로 256개의 값을 가짐
+2바이트는 256x256=65536 육만오천
+3바이트는 256x256x256=16777216 천육백만?
+
+웹에서는 UTF-8(유니코드, 가변 인코딩)을 쓴다. 한글은 3바이트 문자가 됨.
+https://jeongdowon.medium.com/unicode%EC%99%80-utf-8-%EA%B0%84%EB%8B%A8%ED%9E%88-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-b6aa3f7edf96
+
+문자 숫자 구분
+-테이블에서는 문자char 숫자int 값을 구분해야 할 필요 있음
+-문자, 숫자 값 구분: 사칙연산이 들어가거나 읽는법에 따라 숫자로 구분
+
+바이트수 구분
+테이블은 바이트수를 맞춰줘야 한다. 값이 모자랄 경우 추가
+알파벳: 문자당 1, 한글: 문자당 3
+
+키, 값
+키와 값이면 배열인가? 
+
+DBMS (Database Management System)
+-웹에서는 MySQL MariaDB를 쓴다.
+
+SQL (Structured Query Language)
+-구조화 질의어
+
+터미널 기초
+-윈도우에서는 명령 프롬프트로 실행
+-VSCode 는 자체 터미널을 탑재
+-웹서버에서는 putty 나 MobaXterm 같은걸 씀
+-도스명령어 (dir, cd, md, rd 등) 사용
+
+XAMPP (Cross Platform, Apache, MySQL, PHP, Perl)
+웹개발을 위해 설치해야 하는 필수 프로그램 패키지 같은것?
+참고: https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=skydoor2014&logNo=220522520384
+
+-https://www.apachefriends.org/index.html 에서 설치
+-매일 수업시작할때 컨트롤패널 켜서 Apache, MySQL 스타트
+
+MySQL
+-터미널에서 C:\xampp\mysql\bin 로 이동
+-실행: mysql.exe -u root
+	C:\xampp\mysql\bin\mysql.exe -u root
+-종료: quit
+-데이터베이스 확인: show databases;
+-mysql 케비넷: use mysql;
+-테이블 확인:  show tables;
+
+DB 명령어 참고
+https://cleverdj.tistory.com/24
+https://miaow-miaow.tistory.com/63
+
+DB 명령어 기초
+-TestDB 만들기: create database TestDB;
+-TestDB 지우기 drop database TestDB;
+
+-HSDB 캐비넷 만들기 create database HSDB;
+-HSDB 캐비넷 사용 use HSDB;
+-터미널에서 즉시 mysql.exe -u root HSDB
+
+-memb 테이블 만들기
+create table memb
+(
+ seqn char(03) not null,
+ name char(30),
+ gend char(06),
+ agee integer,
+ primary key(seqn)
+);
+
+-memb 테이블 구조
+desc memb;
+
+-테이블 제거 
+drop table memb;
+
+-테이블 삽입
+(숫자에서는 따옴표 빼는게 기본)
+insert into memb(seqn,name,gend,agee)
+	values('002','이규호','남자',44);
+
+-데이터 확인
+select * from memb;
+
+-데이터 삭제
+delete from memb;
+
+-테이블 제거
+drop table memb;
+
+-케비넷 제거
+drop database hsdb;
+
+-MyData 케비넷 작성
+create database MyData;
+
+-테이블 작성
+create table item
+(
+ numb char(02) not null,
+ name char(99),
+ prce int,
+ invt int,
+ primary key(numb)
+);
+
+-테이블 확인
+desc item;
+
+-값 삽입
+insert into item(numb,name,prce,invt) 
+	values('01','셔츠',12000,65);
+insert into item(numb,name,prce,invt) 
+	values('02','바지',8000,44);
+insert into item(numb,name,prce,invt) 
+	values('03','모자',5000,30);
+
+--필요한 값만 넣을수 있음 insert into item(numb,name) 
+--프라이머리키는 중복되면 안됨
+
+-넣은 값 확인
+select * from item;
+
+-데이터 삭제
+delete from item;
+
+-조건 지우기
+delete from item where numb=03;
+delete from item where name='모자';
+
+-업데이트
+update item set invt='10';
+
+-조건 업데이트
+update item set invt='99' where numb='02'; 
+
+정렬
+select * from item
+	order by numb asc;
