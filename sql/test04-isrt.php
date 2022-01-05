@@ -7,15 +7,13 @@ $sql = 'SELECT MAX(numb) FROM toyy';
 $res = mysqli_query($db, $sql);
 $a = mysqli_fetch_array($res);
 
-if ($a[0] != '') 
-{
+if ($a[0] != '') {
     $curno = $a[0]+1;
 } else {
     $curno = '1111';
 }
 
-if (isset($_POST['isrt']))
-{
+if (isset($_POST['isrt'])) {
     $numb = $_POST['numb'];
     $name = $_POST['name'];
     $prce = $_POST['prce'];

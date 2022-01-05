@@ -16,7 +16,7 @@
 
 <?php
 /*     echo "1. 테이블 생성<br>";
-    
+
     $sql = "DROP TABLE IF EXISTS milk";
     mysqli_query($db, $sql);
 
@@ -114,8 +114,7 @@ echo "<br>"; */
             ORDER BY invt DESC
             LIMIT 0, 4";
     $res = mysqli_query($db, $sql);
-    while ($row = mysqli_fetch_array($res))
-    {
+    while ($row = mysqli_fetch_array($res)) {
         echo '<tr>';
         echo '<td>'.$row[0].'</td>';
         echo '<td>'.$row[1].'</td>';

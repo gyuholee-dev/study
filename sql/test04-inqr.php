@@ -29,12 +29,12 @@ $res = mysqli_query($db, $sql);
 <?php
 while ($a = mysqli_fetch_array($res)) {
     echo '<tr>';
-        echo '<td>'.$a[0].'</td>';
-        echo '<td>'.$a[1].'</td>';
-        echo '<td>'.$a[2].'</td>';
-        echo '<td>'.$a[3].'</td>';
-        echo '<td>'.$a[4].'</td>';
-        echo '<td>'.$a[5].'</td>';
+    echo '<td>'.$a[0].'</td>';
+    echo '<td>'.$a[1].'</td>';
+    echo '<td>'.$a[2].'</td>';
+    echo '<td>'.$a[3].'</td>';
+    echo '<td>'.$a[4].'</td>';
+    echo '<td>'.$a[5].'</td>';
     echo '</tr>';
 }
 ?>

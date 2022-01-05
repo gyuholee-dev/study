@@ -7,7 +7,7 @@
 
     // memb 테이블 생성
     /* $sql = "CREATE TABLE memb
-              ( 
+              (
                 code char(3) not null,
                 name char(20),
                 gend char(60),
@@ -59,11 +59,8 @@
 
     $sql = "select * from memb";
     $res = mysqli_query($db, $sql);
-    while ($row = mysqli_fetch_array($res))
-    {
+    while ($row = mysqli_fetch_array($res)) {
         // print_r($row);
         // echo "<br>";
         echo "$row[0] $row[1] $row[2]</br>";
     }
-
-?>
