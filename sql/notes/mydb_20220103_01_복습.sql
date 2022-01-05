@@ -30,10 +30,10 @@ SELECT [테이블A].[필드], [테이블B].[필드] FROM [테이블A]
 -- 테이블 크리에이트
 CREATE TABLE [테이블]
   (
-    [필드명] CHAR(0) NOT NULL, -- 캐릭터, 첫번째에는 반드시 NOT NULL
+    [필드명] CHAR(0) NOT NULL, -- 캐릭터, 프라이머리 키 필드는 반드시 NOT NULL
     [필드명] VARCHAR(0), -- 가변 캐릭터
     [필드명] INT, -- 정수
-    PRIMARY KEY([첫번째 필드명])
+    PRIMARY KEY([첫번째 필드명]) -- 프라이머리 키가 중복될 경우 두개 이상 준다
   );
 -- 테이블 알터(열 추가, 삭제)
 ALTER TABLE [테이블]

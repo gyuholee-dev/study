@@ -69,9 +69,14 @@
     <?php
         // $sql = "SELECT * FROM milk";
         // query($db, $sql);
+
+        $q = 'SELECT * FROM milk';
+        if (isset($_GET['q'])) {
+            $q = $_GET['q'];
+        }
         
-        echo 'Query: '. $_GET['q'].'<br><br>';
-        query($db, $_GET['q']);
+        echo 'Query: '. $q.'<br><br>';
+        query($db, $q);
     ?>
 
 </body>
