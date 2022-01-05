@@ -6,23 +6,21 @@
     mysqli_select_db($db, "mydb");
     mysqli_report(MYSQLI_REPORT_OFF);
 
-    function query($db, $query) {
+    function query($db, $query)
+    {
         $header = false;
         echo '<table>';
         $res = mysqli_query($db, $query);
-        while ($row = mysqli_fetch_assoc($res))
-        {
+        while ($row = mysqli_fetch_assoc($res)) {
             if ($header == false) {
                 echo '<tr>';
-                foreach($row as $key=>$value)
-                {
+                foreach ($row as $key=>$value) {
                     echo '<td class="head">';
                     echo $key;
                     echo '</td>';
                 }
                 echo '</tr><tr>';
-                foreach($row as $key=>$value)
-                {
+                foreach ($row as $key=>$value) {
                     echo '<td>';
                     echo $value;
                     echo '</td>';
@@ -31,8 +29,7 @@
                 $header = true;
             } else {
                 echo '<tr>';
-                foreach($row as $key=>$value)
-                {
+                foreach ($row as $key=>$value) {
                     echo '<td>';
                     echo $value;
                     echo '</td>';
