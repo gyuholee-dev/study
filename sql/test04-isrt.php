@@ -1,7 +1,7 @@
 <?php
 // ini_set('display_errors', 0);
 include 'include/head.inc';
-mysqli_report(MYSQLI_REPORT_OFF);
+// mysqli_report(MYSQLI_REPORT_OFF);
 
 $sql = 'SELECT MAX(numb) FROM toyy';
 $res = mysqli_query($db, $sql);
@@ -46,7 +46,7 @@ if (isset($_POST['isrt']))
 <hr>
 <br><br>
 
-<form method='post' action='test04-isrt.php'>
+<form method='post' autocomplete='off' action='test04-isrt.php'>
     <table cellpadding=3 cellspacing=0 border=1>
         <tr>
             <th width=80>번호</th>
