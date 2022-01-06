@@ -17,7 +17,7 @@
         echo 'ERROR';
     } */
 
-    // try & catch 로 에러체크
+    // try & catch 로 에러 핸들링
     try {
         $res = mysqli_query($db, $sql);
         print_r($res);
