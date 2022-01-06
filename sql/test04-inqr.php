@@ -14,6 +14,9 @@ $res = mysqli_query($db, $sql);
 <font face='맑은 고딕'>
 <h3>장난감 자료 조회</h3>
 <hr>
+<br>
+
+<input type="button" value='메뉴' onclick='location.href="test04.php"'>
 <br><br>
 
 <table cellpadding=3 cellspacing=0 border=1>
@@ -27,16 +30,24 @@ $res = mysqli_query($db, $sql);
     </tr>
 
 <?php
-while ($a = mysqli_fetch_array($res)) {
-    echo '<tr>';
-    echo '<td>'.$a[0].'</td>';
-    echo '<td>'.$a[1].'</td>';
-    echo '<td>'.$a[2].'</td>';
-    echo '<td>'.$a[3].'</td>';
-    echo '<td>'.$a[4].'</td>';
-    echo '<td>'.$a[5].'</td>';
-    echo '</tr>';
-}
+    while ($a = mysqli_fetch_array($res)) {
+        $dan = number_format($a[2]).' 원';
+        $soo = number_format($a[3]).' 개';
+        if ($a[5]=='T') {
+            $knd = '오락용';
+        } elseif ($a[5]=='E') {
+            $knd = '교육용';
+        }
+
+        echo '<tr>';
+        echo '<td align="center">'.$a[0].'</td>';
+        echo '<td align="left">'.$a[1].'</td>';
+        echo '<td align="right">'.$dan.'</td>';
+        echo '<td align="right">'.$soo.'</td>';
+        echo '<td align="center">'.$a[4].'</td>';
+        echo '<td align="center">'.$knd.'</td>';
+        echo '</tr>';
+    }
 ?>
 
 

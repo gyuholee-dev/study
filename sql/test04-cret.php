@@ -29,7 +29,10 @@ if (isset($_REQUEST['reply'])) {
                     PRIMARY KEY(numb)
                 )';
         mysqli_query($db, $sql);
-        echo 'toyy 테이블 생성 완료 <br>';
+        // echo 'toyy 테이블 생성 완료 <br>';
+        $msg = '테이블 생성 완료';
+        $pgm = 'test04.php';
+        include 'include/sendmsg.inc';
     }
 } else {
     echo '테이블을 새로 생성하겠습니까?';

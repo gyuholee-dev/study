@@ -27,10 +27,10 @@ if (isset($_POST['isrt'])) {
     mysqli_query($db, $sql);
     // echo '데이터 1건 입력 완료';
     // $curno = $_POST['numb']+1;
-    echo "<script>
-            alert('입력을 완료하였습니다');
-            location.href='test04-isrt.php';
-          </script>";
+
+    $msg = $numb.' 레코드 입력 완료';
+    $pgm = 'test04-isrt.php';
+    include 'include/sendmsg.inc';
 }
 
 ?>
