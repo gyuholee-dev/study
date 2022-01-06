@@ -12,7 +12,7 @@ $res = mysqli_query($db, $sql);
 
 <center>
 <font face='맑은 고딕'>
-<h3>장난감 자료 삭제</h3>
+<h3>장난감 자료 수정</h3>
 <hr>
 <br>
 
@@ -27,7 +27,7 @@ $res = mysqli_query($db, $sql);
         <th width=90 bgcolor='lightblue'>수량</th>
         <th width=70 bgcolor='lightblue'>상태</th>
         <th width=70 bgcolor='lightblue'>구분</th>
-        <th width=70 bgcolor='lightblue'>삭제</th>
+        <th width=70 bgcolor='lightblue'>수정</th>
     </tr>
 
 <?php
@@ -48,7 +48,7 @@ $res = mysqli_query($db, $sql);
         echo '<td align="center">'.$a[4].'</td>';
         echo '<td align="center">'.$knd.'</td>';
         echo '<td align="center">'.
-             '<a href="test04-dlet-commit.php?dnum='.$a[0].'">삭제</a>'.
+             '<a href="test04-updt-set.php?unumb='.$a[0].'">수정</a>'.
              '</td>';
         echo '</tr>';
     }

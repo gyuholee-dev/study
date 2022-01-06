@@ -47,38 +47,38 @@ if (isset($_POST['isrt'])) {
 <form method='post' autocomplete='off' action='test04-isrt.php'>
     <table cellpadding=3 cellspacing=0 border=1>
         <tr>
-            <th width=80>번호</th>
+            <th width=80 bgcolor='lightblue'>번호</th>
             <td width=180>
-                <input type='text' name='numb' size='1' value='<?php echo $curno; ?>'>
+                <input type='text' name='numb' size='1' value='<?php echo $curno; ?>' readonly>
             </td>
         </tr>
         <tr>
-            <th width=80>장난감명</th>
+            <th width=80 bgcolor='lightblue'>장난감명</th>
             <td width=180>
                 <input type='text' name='name' size='20' autofocus>
             </td>
         </tr>
         <tr>
-            <th width=80>단가</th>
+            <th width=80 bgcolor='lightblue'>단가</th>
             <td width=180>
                 <input type='text' name='prce' size='15' maxlength='6'> 원
             </td>
         </tr>
         <tr>
-            <th width=80>수량</th>
+            <th width=80 bgcolor='lightblue'>수량</th>
             <td width=180>
                 <input type='text' name='qntt' size='15' maxlength='4'> 개
             </td>
         </tr>
         <tr>
-            <th width=80>상태</th>
+            <th width=80 bgcolor='lightblue'>상태</th>
             <td width=180>
                 <input type='radio' name='stat' value='보유' checked>보유
                 <input type='radio' name='stat' value='대여'>대여
             </td>
         </tr>
         <tr>
-            <th width=80>구분</th>
+            <th width=80 bgcolor='lightblue'>구분</th>
             <td width=180>
                 <input type='radio' name='kind' value='T' checked>오락용
                 <input type='radio' name='kind' value='E'>교육용

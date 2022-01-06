@@ -48,7 +48,7 @@ $res = mysqli_query($db, $sql);
         echo '<td align="center">'.$a[4].'</td>';
         echo '<td align="center">'.$knd.'</td>';
         echo '<td align="center">'.
-             '<a href="test04-dlet-commit.php?dnum='.$a[0].'">삭제</a>'.
+             '<a href="test04-dlet-del.php?dnumb='.$a[0].'">삭제</a>'.
              '</td>';
         echo '</tr>';
     }
