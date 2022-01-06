@@ -9,7 +9,6 @@
 <font face='맑은 고딕'>
 <h3>장난감 관리</h3>
 <hr>
-
 <br><br>
 
 <input type='button' value='테이블 생성' 
