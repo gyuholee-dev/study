@@ -5,6 +5,23 @@ include 'include/head.inc';
 
 $today = DATE('Y-m-d');
 
+if (isset($_POST['insert'])) {
+
+    $date = $_POST['date'];
+    $cont = $_POST['cont'];
+    $cost = $_POST['cost'];
+    $plce = $_POST['plce'];
+    $kind = $_POST['kind'];
+
+    $sql = "INSERT INTO carr (date, cont, cost, plce, kind)
+            VALUES ('$date', '$cont', '$cost', '$plce', '$kind')";
+    mysqli_query($db, $sql);
+
+    $msg = '입력 완료';
+    $pgm = 'test06_insert.php';
+    include 'include/sendmsg.inc';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang='ko'>
@@ -17,24 +34,26 @@ $today = DATE('Y-m-d');
 
 <table cellpadding=3 cellspacing=0 border=1>
 <form method='post' autocomplete='off' action='test06_insert.php'>
-    <tr>
+    <!-- <tr>
         <td colspan=2 align='center'>
             <input type='button' value='돌아가기'
                 onclick='location.href="test06.php"'>
         </td>
-    </tr>
+    </tr> -->
     <tr>
         <th width=80 bgcolor='lightblue'>발생일자</th>
         <td>
             <input type='text' name='date' 
-            size=7 maxlength=10 autofocus
+            size=7 maxlength=10 autofocus 
+            required style="background-color: #ffdada;"
             value='<?=$today?>'>
         </td>
     </tr>
     <tr>
         <th width=80 bgcolor='lightblue'>발생내역</th>
         <td>
-            <input type='text' name='cont' size=20>
+            <input type='text' name='cont' size=20 
+            required style="background-color: #ffdada;">
         </td>
     </tr>
     <tr>
