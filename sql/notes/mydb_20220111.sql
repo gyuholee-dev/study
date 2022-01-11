@@ -27,3 +27,4 @@ SET ('1111','신한은행','320-24-61345','김정국','금융','대출,예금','
 LOAD DATA INFILE 'C:/Workspaces/study/sql/text/supp.txt'
 INTO TABLE supp
 FIELDS TERMINATED BY '^';
+-- ERROR 1262 (01000): Row 1 was truncated; it contained more data than there were input columns
