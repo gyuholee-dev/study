@@ -58,3 +58,8 @@ UPDATE [테이블]
 DELETE FROM [테이블]
   WHERE [필드명]=[레코드];
 -------------------------------------------
+
+-- 레코드 적재
+LOAD DATA INFILE [데이터 파일 경로]
+INTO TABLE [테이블]
+FIELDS TERMINATED BY [열 마지막 문자]

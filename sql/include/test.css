@@ -9,6 +9,10 @@ table {
     /* margin: 20px 10px; */
     border-width: 2px;
 }
+table.inner th,
+table.inner td {
+    padding: 0px;
+}
 th, td {
     padding: 3px 10px;
     /* width: 50px; */
@@ -30,8 +34,10 @@ input[type="submit"] {
     font-size: 90%;
     padding: 2px 10px;
     cursor: pointer;
+    min-width: 68px;
 }
-input[type="text"] {
+input[type="text"],
+input[type="number"] {
     font-size: 100%;
 }
 a:link,
@@ -43,4 +49,10 @@ a:hover,
 a:active,
 a:focus {
     color: orangered;
+}
+span.page {
+    margin: 0 10px;
+}
+span.red {
+    color: red;
 }
