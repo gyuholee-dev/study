@@ -1,0 +1,22 @@
+데이터베이스 백업 & 리스토어
+-- 관리자 터미널로 실행
+-- 파일명에 경로설정 하지 않을시 현재 터미널 경로에 생성 및 읽어들임
+
+테이블 백업
+PHP에서 테이블 읽어들여 적당한 파일로 저장
+
+데이터베이스 테이블 백업
+mysqldump -u root [데이터베이스명] [테이블명] > [저장파일명]
+mysqldump -u root mydb dept > backdept.txt
+
+데이터베이스 테이블 리스토어
+mysql -u root [데이터베이스명] < [백업파일명]
+mysql -u root mydb < backdept.txt
+
+데이터베이스 전부 백업
+mysqldump -u root [데이터베이스명] > [저장파일명]
+mysqldump -u root mydb > backupdb.txt
+
+데이터베이스 전부 리스토어
+mysql -u root [데이터베이스명] < [백업파일명]
+mysql -u root mydb < backupdb.txt

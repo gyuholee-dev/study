@@ -27,6 +27,9 @@ th.right, td.right {
 th {
     background-color: lightblue;
 }
+th.red {
+    background-color: #ff9292;
+}
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
@@ -39,6 +42,11 @@ input[type="submit"] {
 input[type="text"],
 input[type="number"] {
     font-size: 100%;
+}
+select {
+    width: 100%;
+    font-size: 100%;
+    padding: 2px 10px;
 }
 a:link,
 a:visited {
@@ -54,5 +62,9 @@ span.page {
     margin: 0 10px;
 }
 span.red {
+    font-weight: bold;
     color: red;
+}
+span.large {
+    font-size: 150%;
 }
