@@ -14,7 +14,7 @@ table.inner td {
     padding: 0px;
 }
 th, td {
-    padding: 3px 10px;
+    padding: 5px 10px;
     /* width: 50px; */
     text-align: center;
 }
@@ -67,4 +67,12 @@ span.red {
 }
 span.large {
     font-size: 150%;
+}
+
+div.result {
+    text-align: left;
+    background-color: #efefef;
+    padding: 20px;
+    border: 1px solid #8b8b8b;
+    border-radius: 10px;
 }

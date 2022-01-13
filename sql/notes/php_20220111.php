@@ -18,7 +18,7 @@ $f2 = fopen('text/myfile01.txt', 'w'); // 라이트
 $ss1 = fgets($f1, 1000);
 echo $ss1;
 
-// End of File
+// 행이 끝날때까지 반복문: End of File
 while (!feof($f1)) {
     $ss1 = fgets($f1, 1000);
     echo $ss1;
@@ -30,3 +30,9 @@ while (!feof($f1)) {
 // 구분자 Delimiter
 // 구분자 ^ : 11^배추^V^3000
 explode('^', $str); // '^' 를 기준으로 나눠서 배열로 리턴
+
+// 파일쓰기
+fputs($fi, 'string'); //파일 클로즈할때까지, 반복하면 파일내용 계속 추가됨
+
+// 파일클로즈
+fclose($f1);

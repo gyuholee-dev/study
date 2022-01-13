@@ -17,3 +17,24 @@ TCP port:               3306
 Uptime:                 18 min 26 sec
 
 Threads: 6  Questions: 59  Slow queries: 0  Opens: 22  Flush tables: 1  Open tables: 15  Queries per second avg: 0.053
+
+
+C:\xampp\mysql\bin\mysql.exe  Ver 15.1 Distrib 10.4.22-MariaDB, for Win64 (AMD64), source revision a19ab67318760f8f155ef7f4f821dfc738542c67
+
+Connection id:          62
+Current database:       mydb
+Current user:           root@localhost
+SSL:                    Not in use
+Using delimiter:        ;
+Server:                 MariaDB
+Server version:         10.4.22-MariaDB mariadb.org binary distribution
+Protocol version:       10
+Connection:             localhost via TCP/IP
+Server characterset:    utf8mb4
+Db     characterset:    utf8mb4
+Client characterset:    euckr
+Conn.  characterset:    euckr
+TCP port:               3306
+Uptime:                 3 hours 35 min 10 sec
+
+Threads: 6  Questions: 736  Slow queries: 0  Opens: 25  Flush tables: 1  Open tables: 18  Queries per second avg: 0.057

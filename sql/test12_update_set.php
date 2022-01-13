@@ -39,11 +39,14 @@ $res = mysqli_query($db, $sql);
 while ($a = mysqli_fetch_row($res)) {
     $names[$a[0]] = $a[1];
 }
+// $cnt = mysqli_num_rows($res);
+// echo '$cnt: '.$cnt;
 
 $sql = "SELECT * FROM sale
         WHERE numb = '$numb'";
 $res = mysqli_query($db, $sql);
 $a = mysqli_fetch_row($res)
+
 ?>
 <!DOCTYPE html>
 <html lang="ko">
