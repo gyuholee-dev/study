@@ -20,3 +20,11 @@ $ mysqldump -u root mydb > backupdb.txt
 # 데이터베이스 전부 리스토어
 $ mysql -u root [데이터베이스명] < [백업파일명]
 $ mysql -u root mydb < backupdb.txt
+
+
+= 주의: 파워쉘에서 백업 및 리스토어시 다음 명령으로 바꿔야 함
+# 참고: https://itzone.tistory.com/711
+-- 백업
+mysqldump -u root -p [데이터베이스명] -r [백업파일명]
+-- 리스토어 (mysql 에서 db 선택후 입력)
+SOURCE [백업파일명]
