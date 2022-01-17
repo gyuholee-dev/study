@@ -44,6 +44,11 @@ input[type="text"],
 input[type="number"] {
     font-size: 100%;
 }
+input[type="date"] {
+    font-size: 115%;
+    width: -webkit-fill-available;
+    padding: 0 10px;
+}
 select {
     width: 100%;
     font-size: 100%;
@@ -95,4 +100,15 @@ div.tbMenu {
 }
 form {
     margin: 0;
+}
+
+input[type="button"].selected {
+    background-color: #5dd2ff;
+    border: 1px solid #4f52ff;
+    border-radius: 2px;
+}
+input[type="button"].selected:hover,
+input[type="button"].selected:active,
+input[type="button"].selected:focus {
+    background-color: #50c1ee;
 }

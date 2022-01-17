@@ -6,7 +6,7 @@ $page = $_REQUEST['page'];
 $items = $_REQUEST['items'];
 
 $replyUrl = 'test16_update_set.php?reply=y'.
-'&numb='.$numb.'&items='.$items.'&page='.$page;
+            '&numb='.$numb.'&items='.$items.'&page='.$page;
 $backUrl = 'test16_update.php?items='.$items.'&page='.$page;
 
 if (isset($_REQUEST['update'])) {
@@ -29,16 +29,12 @@ if (isset($_REQUEST['update'])) {
                 dept = '$dept',
                 stat = '$stat'
             WHERE numb = '$numb'";
-    echo $sql;
-    
-    // $sql = "DELETE FROM ordr
-    //         WHERE numb = '$numb'";
-    // // echo $sql;
-    // mysqli_query($db, $sql);
+    // echo $sql;
+    mysqli_query($db, $sql);
 
-    // $msg = '주문요구서 테이블 수정 완료';
-    // $url = $backUrl;
-    // sendMsg($msg, $url);
+    $msg = '주문요구서 테이블 수정 완료';
+    $url = $backUrl;
+    sendMsg($msg, $url);
 }
 
 $sql = "SELECT * FROM ordr

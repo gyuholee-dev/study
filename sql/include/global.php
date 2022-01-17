@@ -8,9 +8,52 @@ mysqli_select_db($db, "mydb");
 
 function sendMsg($msg, $url) {
     echo "<script>
-        alert('$msg');
-        location.href='$url';
-    </script>";
+            alert('$msg');
+            location.href='$url';
+          </script>";
+}
+
+function getAllRecords($table, $pkey=true) {
+    global $db;
+    $records = array();
+    $sql = "SELECT * FROM $table";
+    $res = mysqli_query($db, $sql);
+    $i = 0;
+    while ($a = mysqli_fetch_row($res)) {
+        if ($pkey == true) {
+            $records[$a[0]] = array();
+            foreach ($a as $key => $value) {
+                $records[$a[0]][$key] = $value;
+            }
+        } elseif ($pkey == false) {
+            $records[$i] = array();
+            foreach ($a as $key => $value) {
+                $records[$i][$key] = $value;
+            }
+            $i++;
+        }
+    }
+    return $records;
+}
+
+function getCountRecords($table) {
+    global $db;
+    $sql = "SELECT COUNT(*) FROM $table";
+    $res = mysqli_query($db, $sql);
+    $a = mysqli_fetch_row($res);
+    return $a[0];
+}
+
+function getThisFile() {
+    if(strpos($_SERVER['REQUEST_URI'], '?') !== false) {  
+        $urls = explode('?', $_SERVER['REQUEST_URI']);
+        $urls = $urls[0];
+    } else {
+        $urls = $_SERVER['REQUEST_URI'];
+    }
+    $urls = array_reverse(explode('/', $urls));
+    $thisFile = trim($urls[0]);
+    return $thisFile;
 }
 
 function makeURLParam($url, $array) {
@@ -26,36 +69,15 @@ function makeURLParam($url, $array) {
     }
     return $url;
 }
-
-function getDeptList() {
-    global $db;
-    $deptList = array();
-    $sql = "SELECT * FROM dept";
-    $res = mysqli_query($db, $sql);
-    while ($a = mysqli_fetch_row($res)) {
-        $deptList[$a[0]] = $a[1];
+function getURLParam() {
+    if (strpos($_SERVER['REQUEST_URI'], '?') !== false) {  
+        $urls = explode('?', $_SERVER['REQUEST_URI']);
+        $urls = $urls[1];
+        // if (strpos($urls, 'reply') !== false) {
+        //     $urls = explode('&', $urls[1]);
+        // }
+        return '?'.$urls;
+    } else {
+        return '';
     }
-    return $deptList;
-}
-
-function getAllRecords($table) {
-    global $db;
-    $records = array();
-    $sql = "SELECT * FROM $table";
-    $res = mysqli_query($db, $sql);
-    while ($a = mysqli_fetch_row($res)) {
-        $records[$a[0]] = array();
-        foreach ($a as $key => $value) {
-            $records[$a[0]][$key] = $value;
-        }
-    }
-    return $records;
-}
-
-function getCountRecords($table) {
-    global $db;
-    $sql = "SELECT COUNT(*) FROM $table";
-    $res = mysqli_query($db, $sql);
-    $a = mysqli_fetch_row($res);
-    return $a[0];
 }

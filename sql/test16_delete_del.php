@@ -6,7 +6,7 @@ $page = $_REQUEST['page'];
 $items = $_REQUEST['items'];
 
 $replyUrl = 'test16_delete_del.php?reply=y'.
-'&numb='.$numb.'&items='.$items.'&page='.$page;
+            '&numb='.$numb.'&items='.$items.'&page='.$page;
 $backUrl = 'test16_delete.php?items='.$items.'&page='.$page;
 
 if (isset($_REQUEST['reply']) && $_REQUEST['reply'] == 'y') {

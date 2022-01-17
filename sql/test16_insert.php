@@ -6,8 +6,7 @@ if (isset($_GET['today'])) {
     $today = $_GET['today'];
 }
 
-
-$deptList = getDeptList();
+$deptList = getAllRecords('dept');
 
 $maxNumb = '111';
 $sql = "SELECT MAX(numb) FROM ordr";
@@ -95,7 +94,7 @@ if (isset($_POST['insert'])) {
             <select name="dept">
                 <?php
                     foreach ($deptList as $key => $value) {
-                        echo '<option value="'.$key.'">'.$value.'</option>';
+                        echo '<option value="'.$key.'">'.$value[1].'</option>';
                     }
                 ?>
             </select>
