@@ -1,5 +1,5 @@
 <?php
-    // echo $_SERVER['REQUEST_URI'];
+    $flleName = 'test20';
     $thisFile = getThisFile();
 
     $classes = array(
@@ -11,9 +11,9 @@
             'delete' => ''
             );
     foreach ($classes as $key => $value) {
-        if ('test18_'.$key.'.php' == $thisFile) {
+        if ($flleName.'_'.$key.'.php' == $thisFile) {
             $classes[$key] = 'class ="selected"';
-        } elseif ('test18_'.$key.'_set.php' == $thisFile) {
+        } elseif ($flleName.'_'.$key.'_set.php' == $thisFile) {
             $classes[$key] = 'class ="selected"';
         }
     }
@@ -23,19 +23,19 @@
 ?>
 <input type="button" value="생성"
     <?=$classes['create']?>
-    onclick="location.href='test18_create.php<?=$urlParam?>'">
+    onclick="location.href='<?=$flleName?>_create.php<?=$urlParam?>'">
 <input type="button" value="백업"
     <?=$classes['backup']?>
-    onclick="location.href='test18_backup.php<?=$urlParam?>'">
+    onclick="location.href='<?=$flleName?>_backup.php<?=$urlParam?>'">
 <input type="button" value="입력"
     <?=$classes['insert']?>
-    onclick="location.href='test18_insert.php<?=$urlParam?>'">
+    onclick="location.href='<?=$flleName?>_insert.php<?=$urlParam?>'">
 <input type="button" value="조회"
     <?=$classes['select']?>
-    onclick="location.href='test18_select.php<?=$urlParam?>'">
+    onclick="location.href='<?=$flleName?>_select.php<?=$urlParam?>'">
 <input type="button" value="수정"
     <?=$classes['update']?>
-    onclick="location.href='test18_update.php<?=$urlParam?>'">
+    onclick="location.href='<?=$flleName?>_update.php<?=$urlParam?>'">
 <input type="button" value="삭제"
     <?=$classes['delete']?>
-    onclick="location.href='test18_delete.php<?=$urlParam?>'">
+    onclick="location.href='<?=$flleName?>_delete.php<?=$urlParam?>'">

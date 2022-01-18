@@ -85,6 +85,9 @@ div.result {
 label {
     font-weight: bold;
 }
+label.light {
+    font-weight: unset;
+}
 hr {
     margin-bottom: 20px;
 }
@@ -111,4 +114,8 @@ input[type="button"].selected:hover,
 input[type="button"].selected:active,
 input[type="button"].selected:focus {
     background-color: #50c1ee;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
 }

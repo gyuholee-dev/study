@@ -69,13 +69,19 @@ function makeURLParam($url, $array) {
     }
     return $url;
 }
-function getURLParam() {
+function getURLParam($except=false) {
     if (strpos($_SERVER['REQUEST_URI'], '?') !== false) {  
         $urls = explode('?', $_SERVER['REQUEST_URI']);
         $urls = $urls[1];
-        // if (strpos($urls, 'reply') !== false) {
-        //     $urls = explode('&', $urls[1]);
-        // }
+        if ($except !== false) {
+            $urls = explode('&', $urls);
+            foreach ($urls as $key => $value) {
+                if (strpos($value, $except.'=') !== false) {
+                    unset($urls[$key]);
+                }
+            }
+            $urls = implode('&', $urls);
+        }
         return '?'.$urls;
     } else {
         return '';
