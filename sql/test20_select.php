@@ -54,6 +54,7 @@ for ($i=0; $i < mysqli_num_rows($res) ; $i++) {
 // $sql = "SELECT * FROM educ 
 //         ORDER BY numb DESC 
 //         LIMIT $start, $items";
+
 $sql = "SELECT educ.*, empl.name AS numb_name, code.name AS plce_name FROM educ
         JOIN empl ON educ.numb = empl.numb
         JOIN code ON educ.plce = code.cod2 AND code.cod1 = '13'";

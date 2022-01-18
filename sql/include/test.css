@@ -1,121 +1,123 @@
 @charset "UTF-8";
 body {
-    font-family: "맑은 고딕";
-    text-align: center;
-}
-table {
-    /* width: 100%; */
-    border-collapse: collapse;
-    border-color: #404040;
-    /* margin: 20px 10px; */
-    border-width: 2px;
-}
-table.inner th,
-table.inner td {
-    padding: 0px;
-}
-th, td {
-    padding: 5px 10px;
-    /* width: 50px; */
-    text-align: center;
-}
-th.left, td.left {
-    text-align: left;
-}
-th.right, td.right {
-    text-align: right;
-}
-th {
-    background-color: lightblue;
-}
-th.red {
-    background-color: #ff9292;
-}
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-    font-weight: bold;
-    font-size: 90%;
-    padding: 2px 10px;
-    cursor: pointer;
-    min-width: 68px;
-}
-input[type="text"],
-input[type="number"] {
-    font-size: 100%;
-}
-input[type="date"] {
-    font-size: 115%;
-    width: -webkit-fill-available;
-    padding: 0 10px;
-}
-select {
-    width: 100%;
-    font-size: 100%;
-    padding: 2px 10px;
-}
-a:link,
-a:visited {
-    color: #000fcb;
-    text-decoration: none;
-}
-a:hover,
-a:active,
-a:focus {
-    color: orangered;
-}
-span.page {
-    margin: 0 10px;
-}
-span.red {
-    font-weight: bold;
-    color: red;
-}
-span.large {
-    font-size: 150%;
+  font-family: "맑은 고딕";
+  text-align: center;
 }
 
-div.result {
-    text-align: left;
-    background-color: #efefef;
-    padding: 20px;
-    border: 1px solid #8b8b8b;
-    border-radius: 10px;
+table {
+  border-collapse: collapse;
+  border-color: #404040;
+  border-width: 2px;
 }
+
+table.inner th, table.inner td {
+  padding: 0px;
+}
+
+th {
+  background-color: lightblue;
+}
+
+th.red {
+  background-color: #ff9292;
+}
+
+th, td {
+  padding: 5px 10px;
+  text-align: center;
+}
+
+th.left, td.left {
+  text-align: left;
+}
+
+th.right, td.right {
+  text-align: right;
+}
+
+select {
+  width: 100%;
+  font-size: 100%;
+  padding: 2px 10px;
+}
+
+a:link, a:visited {
+  color: #000fcb;
+  text-decoration: none;
+}
+
+a:hover, a:active, a:focus {
+  color: orangered;
+}
+
+span.page {
+  margin: 0 10px;
+}
+
+span.red {
+  font-weight: bold;
+  color: red;
+}
+
+span.large {
+  font-size: 150%;
+}
+
 label {
-    font-weight: bold;
+  font-weight: bold;
 }
+
 label.light {
-    font-weight: unset;
+  font-weight: unset;
 }
+
 hr {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+form {
+  margin: 0;
+}
+
+input[type=button], input[type=reset], input[type=submit] {
+  font-weight: bold;
+  font-size: 90%;
+  padding: 2px 10px;
+  cursor: pointer;
+  min-width: 68px;
+}
+
+input[type=text], input[type=number] {
+  font-size: 100%;
+}
+
+input[type=date] {
+  font-size: 115%;
+  width: -webkit-fill-available;
+  padding: 0 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+input[type=button].selected {
+  background-color: #5dd2ff;
+  border: 1px solid #4f52ff;
+  border-radius: 2px;
+}
+
+input[type=button].selected:hover, input[type=button].selected:active, input[type=button].selected:focus {
+  background-color: #50c1ee;
 }
 
 div.tbContents {
-    display: block;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-div.tbMenu {
-    padding: 10px;
-}
-form {
-    margin: 0;
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-input[type="button"].selected {
-    background-color: #5dd2ff;
-    border: 1px solid #4f52ff;
-    border-radius: 2px;
-}
-input[type="button"].selected:hover,
-input[type="button"].selected:active,
-input[type="button"].selected:focus {
-    background-color: #50c1ee;
-}
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
-   opacity: 1;
+div.tbMenu {
+  padding: 10px;
 }
