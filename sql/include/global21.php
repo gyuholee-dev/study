@@ -51,6 +51,16 @@ function sendMsg($msg, $url) {
           </script>";
 }
 
+function tableExist($table) {
+    global $db;
+    $sql = "SHOW TABLES LIKE '$table'";
+    $res = mysqli_query($db, $sql);
+    if (mysqli_num_rows($res) != 0) {
+        return true;
+    }
+    return false;
+}
+
 function getAllRecords($table, $pkey=true) {
     global $db;
     $records = array();
@@ -108,9 +118,11 @@ function makeURLParam($url, $array) {
     return $url;
 }
  */
-function getURLParam($except=false) {
-    if (strpos($_SERVER['REQUEST_URI'], '?') !== false) {  
-        $urls = explode('?', $_SERVER['REQUEST_URI']);
+function getURLParam($except=false, $insert=false) {
+    $urls = '';
+    $reqUrl = $_SERVER['REQUEST_URI'];
+    if (strpos($reqUrl, '?') !== false) {  
+        $urls = explode('?', $reqUrl);
         $urls = $urls[1];
         if ($except !== false) {
             $urls = explode('&', $urls);
@@ -121,8 +133,19 @@ function getURLParam($except=false) {
             }
             $urls = implode('&', $urls);
         }
+    }
+    
+    if ($insert !== false) {
+        if ($urls !== '') {
+            $urls = $insert.'&'.$urls;
+        } else {
+            $urls = $insert;
+        }
+    }
+
+    if ($urls !== '') {
         return '?'.$urls;
     } else {
-        return '';
+       return ''; 
     }
 }

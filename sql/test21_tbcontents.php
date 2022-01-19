@@ -2,7 +2,7 @@
 <hr>
 <div class="tbContents">
     <?php
-        if ($action != 'delete_del') {
+        if ($action != 'delete') {
             include $id.'_tbmenu.php';
         } 
     ?>
@@ -22,6 +22,10 @@
         echo '<th width="80">'.$nameSpace['food'].'</th>';
         echo '<th width="80">'.$nameSpace['etcs'].'</th>';
         echo '<th width="60">'.$nameSpace['comp'].'</th>';
+        if ($action == 'edit') {
+            echo '<th width="60">수정</th>';
+            echo '<th width="60">삭제</th>';
+        }
         echo '</tr>';
 
         while ($a = mysqli_fetch_assoc($res)) {
@@ -30,6 +34,12 @@
             $tran = number_format($a['tran']).'원';
             $food = number_format($a['food']).'원';
             $etcs = number_format($a['etcs']).'원';
+
+            $urlParam = $primeKey.'='.$a[$primeKey];
+            $urlParam = getURLParam(false, $urlParam);
+            $updateUrl = $id.'_update.php'.$urlParam;
+            $deleteUrl = $id.'_delete.php'.$urlParam;
+
             echo '<tr>';
             // echo '<td>'.$a['numb'].'</td>';
             echo '<td>'.$a['numb_name'].'</td>';
@@ -42,14 +52,19 @@
             echo '<td>'.$food.'</td>';
             echo '<td>'.$etcs.'</td>';
             echo '<td>'.$comp.'</td>';
+            if ($action == 'edit') {
+                echo '<td><a href="'.$updateUrl.'">수정</a></td>';
+                echo '<td><a href="'.$deleteUrl.'">삭제</a></td>';
+            }
             echo '</tr>';
+
         }
     ?>   
     </table>
 
     <div class="tbMenu">
     <?php
-        if ($action != 'delete_del') {
+        if ($action != 'delete') {
             for ($i=1; $i<=$pages; $i++) {
                 echo '<span class="page">';
                 if ($i == $page) {

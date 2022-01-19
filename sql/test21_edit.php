@@ -1,18 +1,20 @@
 <?php
 require 'include/global21.php';
 
-$title = $tableName.' 관리';
+$action = 'edit';
+$title = $tableName.' 편집';
 
-if (tableExist($table) == false) {
-    echo "<script>location.href='$id\_create.php';</script>";
-}
-
+include $id.'_start.php';
 ?>
 <!-- html -->
 <?php
     include $id.'_header.php';
 ?>
-<h3><?=$title?></h3>
+<!-- tbcontents -->
+<?php
+    include $id.'_tbcontents.php';
+?>
+<!-- tbcontents -->
 <hr>
 <?php
     include $id.'_menu.php';

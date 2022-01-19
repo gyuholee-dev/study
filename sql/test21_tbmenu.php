@@ -19,7 +19,7 @@
             ?>
         </select></label>
 
-        <label style="margin-left:10px;">정렬 <select name="sort" style="width: 120px;">
+        <label style="margin-left:10px;">정렬 <select name="sort" style="width: 140px;">
             <?php
                 $sortOp = array();
                 foreach ($nameSpace as $key => $value) {
