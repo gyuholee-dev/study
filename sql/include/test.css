@@ -14,12 +14,16 @@ table.inner th, table.inner td {
   padding: 0px;
 }
 
-th {
+table th {
   background-color: lightblue;
 }
 
-th.red {
-  background-color: #ff9292;
+table.UPDATE th {
+  background-color: #f6d0fd;
+}
+
+table.DELETE th, table.RECORD th {
+  background-color: #ffb7b7;
 }
 
 th, td {
@@ -120,4 +124,12 @@ div.tbContents {
 
 div.tbMenu {
   padding: 10px;
+}
+
+div.result {
+  text-align: left;
+  background-color: #efefef;
+  padding: 20px;
+  border: 1px solid #8b8b8b;
+  border-radius: 10px;
 }

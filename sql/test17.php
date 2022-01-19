@@ -64,9 +64,74 @@ echo '최소: '.min($nums).'<br>';
 $count = count($nums);
 $total = 0;
 foreach ($nums as $key => $value) {
-    if ($key == 0) echo '합계: ';
+    if ($key == 0) {
+        echo '합계: ';
+    }
     echo $value;
     $total = $total+$value;
-    if ($key != $count-1) echo ' + ';
-    elseif ($key == $count-1) echo ' = '.$total;
+    if ($key != $count-1) {
+        echo ' + ';
+    } elseif ($key == $count-1) {
+        echo ' = '.$total;
+    }
 }
+echo '<br>';
+echo '<br>';
+
+echo '(7) (25 45) 임의의 2개 숫자 사이에 있는 짝수 갯수와 합, 홀수 갯수와 합 출력.<br>';
+function cal7($startNum = false, $endNum = false)
+{
+    if ($startNum === false) {
+        $startNum = rand(0, 98);
+    }
+    if ($endNum === false) {
+        $endNum = rand($startNum, 99);
+    }
+
+    $evenCount = 0;
+    $evenTotal = 0;
+    $oddCount = 0;
+    $oddTotal = 0;
+    for ($i=$startNum; $i <= $endNum; $i++) {
+        if ($i%2 == 0) {
+            $evenCount = $evenCount + 1;
+            $evenTotal = $evenTotal + $i;
+        } else {
+            $oddCount = $oddCount + 1;
+            $oddTotal = $oddTotal + $i;
+        }
+    }
+    echo $startNum.' ~ '.$endNum.'<br>';
+    echo '짝수 갯수: '.$evenCount.'<br>';
+    echo '짝수 합: '.$evenTotal.'<br>';
+    echo '홀수 갯수: '.$oddCount.'<br>';
+    echo '홀수 합: '.$oddTotal.'<br>';
+}
+// cal7();
+cal7(25, 45);
+echo '<br>';
+
+echo '(8) 1글자씩 세로로 보여주기.<br>';
+$str = "Insert into Educ(Numb,Date)";
+
+// // 첫번째
+// $str = preg_replace('/\s+/', '', $str);
+// $res = str_split($str, 1);
+// echo '문자열: '.$str.'<br>';
+// foreach ($res as $key => $value) {
+//     echo $value.'<br>';
+// }
+
+// 두번째
+echo '문자열: '.$str.'<br>';
+$ren = strlen($str);
+for ($i=0; $i < $ren; $i++) {
+    $s = substr($str, $i, 1);
+    echo $s.'<br>';
+}
+
+echo '<br>';
+echo '(9) 공백을 ? 로 바꾸기. t 를 X 로 바꾸기<br>';
+echo '문자열: '.$str.'<br>';
+echo '결과: '.str_replace(' ', '?', $str).'<br>';
+echo '결과: '.str_replace('t', 'X', $str).'<br>';

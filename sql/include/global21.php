@@ -1,11 +1,49 @@
 <?php
+// OPTIONS
+// mysqli_report(MYSQLI_REPORT_OFF);
+// ini_set('display_errors', 0);
+
+// DB
 $host = "localhost";
 $user = "root";
 $pass = "";
 $db = mysqli_connect($host, $user, $pass);
 mysqli_select_db($db, "mydb");
-// mysqli_report(MYSQLI_REPORT_OFF);
 
+// GLOBAL Value
+$id = 'test21';
+$action = '';
+$table = 'trip';
+$tableName = '사원출장';
+$title = $tableName.' 관리';
+$primeKey = 'serl';
+$serchKey = 'plce';
+
+$items = 10;
+$page = 1;
+$pages = 10;
+$where = '';
+$sort = 'date';
+$order = 'desc';
+$start = 0;
+
+$nameSpace = array(
+    'serl' => '순서',
+    'numb' => '사번',
+    'date' => '출장일자',
+    'days' => '출장일수',
+    'plce' => '출장지',
+    'purp' => '출장목적',
+    'tran' => '교통숙박비',
+    'food' => '식비',
+    'etcs' => '여비',
+    'comp' => '동행자',
+    'plce_name' => '출장지',
+    'numb_name' => '출장자'
+);
+
+
+// Functions
 function sendMsg($msg, $url) {
     echo "<script>
             alert('$msg');

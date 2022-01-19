@@ -15,12 +15,14 @@ table {
       padding: 0px;
     }
   }
-}
-
-th {
-  background-color: lightblue;
-  &.red {
-    background-color: #ff9292;
+  th {
+    background-color: lightblue;
+  }
+  &.UPDATE th {
+    background-color: #f6d0fd;
+  }
+  &.DELETE th, &.RECORD th {
+    background-color: #ffb7b7;
   }
 }
 
@@ -127,5 +129,12 @@ div {
   }
   &.tbMenu {
     padding: 10px;
-  }  
+  }
+  &.result {
+    text-align: left;
+    background-color: #efefef;
+    padding: 20px;
+    border: 1px solid #8b8b8b;
+    border-radius: 10px;
+  }
 }

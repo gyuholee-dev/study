@@ -2,10 +2,10 @@
 require 'include/global.php';
 
 // param
-$mode = 'SELECT';
-$title = '교육 조회';
-$file = 'test20_select.php';
-$target = '';
+$mode = 'DELETE';
+$title = '교육 삭제';
+$file = 'test20_delete.php';
+$target = 'seqn';
 
 // start
 include 'test20_start.php';
