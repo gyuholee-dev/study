@@ -1,5 +1,5 @@
 <?php
-require 'include/global21.php';
+require 'include/global22.php';
 
 $action = 'delete';
 $title = $tableName.' 삭제';

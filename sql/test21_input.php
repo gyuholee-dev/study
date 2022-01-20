@@ -9,7 +9,9 @@
             <select name="numb">
             <?php
                 while ($a = mysqli_fetch_assoc($emplList)) {
-                    echo '<option value="'.$a['numb'].'">'.$a['name'].'</option>';
+                    $selected = '';
+                    if ($preData['numb'] == $a['numb']) $selected = ' selected';
+                    echo '<option value="'.$a['numb'].'"'.$selected.'>'.$a['name'].'</option>';
                 }
             ?>
             </select>
@@ -38,7 +40,9 @@
             <select name="plce">
             <?php
                 while ($a = mysqli_fetch_assoc($plceList)) {
-                    echo '<option value="'.$a['cod2'].'">'.
+                    $selected = '';
+                    if ($preData['plce'] == $a['cod2']) $selected = ' selected';
+                    echo '<option value="'.$a['cod2'].'"'.$selected.'>'.
                           $a['name'].'</option>';
                 }
             ?>
@@ -84,8 +88,12 @@
     <tr>
         <th><?=$nameSpace['comp']?></th>
         <td>
-            <label><input type="radio" name="comp" value="Y" checked>있음</label>
-            <label><input type="radio" name="comp" value="Y">없음</label>
+            <?php
+                $checked = array('Y'=>'', 'N'=>'');
+                $checked[$preData['comp']] = ' checked';
+            ?>
+            <label><input type="radio" name="comp" value="Y"<?=$checked['Y']?>>있음</label>
+            <label><input type="radio" name="comp" value="N"<?=$checked['N']?>>없음</label>
         </td>
     </tr>
 
