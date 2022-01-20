@@ -4,7 +4,6 @@ require 'include/global21.php';
 $action = 'insert';
 $title = $tableName.' 입력';
 
-
 $sql = "SELECT numb, name FROM empl ORDER BY name";
 $emplList = mysqli_query($db, $sql);
 
@@ -29,7 +28,7 @@ if (isset($_POST['insert'])) {
     mysqli_query($db, $sql);
 
     $msg = $title.' 완료';
-    $url = $id.'_insert.php';
+    $url = $id.'_insert.php'.getURLParam($primeKey);
     sendMsg($msg, $url);
 }
 

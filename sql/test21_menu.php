@@ -2,28 +2,34 @@
 
     $tableExist = tableExist($table);
 
-    $thisFile = getThisFile();
+    $filename = explode('.', getThisFile())[0];
 
     $classes = array(
-            'create' => '',
-            'backup' => '',
-            'insert' => '',
-            'select' => '',
-            'edit' => '',
-            'update' => '',
-            'delete' => ''
-            );
+               'create' => '',
+               'backup' => '',
+               'insert' => '',
+               'select' => '',
+               'edit' => '',
+               'update' => '',
+               'delete' => ''
+               );
     foreach ($classes as $key => $value) {
-        if ($id.'_'.$key.'.php' == $thisFile) {
-            $classes[$key] = 'class ="selected"';
-        } elseif ($id.'_'.$key.'_set.php' == $thisFile) {
+        if ($id.'_'.$key == $filename) {
             $classes[$key] = 'class ="selected"';
         }
+    }
+    if ($classes['update'] || $classes['delete']) {
+        $classes['edit'] = 'class ="selected"';
     }
 
     $urlParam = getURLParam($primeKey);
 
 ?>
+<input type="button" value="조회"
+    <?=$classes['select']?>
+    onclick="location.href='<?=$id?>_select.php<?=$urlParam?>'"
+    <?if(!$tableExist)echo' disabled';?>>
+
 <input type="button" value="생성"
     <?=$classes['create']?>
     onclick="location.href='<?=$id?>_create.php<?=$urlParam?>'">
@@ -36,11 +42,6 @@
 <input type="button" value="입력"
     <?=$classes['insert']?>
     onclick="location.href='<?=$id?>_insert.php<?=$urlParam?>'"
-    <?if(!$tableExist)echo' disabled';?>>
-
-<input type="button" value="조회"
-    <?=$classes['select']?>
-    onclick="location.href='<?=$id?>_select.php<?=$urlParam?>'"
     <?if(!$tableExist)echo' disabled';?>>
 
 <input type="button" value="편집"

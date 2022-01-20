@@ -1,5 +1,5 @@
 <div class="tbContents">
-<form method="post"action="<?=$id?>_insert.php" autocomplete="off">
+<form method="post"action="<?=$id?>_<?=$action?>.php" autocomplete="off">
     <table class="<?=$action?>" cellpadding="3" cellspacing="0" border="1">
     <tr>
         <th><?=$nameSpace['numb_name']?></th>
@@ -92,10 +92,16 @@
     </table>
     
     <div class="tbMenu">
-        <input type="submit" name="insert" value="입력">
+        <input type="submit" name="<?=$action?>" 
+            value="<?if($action=='update') echo'수정'; else echo'입력';?>">
         <input type="reset" value="취소">
-        <input type="button" value="메뉴" 
-        onclick="location.href='<?=$id?>_select.php<?=getURLParam()?>'">
+        <?php if ($action == 'update') { ?>
+            <input type="button" value="뒤로"
+            onclick="location.href='<?=$id?>_edit.php<?=getURLParam($primeKey)?>'">
+        <?php } else { ?>
+            <input type="button" value="메뉴" 
+            onclick="location.href='<?=$id?>_select.php<?=getURLParam($primeKey)?>'">
+        <?php } ?>
     </div>
 </form>
 </div>

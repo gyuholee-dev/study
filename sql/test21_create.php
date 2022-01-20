@@ -85,8 +85,8 @@ if ($create == true) {
         <span class="red"><b><?=$tableName?> 테이블을 생성하시겠습니까?</b></span>
         <br><br>
         <form method="post" action="<?=$id?>_create.php">
-            <input type="submit" name="create" value="Yes">
-            <input type="button" value="No" 
+            <input type="submit" name="create" value="예">
+            <input type="button" value="아니오" 
             onclick="location.href='<?=$id?><?if($tableReset)echo'_create'?>.php'">
         </form>
 

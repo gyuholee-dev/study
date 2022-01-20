@@ -135,3 +135,47 @@ echo '(9) 공백을 ? 로 바꾸기. t 를 X 로 바꾸기<br>';
 echo '문자열: '.$str.'<br>';
 echo '결과: '.str_replace(' ', '?', $str).'<br>';
 echo '결과: '.str_replace('t', 'X', $str).'<br>';
+
+echo '<br>';
+echo '(10) $str 에서 "o" 문자 카운트해서 출력<br>';
+echo '(10) $str 에서 "co" 문자 카운트해서 출력<br>';
+$str = "naver.com, google.com, jungbo.co.kr";
+echo '문자열: '.$str.'<br>';
+// preg_match_all 활용
+// echo 'o 결과: '.preg_match_all('/o/u',$str,$matches).'개<br>';
+// echo 'co 결과: '.preg_match_all('/co/u',$str,$matches).'개<br>';
+// strpos 활용
+function countStr($str, $search)
+{
+    $count = 0;
+    $ren = strlen($str);
+    for ($i=0; $i < $ren; $i++) {
+        if (strpos($str, $search, $i) !== false) {
+            $count = $count + 1;
+            $i = strpos($str, $search, $i);
+        }
+    }
+    return $count;
+}
+// substr 활용
+function countStr2($str, $search) {
+    $count = 0;
+    $ren = strlen($str);
+    $sren = strlen($search);
+    for ($i=0; $i < $ren; $i++) {
+        if (substr($str, $i, $sren) == $search) {
+            $count = $count + 1;
+        }
+    }
+    return $count;
+}
+echo 'o 결과: '.countStr2($str, 'o').'개<br>';
+echo 'co 결과: '.countStr2($str, 'co').'개<br>';
+
+echo '<br>';
+echo '(10) $str 에서 "com" 문자를 "co.kr" 로 바꿔서 $str 출력<br>';
+echo '문자열: '.$str.'<br>';
+// preg_replace 활용
+// echo '결과: '.preg_replace('/com/u', 'co.kr', $str);
+// str_replace 활용
+echo '결과: '.str_replace('com', 'co.kr', $str);

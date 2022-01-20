@@ -24,6 +24,9 @@ table {
   &.DELETE th, &.RECORD th {
     background-color: #ffb7b7;
   }
+  &.edit th, &.update th, &.delete th {
+    background-color: #ffb7b7;
+  }
 }
 
 th, td {
@@ -33,6 +36,9 @@ th, td {
   &.left {
     text-align: left;
   }
+  &.center {
+    text-align: center;
+  }
   &.right {
     text-align: right;
   }
@@ -41,7 +47,7 @@ th, td {
 select {
   width: 100%;
   font-size: 100%;
-  padding: 2px 10px;
+  padding: 3px 6px;
 }
 
 a {
@@ -95,6 +101,7 @@ input {
   &[type=text],
   &[type=number] {
     font-size: 100%;
+    padding: 3px 6px;
   }
   &[type=date] {
     font-size: 115%;
@@ -106,6 +113,15 @@ input {
     &::-webkit-outer-spin-button {
       opacity: 1;
     }    
+  }
+  &.left {
+    text-align: left;
+  }
+  &.center {
+    text-align: center;
+  }
+  &.right {
+    text-align: right;
   }
 }
 

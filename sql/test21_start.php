@@ -1,4 +1,5 @@
 <?php
+
 $whereSql = '';
 $sortSql = '';
 $orderSql = '';
@@ -46,7 +47,8 @@ $sql = "SELECT trip.*,
         JOIN code ON trip.plce = code.cod2 
         AND code.cod1 = '13'";
 
-if ($action == 'delete_del') {
+if ($action == 'delete') {
+    $target = $_REQUEST[$primeKey];
     $whereSql = " WHERE $primeKey='$target'";
     $sql = $sql.$whereSql;
 } else {

@@ -1,12 +1,20 @@
 <div class="tbMenu">
+    <script>
+        function changeView() {
+            var form = document.getElementById('tbmenu');
+            form.submit();
+        }
+    </script>
     <table class="inner" width="100%">
     <tr><td class="left">
-    <form method="get" action="<?=$id.'_'.$action.'.php'?>">
+    <form id="tbmenu" method="get" action="<?=$id.'_'.$action.'.php'?>">
 
-        <label>항목수 <input type="number" max=99 name="items" value="<?=$items?>"
-        style="width: 40px;"></label>
+        <label>항목수 
+            <input type="number" max=99 name="items" value="<?=$items?>"
+            style="width: 40px;" onchange="changeView()"></label>
         
-        <label style="margin-left:10px;">선택 <select name="where" style="width: 120px;">
+        <label style="margin-left:10px;">선택 
+        <select name="where" style="width: 120px;" onchange="changeView()">
             <?php
                 echo '<option value="">전체</option>';
                 $sql = "SELECT cod2 AS plce, name AS plce_name FROM code WHERE cod1 = '13'";
@@ -19,7 +27,8 @@
             ?>
         </select></label>
 
-        <label style="margin-left:10px;">정렬 <select name="sort" style="width: 140px;">
+        <label style="margin-left:10px;">정렬 
+        <select name="sort" style="width: 140px;" onchange="changeView()">
             <?php
                 $sortOp = array();
                 foreach ($nameSpace as $key => $value) {
@@ -47,9 +56,11 @@
             $orderOp = array('asc'=>'', 'desc'=>'');
             $orderOp[$order] = 'checked';
         ?>
-        <label><input type="radio" name="order" value="asc" <?=$orderOp['asc']?>>정</label>
-        <label><input type="radio" name="order" value="desc" <?=$orderOp['desc']?>>역</label>
-        <input type="submit" value="입력">
+        <label><input type="radio" name="order" value="asc" 
+               <?=$orderOp['asc']?> onchange="changeView()">정</label>
+        <label><input type="radio" name="order" value="desc" 
+               <?=$orderOp['desc']?> onchange="changeView()">역</label>
+        <input type="submit" value="입력" style="display:none;">
 
     </form>
     </td><td class="right">

@@ -14,26 +14,27 @@
         // echo '<th>'.$nameSpace['numb'].'</th>';
         echo '<th width="60">'.$nameSpace['numb_name'].'</th>';
         echo '<th width="100">'.$nameSpace['date'].'</th>';
-        echo '<th width="70">'.$nameSpace['days'].'</th>';
+        echo '<th width="50">'.$nameSpace['days'].'</th>';
         // echo '<th>'.$nameSpace['plce'].'</th>';
         echo '<th width="60">'.$nameSpace['plce_name'].'</th>';
         echo '<th width="120">'.$nameSpace['purp'].'</th>';
         echo '<th width="80">'.$nameSpace['tran'].'</th>';
         echo '<th width="80">'.$nameSpace['food'].'</th>';
         echo '<th width="80">'.$nameSpace['etcs'].'</th>';
-        echo '<th width="60">'.$nameSpace['comp'].'</th>';
+        echo '<th width="50">'.$nameSpace['comp'].'</th>';
         if ($action == 'edit') {
-            echo '<th width="60">수정</th>';
-            echo '<th width="60">삭제</th>';
+            echo '<th width="50">수정</th>';
+            echo '<th width="50">삭제</th>';
         }
         echo '</tr>';
 
         while ($a = mysqli_fetch_assoc($res)) {
-            if ($a['comp'] == 'Y') $comp = '있음';
-            elseif ($a['comp'] == 'N') $comp = '없음';
+            $days = $a['days'].'일';
             $tran = number_format($a['tran']).'원';
             $food = number_format($a['food']).'원';
             $etcs = number_format($a['etcs']).'원';
+            if ($a['comp'] == 'Y') $comp = '있음';
+            elseif ($a['comp'] == 'N') $comp = '없음';
 
             $urlParam = $primeKey.'='.$a[$primeKey];
             $urlParam = getURLParam(false, $urlParam);
@@ -44,13 +45,13 @@
             // echo '<td>'.$a['numb'].'</td>';
             echo '<td>'.$a['numb_name'].'</td>';
             echo '<td>'.$a['date'].'</td>';
-            echo '<td>'.$a['days'].'</td>';
+            echo '<td class="right">'.$days.'</td>';
             // echo '<td>'.$a['plce'].'</td>';
             echo '<td>'.$a['plce_name'].'</td>';
-            echo '<td>'.$a['purp'].'</td>';
-            echo '<td>'.$tran.'</td>';
-            echo '<td>'.$food.'</td>';
-            echo '<td>'.$etcs.'</td>';
+            echo '<td class="left">'.$a['purp'].'</td>';
+            echo '<td class="right">'.$tran.'</td>';
+            echo '<td class="right">'.$food.'</td>';
+            echo '<td class="right">'.$etcs.'</td>';
             echo '<td>'.$comp.'</td>';
             if ($action == 'edit') {
                 echo '<td><a href="'.$updateUrl.'">수정</a></td>';
