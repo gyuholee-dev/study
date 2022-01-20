@@ -1,5 +1,6 @@
 <?php
 
+$rowCount = 0;
 $whereSql = '';
 $sortSql = '';
 $orderSql = '';
@@ -20,8 +21,9 @@ if (isset($_REQUEST['where']) && $_REQUEST['where'] != '') {
 $sql = $sql.$whereSql;
 $res = mysqli_query($db, $sql);
 $a = mysqli_fetch_row($res);
+$rowCount = $a[0];
 
-$pages = ceil($a[0]/$items);
+$pages = ceil($rowCount/$items);
 $start = ($page-1)*$items;
 $limitSql = " LIMIT $start, $items";
 

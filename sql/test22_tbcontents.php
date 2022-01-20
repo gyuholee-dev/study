@@ -23,31 +23,41 @@
             echo '<th width="50">삭제</th>';
         }
         echo '</tr>';
+        if ($rowCount > 0) {
+            while ($a = mysqli_fetch_assoc($res)) {
+                if ($a['kind'] == 'R') $kind = '포상';
+                elseif ($a['kind'] == 'P') $kind = '징계';
 
-        while ($a = mysqli_fetch_assoc($res)) {
-            if ($a['kind'] == 'R') $kind = '포상';
-            elseif ($a['kind'] == 'P') $kind = '징계';
+                $urlParam = $primeKey.'='.$a[$primeKey];
+                $urlParam = getURLParam(false, $urlParam);
+                $updateUrl = $id.'_update.php'.$urlParam;
+                $deleteUrl = $id.'_delete.php'.$urlParam;
 
-            $urlParam = $primeKey.'='.$a[$primeKey];
-            $urlParam = getURLParam(false, $urlParam);
-            $updateUrl = $id.'_update.php'.$urlParam;
-            $deleteUrl = $id.'_delete.php'.$urlParam;
-
+                echo '<tr>';
+                // echo '<td>'.$a['empl'].'</td>';
+                echo '<td>'.$a['empl_name'].'</td>';
+                echo '<td>'.$a['date'].'</td>';
+                echo '<td>'.$kind.'</td>';
+                // echo '<td>'.$a['code'].'</td>';
+                echo '<td>'.$a['code_name'].'</td>';
+                echo '<td>'.$a['resn'].'</td>';
+                echo '<td>'.$a['remk'].'</td>';
+                if ($action == 'edit') {
+                    echo '<td><a href="'.$updateUrl.'">수정</a></td>';
+                    echo '<td><a href="'.$deleteUrl.'">삭제</a></td>';
+                }
+                echo '</tr>';
+            }
+        } else {
+            $conspan = 5;
             echo '<tr>';
-            // echo '<td>'.$a['empl'].'</td>';
-            echo '<td>'.$a['empl_name'].'</td>';
-            echo '<td>'.$a['date'].'</td>';
-            echo '<td>'.$kind.'</td>';
-            // echo '<td>'.$a['code'].'</td>';
-            echo '<td>'.$a['code_name'].'</td>';
-            echo '<td>'.$a['resn'].'</td>';
-            echo '<td>'.$a['remk'].'</td>';
+            echo "<td>$whereName</td>";
+            echo "<td colspan=\"$conspan\">결과가 없습니다</td>";
             if ($action == 'edit') {
-                echo '<td><a href="'.$updateUrl.'">수정</a></td>';
-                echo '<td><a href="'.$deleteUrl.'">삭제</a></td>';
+                echo '<td>-</td>';
+                echo '<td>-</td>';
             }
             echo '</tr>';
-
         }
     ?>   
     </table>

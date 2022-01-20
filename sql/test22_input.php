@@ -28,23 +28,6 @@
     <tr>
         <th><?=$nameSpace['kind']?></th>
         <td>
-            <script>
-                // TODO: 반복문으로 변경해야 함.
-                function changeCode(value) {
-                    var select = document.getElementById('codeList');
-                    var optionR = select.getElementsByClassName('R'); 
-                    var optionP = select.getElementsByClassName('P'); 
-                    console.log(optionR);
-                    console.log(optionP);
-                    if (value == 'R') {
-                        optionR.style.display = '';
-                        optionP.style.display = 'none';
-                    } else if (value == 'P') {
-                        optionR.style.display = 'none';
-                        optionP.style.display = '';
-                    }
-                }
-            </script>
             <?php
                 $checked = array('R'=>'', 'P'=>'');
                 $checked[$preData['kind']] = ' checked';
@@ -61,16 +44,70 @@
             <select name="code" id="codeList">
             <?php
                 while ($a = mysqli_fetch_assoc($codeList)) {
+                    $cod2 = $a['cod2'];
+                    $name = $a['name'];
                     $class = '';
+                    $display = '';
                     $selected = '';
-                    if ($a['cod2'] >= 11 && $a['cod2'] <= 14) $class = 'R';
-                    elseif ($a['cod2'] >= 15 && $a['cod2'] <= 19) $class = 'P';
-                    if ($preData['code'] == $a['cod2']) $selected = ' selected';
-                    echo '<option class="'.$class.'" value="'.$a['cod2'].'"'.$selected.'>'.
-                          $a['name'].'</option>';
+                    if ($cod2 >= 11 && $cod2 <= 14) {
+                        $class = 'R';
+                    } elseif ($cod2 >= 15 && $cod2 <= 19) { 
+                        $class = 'P';
+                    }
+                    if ($preData['kind'] == $class) {
+                        $display = 'display: none;';
+                    }
+                    if ($preData['code'] == $cod2) {
+                        $selected = ' selected';
+                    }
+                    echo "<option class=\"$class\" value=\"$cod2\" 
+                          style=\"$display\"$selected>$name</option>";
                 }
             ?>
             </select>
+            <script>
+                function changeCode(value) {
+                    let select = document.getElementById('codeList');
+                    let optionR = select.getElementsByClassName('R');
+                    let optionP = select.getElementsByClassName('P');
+                    let selected = '';
+                    if (value == 'R') {
+                        for (let option of optionR) {
+                            option.style.display = '';
+                            if (option.selected == true) {
+                                selected = 'R'
+                            }
+                        }
+                        for (let option of optionP) {
+                            option.style.display = 'none';
+                            if (option.selected == true) {
+                                option.selected = false;
+                                selected = 'P'
+                            }
+                        }
+                        if (selected == 'P') {
+                            optionR[0].selected = true;
+                        }
+                    } else if (value == 'P') {
+                        for (let option of optionR) {
+                            option.style.display = 'none';
+                            if (option.selected == true) {
+                                option.selected = false;
+                                selected = 'R'
+                            }
+                        }
+                        for (let option of optionP) {
+                            option.style.display = '';
+                            if (option.selected == true) {
+                                selected = 'P'
+                            }
+                        }
+                        if (selected == 'R') {
+                            optionP[0].selected = true;
+                        }
+                    }
+                }
+            </script>
         </td>
     </tr>
     <tr>

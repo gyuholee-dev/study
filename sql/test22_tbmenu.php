@@ -16,12 +16,16 @@
         <label style="margin-left:10px;">선택 
         <select name="where" style="width: 120px;" onchange="changeView()">
             <?php
+                $whereName = '';
                 echo '<option value="">전체</option>';
                 $sql = "SELECT numb AS empl, name AS empl_name FROM empl ORDER BY name";
                 $emplList = mysqli_query($db, $sql);
                 while ($a = mysqli_fetch_assoc($emplList)) {
                     echo '<option value="'.$a['empl'].'"';
-                    if ($where == $a['empl']) echo ' selected';
+                    if ($where == $a['empl']) {
+                        echo ' selected';
+                        $whereName = $a['empl_name'];
+                    }
                     echo '>'.$a['empl_name'].'</option>';
                 }
             ?>
