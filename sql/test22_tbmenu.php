@@ -10,7 +10,7 @@
     <form id="tbmenu" method="get" action="<?=$id.'_'.$action.'.php'?>">
 
         <label>항목수 
-            <input type="number" max=99 name="items" value="<?=$items?>"
+            <input type="number" min="1" max="99" name="items" value="<?=$items?>"
             style="width: 40px;" onchange="changeView()"></label>
         
         <label style="margin-left:10px;">선택 

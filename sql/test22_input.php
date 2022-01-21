@@ -54,7 +54,7 @@
                     } elseif ($cod2 >= 15 && $cod2 <= 19) { 
                         $class = 'P';
                     }
-                    if ($preData['kind'] == $class) {
+                    if ($preData['kind'] != $class) {
                         $display = 'display: none;';
                     }
                     if ($preData['code'] == $cod2) {
@@ -134,7 +134,7 @@
     <div class="tbMenu">
         <input type="submit" name="<?=$action?>" 
             value="<?if($action=='update') echo'수정'; else echo'입력';?>">
-        <input type="reset" value="취소">
+        <input type="reset" value="취소" onclick="changeCode('<?=$preData['kind']?>')">
         <?php if ($action == 'update') { ?>
             <input type="button" value="뒤로"
             onclick="location.href='<?=$id?>_edit.php<?=getURLParam($primeKey)?>'">

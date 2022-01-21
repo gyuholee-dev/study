@@ -45,8 +45,8 @@ $sql = "SELECT rewd.*,
         empl.name AS empl_name, 
         code.name AS code_name 
         FROM rewd
-        JOIN empl ON rewd.empl = empl.numb
-        JOIN code ON rewd.code = code.cod2 
+        LEFT JOIN empl ON rewd.empl = empl.numb
+        LEFT JOIN code ON rewd.code = code.cod2 
         AND code.cod1 = '15'";
 
 if ($action == 'delete') {

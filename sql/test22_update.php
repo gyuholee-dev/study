@@ -9,7 +9,7 @@ $target = $_REQUEST[$primeKey];
 $sql = "SELECT numb, name FROM empl ORDER BY name";
 $emplList = mysqli_query($db, $sql);
 
-$sql = "SELECT cod2, name FROM code WHERE cod1 = '15'";
+$sql = "SELECT cod2, name FROM code WHERE cod1 = '15' ORDER BY cod2 DESC";
 $codeList = mysqli_query($db, $sql);
 
 if (isset($_POST['update'])) {
