@@ -121,3 +121,8 @@ function getURLParam($except=false, $insert=false) {
        return ''; 
     }
 }
+
+function isDate($str) {
+	$d = date('Y-m-d', strtotime($str));
+	return $d == $str;
+}

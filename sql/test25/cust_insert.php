@@ -1,6 +1,4 @@
 <?php
-require_once 'includes/global.php';
-require_once 'includes/functions.php';
 require_once 'cust_init.php';
 
 $action = 'insert';
@@ -24,7 +22,7 @@ if (isset($_POST['insert'])) {
 
 $jobbList = array();
 $sql = "SELECT cod2 AS jobb, name AS jobb_name 
-        FROM cust WHERE cod1 = '16'";
+        FROM code WHERE cod1 = '16'";
 $res = mysqli_query($db, $sql);
 
 

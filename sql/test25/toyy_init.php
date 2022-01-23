@@ -1,5 +1,8 @@
 <?php
-$id = 'test';
+require_once 'includes/global.php';
+require_once 'includes/functions.php';
+
+$id = 'toyy';
 $action = '';
 $table = 'toyy';
 $tableName = '장난감';
@@ -10,42 +13,61 @@ $keys = array();
 $nameSpace = array();
 
 $tableData = array(
-    'numb' => array(
+    'numb' => [
         'name' => '장난감번호',
         'type' => 'CHAR',
         'length' => 2,
-        'option' => 'NOT NULL'
-    ),
-    'name' => array(
+        'default' => 11,
+        'input' => [
+            ['type'=>'text','attr'=>'required readonly']
+        ]
+    ],
+    'name' => [
         'name' => '장난감명',
         'type' => 'CHAR',
         'length' => 20,
-        'option' => ''
-    ),
-    'stat' => array(
+        'default' => '',
+        'input' => [
+            ['type'=>'text','attr'=>'required autofocus']
+        ]
+    ],
+    'stat' => [
         'name' => '대여여부',
         'type' => 'CHAR',
         'length' => 1,
-        'option' => ''
-    ),
-    'rent' => array(
+        'default' => '',
+        'input' => [
+            ['type'=>'radio','value'=>'H','label'=>'보유'],
+            ['type'=>'radio','value'=>'R','label'=>'대여'],
+        ]
+    ],
+    'rent' => [
         'name' => '대여료',
         'type' => 'INT',
         'length' => 11,
-        'option' => ''
-    ),
-    'date' => array(
+        'default' => '',
+        'input' => [
+            ['type'=>'number','attr'=>'required']
+        ]
+    ],
+    'date' => [
         'name' => '구입일자',
         'type' => 'CHAR',
         'length' => 10,
-        'option' => ''
-    ),
-    'ammt' => array(
+        'default' => date('Y-m-d'),
+        'input' => [
+            ['type'=>'date']
+        ]
+    ],
+    'ammt' => [
         'name' => '구입금액',
         'type' => 'INT',
         'length' => 11,
-        'option' => ''
-    ),
+        'default' => '',
+        'input' => [
+            ['type'=>'number','attr'=>'required']
+        ]
+    ],
 );
 
 $i = 0;
