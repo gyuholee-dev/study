@@ -125,7 +125,8 @@ input[type=text], input[type=number] {
 }
 
 input[type=date] {
-  font-size: 115%;
+  font-family: "맑은 고딕";
+  font-size: 100%;
   width: -webkit-fill-available;
   padding: 0 10px;
 }
