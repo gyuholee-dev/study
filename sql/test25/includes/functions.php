@@ -1,9 +1,33 @@
 <?php
 // Functions
 function makeCreateSql() {
+    global $primeKey;
     global $table;
+    global $tableData;
     
-    $sql = "CREATE TABLE $table";
+    $cnt = count($tableData);
+    $i = 0;
+    $sql = "CREATE TABLE $table (";
+    foreach ($tableData as $key => $value) {
+        $sql = $sql.$key.' '.$value['type'];
+        if ($value['type'] == 'INT') {
+            if ($i == 0) {
+                $sql = $sql.' AUTO_INCREMENT';
+            }
+        } else {
+            $sql = $sql.'('.$value['length'].')';
+            if ($i == 0) {
+                $sql = $sql.' NOT NULL';
+            }
+        }
+        $sql = $sql.','; 
+        if  ($i != $cnt) {
+            $sql = $sql.' ';
+        }
+        $i++;
+    }
+    $sql = $sql.' PRIMARY KEY('.$primeKey.')';
+    $sql = $sql.')';
 
     return $sql;
 }
@@ -16,6 +40,7 @@ function makeInsertSql($data=array()) {
         $data = $_POST;
     }
 
+    // TODO: PRIMARY KEY - AUTO_INCREMENT 예외처리
     $sql = "INSERT INTO $table VALUES (";
     $cnt = count($tableData);
     $i = 0;

@@ -11,8 +11,12 @@
                 if (isset($val['label'])) {
                     echo '<label>';
                 }
-                echo '<input ';
-                echo 'type="'.$val['type'].'" ';
+                if ($val['type'] == 'select') {
+                    echo '<select ';
+                } else {
+                    echo '<input ';
+                    echo 'type="'.$val['type'].'" ';
+                }
                 echo 'name="'.$key.'" ';
 
                 if ($action == 'update' || $key == $primeKey || isDate($preData[$key])) {
@@ -21,7 +25,7 @@
                     } else {
                         echo 'value="'.$preData[$key].'" ';
                     }
-                } else {
+                } elseif ($val['type'] != 'select') {
                     echo 'placeholder="'.$preData[$key].'" ';
                 }
                 
@@ -39,6 +43,16 @@
                     echo $val['attr'].' ';
                 }
                 echo '>';
+                if ($val['type'] == 'select') {
+                    foreach ($val['option'] as $opk => $opval) {
+                        echo '<option value="'.$opk.'" ';
+                        if ($preData[$key] == $opk) {
+                            echo 'selected';
+                        }
+                        echo '>'.$opval.'</option>';
+                    }
+                    echo '</select>';
+                }
                 if (isset($val['label'])) {
                     echo $val['label'];
                     echo '</label>';

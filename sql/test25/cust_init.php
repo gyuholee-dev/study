@@ -12,6 +12,14 @@ $serchKey = '';
 $keys = array();
 $nameSpace = array();
 
+$jobbList = array();
+$sql = "SELECT cod2 AS jobb, name AS jobb_name 
+        FROM code WHERE cod1 = '16'";
+$res = mysqli_query($db, $sql);
+while ($a = mysqli_fetch_assoc($res)) {
+    $jobbList[$a['jobb']] = $a['jobb_name'];
+}
+
 $tableData = array(
     'numb' => [
         'name' => '고객번호',
@@ -46,7 +54,7 @@ $tableData = array(
         'length' => 99,
         'default' => '',
         'input' => [
-            ['type'=>'text','attr'=>'required']
+            ['type'=>'text','attr'=>'']
         ]
     ],
     'jobb' => [
@@ -55,7 +63,7 @@ $tableData = array(
         'length' => 2,
         'default' => '',
         'input' => [
-            ['type'=>'select','attr'=>'required']
+            ['type'=>'select', 'option' => $jobbList, 'attr'=>'required']
         ]
     ],
 );

@@ -5,18 +5,10 @@ $action = 'insert';
 $title = $tableName.' 입력';
 
 if (isset($_POST['insert'])) {
-    $numb = $_POST['numb'];
-    $name = $_POST['name'];
-    $stat = $_POST['stat'];
-    $rent = $_POST['rent'];
-    $date = $_POST['date'];
-    $ammt = $_POST['ammt'];
-
-    $sql = "INSERT INTO toyy
-            VALUES ('$numb', '$name', '$stat', '$rent', '$date', '$ammt')";
+    $sql = makeInsertSql();
     mysqli_query($db, $sql);
-    $msg = "입력 완료";
-    $url = "toyy_insert.php";
+    $msg = "$tableName 테이블 입력 완료";
+    $url = "$id\_$action.php";
     sendMsg($msg, $url);
 }
 
@@ -27,15 +19,28 @@ $res = mysqli_query($db, $sql);
 
 
 $preData = array();
-foreach ($nameSpace as $key => $value) {
-    $preData[$key] = '';
+foreach ($tableData as $key => $value) {
+    $preData[$key] = $value['default'];
 }
 
-$preData['numb'] = 11;
-$preData['date'] = date('Y-m-d');
-
 if (tableExist($table) == true) {
+    $sql = "SELECT MAX($primeKey) FROM $table";
+    $res = mysqli_query($db, $sql);
+    $lastValue = mysqli_fetch_row($res)[0];
+    $sql = "SELECT * FROM $table WHERE $primeKey ='$lastValue'";
+    $res = mysqli_query($db, $sql);
     
+    while ($a = mysqli_fetch_assoc($res)) {
+        foreach ($a as $key => $value) {
+            if ($key == $primeKey && is_numeric($value)) {
+                $preData[$key] = $value + 1;
+            } elseif (isDate($value)) {
+                $preData[$key] = date('Y-m-d');
+            } else {
+                $preData[$key] = $value;
+            }
+        }
+    }
 }
 
 ?>
@@ -45,8 +50,12 @@ if (tableExist($table) == true) {
 ?>
 <h3><?=$title?></h3>
 <hr>
+<?php
+    include 'includes/_input.php';
+?>
 
-<div class="tbContents">
+
+<!-- <div class="tbContents">
 <form method="post" action="" autocomplete="off">
     <table class="<?=$action?>" cellpadding="3" cellspacing="0" border="1">
         <tr>
@@ -88,7 +97,7 @@ if (tableExist($table) == true) {
     </div>
 
 </form>
-</div>
+</div> -->
 
 <?php
     include 'includes/_footer.php';
