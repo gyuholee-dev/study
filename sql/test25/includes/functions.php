@@ -41,6 +41,7 @@ function makeInsertSql($data=array()) {
     }
 
     // TODO: PRIMARY KEY - AUTO_INCREMENT 예외처리
+    // TODO: 키가 들어오지 않을 경우 예외처리
     $sql = "INSERT INTO $table VALUES (";
     $cnt = count($tableData);
     $i = 0;

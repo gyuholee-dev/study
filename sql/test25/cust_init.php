@@ -12,6 +12,14 @@ $serchKey = '';
 $keys = array();
 $nameSpace = array();
 
+$items = 999;
+$page = 1;
+$pages = 10;
+$where = '';
+$sort = 'numb';
+$order = 'desc';
+$start = 0;
+
 $jobbList = array();
 $sql = "SELECT cod2 AS jobb, name AS jobb_name 
         FROM code WHERE cod1 = '16'";

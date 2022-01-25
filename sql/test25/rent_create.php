@@ -1,5 +1,5 @@
 <?php
-require_once 'cust_init.php';
+require_once 'rent_init.php';
 
 $action = 'create';
 $title = $tableName.' 생성';

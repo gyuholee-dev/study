@@ -2,8 +2,18 @@
 <form method="post" action="" autocomplete="off">
     <table class="<?=$action?>" cellpadding="3" cellspacing="0" border="1">
     <?php
+        $hiddens = '';
         foreach ($tableData as $key => $value) {
-            if (count($value['input']) == 0) continue;
+            if (isset($passes) && array_search($key, $passes) !== false) {
+                continue;
+            }
+            if (count($value['input']) == 0) {
+                continue;
+            }
+            if ($value['input'][0]['type'] == 'hidden') {
+                echo '<input type="hidden" name="'.$key.'" value="'.$preData[$key].'">';
+                continue;
+            }
             echo '<tr>';
             echo '<th>'.$nameSpace[$key].'</th>';
             echo '<td>';    

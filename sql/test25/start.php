@@ -33,7 +33,7 @@ require_once 'includes/global.php';
             onclick="location.href='rent_start.php'">
         </td>
         <td>
-            <input type="button" value="조회-1" 
+            <input type="button" value="장난감별 수익" 
             onclick="location.href='view_1.php'">
         </td>
     </tr>
@@ -66,7 +66,7 @@ require_once 'includes/global.php';
         </td>
         <td>
             <input type="button" value="반납등록" 
-            onclick="location.href='return_start.php'">
+            onclick="location.href='rent_end.php'">
         </td>
         <td>
             <input type="button" value="조회-3" 
@@ -84,7 +84,7 @@ require_once 'includes/global.php';
         </td>
         <td>
             <input type="button" value="반납취소" 
-            onclick="location.href='return_cancel.php'">
+            onclick="location.href='rent_return.php'">
         </td>
         <td>
             <input type="button" value="조회-4" 

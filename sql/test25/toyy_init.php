@@ -12,6 +12,14 @@ $serchKey = '';
 $keys = array();
 $nameSpace = array();
 
+$items = 999;
+$page = 1;
+$pages = 10;
+$where = '';
+$sort = 'numb';
+$order = 'desc';
+$start = 0;
+
 $tableData = array(
     'numb' => [
         'name' => '장난감번호',
