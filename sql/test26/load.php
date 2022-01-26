@@ -30,6 +30,9 @@ if (isset($_REQUEST['file'])) {
   }
   fclose($ff);
 
+  // $str = str_replace("'", "\'", $str);
+  $str = addslashes($str);
+
   $sql = "UPDATE paint 
           SET comt = '$str'
           WHERE numb = '$numb'
@@ -98,7 +101,7 @@ $res = mysqli_query($db, $sql);
       <th><?=$nameSpace['name']?></th>
       <th><?=$nameSpace['pntr']?></th>
       <th><?=$nameSpace['kind']?></th>
-      <th><?=$nameSpace['comt']?></th>
+      <th width="240"><?=$nameSpace['comt']?></th>
       <th>해설넣기</th>
     </tr>
     
@@ -113,7 +116,7 @@ $res = mysqli_query($db, $sql);
         echo '<td>'.$a['name'].'</td>';
         echo '<td>'.$a['pntr'].'</td>';
         echo '<td>'.$a['kind'].'</td>';
-        echo '<td>'.$a['comt'].'</td>';
+        echo '<td><textarea>'.$a['comt'].'</textarea></td>';
         echo '<td>';
         // echo '<a href="'.$textUrl.'">보기</a>';
         echo '<a href="'.$textUrl.'">Load</a>';
