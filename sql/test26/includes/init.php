@@ -8,7 +8,7 @@ $table = 'paint';
 $tableName = '영화감상';
 $title = $tableName.' 관리';
 $primeKey = 'numb';
-$serchKey = '';
+$serchKey = 'kind';
 $keys = array();
 $nameSpace = array();
 
@@ -65,7 +65,7 @@ $tableData = array(
     'default' => '',
     'input' => [
       // ['type'=>'text','attr'=>'required']
-      // ['type'=>'textarea', 'value'=>'', 'attr'=>'required']
+      ['type'=>'textarea', 'value'=>'', 'attr'=>'required']
     ]
   ],
 );

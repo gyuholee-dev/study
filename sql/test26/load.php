@@ -20,6 +20,7 @@ if (isset($_REQUEST['file'])) {
 
   $file = str_replace(' ', '', $file);
   $file = str_replace('?', '', $file);
+
   $str = '';
   $ff = fopen('text/'.$file.'.txt', 'r');
   while (!feof($ff)) {
@@ -28,7 +29,14 @@ if (isset($_REQUEST['file'])) {
     $s = trim($s).' ';
     $str = $str.$s;
   }
+  // $str = fread($file, filesize($file));
   fclose($ff);
+
+  if (strtoupper(
+        mb_detect_encoding($str, 'EUC-KR,UTF-8')
+      ) == 'EUC-KR') {
+    $str = iconv('EUC-KR', 'UTF-8', $str);
+  }
 
   // $str = str_replace("'", "\'", $str);
   $str = addslashes($str);

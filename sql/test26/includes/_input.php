@@ -55,6 +55,11 @@
           echo $val['attr'].' ';
         }
         echo '>';
+
+        if ($action == 'update' && $val['type'] == 'textarea') {
+          echo $preData[$key];
+        }
+
         if ($val['type'] == 'select') {
           foreach ($val['option'] as $opk => $opval) {
             echo '<option value="'.$opk.'" ';
@@ -79,9 +84,9 @@
   </table>
 
   <div class="tbMenu">
-    <input type="submit" name="insert" value="입력">
+    <input type="submit" name="<?=$action?>" value="입력">
     <input type="reset" value="취소">
-    <input type="button" value="메뉴" onclick="location.href='select.php'">
+    <input type="button" value="메뉴" onclick="location.href='start.php'">
   </div>
 
 </form>

@@ -32,8 +32,12 @@ if (isset($_POST['act'])) {
         // $start = date('H:i:s');
         $start = getTime();
         for ($i=1; $i <= $times; $i++) { 
+            $no = '00000'.(string)$i;
+            $no = substr($no, -5);
+            // $no = substr('00000'.$i, strlen($i), 5);
+            // echo $no.'<br>';
             $sql = "INSERT into TEST
-                    VALUES('$i', '도영해', '부산시 해운대구 좌4동')";
+                    VALUES('$no', '도영해', '부산시 해운대구 좌4동')";
             mysqli_query($db, $sql);
         }
         // $finish = date('H:i:s');
