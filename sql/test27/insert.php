@@ -20,50 +20,65 @@ if (isset($_REQUEST['cous'])) {
 }
 
 if (isset($_POST['insert'])) {
+  // print_r($_POST);
   $cous = $_POST['cous'];
-  for ($i=0; $i < $studcnt; $i++) { 
+  for ($i=0; $i < $studcnt; $i++) {
     $numb = $_POST['numb'][$i];
     $name = $_POST['name'][$i];
     $phon = $_POST['phon'][$i];
     $jobb = $_POST['jobb'][$i];
 
-    // TODO: 데이터 검사 continue
-    if ($numb == '' || $name == '') continue;
+    // 레코드 존재 체크
+    $sql = "SELECT * FROM stud WHERE numb='$numb'";
+    $res = mysqli_query($db, $sql);
 
-    $sql = "INSERT INTO stud 
-            VALUES ('$cous', '$numb', '$name', '$phon', '$jobb')";
-    // echo $sql.'<br>';
-    mysqli_query($db, $sql);
+    if (mysqli_num_rows($res) != 0) { // 존재할 경우
+      // TODO: 업데이트 또는 딜리트
+      $sql = "UPDATE stud SET
+              name = '$name',
+              phon = '$phon',
+              jobb = '$jobb'
+              WHERE numb = '$numb'
+              ";
+      mysqli_query($db, $sql);
+      
+    } else { // 존재하지 않을 경우
+      // 인서트
+      $sql = "INSERT INTO stud 
+              VALUES ('$cous', '$numb', '$name', '$phon', '$jobb')";
+      // echo $sql.'<br>';
+      mysqli_query($db, $sql);
+    }
   }
-  $msg = '데이터 입력 완료';
-  $url = 'insert.php';
-  sendMsg($msg, $url);
+  // $msg = '데이터 입력 완료';
+  // $url = 'insert.php';
+  // sendMsg($msg, $url);
 }
 
-if (getCountRecords('stud') > 0) {
-  $sql = "SELECT MAX(numb) FROM stud 
-          WHERE cous = '$cous'";
-  $res = mysqli_query($db, $sql);
-  $numb = mysqli_fetch_row($res)[0];
-  $numb = $numb + 1;
+$sql = "SELECT * FROM stud
+WHERE cous = '$cous'";
+$res = mysqli_query($db, $sql);
+$studs = mysqli_num_rows($res);
 
-  $sql = "SELECT * FROM stud
-          WHERE cous = '$cous'";
-  $res = mysqli_query($db, $sql);
-  $studs = mysqli_num_rows($res);
+if (getCountRecords('stud') > 0) {
+  // $sql = "SELECT MIN(numb) FROM stud 
+  //         WHERE cous = '$cous'";
+  // $res = mysqli_query($db, $sql);
+  // $numb = mysqli_fetch_row($res)[0];
+
   if ($studs > $studcnt) {
     $studcnt = $studs;
   }
 
   $i = 0;
-  while ($a = mysqli_fetch_row($res)) {
+  while ($a = mysqli_fetch_assoc($res)) {
     $studList[$i] = array();
     foreach ($a as $key => $value) {
       $studList[$i][$key] = $value;
     }
     $i++;
   }
-  print_r($studList);
+  // print_r($studList);
 }
 
 $sql = "SELECT * FROM lect";
@@ -120,7 +135,7 @@ $lect = mysqli_query($db, $sql);
           <td class="right">
 
             <label>수강생수 
-              <input type="number" min="1" max="99"
+              <input type="number" min="<?=$studs?>" max="99"
                 name="studcnt" value="<?=$studcnt?>"
                 style="width: 50px;" onchange="changeView()">
             </label>
@@ -132,6 +147,7 @@ $lect = mysqli_query($db, $sql);
   </div>
   
   <form id="tbinput" method="post" autocomplete="off">
+    <input type="hidden" name="cous" value="<?=$cous?>">
 
     <table cellpadding="3" cellspacing="0">
       <tr>
@@ -142,20 +158,44 @@ $lect = mysqli_query($db, $sql);
       </tr>
 
       <?php
-        for ($i=0; $i<$studcnt; $i++) {
-      ?>
-        <tr>
-          <td><?=numStr($numb,2)?></td>
-          <td><input name="name[<?=$i?>]"
-            size="4" type="text" maxlength="10"></td>
-          <td><input name="phon[<?=$i?>]"
-            size="10" type="text" maxlength="13"></td>
-          <td><input name="jobb[<?=$i?>]"
-            size="2" type="text" maxlength="10"></td>
-        </tr>
-      <?php
-          $numb = numStr($numb+1, 2);
+        $cnt = 0;
+        if ($studs > 0) {
+          for ($i=0; $i<$studs; $i++) {
+            echo '<tr>';
+            echo '<td>'.$studList[$i]['numb'].
+                 '<input type="hidden" name="numb"'. 
+                 'value="'.$studList[$i]['numb'].'"</td>';
+            echo '<td><input name="name['.$i.']"'.
+                 'value="'.$studList[$i]['name'].'"'.
+                 'size="10" type="text" maxlength="10"></td>';
+            echo '<td><input name="phon['.$i.']"'.
+                 'value="'.$studList[$i]['phon'].'"'.
+                 'size="10" type="text" maxlength="13"></td>';
+            echo '<td><input name="jobb['.$i.']"'.
+                 'value="'.$studList[$i]['jobb'].'"'.
+                 'size="10" type="text" maxlength="10"></td>';
+            echo '</tr>';
+            $cnt = $i+1;
+            $numb = (int)$studList[$i]['numb']+1;
+          }
         }
+
+        for ($i=$cnt; $i<$studcnt; $i++) {
+          $n = numStr($numb,2);
+          echo '<tr>';
+          echo '<td>'.$n.
+               '<input type="hidden" name="numb"'. 
+               'value="'.$n.'"</td>';
+          echo '<td><input name="name['.$i.']"'.
+               'size="10" type="text" maxlength="10"></td>';
+          echo '<td><input name="phon['.$i.']"'.
+               'size="10" type="text" maxlength="13"></td>';
+          echo '<td><input name="jobb['.$i.']"'.
+               'size="10" type="text" maxlength="10"></td>';
+          echo '</tr>';
+          $numb = $numb+1;
+        }
+        
       ?>
 
     </table>
