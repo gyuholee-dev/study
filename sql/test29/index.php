@@ -6,7 +6,7 @@ require_once 'includes/init.php';
 <?php
   include 'includes/_header.php';
 ?>
-<h3>제품 관리</h3>
+<h3>우유 대리점 관리 시스템</h3>
 <hr>
 <!-- contents -->
 <div class="tbContents">
