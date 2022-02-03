@@ -5,6 +5,7 @@ $items = 10;
 $page = 1;
 $start = 0;
 $pageCount = 1;
+
 if (isset($_REQUEST['items'])) {
   $items = $_REQUEST['items'];
 }
@@ -19,18 +20,17 @@ $res = mysqli_query($db, $sql);
 $a = mysqli_fetch_row($res);
 $pageCount = ceil($a[0]/$items);
 
-
-$sql = "SELECT * FROM itemmast ";
-
-$sql = $sql."LIMIT $start, $items ";
-$res = mysqli_query($db, $sql);
-
 $kindList = array();
 $sql = "SELECT * FROM code WHERE cod1='17'";
-$kinds = mysqli_query($db, $sql);
-while ($a = mysqli_fetch_assoc($kinds)) {
+$kind = mysqli_query($db, $sql);
+while ($a = mysqli_fetch_assoc($kind)) {
   $kindList[$a['cod2']] = $a['name'];
 }
+
+$sql = "SELECT * FROM itemmast ";
+$sql = $sql."ORDER BY itemcode DESC ";
+$sql = $sql."LIMIT $start, $items ";
+$res = mysqli_query($db, $sql);
 
 ?>
 <!-- html -->
@@ -68,7 +68,10 @@ while ($a = mysqli_fetch_assoc($kinds)) {
     </tr>
     <?php
       while ($a = mysqli_fetch_assoc($res)) {
-        $itemkind = $kindList[$a['itemkind']];
+        $itemkind = $a['itemkind'];
+        if (count($kindList) !== 0) {
+          $itemkind = $kindList[$a['itemkind']];
+        }
         $updateUrl = 'itemmast_update.php?page='.$page.
                      '&itemcode='.$a['itemcode'];
         $updateLink = '<a href="'.$updateUrl.'">수정</a>';
@@ -94,6 +97,15 @@ while ($a = mysqli_fetch_assoc($kinds)) {
     <?php
       $listMin = 1;
       $listMax = 9;
+      
+      echo '<span class="page">';
+      if ($page == 1) {
+        echo '<<';
+      } else {
+        echo '<a href="itemmast_edit.php?page=1"><<</a>';
+      }
+      echo '</span>';
+
       for ($i=1; $i<=$pageCount; $i++) {
         if ($pageCount > 9) {
           if ($page > $pageCount-8) {
@@ -112,6 +124,7 @@ while ($a = mysqli_fetch_assoc($kinds)) {
         if ($i < $listMin || $i > $listMax) {
           continue;
         }
+
         echo '<span class="page">';
         if ($i == $page) {
           echo "<b>$i</b>";
@@ -120,6 +133,15 @@ while ($a = mysqli_fetch_assoc($kinds)) {
         }
         echo '</span>';
       }
+
+      echo '<span class="page">';
+      if ($page == $pageCount) {
+        echo '>>';
+      } else {
+        echo '<a href="itemmast_edit.php?page='.$pageCount.'">>></a>';
+      }
+      echo '</span>';
+
     ?>
   </div>
 

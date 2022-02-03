@@ -10,7 +10,7 @@ if (isset($_POST['insert'])) {
   $tranprce = $_POST['tranprce'];
   $trankind = $_POST['trankind'];
 
-  $sql = "INSERT INTO salesman 
+  $sql = "INSERT INTO inntran 
           (trandate, trancode, tranqnty, tranprce, trankind)
           VALUES (
             '$trandate',
@@ -21,12 +21,12 @@ if (isset($_POST['insert'])) {
           )";
   mysqli_query($db, $sql);
   $msg = '입고 등록 완료';
-  $url = 'salesman_insertA.php';
+  $url = 'inntran_insertA.php';
   sendMsg($msg, $url);
 }
 
 $sql = "SELECT * FROM itemmast";
-$items = mysqli_query($db, $sql);
+$item = mysqli_query($db, $sql);
 
 ?>
 <!-- html -->
@@ -37,7 +37,7 @@ $items = mysqli_query($db, $sql);
 <hr>
 <!-- contents -->
 <div class="tbContents">
-  <form method="post "action="" autocomplete="off">
+  <form method="post" action="" autocomplete="off">
   
   <table cellpadding="3" cellspacing="0">
     <tr>
@@ -51,7 +51,7 @@ $items = mysqli_query($db, $sql);
         <!-- <input type="text" name= "trancode" value=""> -->
         <select name="trancode" style="width:100%;">
           <?php
-            while ($a = mysqli_fetch_assoc($items)) {
+            while ($a = mysqli_fetch_assoc($item)) {
               $milkName = $a['descript'].' ('.$a['itemspec'].')';
               echo '<option value="'.
               $a['itemcode'].'">'.$milkName.'</option>';

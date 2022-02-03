@@ -1,9 +1,14 @@
 <?php
 require_once 'includes/init.php';
 
+$page = 1;
 $itemcode = '11';
-if (isset($_GET['itemcode'])) {
-  $itemcode = $_GET['itemcode'];
+
+if (isset($_REQUEST['page'])) {
+  $page = $_REQUEST['page'];
+}
+if (isset($_REQUEST['itemcode'])) {
+  $itemcode = $_REQUEST['itemcode'];
 }
 
 if (isset($_POST['update'])) {
@@ -15,29 +20,27 @@ if (isset($_POST['update'])) {
   $outprice = $_POST['outprice'];
   $inventry = $_POST['inventry'];
 
-  $sql = "INSERT INTO itemmast
-          (itemcode, descript, itemspec, itemkind, innprice, outprice, inventry)
-          VALUES (
-            '$itemcode',
-            '$descript',
-            '$itemspec',
-            '$itemkind',
-            '$innprice',
-            '$outprice',
-            '$inventry'
-          )";
+  $sql = "UPDATE itemmast
+          SET descript = '$descript',
+              itemspec = '$itemspec',
+              itemkind = '$itemkind',
+              innprice = '$innprice',
+              outprice = '$outprice',
+              inventry = '$inventry'
+          WHERE itemcode = '$itemcode'
+          ";
   mysqli_query($db, $sql);
   $msg = '제품 수정 완료';
-  $url = 'itemmast_insertA.php';
+  $url = 'itemmast_edit.php?page='.$page;
   sendMsg($msg, $url);
 }
 
 $sql = "SELECT * FROM code WHERE cod1='17'";
-$kinds = mysqli_query($db, $sql);
+$kind = mysqli_query($db, $sql);
 
-$sql = "SELECT * FROM itemmast WHERE itemcode='$itemcode'";
+$sql = "SELECT * FROM itemmast WHERE itemcode='$itemcode' ";
 $res = mysqli_query($db, $sql);
-$a = mysqli_fetch_assoc($res);
+$item = mysqli_fetch_assoc($res);
 
 ?>
 <!-- html -->
@@ -48,33 +51,37 @@ $a = mysqli_fetch_assoc($res);
 <hr>
 <!-- contents -->
 <div class="tbContents">
-  <form method="post "action="" autocomplete="off">
+  <form method="post" action="" autocomplete="off">
+    <input type="hidden" name="page" value="<?=$page?>">
   
   <table cellpadding="3" cellspacing="0">
     <tr>
       <th>제품코드</th>
-      <td><input type="text" name= "itemcode" value="<?=$itemcode?>"
-      required maxlength="2"></td>
+      <td><input type="text" name= "itemcode" value="<?=$item['itemcode']?>"
+      required maxlength="2" readonly></td>
     </tr>
     <tr>
       <th>제품명</th>
-      <td><input type="text" name= "descript" value=""
+      <td><input type="text" name= "descript" value="<?=$item['descript']?>"
       required maxlength="20"></td>
     </tr>
     <tr>
       <th>제품규격</th>
-      <td><input type="text" name= "itemspec" value=""
+      <td><input type="text" name= "itemspec" value="<?=$item['itemspec']?>"
       required maxlength="20"></td>
     </tr>
     <tr>
       <th>제품구분</th>
       <td>
-        <!-- <input type="text" name= "itemkind" value=""> -->
         <select name="itemkind" style="width:100%;">
           <?php
-            while ($a = mysqli_fetch_assoc($kinds)) {
-              echo '<option value="'.
-              $a['cod2'].'">'.$a['name'].'</option>';
+            while ($a = mysqli_fetch_assoc($kind)) {
+              $selected = '';
+              if ($item['itemkind'] == $a['cod2']) {
+                $selected = ' selected';
+              }
+              echo '<option value="'.$a['cod2'].'"'.
+                   $selected.'>'.$a['name'].'</option>';
             }
           ?>
         </select>
@@ -82,17 +89,17 @@ $a = mysqli_fetch_assoc($res);
     </tr>
     <tr>
       <th>입고단가</th>
-      <td><input type="number" name= "innprice" value=""
+      <td><input type="number" name= "innprice" value="<?=$item['innprice']?>"
       required></td>
     </tr>
     <tr>
       <th>출고단가</th>
-      <td><input type="number" name= "outprice" value=""
+      <td><input type="number" name= "outprice" value="<?=$item['outprice']?>"
       required></td>
     </tr>
     <tr>
       <th>재고량</th>
-      <td><input type="number" name= "inventry" value=""
+      <td><input type="number" name= "inventry" value="<?=$item['inventry']?>"
       required></td>
     </tr>
   </table>
@@ -100,8 +107,8 @@ $a = mysqli_fetch_assoc($res);
   <div class="tbMenu">
     <input type="submit" name="update" value="입력">
     <input type="reset" value="취소">
-    <input type="button" value="메뉴"
-      onclick="location.href='index.php'">
+    <input type="button" value="뒤로"
+      onclick="location.href='itemmast_edit.php?page=<?=$page?>'">
   </div>
 
   </form>

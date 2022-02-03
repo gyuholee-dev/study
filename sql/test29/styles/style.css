@@ -162,6 +162,12 @@ textarea {
   font-size: 100%;
 }
 
+input[readonly] {
+  background-color: #dddddd;
+  border: 1px solid #858585;
+  border-radius: 1px;
+}
+
 div.tbContents {
   display: block;
   width: fit-content;

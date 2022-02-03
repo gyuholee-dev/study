@@ -5,6 +5,7 @@ $items = 10;
 $page = 1;
 $start = 0;
 $pageCount = 1;
+
 if (isset($_REQUEST['items'])) {
   $items = $_REQUEST['items'];
 }
@@ -21,7 +22,7 @@ $pageCount = ceil($a[0]/$items);
 
 
 $sql = "SELECT * FROM salesman ";
-
+$sql = $sql."ORDER BY salecode DESC ";
 $sql = $sql."LIMIT $start, $items ";
 $res = mysqli_query($db, $sql);
 
@@ -64,10 +65,10 @@ $res = mysqli_query($db, $sql);
         } elseif ($a['salegend'] == 'F') {
           $salegend = '여';
         }
-        $updateUrl = 'inntran_update.php?page='.$page.
+        $updateUrl = 'salesman_update.php?page='.$page.
                      '&salecode='.$a['salecode'];
         $updateLink = '<a href="'.$updateUrl.'">수정</a>';
-        $deleteUrl = 'inntran_delete.php?page='.$page.
+        $deleteUrl = 'salesman_delete.php?page='.$page.
                      '&salecode='.$a['salecode'];
         $deleteLink = '<a href="'.$deleteUrl.'">삭제</a>';
         echo '<tr>';
@@ -87,6 +88,15 @@ $res = mysqli_query($db, $sql);
     <?php
       $listMin = 1;
       $listMax = 9;
+
+      echo '<span class="page">';
+      if ($page == 1) {
+        echo '<<';
+      } else {
+        echo '<a href="salesman_edit.php?page=1"><<</a>';
+      }
+      echo '</span>';
+
       for ($i=1; $i<=$pageCount; $i++) {
         if ($pageCount > 9) {
           if ($page > $pageCount-8) {
@@ -113,6 +123,15 @@ $res = mysqli_query($db, $sql);
         }
         echo '</span>';
       }
+
+      echo '<span class="page">';
+      if ($page == $pageCount) {
+        echo '>>';
+      } else {
+        echo '<a href="salesman_edit.php?page='.$pageCount.'">>></a>';
+      }
+      echo '</span>';
+
     ?>
   </div>
 

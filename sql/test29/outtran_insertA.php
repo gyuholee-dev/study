@@ -11,7 +11,7 @@ if (isset($_POST['insert'])) {
   $tranprce = $_POST['tranprce'];
   $trankind = $_POST['trankind'];
 
-  $sql = "INSERT INTO salesman 
+  $sql = "INSERT INTO outtran 
           (trandate, salecode, trancode, tranqnty, tranprce, trankind)
           VALUES (
             '$trandate',
@@ -23,15 +23,15 @@ if (isset($_POST['insert'])) {
           )";
   mysqli_query($db, $sql);
   $msg = '출고 등록 완료';
-  $url = 'salesman_insertA.php';
+  $url = 'outtran_insertA.php';
   sendMsg($msg, $url);
 }
 
 $sql = "SELECT * FROM itemmast";
-$items = mysqli_query($db, $sql);
+$item = mysqli_query($db, $sql);
 
 $sql = "SELECT * FROM salesman";
-$mans = mysqli_query($db, $sql);
+$man = mysqli_query($db, $sql);
 
 ?>
 <!-- html -->
@@ -42,7 +42,7 @@ $mans = mysqli_query($db, $sql);
 <hr>
 <!-- contents -->
 <div class="tbContents">
-  <form method="post "action="" autocomplete="off">
+  <form method="post" action="" autocomplete="off">
   
   <table cellpadding="3" cellspacing="0">
     <tr>
@@ -58,7 +58,7 @@ $mans = mysqli_query($db, $sql);
       <td>
         <select name="salecode" style="width:100%;">
           <?php
-            while ($a = mysqli_fetch_assoc($mans)) {
+            while ($a = mysqli_fetch_assoc($man)) {
               echo '<option value="'.
               $a['salecode'].'">'.$a['salename'].'</option>';
             }
@@ -71,7 +71,7 @@ $mans = mysqli_query($db, $sql);
       <td>
         <select name="trancode" style="width:100%;">
           <?php
-            while ($a = mysqli_fetch_assoc($items)) {
+            while ($a = mysqli_fetch_assoc($item)) {
               $milkName = $a['descript'].' ('.$a['itemspec'].')';
               echo '<option value="'.
               $a['itemcode'].'">'.$milkName.'</option>';

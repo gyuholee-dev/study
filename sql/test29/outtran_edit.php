@@ -5,6 +5,7 @@ $items = 10;
 $page = 1;
 $start = 0;
 $pageCount = 1;
+
 if (isset($_REQUEST['items'])) {
   $items = $_REQUEST['items'];
 }
@@ -19,26 +20,24 @@ $res = mysqli_query($db, $sql);
 $a = mysqli_fetch_row($res);
 $pageCount = ceil($a[0]/$items);
 
-
-$sql = "SELECT * FROM outtran ";
-
-$sql = $sql."ORDER BY serialno DESC ";
-$sql = $sql."LIMIT $start, $items ";
-$res = mysqli_query($db, $sql);
-
 $itemList = array();
 $sql = "SELECT * FROM itemmast";
-$items = mysqli_query($db, $sql);
-while ($a = mysqli_fetch_assoc($items)) {
+$item = mysqli_query($db, $sql);
+while ($a = mysqli_fetch_assoc($item)) {
   $itemList[$a['itemcode']] = $a['descript'].' ('.$a['itemspec'].')';
 }
 
 $manList = array();
 $sql = "SELECT * FROM salesman";
-$mans = mysqli_query($db, $sql);
-while ($a = mysqli_fetch_assoc($mans)) {
+$man = mysqli_query($db, $sql);
+while ($a = mysqli_fetch_assoc($man)) {
   $manList[$a['salecode']] = $a['salename'];
 }
+
+$sql = "SELECT * FROM outtran ";
+$sql = $sql."ORDER BY serialno DESC ";
+$sql = $sql."LIMIT $start, $items ";
+$res = mysqli_query($db, $sql);
 
 ?>
 <!-- html -->
@@ -101,6 +100,15 @@ while ($a = mysqli_fetch_assoc($mans)) {
     <?php
       $listMin = 1;
       $listMax = 9;
+
+      echo '<span class="page">';
+      if ($page == 1) {
+        echo '<<';
+      } else {
+        echo '<a href="outtran_edit.php?page=1"><<</a>';
+      }
+      echo '</span>';
+
       for ($i=1; $i<=$pageCount; $i++) {
         if ($pageCount > 9) {
           if ($page > $pageCount-8) {
@@ -127,6 +135,15 @@ while ($a = mysqli_fetch_assoc($mans)) {
         }
         echo '</span>';
       }
+
+      echo '<span class="page">';
+      if ($page == $pageCount) {
+        echo '>>';
+      } else {
+        echo '<a href="outtran_edit.php?page='.$pageCount.'">>></a>';
+      }
+      echo '</span>';
+
     ?>
   </div>
 

@@ -41,7 +41,7 @@ if (isset($_POST['insert'])) {
 <hr>
 <!-- contents -->
 <div class="tbContents">
-  <form method="post "action="" autocomplete="off">
+  <form method="post" action="" autocomplete="off">
   
   <table cellpadding="3" cellspacing="0">
     <tr>

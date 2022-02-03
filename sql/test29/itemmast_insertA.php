@@ -36,7 +36,7 @@ if (isset($_POST['insert'])) {
 }
 
 $sql = "SELECT * FROM code WHERE cod1='17'";
-$kinds = mysqli_query($db, $sql);
+$kind = mysqli_query($db, $sql);
 
 ?>
 <!-- html -->
@@ -47,7 +47,7 @@ $kinds = mysqli_query($db, $sql);
 <hr>
 <!-- contents -->
 <div class="tbContents">
-  <form method="post "action="" autocomplete="off">
+  <form method="post" action="" autocomplete="off">
   
   <table cellpadding="3" cellspacing="0">
     <tr>
@@ -71,7 +71,7 @@ $kinds = mysqli_query($db, $sql);
         <!-- <input type="text" name= "itemkind" value=""> -->
         <select name="itemkind" style="width:100%;">
           <?php
-            while ($a = mysqli_fetch_assoc($kinds)) {
+            while ($a = mysqli_fetch_assoc($kind)) {
               echo '<option value="'.
               $a['cod2'].'">'.$a['name'].'</option>';
             }
