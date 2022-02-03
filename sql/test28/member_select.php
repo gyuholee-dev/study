@@ -10,12 +10,16 @@ $items = 4;
 $page = 1;
 $pageCount = 1;
 $start = 0;
+$refpage = 1;
 
 if (isset($_REQUEST['code'])) {
   $code = $_REQUEST['code'];
 }
 if (isset($_REQUEST['page'])) {
   $page = $_REQUEST['page'];
+}
+if (isset($_REQUEST['refpage'])) {
+  $refpage = $_REQUEST['refpage'];
 }
 
 $sql = "SELECT COUNT(*) FROM girl ";
@@ -24,7 +28,14 @@ if ($code != 'all') {
 }
 $res = mysqli_query($db, $sql);
 $a = mysqli_fetch_row($res);
-$pageCount = ceil($a[0]/$items);
+
+if ($code == 'all') {
+  $pageCount = ceil($a[0]/$items);
+} else {
+  $items = $a[0];
+  $page = 1;
+  $pageCount = 1;
+}
 
 $start = ($page-1)*$items;
 $sql = "SELECT * FROM grop";
@@ -42,16 +53,8 @@ if ($code != 'all') {
   $sql = $sql."WHERE girl.code = '$code' ";
 }
 $sql = $sql."LIMIT $start, $items ";
+// echo $sql;
 $res = mysqli_query($db, $sql);
-
-// if ($code == 'all') {
-//   $sql = $sql."LIMIT $start, $items ";
-// }
-// $res = mysqli_query($db, $sql);
-// if ($code != 'all') {
-//   $items = mysqli_num_rows($res)[0];
-// }
-
 
 ?>
 <!-- html -->
@@ -85,12 +88,25 @@ $res = mysqli_query($db, $sql);
           }
         ?>
         </select></label>
+        <?php
+          if (isset($_REQUEST['refpage'])) {
+            echo '<input type="hidden" name="refpage" value="'.$refpage.'">';
+          }
+        ?>
       </form>
       </td><td class="right">
         <input type="button" value="초기화"
           onclick="location.href='member_select.php'">
-        <input type="button" value="메뉴"
-          onclick="location.href='start.php'">
+        <?php
+          if ($code != 'all' && isset($_REQUEST['refpage'])) {
+            echo '<input type="button" value="이전"'.
+                 'onclick="location.href=\'group_select.php'.
+                 '?page='.$refpage.'\'">';
+          } else {
+            echo '<input type="button" value="메뉴"'.
+                 'onclick="location.href=\'start.php\'">';
+          }
+        ?>
       </td></tr>
     </table>
   </div>

@@ -51,7 +51,7 @@ $res = mysqli_query($db, $sql);
                  'style="width:200px;">';
         $image = '<a href="images/'.$a[1].'.png">'.$image.'</a>';
         $link = '<a href="member_select.php?code='.
-                 $a[0].'&page='.$page.'">보기</a>';
+                 $a[0].'&refpage='.$page.'">보기</a>';
         echo '<tr>';
         echo '<td>'.$a[0].'</td>';
         echo '<td>'.$a[1].'</td>';
