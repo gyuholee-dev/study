@@ -2,10 +2,14 @@
 require_once 'includes/init.php';
 
 $page = 1;
+$where = 'all';
 $serialno = 11;
 
 if (isset($_REQUEST['page'])) {
   $page = $_REQUEST['page'];
+}
+if (isset($_REQUEST['where'])) {
+  $where = $_REQUEST['where'];
 }
 if (isset($_REQUEST['serialno'])) {
   $serialno = $_REQUEST['serialno'];
@@ -29,7 +33,7 @@ if (isset($_POST['update'])) {
           ";
   mysqli_query($db, $sql);
   $msg = '입고 수정 완료';
-  $url = 'inntran_edit.php?page='.$page;
+  $url = 'inntran_edit.php?page='.$page.'&where='.$where;
   sendMsg($msg, $url);
 }
 
@@ -51,6 +55,7 @@ $inn = mysqli_fetch_assoc($res);
 <div class="tbContents">
   <form method="post" action="" autocomplete="off">
     <input type="hidden" name="page" value="<?=$page?>">
+    <input type="hidden" name="where" value="<?=$where?>">
     <input type="hidden" name="serialno" value="<?=$serialno?>">
   
   <table cellpadding="3" cellspacing="0">
@@ -69,9 +74,9 @@ $inn = mysqli_fetch_assoc($res);
               if ($inn['trancode'] == $a['itemcode']) {
                 $selected = ' selected';
               }
-              $milkName = $a['descript'].' ('.$a['itemspec'].')';
+              $itemName = $a['descript'].' ('.$a['itemspec'].')';
               echo '<option value="'.$a['itemcode'].'"'.
-                   $selected.'>'.$milkName.'</option>';
+                   $selected.'>'.$itemName.'</option>';
             }
           ?>
         </select>
@@ -98,7 +103,7 @@ $inn = mysqli_fetch_assoc($res);
     <input type="submit" name="update" value="입력">
     <input type="reset" value="취소">
     <input type="button" value="뒤로"
-      onclick="location.href='inntran_edit.php?page=<?=$page?>'">
+      onclick="location.href='inntran_edit.php?page=<?=$page?>&where=<?=$where?>'">
   </div>
 
   </form>

@@ -35,7 +35,15 @@ while ($a = mysqli_fetch_assoc($man)) {
   $manList[$a['salecode']] = $a['salename'];
 }
 
-$sql = "SELECT * FROM outtran WHERE serialno = '$serialno'";
+$sql = "SELECT outtran.*, 
+        salesman.salename AS man_name,
+        itemmast.descript AS item_name,
+        itemmast.itemspec AS item_spec
+        FROM outtran 
+        JOIN salesman ON outtran.salecode = salesman.salecode
+        JOIN itemmast ON outtran.trancode = itemmast.itemcode
+        WHERE serialno = '$serialno'
+        ";
 $res = mysqli_query($db, $sql);
 
 ?>
@@ -59,14 +67,14 @@ $res = mysqli_query($db, $sql);
     </tr>
     <?php
       while ($a = mysqli_fetch_assoc($res)) {
-        $salecode = $manList[$a['salecode']];
-        $trancode = $itemList[$a['trancode']];
+        $trancode = $a['item_name'].' ('.$a['item_spec'].')';
+        $tranprce = number_format($a['tranprce']).'원';
         echo '<tr>';
         echo '<td>'.$a['trandate'].'</td>';
-        echo '<td>'.$salecode.'</td>';
-        echo '<td>'.$trancode.'</td>';
-        echo '<td>'.$a['tranqnty'].'</td>';
-        echo '<td>'.$a['tranprce'].'</td>';
+        echo '<td>'.$a['man_name'].'</td>';
+        echo '<td class="left">'.$trancode.'</td>';
+        echo '<td class="right">'.$a['tranqnty'].'</td>';
+        echo '<td class="right">'.$tranprce.'</td>';
         echo '<td>'.$a['trankind'].'</td>';
         echo '</tr>';
       }

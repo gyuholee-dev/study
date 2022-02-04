@@ -72,6 +72,10 @@ require_once 'includes/init.php';
   </tr>
 
   <tr>
+    <td colspan="3"></td>
+  </tr>
+
+  <tr>
     <th width="120">입고 관리</th>
     <th width="120">출고 관리</th>
     <th width="120">각종 자료 조회</th>
@@ -87,21 +91,21 @@ require_once 'includes/init.php';
     </td>
     <td>
       <input type="button" value="조회-1" 
-      onclick="location.href='_view.php'">
+      onclick="location.href='_view.php'" disabled>
     </td>
   </tr>
   <tr>
     <td>
       <input type="button" value="입고등록-B" 
-      onclick="location.href='inntran_insertB.php'">
+      onclick="location.href='inntran_insertB.php'"disabled>
     </td>
     <td>
       <input type="button" value="출고등록-B" 
-      onclick="location.href='outtran_insertB.php'">
+      onclick="location.href='outtran_insertB.php'" disabled>
     </td>
     <td>
       <input type="button" value="조회-2" 
-      onclick="location.href='_view.php'">
+      onclick="location.href='_view.php'" disabled>
     </td>
   </tr>
   <tr>
@@ -115,7 +119,7 @@ require_once 'includes/init.php';
     </td>
     <td>
       <input type="button" value="조회-3" 
-      onclick="location.href='_view.php'">
+      onclick="location.href='_view.php'" disabled>
     </td>
   </tr>
 

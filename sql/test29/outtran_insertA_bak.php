@@ -8,16 +8,8 @@ if (isset($_POST['insert'])) {
   $salecode = $_POST['salecode'];
   $trancode = $_POST['trancode'];
   $tranqnty = $_POST['tranqnty'];
-  // $tranprce = $_POST['tranprce'];
-  // $trankind = $_POST['trankind'];
-  $trankind = 'O';
-
-  $sql = "SELECT * FROM itemmast 
-          WHERE itemcode = '$trancode'";
-  $res = mysqli_query($db, $sql);
-  $a = mysqli_fetch_assoc($res);
-  $tranprce = $a['outprice'];
-  $inventry = $a['inventry'] - $_POST['tranqnty'];
+  $tranprce = $_POST['tranprce'];
+  $trankind = $_POST['trankind'];
 
   $sql = "INSERT INTO outtran 
           (trandate, salecode, trancode, 
@@ -30,15 +22,6 @@ if (isset($_POST['insert'])) {
             '$tranprce',
             '$trankind'
           )";
-  // echo $sql.'<br>';
-  mysqli_query($db, $sql);
-  
-  $sql = "UPDATE itemmast
-          SET inventry = '$inventry'
-          WHERE itemcode = '$trancode'";
-  // echo $sql.'<br>';
-  mysqli_query($db, $sql);
-
   mysqli_query($db, $sql);
   $msg = '출고 등록 완료';
   $url = 'outtran_insertA.php';
@@ -75,7 +58,7 @@ $man = mysqli_query($db, $sql);
           <?php
             while ($a = mysqli_fetch_assoc($man)) {
               echo '<option value="'.
-                   $a['salecode'].'">'.$a['salename'].'</option>';
+              $a['salecode'].'">'.$a['salename'].'</option>';
             }
           ?>
         </select>
@@ -87,9 +70,9 @@ $man = mysqli_query($db, $sql);
         <select name="trancode" style="width:100%;">
           <?php
             while ($a = mysqli_fetch_assoc($item)) {
-              $itemName = $a['descript'].' ('.$a['itemspec'].')';
+              $milkName = $a['descript'].' ('.$a['itemspec'].')';
               echo '<option value="'.
-                   $a['itemcode'].'">'.$itemName.'</option>';
+              $a['itemcode'].'">'.$milkName.'</option>';
             }
           ?>
         </select>
@@ -100,16 +83,16 @@ $man = mysqli_query($db, $sql);
       <td><input type="number" name= "tranqnty" value=""
       required></td>
     </tr>
-    <!-- <tr>
+    <tr>
       <th>출고단가</th>
       <td><input type="number" name= "tranprce" value=""
       required></td>
-    </tr> -->
-    <!-- <tr>
+    </tr>
+    <tr>
       <th>입출구분</th>
       <td><input type="text" name= "trankind" value="O"
       required maxlength="1" readonly></td>
-    </tr> -->
+    </tr>
   </table>
 
   <div class="tbMenu">

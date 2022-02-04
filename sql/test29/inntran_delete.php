@@ -2,10 +2,14 @@
 require_once 'includes/init.php';
 
 $page = 1;
+$where = 'all';
 $serialno = 11;
 
 if (isset($_REQUEST['page'])) {
   $page = $_REQUEST['page'];
+}
+if (isset($_REQUEST['where'])) {
+  $where = $_REQUEST['where'];
 }
 if (isset($_REQUEST['serialno'])) {
   $serialno = $_REQUEST['serialno'];
@@ -17,18 +21,17 @@ if (isset($_POST['delete'])) {
           WHERE serialno = '$serialno'";
   mysqli_query($db, $sql);
   $msg = '레코드 삭제 완료';
-  $url = 'inntran_edit.php?page='.$page;
+  $url = 'inntran_edit.php?page='.$page.'&where='.$where;
   sendMsg($msg, $url);
 }
 
-$itemList = array();
-$sql = "SELECT * FROM itemmast";
-$item = mysqli_query($db, $sql);
-while ($a = mysqli_fetch_assoc($item)) {
-  $itemList[$a['itemcode']] = $a['descript'].' ('.$a['itemspec'].')';
-}
-
-$sql = "SELECT * FROM inntran WHERE serialno = '$serialno'";
+$sql = "SELECT inntran.*, 
+        itemmast.descript AS item_name,
+        itemmast.itemspec AS item_spec
+        FROM inntran 
+        JOIN itemmast ON inntran.trancode = itemmast.itemcode
+        WHERE serialno = '$serialno'
+        ";
 $res = mysqli_query($db, $sql);
 
 ?>
@@ -51,12 +54,13 @@ $res = mysqli_query($db, $sql);
     </tr>
     <?php
       while ($a = mysqli_fetch_assoc($res)) {
-        $trancode = $itemList[$a['trancode']];
+        $trancode = $a['item_name'].' ('.$a['item_spec'].')';
+        $tranprce = number_format($a['tranprce']).'원';
         echo '<tr>';
         echo '<td>'.$a['trandate'].'</td>';
-        echo '<td>'.$trancode.'</td>';
-        echo '<td>'.$a['tranqnty'].'</td>';
-        echo '<td>'.$a['tranprce'].'</td>';
+        echo '<td class="left">'.$trancode.'</td>';
+        echo '<td class="right">'.$a['tranqnty'].'</td>';
+        echo '<td class="right">'.$tranprce.'</td>';
         echo '<td>'.$a['trankind'].'</td>';
         echo '</tr>';
       }
@@ -73,10 +77,11 @@ $res = mysqli_query($db, $sql);
 
 <form method="post" action="">
   <input type="hidden" name="page" value="<?=$page?>">
+  <input type="hidden" name="where" value="<?=$where?>">
   <input type="hidden" name="serialno" value="<?=$serialno?>">
   <input type="submit" name="delete" value="Yes">
   <input type="button" value="No"
-    onclick="location.href='inntran_edit.php?page=<?=$page?>'">
+    onclick="location.href='inntran_edit.php?page=<?=$page?>&where=<?=$where?>'">
 </form>
 
 <!-- contents -->

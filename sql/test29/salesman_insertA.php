@@ -19,7 +19,8 @@ if (isset($_POST['insert'])) {
   $salearea = $_POST['salearea'];
 
   $sql = "INSERT INTO salesman
-          (salecode, salename, salegend, innndate, salearea)
+          (salecode, salename, salegend, 
+          innndate, salearea)
           VALUES (
             '$salecode',
             '$salename',
@@ -47,7 +48,7 @@ if (isset($_POST['insert'])) {
     <tr>
       <th>판매원코드</th>
       <td><input type="text" name= "salecode" value="<?=$salecode?>"
-      required maxlength="2"></td>
+      required maxlength="2" readonly></td>
     </tr>
     <tr>
       <th>판매원명</th>

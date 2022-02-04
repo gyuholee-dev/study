@@ -76,7 +76,7 @@ $res = mysqli_query($db, $sql);
         echo '<td>'.$a['salename'].'</td>';
         echo '<td>'.$salegend.'</td>';
         echo '<td>'.$a['innndate'].'</td>';
-        echo '<td>'.$a['salearea'].'</td>';
+        echo '<td class="left">'.$a['salearea'].'</td>';
         echo '<td>'.$updateLink.'</td>';
         echo '<td>'.$deleteLink.'</td>';
         echo '</tr>';

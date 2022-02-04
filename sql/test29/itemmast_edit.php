@@ -20,14 +20,12 @@ $res = mysqli_query($db, $sql);
 $a = mysqli_fetch_row($res);
 $pageCount = ceil($a[0]/$items);
 
-$kindList = array();
-$sql = "SELECT * FROM code WHERE cod1='17'";
-$kind = mysqli_query($db, $sql);
-while ($a = mysqli_fetch_assoc($kind)) {
-  $kindList[$a['cod2']] = $a['name'];
-}
-
-$sql = "SELECT * FROM itemmast ";
+$sql = "SELECT itemmast.*, 
+        code.name AS kind_name
+        FROM itemmast 
+        JOIN code ON itemmast.itemkind = code.cod2
+                  AND code.cod1 = '17' 
+        ";
 $sql = $sql."ORDER BY itemcode DESC ";
 $sql = $sql."LIMIT $start, $items ";
 $res = mysqli_query($db, $sql);
@@ -68,10 +66,8 @@ $res = mysqli_query($db, $sql);
     </tr>
     <?php
       while ($a = mysqli_fetch_assoc($res)) {
-        $itemkind = $a['itemkind'];
-        if (count($kindList) !== 0) {
-          $itemkind = $kindList[$a['itemkind']];
-        }
+        $innprice = number_format($a['innprice']).'원';
+        $outprice = number_format($a['outprice']).'원';
         $updateUrl = 'itemmast_update.php?page='.$page.
                      '&itemcode='.$a['itemcode'];
         $updateLink = '<a href="'.$updateUrl.'">수정</a>';
@@ -80,12 +76,12 @@ $res = mysqli_query($db, $sql);
         $deleteLink = '<a href="'.$deleteUrl.'">삭제</a>';
         echo '<tr>';
         echo '<td>'.$a['itemcode'].'</td>';
-        echo '<td>'.$a['descript'].'</td>';
+        echo '<td class="left">'.$a['descript'].'</td>';
         echo '<td>'.$a['itemspec'].'</td>';
-        echo '<td>'.$itemkind.'</td>';
-        echo '<td>'.$a['innprice'].'</td>';
-        echo '<td>'.$a['outprice'].'</td>';
-        echo '<td>'.$a['inventry'].'</td>';
+        echo '<td class="left">'.$a['kind_name'].'</td>';
+        echo '<td class="right">'.$innprice.'</td>';
+        echo '<td class="right">'.$outprice.'</td>';
+        echo '<td class="right">'.$a['inventry'].'</td>';
         echo '<td>'.$updateLink.'</td>';
         echo '<td>'.$deleteLink.'</td>';
         echo '</tr>';

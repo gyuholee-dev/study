@@ -19,7 +19,8 @@ if (isset($_POST['insert'])) {
   $inventry = $_POST['inventry'];
 
   $sql = "INSERT INTO itemmast
-          (itemcode, descript, itemspec, itemkind, innprice, outprice, inventry)
+          (itemcode, descript, itemspec, 
+          itemkind, innprice, outprice, inventry)
           VALUES (
             '$itemcode',
             '$descript',
@@ -68,7 +69,6 @@ $kind = mysqli_query($db, $sql);
     <tr>
       <th>제품구분</th>
       <td>
-        <!-- <input type="text" name= "itemkind" value=""> -->
         <select name="itemkind" style="width:100%;">
           <?php
             while ($a = mysqli_fetch_assoc($kind)) {

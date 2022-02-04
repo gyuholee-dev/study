@@ -23,8 +23,8 @@ if (isset($_REQUEST['where'])) {
 
 $start = ($page-1)*$items;
 
-$sql = "SELECT COUNT(*) FROM outtran ";
-// $sql = $sql.$whereSql;
+$sql = "SELECT COUNT(*) FROM inntran ";
+$sql = $sql.$whereSql;
 $res = mysqli_query($db, $sql);
 $a = mysqli_fetch_row($res);
 $pageCount = ceil($a[0]/$items);
@@ -32,15 +32,13 @@ $pageCount = ceil($a[0]/$items);
 $sql = "SELECT * FROM itemmast";
 $item = mysqli_query($db, $sql);
 
-$sql = "SELECT outtran.*, 
-        salesman.salename AS man_name,
+$sql = "SELECT inntran.*, 
         itemmast.descript AS item_name,
         itemmast.itemspec AS item_spec
-        FROM outtran 
-        JOIN salesman ON outtran.salecode = salesman.salecode
-        JOIN itemmast ON outtran.trancode = itemmast.itemcode
+        FROM inntran 
+        JOIN itemmast ON inntran.trancode = itemmast.itemcode
         ";
-// $sql = $sql.$whereSql;
+$sql = $sql.$whereSql;
 $sql = $sql."ORDER BY serialno DESC ";
 $sql = $sql."LIMIT $start, $items ";
 $res = mysqli_query($db, $sql);
@@ -50,7 +48,7 @@ $res = mysqli_query($db, $sql);
 <?php
   include 'includes/_header.php';
 ?>
-<h3>출고 관리</h3>
+<h3>입고 관리</h3>
 <hr>
 <!-- contents -->
 <div class="tbContents">
@@ -84,6 +82,8 @@ $res = mysqli_query($db, $sql);
         </form>
       </td>
       <td class="right">
+        <input type="button" value="초기화"
+        onclick="location.href='inntran_edit.php'">
         <input type="button" value="메뉴"
         onclick="location.href='index.php'">
       </td>
@@ -92,11 +92,10 @@ $res = mysqli_query($db, $sql);
 
   <table cellpadding="3" cellspacing="0">
     <tr>
-      <th>출고일자</th>
-      <th>판매원코드</th>
-      <th>출고제품</th>
-      <th>출고수량</th>
-      <th>출고단가</th>
+      <th>입고일자</th>
+      <th>입고제품</th>
+      <th>입고수량</th>
+      <th>입고단가</th>
       <th>입출구분</th>
       <th>수정</th>
       <th>삭제</th>
@@ -105,15 +104,16 @@ $res = mysqli_query($db, $sql);
       while ($a = mysqli_fetch_assoc($res)) {
         $trancode = $a['item_name'].' ('.$a['item_spec'].')';
         $tranprce = number_format($a['tranprce']).'원';
-        $updateUrl = 'outtran_update.php?page='.$page.
+        $updateUrl = 'inntran_update.php?page='.$page.
+                     '&where='.$where.
                      '&serialno='.$a['serialno'];
         $updateLink = '<a href="'.$updateUrl.'">수정</a>';
-        $deleteUrl = 'outtran_delete.php?page='.$page.
+        $deleteUrl = 'inntran_delete.php?page='.$page.
+                     '&where='.$where.
                      '&serialno='.$a['serialno'];
         $deleteLink = '<a href="'.$deleteUrl.'">삭제</a>';
         echo '<tr>';
         echo '<td>'.$a['trandate'].'</td>';
-        echo '<td>'.$a['man_name'].'</td>';
         echo '<td class="left">'.$trancode.'</td>';
         echo '<td class="right">'.$a['tranqnty'].'</td>';
         echo '<td class="right">'.$tranprce.'</td>';
@@ -134,7 +134,7 @@ $res = mysqli_query($db, $sql);
       if ($page == 1) {
         echo '<<';
       } else {
-        echo '<a href="outtran_edit.php?page=1"><<</a>';
+        echo '<a href="inntran_edit.php?page=1&where='.$where.'"><<</a>';
       }
       echo '</span>';
 
@@ -160,7 +160,7 @@ $res = mysqli_query($db, $sql);
         if ($i == $page) {
           echo "<b>$i</b>";
         } else {
-          echo '[<a href="outtran_edit.php?page='.$i.'">'.$i.'</a>]';
+          echo '[<a href="inntran_edit.php?page='.$i.'&where='.$where.'">'.$i.'</a>]';
         }
         echo '</span>';
       }
@@ -169,7 +169,7 @@ $res = mysqli_query($db, $sql);
       if ($page == $pageCount) {
         echo '>>';
       } else {
-        echo '<a href="outtran_edit.php?page='.$pageCount.'">>></a>';
+        echo '<a href="inntran_edit.php?page='.$pageCount.'&where='.$where.'">>></a>';
       }
       echo '</span>';
 
