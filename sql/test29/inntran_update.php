@@ -2,14 +2,18 @@
 require_once 'includes/init.php';
 
 $page = 1;
-$where = 'all';
 $serialno = 11;
+$year = 'all';
+$month = 'all';
 
 if (isset($_REQUEST['page'])) {
   $page = $_REQUEST['page'];
 }
-if (isset($_REQUEST['where'])) {
-  $where = $_REQUEST['where'];
+if (isset($_REQUEST['year'])) {
+  $year = $_REQUEST['year'];
+}
+if (isset($_REQUEST['month'])) {
+  $month = $_REQUEST['month'];
 }
 if (isset($_REQUEST['serialno'])) {
   $serialno = $_REQUEST['serialno'];
@@ -20,8 +24,17 @@ if (isset($_POST['update'])) {
   $trandate = $_POST['trandate'];
   $trancode = $_POST['trancode'];
   $tranqnty = $_POST['tranqnty'];
-  $tranprce = $_POST['tranprce'];
-  $trankind = $_POST['trankind'];
+  $tranqnty_origin = $_POST['tranqnty_origin'];
+  // $tranprce = $_POST['tranprce'];
+  // $trankind = $_POST['trankind'];
+  $trankind = 'I';
+
+  $sql = "SELECT * FROM itemmast 
+          WHERE itemcode = '$trancode'";
+  $res = mysqli_query($db, $sql);
+  $a = mysqli_fetch_assoc($res);
+  $tranprce = $a['innprice'];
+  $inventry = $a['inventry'] + ($tranqnty-$tranqnty_origin);
 
   $sql = "UPDATE inntran
           SET trandate = '$trandate',
@@ -31,16 +44,28 @@ if (isset($_POST['update'])) {
               trankind = '$trankind'
           WHERE serialno = '$serialno'
           ";
+  // echo $sql.'<br>';
   mysqli_query($db, $sql);
+
+  $sql = "UPDATE itemmast
+          SET inventry = '$inventry'
+          WHERE itemcode = '$trancode'";
+  // echo $sql.'<br>';
+  mysqli_query($db, $sql);
+
   $msg = '입고 수정 완료';
-  $url = 'inntran_edit.php?page='.$page.'&where='.$where;
+  $url = 'inntran_edit.php?page='.$page.'&year='.$year.'&month='.$month;
   sendMsg($msg, $url);
 }
 
-$sql = "SELECT * FROM itemmast";
-$item = mysqli_query($db, $sql);
-
-$sql = "SELECT * FROM inntran WHERE serialno='$serialno' ";
+$sql = "SELECT inntran.*, 
+        itemmast.descript AS item_name,
+        itemmast.itemspec AS item_spec,
+        itemmast.inventry AS item_invn
+        FROM inntran 
+        JOIN itemmast ON inntran.trancode = itemmast.itemcode
+        WHERE serialno = '$serialno'
+        ";
 $res = mysqli_query($db, $sql);
 $inn = mysqli_fetch_assoc($res);
 
@@ -55,8 +80,10 @@ $inn = mysqli_fetch_assoc($res);
 <div class="tbContents">
   <form method="post" action="" autocomplete="off">
     <input type="hidden" name="page" value="<?=$page?>">
-    <input type="hidden" name="where" value="<?=$where?>">
+    <input type="hidden" name="year" value="<?=$year?>">
+    <input type="hidden" name="month" value="<?=$month?>">
     <input type="hidden" name="serialno" value="<?=$serialno?>">
+    <input type="hidden" name="tranqnty_origin" value="<?=$inn['tranqnty']?>">
   
   <table cellpadding="3" cellspacing="0">
     <tr>
@@ -67,19 +94,11 @@ $inn = mysqli_fetch_assoc($res);
     <tr>
       <th>입고제품</th>
       <td>
-        <select name="trancode" style="width:100%;">
-          <?php
-            while ($a = mysqli_fetch_assoc($item)) {
-              $selected = '';
-              if ($inn['trancode'] == $a['itemcode']) {
-                $selected = ' selected';
-              }
-              $itemName = $a['descript'].' ('.$a['itemspec'].')';
-              echo '<option value="'.$a['itemcode'].'"'.
-                   $selected.'>'.$itemName.'</option>';
-            }
-          ?>
-        </select>
+        <?php
+          $tranname = $inn['item_name'].' ('.$inn['item_spec'].')';
+          echo '<input type="text" value="'.$tranname.'" readonly>';
+          echo '<input type="hidden" name="trancode" value="'.$inn['trancode'].'">';
+        ?>
     </td>
     </tr>
     <tr>
@@ -87,23 +106,15 @@ $inn = mysqli_fetch_assoc($res);
       <td><input type="number" name= "tranqnty" value="<?=$inn['tranqnty']?>"
       required></td>
     </tr>
-    <tr>
-      <th>입고단가</th>
-      <td><input type="number" name= "tranprce" value="<?=$inn['tranprce']?>"
-      required></td>
-    </tr>
-    <tr>
-      <th>입출구분</th>
-      <td><input type="text" name= "trankind" value="<?=$inn['trankind']?>"
-      required maxlength="1" readonly></td>
-    </tr>
   </table>
 
   <div class="tbMenu">
     <input type="submit" name="update" value="입력">
     <input type="reset" value="취소">
-    <input type="button" value="뒤로"
-      onclick="location.href='inntran_edit.php?page=<?=$page?>&where=<?=$where?>'">
+      <input type="button" value="뒤로"
+      onclick="location.href='<?
+        echo 'inntran_edit.php?page='.$page.'&year='.$year.'&month='.$month;
+      ?>'">
   </div>
 
   </form>

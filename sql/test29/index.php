@@ -97,11 +97,11 @@ require_once 'includes/init.php';
   <tr>
     <td>
       <input type="button" value="입고등록-B" 
-      onclick="location.href='inntran_insertB.php'"disabled>
+      onclick="location.href='inntran_insertB.php'">
     </td>
     <td>
       <input type="button" value="출고등록-B" 
-      onclick="location.href='outtran_insertB.php'" disabled>
+      onclick="location.href='outtran_insertB.php'">
     </td>
     <td>
       <input type="button" value="조회-2" 

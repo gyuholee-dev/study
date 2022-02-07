@@ -51,7 +51,8 @@ $item = mysqli_query($db, $sql);
 $sql = "SELECT outtran.*, 
         salesman.salename AS man_name,
         itemmast.descript AS item_name,
-        itemmast.itemspec AS item_spec
+        itemmast.itemspec AS item_spec,
+        itemmast.inventry AS item_invn
         FROM outtran 
         JOIN salesman ON outtran.salecode = salesman.salecode
         JOIN itemmast ON outtran.trancode = itemmast.itemcode
@@ -115,7 +116,7 @@ $res = mysqli_query($db, $sql);
       </td>
       <td class="right">
         <input type="button" value="초기화"
-        onclick="location.href='inntran_edit.php'">
+        onclick="location.href='outtran_edit.php'">
         <input type="button" value="메뉴"
         onclick="location.href='index.php'">
       </td>
@@ -127,9 +128,9 @@ $res = mysqli_query($db, $sql);
       <th>출고일자</th>
       <th>판매원코드</th>
       <th>출고제품</th>
-      <th>출고수량</th>
+      <th>출고</th>
+      <th>재고</th>
       <th>출고단가</th>
-      <th>입출구분</th>
       <th>수정</th>
       <th>삭제</th>
     </tr>
@@ -151,8 +152,8 @@ $res = mysqli_query($db, $sql);
           echo '<td>'.$a['man_name'].'</td>';
           echo '<td class="left">'.$trancode.'</td>';
           echo '<td class="right">'.$a['tranqnty'].'</td>';
+          echo '<td class="right">'.$a['item_invn'].'</td>';
           echo '<td class="right">'.$tranprce.'</td>';
-          echo '<td>'.$a['trankind'].'</td>';
           echo '<td>'.$updateLink.'</td>';
           echo '<td>'.$deleteLink.'</td>';
           echo '</tr>';

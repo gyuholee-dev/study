@@ -71,7 +71,8 @@ $man = mysqli_query($db, $sql);
     <tr>
       <th>판매원</th>
       <td>
-        <select name="salecode" style="width:100%;">
+        <select name="salecode" style="width:100%;" required>
+          <option></option>
           <?php
             while ($a = mysqli_fetch_assoc($man)) {
               echo '<option value="'.
@@ -84,7 +85,8 @@ $man = mysqli_query($db, $sql);
     <tr>
       <th>출고제품</th>
       <td>
-        <select name="trancode" style="width:100%;">
+        <select name="trancode" style="width:100%;" required>
+          <option></option>
           <?php
             while ($a = mysqli_fetch_assoc($item)) {
               $itemName = $a['descript'].' ('.$a['itemspec'].')';

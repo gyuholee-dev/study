@@ -50,7 +50,8 @@ $item = mysqli_query($db, $sql);
 
 $sql = "SELECT inntran.*, 
         itemmast.descript AS item_name,
-        itemmast.itemspec AS item_spec
+        itemmast.itemspec AS item_spec,
+        itemmast.inventry AS item_invn
         FROM inntran 
         JOIN itemmast ON inntran.trancode = itemmast.itemcode
         ";
@@ -124,9 +125,9 @@ $res = mysqli_query($db, $sql);
     <tr>
       <th>입고일자</th>
       <th>입고제품</th>
-      <th>입고수량</th>
+      <th>입고</th>
+      <th>재고</th>
       <th>입고단가</th>
-      <th>입출구분</th>
       <th>수정</th>
       <th>삭제</th>
     </tr>
@@ -147,8 +148,8 @@ $res = mysqli_query($db, $sql);
           echo '<td>'.$a['trandate'].'</td>';
           echo '<td class="left">'.$trancode.'</td>';
           echo '<td class="right">'.$a['tranqnty'].'</td>';
+          echo '<td class="right">'.$a['item_invn'].'</td>';
           echo '<td class="right">'.$tranprce.'</td>';
-          echo '<td>'.$a['trankind'].'</td>';
           echo '<td>'.$updateLink.'</td>';
           echo '<td>'.$deleteLink.'</td>';
           echo '</tr>';

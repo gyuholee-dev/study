@@ -82,7 +82,7 @@ $item = mysqli_query($db, $sql);
     <tr>
       <th>입고제품</th>
       <td>
-        <select name="trancode" style="width:100%;">
+        <select name="trancode" style="width:100%;" required>
           <option></option>
           <?php
             while ($a = mysqli_fetch_assoc($item)) {
