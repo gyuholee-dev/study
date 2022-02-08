@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/init.php';
 
-$items = 10;
+$items = 5;
 $page = 1;
 $rows = 0;
 $start = 0;
@@ -9,6 +9,14 @@ $pageCount = 1;
 $year = 'all';
 $month = 'all';
 $whereSql = '';
+
+// $sql = "SELECT MAX(trandate) FROM inntran ";
+// $res = mysqli_query($db, $sql);
+// $maxdate = mysqli_fetch_row($res)[0];
+// $maxdate = explode("-", $maxdate);
+// $year = $maxdate[0];
+// $month = $maxdate[1];
+// $whereSql = "WHERE SUBSTR(trandate, 1, 7) LIKE '$year-$month' ";
 
 if (isset($_REQUEST['items'])) {
   $items = $_REQUEST['items'];
@@ -34,7 +42,7 @@ if (isset($_REQUEST['month'])) {
 
 $start = ($page-1)*$items;
 
-$sql = "SELECT COUNT(*) FROM outtran ";
+$sql = "SELECT COUNT(DISTINCT(trandate)) FROM inntran ";
 $sql = $sql.$whereSql;
 $res = mysqli_query($db, $sql);
 $rows = mysqli_fetch_row($res)[0];
@@ -43,7 +51,7 @@ $pageCount = ceil($rows/$items);
 $years = array();
 $sql = "SELECT 
         DISTINCT(SUBSTR(trandate, 1, 4)) AS year 
-        FROM outtran ";
+        FROM inntran ";
 $res = mysqli_query($db, $sql);
 while ($a = mysqli_fetch_assoc($res)) {
   array_push($years, $a['year']);
@@ -52,7 +60,7 @@ while ($a = mysqli_fetch_assoc($res)) {
 $months = array();
 $sql = "SELECT 
         DISTINCT(SUBSTR(trandate, 6, 2)) AS month 
-        FROM outtran ";
+        FROM inntran ";
 if ($year != 'all') {
   $sql = $sql."WHERE SUBSTR(trandate, 1, 4) LIKE '$year%' ";
 }
@@ -61,21 +69,30 @@ while ($a = mysqli_fetch_assoc($res)) {
   array_push($months, $a['month']);
 }
 
-$sql = "SELECT * FROM itemmast";
-$item = mysqli_query($db, $sql);
-
-$sql = "SELECT outtran.*, 
-        salesman.salename AS man_name,
-        itemmast.descript AS item_name,
-        itemmast.itemspec AS item_spec,
-        itemmast.inventry AS item_invn
-        FROM outtran 
-        JOIN salesman ON outtran.salecode = salesman.salecode
-        JOIN itemmast ON outtran.trancode = itemmast.itemcode
+$total_qnty = 0;
+$total_innprce = 0;
+$sql = "SELECT 
+        SUM(tranqnty) AS total_qnty,
+        SUM(tranqnty*tranprce) AS total_innprce
+        FROM inntran 
         ";
 $sql = $sql.$whereSql;
-$sql = $sql."ORDER BY serialno DESC ";
+$res = mysqli_query($db, $sql);
+$a = mysqli_fetch_assoc($res);
+$total_qnty = $a['total_qnty'];
+$total_innprce = $a['total_innprce'];
+
+$sql = "SELECT 
+        trandate,
+        SUM(tranqnty) AS qnty,
+        SUM(tranqnty*tranprce) AS innprce
+        FROM inntran 
+        ";
+$sql = $sql.$whereSql;
+$sql = $sql."GROUP BY trandate ";
+$sql = $sql."ORDER BY trandate DESC ";
 $sql = $sql."LIMIT $start, $items ";
+// echo $sql;
 $res = mysqli_query($db, $sql);
 
 ?>
@@ -83,12 +100,12 @@ $res = mysqli_query($db, $sql);
 <?php
   include 'includes/_header.php';
 ?>
-<h3>출고 관리</h3>
+<h3>입고 조회</h3>
 <hr>
 <!-- contents -->
 <div class="tbContents">
 
-  <script>
+<script>
     function changeView() {
       var form = document.getElementById('tbmenu');
       form.submit();
@@ -136,82 +153,72 @@ $res = mysqli_query($db, $sql);
       </td>
       <td class="right">
         <input type="button" value="초기화"
-        onclick="location.href='outtran_edit.php'">
+        onclick="location.href='view_inntran_days.php'">
         <input type="button" value="메뉴"
         onclick="location.href='index.php'">
       </td>
     </table>
   </div>
 
-  <table cellpadding="3" cellspacing="0">
+  <table cellpadding="3" cellspacing="0" width="400px">
+    <style>
+      td.skip {
+        padding:0 10px;
+        line-height:18px;
+      }
+      td.red {
+        color: red;
+        font-weight:bold;
+      }
+    </style>
     <tr>
-      <th>출고일자</th>
-      <th>판매원</th>
-      <th>출고제품</th>
-      <th>출고</th>
-      <th>재고</th>
-      <th>출고단가</th>
-      <th>수정</th>
-      <th>삭제</th>
+      <th>입고일자</th>
+      <th>입고수량</th>
+      <th>입고총액</th>
+      <th>상세조회</th>
     </tr>
     <?php
       if ($rows > 0) {
-        $tables = array();
-        $saved = '';
-        $rowspan = 1;
-        $si = 0;
-        $i = 0;
+        
+        if ($page != 1 && $pageCount > 1) {
+          echo '<tr>';
+          echo '<td colspan="4" class="skip">&#x22ef;</td>';
+          echo '</tr>';
+        }
         while ($a = mysqli_fetch_assoc($res)) {
-          $t = array();
-          $trancode = $a['item_name'].' ('.$a['item_spec'].')';
-          $tranprce = number_format($a['tranprce']).'원';
-          $updateUrl = 'outtran_update.php?page='.$page.
-                      '&year='.$year.'&month='.$month.
-                      '&serialno='.$a['serialno'];
-          $updateLink = '<a href="'.$updateUrl.'">수정</a>';
-          $deleteUrl = 'outtran_delete.php?page='.$page.
-                      '&year='.$year.'&month='.$month.
-                      '&serialno='.$a['serialno'];
-          $deleteLink = '<a href="'.$deleteUrl.'">삭제</a>';
-          array_push($t, '<tr>');
-          if ($a['trandate'] != $saved) {
-            $rowspan = 1;
-            $saved = $a['trandate'];
-            $si = $i;
-            array_push($t, '<td rowspan="'.$rowspan.'">');
-            array_push($t, $a['trandate']);
-            array_push($t, '</td>');
-          } else {
-            $rowspan++;
-            $tables[$si][1] = '<td rowspan="'.$rowspan.'">';
-            array_push($t, '');
-            array_push($t, '');
-            array_push($t, '');
-          }
-          array_push($t, '<td>'.$a['man_name'].'</td>');
-          array_push($t, '<td class="left">'.$trancode.'</td>');
-          array_push($t, '<td class="right">'.$a['tranqnty'].'</td>');
-          array_push($t, '<td class="right">'.$a['item_invn'].'</td>');
-          array_push($t, '<td class="right">'.$tranprce.'</td>');
-          array_push($t, '<td>'.$updateLink.'</td>');
-          array_push($t, '<td>'.$deleteLink.'</td>');
-          array_push($t, '</tr>');
-          array_push($tables, $t);
-          $i++;
+          $innprce = number_format($a['innprce']).'원';
+          $detailUrl = 'view_inntran_detail.php'.
+                       '?trandate='.$a['trandate'].'&page='.$page.
+                       '&year='.$year.'&month='.$month;
+          $detailUrl = '<a href="'.$detailUrl.'">Link</a>';
+          echo '<tr>';
+          echo '<td>'.$a['trandate'].'</td>';
+          echo '<td>'.$a['qnty'].'</td>';
+          echo '<td class="right">'.$innprce.'</td>';
+          echo '<td>'.$detailUrl.'</td>';
+          echo '</tr>';
         }
-        foreach ($tables as $value) {
-          foreach ($value as $v) {
-            echo $v;
-          }
+        if ($page != $pageCount && $pageCount > 1) {
+          echo '<tr>';
+          echo '<td colspan="4" class="skip">&#x22ef;</td>';
+          echo '</tr>';
         }
+
+        $total_innprce = number_format($total_innprce).'원';
+        echo '<tr>';
+        echo '<td>합계</td>';
+        echo '<td class="red">'.$total_qnty.'</td>';
+        echo '<td class="right red">'.$total_innprce.'</td>';
+        echo '<td>-</td>';
+        echo '</tr>';
+      
       } else {
         echo '<tr>';
-        echo '<td colspan="5">목록이 없습니다.</td>';
-        echo '<td>-</td>';
-        echo '<td>-</td>';
+        echo '<td colspan="4">목록이 없습니다.</td>';
         echo '</tr>';
       }
     ?>
+
   </table>
 
   <div class="tbMenu">
@@ -223,11 +230,11 @@ $res = mysqli_query($db, $sql);
       if ($page == 1) {
         echo '<<';
       } else {
-        echo '<a href="outtran_edit.php?page=1'.
+        echo '<a href="view_inntran_days.php?page=1'.
              '&year='.$year.'&month='.$month.'"><<</a>';
       }
       echo '</span>';
-
+      
       if ($rows > 0) {
         if ($pageCount > 9) {
           if ($page > $pageCount-8) {
@@ -254,8 +261,8 @@ $res = mysqli_query($db, $sql);
           if ($i == $page) {
             echo "<b>$i</b>";
           } else {
-            echo '[<a href="outtran_edit.php?page='.$i.
-                '&year='.$year.'&month='.$month.'">'.$i.'</a>]';
+            echo '[<a href="view_inntran_days.php?page='.$i.
+                 '&year='.$year.'&month='.$month.'">'.$i.'</a>]';
           }
           echo '</span>';
         }
@@ -269,7 +276,7 @@ $res = mysqli_query($db, $sql);
       if ($page == $pageCount) {
         echo '>>';
       } else {
-        echo '<a href="outtran_edit.php?page='.$pageCount.
+        echo '<a href="view_inntran_days.php?page='.$pageCount.
              '&year='.$year.'&month='.$month.'">>></a>';
       }
       echo '</span>';

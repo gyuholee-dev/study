@@ -85,7 +85,7 @@ $res = mysqli_query($db, $sql);
   <table cellpadding="3" cellspacing="0">
     <tr>
       <th>출고일자</th>
-      <th>판매원코드</th>
+      <th>판매원</th>
       <th>출고제품</th>
       <th>출고</th>
       <th>재고</th>

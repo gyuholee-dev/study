@@ -90,8 +90,8 @@ require_once 'includes/init.php';
       onclick="location.href='outtran_insertA.php'">
     </td>
     <td>
-      <input type="button" value="조회-1" 
-      onclick="location.href='_view.php'" disabled>
+      <input type="button" value="월간 일자별 입고" 
+      onclick="location.href='view_inntran_days.php'">
     </td>
   </tr>
   <tr>
@@ -104,8 +104,8 @@ require_once 'includes/init.php';
       onclick="location.href='outtran_insertB.php'">
     </td>
     <td>
-      <input type="button" value="조회-2" 
-      onclick="location.href='_view.php'" disabled>
+      <input type="button" value="월간 제품별 입고" 
+      onclick="location.href='view_inntran_items.php'">
     </td>
   </tr>
   <tr>
@@ -119,7 +119,7 @@ require_once 'includes/init.php';
     </td>
     <td>
       <input type="button" value="조회-3" 
-      onclick="location.href='_view.php'" disabled>
+      onclick="location.href='view_.php'" disabled>
     </td>
   </tr>
 

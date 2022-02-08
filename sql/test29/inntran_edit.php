@@ -40,10 +40,26 @@ $res = mysqli_query($db, $sql);
 $rows = mysqli_fetch_row($res)[0];
 $pageCount = ceil($rows/$items);
 
+$years = array();
 $sql = "SELECT 
         DISTINCT(SUBSTR(trandate, 1, 4)) AS year 
         FROM inntran ";
-$years = mysqli_query($db, $sql);
+$res = mysqli_query($db, $sql);
+while ($a = mysqli_fetch_assoc($res)) {
+  array_push($years, $a['year']);
+}
+
+$months = array();
+$sql = "SELECT 
+        DISTINCT(SUBSTR(trandate, 6, 2)) AS month 
+        FROM inntran ";
+if ($year != 'all') {
+  $sql = $sql."WHERE SUBSTR(trandate, 1, 4) LIKE '$year%' ";
+}
+$res = mysqli_query($db, $sql);
+while ($a = mysqli_fetch_assoc($res)) {
+  array_push($months, $a['month']);
+}
 
 $sql = "SELECT * FROM itemmast";
 $item = mysqli_query($db, $sql);
@@ -85,13 +101,13 @@ $res = mysqli_query($db, $sql);
           <select name="year" id="year" onchange="changeView()">
             <option value="all">전체</option>
             <?php
-              while ($a = mysqli_fetch_assoc($years)) {
+              foreach ($years as $y) {
                 $selected = '';
-                if ($year == $a['year']) {
+                if ($year == $y) {
                   $selected = ' selected';
                 }
-                echo '<option value="'.$a['year'].'"'.
-                $selected.'>'.$a['year'].'년</option>';
+                echo '<option value="'.$y.'"'.
+                $selected.'>'.$y.'년</option>';
               }
             ?>
           </select>
@@ -99,14 +115,18 @@ $res = mysqli_query($db, $sql);
           <select name="month" id="month" onchange="changeView()">
             <option value="all">전체</option>
             <?php
-              for ($i=1; $i < 12; $i++) { 
+              for ($i=1; $i <= 12; $i++) { 
                 $mon = numStr($i, 2);
                 $selected = '';
                 if ($month == $mon) {
                   $selected = ' selected';
                 }
+                $disabled = ' disabled';
+                if (in_array($mon, $months)) {
+                  $disabled = '';
+                }
                 echo '<option value="'.$mon.'"'.
-                $selected.'>'.$mon.'월</option>';
+                $selected.$disabled.'>'.$mon.'월</option>';
               }
             ?>
           </select>
@@ -133,7 +153,13 @@ $res = mysqli_query($db, $sql);
     </tr>
     <?php
       if ($rows > 0) {
+        $tables = array();
+        $saved = '';
+        $rowspan = 1;
+        $si = 0;
+        $i = 0;
         while ($a = mysqli_fetch_assoc($res)) {
+          $t = array();
           $trancode = $a['item_name'].' ('.$a['item_spec'].')';
           $tranprce = number_format($a['tranprce']).'원';
           $updateUrl = 'inntran_update.php?page='.$page.
@@ -144,15 +170,35 @@ $res = mysqli_query($db, $sql);
                       '&year='.$year.'&month='.$month.
                       '&serialno='.$a['serialno'];
           $deleteLink = '<a href="'.$deleteUrl.'">삭제</a>';
-          echo '<tr>';
-          echo '<td>'.$a['trandate'].'</td>';
-          echo '<td class="left">'.$trancode.'</td>';
-          echo '<td class="right">'.$a['tranqnty'].'</td>';
-          echo '<td class="right">'.$a['item_invn'].'</td>';
-          echo '<td class="right">'.$tranprce.'</td>';
-          echo '<td>'.$updateLink.'</td>';
-          echo '<td>'.$deleteLink.'</td>';
-          echo '</tr>';
+          array_push($t, '<tr>');
+          if ($a['trandate'] != $saved) {
+            $rowspan = 1;
+            $saved = $a['trandate'];
+            $si = $i;
+            array_push($t, '<td rowspan="'.$rowspan.'">');
+            array_push($t, $a['trandate']);
+            array_push($t, '</td>');
+          } else {
+            $rowspan++;
+            $tables[$si][1] = '<td rowspan="'.$rowspan.'">';
+            array_push($t, '');
+            array_push($t, '');
+            array_push($t, '');
+          }
+          array_push($t, '<td class="left">'.$trancode.'</td>');
+          array_push($t, '<td class="right">'.$a['tranqnty'].'</td>');
+          array_push($t, '<td class="right">'.$a['item_invn'].'</td>');
+          array_push($t, '<td class="right">'.$tranprce.'</td>');
+          array_push($t, '<td>'.$updateLink.'</td>');
+          array_push($t, '<td>'.$deleteLink.'</td>');
+          array_push($t, '</tr>');
+          array_push($tables, $t);
+          $i++;
+        }
+        foreach ($tables as $value) {
+          foreach ($value as $v) {
+            echo $v;
+          }
         }
       } else {
         echo '<tr>';
@@ -179,21 +225,24 @@ $res = mysqli_query($db, $sql);
       echo '</span>';
       
       if ($rows > 0) {
-        for ($i=1; $i<=$pageCount; $i++) {
-          if ($pageCount > 9) {
-            if ($page > $pageCount-8) {
-              if ($page > $pageCount-5) {
-                $listMin = $pageCount-8;
-                $listMax = $pageCount;
-              } else {
-                $listMin = $page-4;
-                $listMax = $page+4;
-              }
-            } elseif ($page > 5) {
+        if ($pageCount > 9) {
+          if ($page > $pageCount-8) {
+            if ($page - 4 < 1) {
+              $listMin = 1;
+              $listMax = 9;
+            } elseif ($page > $pageCount-5) {
+              $listMin = $pageCount-8;
+              $listMax = $pageCount;
+            } else {
               $listMin = $page-4;
               $listMax = $page+4;
             }
+          } elseif ($page > 5) {
+            $listMin = $page-4;
+            $listMax = $page+4;
           }
+        }
+        for ($i=1; $i<=$pageCount; $i++) {
           if ($i < $listMin || $i > $listMax) {
             continue;
           }

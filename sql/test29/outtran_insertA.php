@@ -17,7 +17,7 @@ if (isset($_POST['insert'])) {
   $res = mysqli_query($db, $sql);
   $a = mysqli_fetch_assoc($res);
   $tranprce = $a['outprice'];
-  $inventry = $a['inventry'] - $_POST['tranqnty'];
+  $inventry = $a['inventry'] - $tranqnty;
 
   $sql = "INSERT INTO outtran 
           (trandate, salecode, trancode, 

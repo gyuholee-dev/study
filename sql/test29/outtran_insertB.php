@@ -13,6 +13,73 @@ $res = mysqli_query($db, $sql);
 $rows = mysqli_fetch_row($res)[0];
 
 if (isset($_POST['insert'])) {
+  $date = $_POST['date'];
+  $sql = "DELETE FROM outtran WHERE trandate = '$date'";
+  // echo $sql.'<br>';
+  mysqli_query($db, $sql);
+
+  for ($i=0; $i < $rows; $i++) { 
+    $serialno = $_POST['serialno'][$i];
+    $trandate = $_POST['trandate'][$i];
+    $salecode = $_POST['salecode'][$i];
+    $trancode = $_POST['trancode'][$i];
+    $tranqnty = $_POST['tranqnty'][$i];
+    $tranqnty_origin = $_POST['tranqnty_origin'][$i];
+    $tranprce = $_POST['tranprce'][$i];
+    // $trankind = $_POST['trankind'][$i];
+    $trankind = 'O';
+
+    $sql = "SELECT * FROM itemmast 
+    WHERE itemcode = '$trancode'";
+    $res = mysqli_query($db, $sql);
+    $a = mysqli_fetch_assoc($res);
+    $inventry = $a['inventry'];
+
+    // 추가 및 수정 조건
+    if ($tranqnty != '' && $tranqnty > 0 && $salecode != '') {
+
+      if ($tranqnty_origin != '') { // 수정
+        $inventry = $inventry - ($tranqnty-$tranqnty_origin);
+      } else { // 추가
+        $inventry = $inventry - $tranqnty;
+      }
+  
+      $sql = "INSERT INTO outtran 
+              (trandate, salecode, trancode, 
+              tranqnty, tranprce, trankind)
+              VALUES (
+                '$trandate',
+                '$salecode',
+                '$trancode',
+                '$tranqnty',
+                '$tranprce',
+                '$trankind'
+              )";
+      // echo $sql.'<br>';
+      mysqli_query($db, $sql);
+
+      $sql = "UPDATE itemmast
+              SET inventry = '$inventry'
+              WHERE itemcode = '$trancode'";
+      // echo $sql.'<br>';
+      mysqli_query($db, $sql);
+
+    // 삭제 조건
+    } elseif ($tranqnty_origin != '') {
+      
+      $inventry = $a['inventry'] + $tranqnty_origin;
+
+      $sql = "UPDATE itemmast
+      SET inventry = '$inventry'
+      WHERE itemcode = '$trancode'";
+      // echo $sql.'<br>';
+      mysqli_query($db, $sql);
+
+    }
+  }
+  $msg = '출고 수정 완료';
+  $url = 'outtran_insertB.php?date='.$date;
+  sendMsg($msg, $url);
 
 }
 
@@ -58,7 +125,7 @@ $res = mysqli_query($db, $sql);
       </td>
       <td class="right">
         <input type="button" value="초기화"
-        onclick="location.href='inntran_insertB.php'">
+        onclick="location.href='outtran_insertB.php'">
         <!-- <input type="button" value="메뉴"
         onclick="location.href='index.php'"> -->
       </td>
@@ -69,8 +136,8 @@ $res = mysqli_query($db, $sql);
     <table cellpadding="3" cellspacing="0">
       <tr>
         <th>코드</th>
-        <th>판매원</th>
         <th>출고제품</th>
+        <th>판매원</th>
         <th>재고</th>
         <th>출고단가</th>
         <th>출고</th>
@@ -83,9 +150,11 @@ $res = mysqli_query($db, $sql);
           echo '<tr>';
           // 코드
           echo '<td>'.$a['itemcode'].'</td>';
+          // 출고제품
+          echo '<td class="left">'.$tranname.'</td>';
           // 판매원
           echo '<td>';
-          echo '<select name="salecode" style="width:100%;">';
+          echo '<select name="salecode[]" style="width:100%;">';
           echo '<option></option>';
             mysqli_data_seek($man, 0);
             while ($b = mysqli_fetch_assoc($man)) {
@@ -93,13 +162,11 @@ $res = mysqli_query($db, $sql);
               if ($a['salecode'] == $b['salecode']) {
                 $selected = ' selected';
               }
-              echo '<option value="'.$a['salecode'].'"'.
+              echo '<option value="'.$b['salecode'].'"'.
                   $selected.'>'.$b['salename'].'</option>';
             }
           echo '</select>';
           echo '</td>';
-          // 입고제품
-          echo '<td class="left">'.$tranname.'</td>';
           // 재고
           echo '<td>'.$a['inventry'].'</td>';
           // 단가
