@@ -24,6 +24,24 @@ if (isset($_REQUEST['year'])) {
 
 $start = ($page-1)*$items;
 
+$sqlA = "SELECT 
+         inntran.trandate AS alldate
+         FROM inntran 
+         LEFT JOIN outtran ON inntran.trandate = outtran.trandate
+         GROUP BY alldate 
+         ";
+$sqlB = "SELECT 
+         outtran.trandate AS alldate
+         FROM outtran 
+         LEFT JOIN inntran ON outtran.trandate = inntran.trandate 
+         GROUP BY alldate 
+         ";
+$sql = "($sqlA) UNION ($sqlB)"; 
+$sql = $sql.$whereSql;
+$res = mysqli_query($db, $sql);
+$rows = mysqli_num_rows($res);
+$pageCount = ceil($rows/$items);
+
 $inn_years = array();
 $sql = "SELECT 
         DISTINCT(SUBSTR(trandate, 1, 4)) AS year 
@@ -42,57 +60,35 @@ while ($a = mysqli_fetch_assoc($res)) {
 }
 $years = array_unique(array_merge($inn_years, $out_years));
 
-$tranList = array();
-$sql = "SELECT 
-        SUBSTR(trandate, 1, 7) AS inn_date,
-        SUM(tranqnty) AS inn_qnty,
-        SUM(tranqnty*tranprce) AS inn_prce
-        FROM inntran
-        ";
-$sql = $sql.$whereSql;
-$sql = $sql."GROUP BY trandate ";
-$sql = $sql."ORDER BY trandate DESC ";
-// $sql = $sql."LIMIT $start, $items ";
-$res = mysqli_query($db, $sql);
-while ($a = mysqli_fetch_assoc($res)) {
-  foreach ($a as $key => $value) {
-    if ($key == 'inn_date') continue;
-    $tranList[$a['inn_date']][$key] = $value;
-    $tranList[$a['inn_date']]['out_qnty'] = 0;
-    $tranList[$a['inn_date']]['out_prce'] = 0;
-  }
-}
 
-$sql = "SELECT 
-        SUBSTR(trandate, 1, 7) AS out_date,
-        SUM(tranqnty) AS out_qnty,
-        SUM(tranqnty*tranprce) AS out_prce
-        FROM outtran
-        ";
-$sql = $sql.$whereSql;
-$sql = $sql."GROUP BY trandate ";
-$sql = $sql."ORDER BY trandate DESC ";
-$res = mysqli_query($db, $sql);
-while ($a = mysqli_fetch_assoc($res)) {
-  foreach ($a as $key => $value) {
-    if ($key == 'out_date') continue;
-    $tranList[$a['out_date']][$key] = $value;
-    if (!isset($tranList[$a['out_date']]['inn_qnty'])) {
-      $tranList[$a['out_date']]['inn_qnty'] = 0;
-    }
-    if (!isset($tranList[$a['out_date']]['inn_prce'])) {
-      $tranList[$a['out_date']]['inn_prce'] = 0;
-    }
-  }
-}
-krsort($tranList);
+// SUBSTR(alldate, 1, 7)
+$sqlA = "SELECT 
+         SUBSTR(inntran.trandate, 1, 7) AS alldate,
+         SUM(inntran.tranqnty) AS inn_qnty,
+         SUM(inntran.tranqnty*inntran.tranprce) AS inn_prce,
+         SUM(outtran.tranqnty) AS out_qnty,
+         SUM(outtran.tranqnty*outtran.tranprce) AS out_prce
+         FROM inntran 
+         LEFT JOIN outtran ON inntran.trandate = outtran.trandate
+         GROUP BY alldate 
+         ";
+$sqlB = "SELECT 
+         SUBSTR(outtran.trandate, 1, 7) AS alldate,
+         SUM(inntran.tranqnty) AS inn_qnty,
+         SUM(inntran.tranqnty*inntran.tranprce) AS inn_prce,
+         SUM(outtran.tranqnty) AS out_qnty,
+         SUM(outtran.tranqnty*outtran.tranprce) AS out_prce
+         FROM outtran 
+         LEFT JOIN inntran ON outtran.trandate = inntran.trandate 
+         GROUP BY alldate 
+         ";
 
-print_r($tranList);
-// foreach ($tranList as $key => $value) {
-//   echo $key.'<br>';
-// }
-$rows = count($tranList);
-$pageCount = ceil($rows/$items);
+$sql = "($sqlA) UNION ($sqlB)"; 
+$sql = $sql.$whereSql;
+$sql = $sql."ORDER BY alldate DESC ";
+$sql = $sql."LIMIT $start, $items ";
+echo $sql;
+$res = mysqli_query($db, $sql);
 
 
 ?>
@@ -166,33 +162,50 @@ $pageCount = ceil($rows/$items);
       <th>금액</th>
     </tr>
     <?php
-      foreach ($tranList as $k => $val) {
-        // if ($key != $year) { continue; }
-        $alldate = explode('-', $k);
-        $y = $alldate[0];
-        $m = $alldate[1];
-        $inn_qnty = $val['inn_qnty'];
-        $inn_prce = $val['inn_prce'];
-        $out_qnty = $val['out_qnty'];
-        $out_prce = $val['out_prce'];
-        if (!$inn_qnty) $inn_qnty = 0;
-        if (!$inn_prce) $inn_prce = 0;
-        if (!$out_qnty) $out_qnty = 0;
-        if (!$out_prce) $out_prce = 0;
-        $inn_qnty = $inn_qnty.'개';
-        $inn_prce = number_format($inn_prce).'원';
-        $out_qnty = $out_qnty.'개';
-        $out_prce = number_format($out_prce).'원';
-        $revenue =  $val['out_prce'] - $val['inn_prce'];
-        $revenue = number_format($revenue).'원';
+      if ($rows > 0) {
+
+        if ($page != 1 && $pageCount > 1) {
+          echo '<tr>';
+          echo '<td colspan="7" class="skip">&#x22ef;</td>';
+          echo '</tr>';
+        }
+        while ($a = mysqli_fetch_assoc($res)) {
+          $alldate = explode('-', $a['alldate']);
+          $y = $alldate[0];
+          $m = $alldate[1];
+          $inn_qnty = $a['inn_qnty'];
+          $inn_prce = $a['inn_prce'];
+          $out_qnty = $a['out_qnty'];
+          $out_prce = $a['out_prce'];
+          if (!$inn_qnty) $inn_qnty = 0;
+          if (!$inn_prce) $inn_prce = 0;
+          if (!$out_qnty) $out_qnty = 0;
+          if (!$out_prce) $out_prce = 0;
+          $inn_qnty = $inn_qnty.'개';
+          $inn_prce = number_format($inn_prce).'원';
+          $out_qnty = $out_qnty.'개';
+          $out_prce = number_format($out_prce).'원';
+          $revenue =  $a['out_prce'] - $a['inn_prce'];
+          $revenue = number_format($revenue).'원';
+          echo '<tr>';
+          echo '<td>'.$y.'</td>';
+          echo '<td>'.$m.'</td>';
+          echo '<td class="right">'.$inn_qnty.'</td>';
+          echo '<td class="right">'.$inn_prce.'</td>';
+          echo '<td class="right">'.$out_qnty.'</td>';
+          echo '<td class="right">'.$out_prce.'</td>';
+          echo '<td class="right">'.$revenue.'</td>';
+          echo '</tr>';
+        }
+        if ($page != $pageCount && $pageCount > 1) {
+          echo '<tr>';
+          echo '<td colspan="7" class="skip">&#x22ef;</td>';
+          echo '</tr>';
+        }
+
+      } else {
         echo '<tr>';
-        echo '<td>'.$y.'</td>';
-        echo '<td>'.$m.'</td>';
-        echo '<td class="right">'.$inn_qnty.'</td>';
-        echo '<td class="right">'.$inn_prce.'</td>';
-        echo '<td class="right">'.$out_qnty.'</td>';
-        echo '<td class="right">'.$out_prce.'</td>';
-        echo '<td class="right">'.$revenue.'</td>';
+        echo '<td colspan="7">목록이 없습니다.</td>';
         echo '</tr>';
       }
 
@@ -202,7 +215,7 @@ $pageCount = ceil($rows/$items);
 
   <div class="tbMenu">
     <?php
-      /* $listMin = 1;
+      $listMin = 1;
       $listMax = 9;
 
       echo '<span class="page">';
@@ -258,7 +271,7 @@ $pageCount = ceil($rows/$items);
         echo '<a href="view_all_years.php?page='.$pageCount.
              '&year='.$year.'">>></a>';
       }
-      echo '</span>'; */
+      echo '</span>';
 
     ?>
   </div>
