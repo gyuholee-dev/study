@@ -87,7 +87,7 @@ while ($a = mysqli_fetch_assoc($res)) {
 }
 krsort($tranList);
 
-print_r($tranList);
+console_log($tranList);
 // foreach ($tranList as $key => $value) {
 //   echo $key.'<br>';
 // }

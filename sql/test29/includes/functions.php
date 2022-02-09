@@ -1,5 +1,21 @@
 <?php
 // Functions
+
+function console_log($log)
+{
+    $log = json_encode($log);
+
+    $script = implode("\n", [
+        '<script id="backendLog">',
+        '   var log = JSON.parse(\''.$log.'\');',
+        '   console.log(log);',
+        '   backendLog.remove();',
+        '</script>',
+    ]);
+
+    echo $script;
+}
+
 function makeCreateSql() {
   global $primeKey;
   global $table;
