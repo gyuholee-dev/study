@@ -105,7 +105,7 @@ require_once 'includes/init.php';
     </td>
     <td>
       <input type="button" value="월간 제품별 입고" 
-      onclick="location.href='view_inntran_items.php'">
+      onclick="location.href='view_inntran_codes.php'">
     </td>
   </tr>
   <tr>
@@ -118,8 +118,16 @@ require_once 'includes/init.php';
       onclick="location.href='outtran_edit.php'">
     </td>
     <td>
-      <input type="button" value="조회-3" 
-      onclick="location.href='view_.php'" disabled>
+      <input type="button" value="월간 핀매원별 출고" 
+      onclick="location.href='view_outtran_sales.php'">
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>
+      <input type="button" value="연간 입출고 현황" 
+      onclick="location.href='view_all_years.php'">
     </td>
   </tr>
 
