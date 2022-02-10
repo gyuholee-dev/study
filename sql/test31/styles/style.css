@@ -50,6 +50,15 @@ table.headers tr, table.headers td {
   border: none;
 }
 
+table.headers th {
+  font-size: 90%;
+  padding: 3px 10px;
+}
+
+table.headers td {
+  padding: 5px 10px;
+}
+
 th, td {
   padding: 5px 10px;
   text-align: center;
