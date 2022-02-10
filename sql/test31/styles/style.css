@@ -103,10 +103,6 @@ span.large, strong.large {
   font-size: 150%;
 }
 
-label {
-  font-weight: bold;
-}
-
 label.light {
   font-weight: unset;
 }
