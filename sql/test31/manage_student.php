@@ -2,13 +2,13 @@
 require_once 'includes/init.php';
 
 $action = 'update';
-$title = '시험 수정';
-$fileName = 'edit_student.php';
+$title = '수강생 수정';
+$fileName = 'manage_student.php';
 if (isset($_REQUEST['action'])) {
   $action = $_REQUEST['action'];
 }
 if ($action == 'delete') {
-  $title = '시험 삭제';
+  $title = '수강생 삭제';
 }
 
 $subjcode = '11';
@@ -27,12 +27,13 @@ $whereSql = "WHERE subjcode = '$subjcode'
 if (isset($_POST['update'])) {
   $action = $_POST['action'];
 
-  $serialno = $_POST['serialno'];
   $subjcode = $_POST['subjcode'];
   $studnumb = $_POST['studnumb'];
-  $exam_1st = $_POST['exam_1st'];
-  $exam_2nd = $_POST['exam_2nd'];
-  $exam_3rd = $_POST['exam_3rd'];
+  $studname = $_POST['studname'];
+  $studgend = $_POST['studgend'];
+  $phonnumb = $_POST['phonnumb'];
+  $areaname = $_POST['areaname'];
+
   
   if ($action == 'update') {
 
@@ -44,20 +45,7 @@ if (isset($_POST['update'])) {
 
 }
 
-$sql = "SELECT 
-        examines.*,
-        (
-          SELECT studname
-          FROM student
-          WHERE subjcode = examines.subjcode
-          AND studnumb = examines.studnumb
-        ) AS studname,
-        (
-          SELECT subjname
-          FROM subject
-          WHERE subjcode = examines.subjcode
-        ) AS subjname
-        FROM examines ";
+$sql = "SELECT * FROM student ";
 $sql = $sql.$whereSql;
 $res = mysqli_query($db, $sql);
 
@@ -70,32 +58,16 @@ $res = mysqli_query($db, $sql);
 <hr>
 <div class="tbContents">
   <form method="post">
+  <?echo$action=='delete'?'<div class="boxwrap">':''?>
+  <?echo$action=='delete'?'<div class="dimm disabled"></div>':''?>
   <table cellpadding="3" cellspacing="0">
     <?php
       while ($a = mysqli_fetch_assoc($res)) {
-        // echo '<tr>';
-        // echo '<th>시리얼</th>';
-        // echo '<td>';
-        // echo '<input value="'.$a['serialno'].'" '.
-        //       'type="text" name="serialno" '.
-        //       'readonly required>';
-        // echo '</td>';
-        // echo '</tr>';
-
         echo '<tr>';
         echo '<th>코드</th>';
         echo '<td>';
         echo '<input value="'.$a['subjcode'].'" '.
               'type="text" name="subjcode" '.
-              'readonly required>';
-        echo '</td>';
-        echo '</tr>';
-
-        echo '<tr>';
-        echo '<th>과정</th>';
-        echo '<td>';
-        echo '<input value="'.$a['subjname'].'" '.
-              'type="text" name="subjname" '.
               'readonly required>';
         echo '</td>';
         echo '</tr>';
@@ -114,52 +86,69 @@ $res = mysqli_query($db, $sql);
         echo '<td>';
         echo '<input value="'.$a['studname'].'" '.
               'type="text" name="studname" '.
-              'readonly required>';
+              'maxlength="10" required>';
         echo '</td>';
         echo '</tr>';
 
         echo '<tr>';
-        echo '<th>1차시험</th>';
+        echo '<th>성별</th>';
         echo '<td>';
-        echo '<input value="'.$a['exam_1st'].'" '.
-              'type="number" name="exam_1st" '.
-              'required>';
+        // echo '<input value="'.$a['studgend'].'" '.
+        //       'type="text" name="studgend" '.
+        //       'maxlength="10" required>';
+        $checked = ['M'=>'','F'=>''];
+        $checked[$a['studgend']] = ' checked';
+        echo '<label><input type="radio" '.
+              'name="studgend" value="M"'.$checked['M'].'>';
+        echo '남</label>';
+        echo '<label><input type="radio" '.
+              'name="studgend" value="F"'.$checked['F'].'>';
+        echo '여</label>';
         echo '</td>';
         echo '</tr>';
 
         echo '<tr>';
-        echo '<th>2차시험</th>';
+        echo '<th>연락처</th>';
         echo '<td>';
-        echo '<input value="'.$a['exam_2nd'].'" '.
-              'type="number" name="exam_2nd" '.
-              'required>';
+        echo '<input value="'.$a['phonnumb'].'" '.
+              'type="text" name="phonnumb" '.
+              'maxlength="13">';
         echo '</td>';
         echo '</tr>';
 
         echo '<tr>';
-        echo '<th>3차시험</th>';
+        echo '<th>거주지</th>';
         echo '<td>';
-        echo '<input value="'.$a['exam_3rd'].'" '.
-              'type="number" name="exam_3rd" '.
-              'required>';
+        echo '<input value="'.$a['areaname'].'" '.
+              'type="text" name="areaname" '.
+              'maxlength="30">';
         echo '</td>';
         echo '</tr>';
 
       }
     ?>
   </table>
+  <?echo$action=='delete'?'</div>':''?>
 
   <div class="tbMenu">
     <input type="hidden" name="action" value="<?=$action?>">
     <input type="hidden" name="subjcode" value="<?=$subjcode?>">
-    <input type="hidden" name="studnumb" value="<?=$studnumb?>">
-    <input type="submit" name="update" value="입력">
-    <input type="reset" value="취소">
-    <input type="button" value="뒤로"
-    onclick="location.href='view_examines.php?action=edit'">
+    <? if ($action=='update') { ?>
+      <input type="submit" name="update" value="입력">
+      <input type="reset" value="취소">
+      <input type="button" value="뒤로"
+        onclick="location.href='view_student.php?action=manage'">
+    <? } elseif ($action=='delete') { ?>
+      <strong class="red" style="margin-right:10px">
+      삭제하겠습니까?
+      </strong>
+      <input type="submit" name="delete" value="확인">
+      <input type="button" value="뒤로"
+        onclick="location.href='view_student.php?action=manage'">
+    <? } ?>
   </div>
 
-  </form>
+</form>
 
 </div>
 <!-- contents -->

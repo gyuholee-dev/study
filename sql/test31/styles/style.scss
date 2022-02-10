@@ -196,6 +196,17 @@ div {
     border: 1px solid #8b8b8b;
     border-radius: 10px;
   }
+  &.boxwrap {
+    position: relative;
+  }
+  &.dimm {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    &.disabled {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 
 img.paint {

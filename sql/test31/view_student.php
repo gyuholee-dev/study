@@ -7,8 +7,8 @@ $fileName = 'view_student.php';
 if (isset($_REQUEST['action'])) {
   $action = $_REQUEST['action'];
 }
-if ($action == 'edit') {
-  $title = '수강생 수정';
+if ($action == 'manage') {
+  $title = '수강생 관리';
 }
 
 $items = 99;
@@ -24,7 +24,8 @@ $whereSql = '';
 
 $subjectList = array();
 $sql = "SELECT subjcode, subjname, usestate 
-        FROM subject ORDER BY subjname ASC";
+        FROM subject ";
+// $sql .= "ORDER BY subjname ASC ";
 $res = mysqli_query($db, $sql);
 while ($a = mysqli_fetch_assoc($res)) {
   $subjectList[$a['subjcode']] = [
@@ -32,10 +33,12 @@ while ($a = mysqli_fetch_assoc($res)) {
     'usestate' => $a['usestate']
   ];
 }
-foreach ($subjectList as $key => $value) {
-  if ($value['usestate'] == 'Y') {
-    $subjcode = $key;
-    break;
+if ($action == 'manage' || !isset($_REQUEST['subjcode'])) {
+  foreach ($subjectList as $key => $value) {
+    if ($value['usestate'] == 'Y') {
+      $subjcode = $key;
+      break;
+    }
   }
 }
 
@@ -43,6 +46,13 @@ if (isset($_REQUEST['subjcode'])) {
   $subjcode = $_REQUEST['subjcode'];
 }
 $whereSql = "WHERE subjcode = '$subjcode' ";
+
+$start = ($page-1)*$items;
+$sql = "SELECT COUNT(*) FROM student ";
+$sql = $sql.$whereSql;
+$res = mysqli_query($db, $sql);
+$rows = mysqli_fetch_row($res)[0];
+$pageCount = ceil($rows/$items);
 
 $sql = "SELECT * FROM student ";
 $sql = $sql.$whereSql;
@@ -74,17 +84,19 @@ $res = mysqli_query($db, $sql);
           <select name="subjcode" id="subjcode" onchange="changeView()">
             <!-- <option value="all">전체</option> -->
             <?php
-              foreach ($subjectList as $key => $value) {
+              foreach ($subjectList as $code => $subj) {
+                $usestate = ['Y'=>'진행중','N'=>'종료'];
+                $subjname = $subj['subjname'].' ('.$usestate[$subj['usestate']].')';
                 $selected = '';
-                if ($subjcode == $key) {
+                if ($subjcode == $code) {
                   $selected = ' selected';
                 }
                 $disabled = '';
-                if ($value['usestate'] == 'N') {
+                if ($action == 'manage' && $subj['usestate'] == 'N') {
                   $disabled = ' disabled';
                 }
-                echo '<option value="'.$key.'"'.
-                $selected.$disabled.'>'.$value['subjname'].'</option>';
+                echo '<option value="'.$code.'"'.
+                $selected.$disabled.'>'.$subjname.'</option>';
               }
             ?>
           </select>
@@ -101,7 +113,7 @@ $res = mysqli_query($db, $sql);
 
   <?php
     $tableW = 600;
-    if ($action == 'edit') $tableW = 700;
+    if ($action == 'manage') $tableW = 700;
   ?>
   <table cellpadding="3" cellspacing="0" width="<?=$tableW?>px">
     <tr>
@@ -113,7 +125,7 @@ $res = mysqli_query($db, $sql);
       <th>연락처</th>
       <th>거주지</th>
       <?php
-        if ($action == 'edit') {
+        if ($action == 'manage') {
           echo '<th>수정</th>';
           echo '<th>삭제</th>';
         }
@@ -135,10 +147,10 @@ $res = mysqli_query($db, $sql);
         echo '<td>'.$studgend.'</td>';
         echo '<td>'.$a['phonnumb'].'</td>';
         echo '<td>'.$a['areaname'].'</td>';
-        if ($action == 'edit') {
-          $updateUrl = 'edit_student.php?action=update'.
+        if ($action == 'manage') {
+          $updateUrl = 'manage_student.php?action=update'.
                        '&subjcode='.$a['subjcode'].'&studnumb='.$a['studnumb'];
-          $deleteUrl = 'edit_student.php?action=delete'.
+          $deleteUrl = 'manage_student.php?action=delete'.
                        '&subjcode='.$a['subjcode'].'&studnumb='.$a['studnumb'];
           if ($subjectList[$subjcode]['usestate'] == 'Y') {
             echo '<td>'.'<a href="'.$updateUrl.'">수정</a>'.'</td>';

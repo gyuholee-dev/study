@@ -7,8 +7,8 @@ $fileName = 'view_subject.php';
 if (isset($_REQUEST['action'])) {
   $action = $_REQUEST['action'];
 }
-if ($action == 'edit') {
-  $title = '개설과정 수정';
+if ($action == 'manage') {
+  $title = '개설과정 관리';
 }
 
 $items = 99;
@@ -19,12 +19,12 @@ if (isset($_REQUEST['page'])) {
   $page = $_REQUEST['page'];
 }
 
-$subjcode = 'all';
+$usestate = 'all';
 $whereSql = '';
-if (isset($_REQUEST['subjcode'])) {
-  $subjcode = $_REQUEST['subjcode'];
-  if ($subjcode != 'all') {
-    $whereSql = "WHERE subjcode = '$subjcode' ";
+if (isset($_REQUEST['usestate'])) {
+  $usestate = $_REQUEST['usestate'];
+  if ($usestate != 'all') {
+    $whereSql = "WHERE usestate = '$usestate' ";
   }
 }
 
@@ -34,13 +34,6 @@ $sql = $sql.$whereSql;
 $res = mysqli_query($db, $sql);
 $rows = mysqli_fetch_row($res)[0];
 $pageCount = ceil($rows/$items);
-
-$subjectList = array();
-$sql = "SELECT subjcode, subjname FROM subject ORDER BY subjname ASC";
-$res = mysqli_query($db, $sql);
-while ($a = mysqli_fetch_assoc($res)) {
-  $subjectList[$a['subjcode']] = $a['subjname'];
-}
 
 // $sql = "SELECT * FROM subject ";
 $sql = "SELECT 
@@ -54,7 +47,6 @@ $sql = "SELECT
 $sql = $sql.$whereSql;
 $sql = $sql."LIMIT $start, $items ";
 $res = mysqli_query($db, $sql);
-
 
 ?>
 <!-- html -->
@@ -75,25 +67,19 @@ $res = mysqli_query($db, $sql);
   <div class="tbMenu">
     <table class="inner" width="100%">
       <td class="left">
-        <?php
-          if($action == 'detail') {
-            echo '<form method="get" action="" id="tbmenu">';
-            echo '<input type="hidden" name="action" value="'.$action.'">';
-            echo '<label for="subject">과목</label>';
-            echo '<select name="subject" id="subject" onchange="changeView()">';
-            echo '<option value="all">전체</option>';
-              foreach ($subjectList as $key => $value) {
-                $selected = '';
-                if ($subjcode == $key) {
-                  $selected = ' selected';
-                }
-                echo '<option value="'.$key.'"'.
-                $selected.'>'.$value.'</option>';
-              }
-            echo '</select>';
-            echo '</form>';
-          } 
-        ?>
+        <form method="get" action="" id="tbmenu">
+          <input type="hidden" name="action" value="<?=$action?>">
+          <label for="subjcode">진행여부</label>
+          <select name="usestate" id="usestate" onchange="changeView()">
+            <?php
+              $selected = ['Y'=>'','N'=>''];
+              $selected[$usestate] = ' selected';
+            ?>
+            <option value="all">전체</option>
+            <option value="Y" <?=$selected['Y']?>>진행중</option>
+            <option value="N" <?=$selected['N']?>>종료</option>
+          </select>
+        </form>
       </td>
       <td class="right">
         <!-- <input type="button" value="초기화"
@@ -117,14 +103,18 @@ $res = mysqli_query($db, $sql);
         if ($action == 'view') {
           echo '<th>학생</th>';
           echo '<th>시험</th>';
-        } elseif ($action == 'edit') {
+        } elseif ($action == 'manage') {
           echo '<th>수정</th>';
           echo '<th>삭제</th>';
         }
 
       ?>
     </tr>
-
+      <style>
+        tr.unused {
+          background-color: rgba(0,0,0,0.1);
+        }
+      </style>
     <?php
       while ($a = mysqli_fetch_assoc($res)){
         $noperson = $a['noperson'].'명';
@@ -132,7 +122,8 @@ $res = mysqli_query($db, $sql);
         $amtprice = number_format($a['amtprice']).'원';
 
         // $sql = "SELECT COUNT(*) FROM ";
-        echo '<tr>';
+        // echo '<tr>';
+        echo ($a['usestate']=='N')? '<tr class="unused">' : '<tr>';
         echo '<td>'.$a['subjcode'].'</td>';
         echo '<td>'.$a['subjname'].'</td>';
         // echo '<td>'.$a['subjkind'].'</td>';
@@ -147,9 +138,9 @@ $res = mysqli_query($db, $sql);
           $showExamUrl = 'view_examines.php?subjcode='.$a['subjcode'];
           echo '<td>'.'<a href="'.$showStudUrl.'">보기</a>'.'</td>';
           echo '<td>'.'<a href="'.$showExamUrl.'">보기</a>'.'</td>';
-        } elseif ($action == 'edit') {
-          $updateUrl = 'edit_subject.php?action=update&subjcode='.$a['subjcode'];
-          $deleteUrl = 'edit_subject.php?action=delete&subjcode='.$a['subjcode'];
+        } elseif ($action == 'manage') {
+          $updateUrl = 'manage_subject.php?action=update&subjcode='.$a['subjcode'];
+          $deleteUrl = 'manage_subject.php?action=delete&subjcode='.$a['subjcode'];
           if ($a['usestate'] == 'Y') {
             echo '<td>'.'<a href="'.$updateUrl.'">수정</a>'.'</td>';
             echo '<td>'.'<a href="'.$deleteUrl.'">삭제</a>'.'</td>';

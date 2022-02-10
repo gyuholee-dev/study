@@ -204,6 +204,20 @@ div.result {
   border-radius: 10px;
 }
 
+div.boxwrap {
+  position: relative;
+}
+
+div.dimm {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+div.dimm.disabled {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 img.paint {
   height: 120px;
 }

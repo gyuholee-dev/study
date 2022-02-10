@@ -3,7 +3,7 @@ require_once 'includes/init.php';
 
 $action = 'update';
 $title = '개설과정 수정';
-$fileName = 'edit_subject.php';
+$fileName = 'manage_subject.php';
 if (isset($_REQUEST['action'])) {
   $action = $_REQUEST['action'];
 }
@@ -55,6 +55,8 @@ $res = mysqli_query($db, $sql);
 <hr>
 <div class="tbContents">
   <form method="post">
+  <?echo$action=='delete'?'<div class="boxwrap">':''?>
+  <?echo$action=='delete'?'<div class="dimm disabled"></div>':''?>
   <table cellpadding="3" cellspacing="0">
     <?php
       while ($a = mysqli_fetch_assoc($res)) {
@@ -152,16 +154,26 @@ $res = mysqli_query($db, $sql);
       }
     ?>
   </table>
+  <?echo$action=='delete'?'</div>':''?>
 
   <div class="tbMenu">
     <input type="hidden" name="action" value="<?=$action?>">
     <input type="hidden" name="subjcode" value="<?=$subjcode?>">
-    <input type="submit" name="update" value="입력">
-    <input type="reset" value="취소">
-    <input type="button" value="뒤로"
-    onclick="location.href='view_subject.php?action=edit'">
+    <? if ($action=='update') { ?>
+      <input type="submit" name="update" value="입력">
+      <input type="reset" value="취소">
+      <input type="button" value="뒤로"
+        onclick="location.href='view_subject.php?action=manage'">
+    <? } elseif ($action=='delete') { ?>
+      <strong class="red" style="margin-right:10px">
+      삭제하겠습니까?
+      </strong>
+      <input type="submit" name="delete" value="확인">
+      <input type="button" value="뒤로"
+        onclick="location.href='view_subject.php?action=manage'">
+    <? } ?>
   </div>
-  
+
   </form>
 
 </div>

@@ -37,38 +37,9 @@ require_once 'includes/init.php';
     </tr>
 
     <tr>
-      <th width="120">과정 관리</th>
-      <th width="120">수강생 관리</th>
-      <th width="120">모의고사 관리</th>
+      <td colspan="3"></td>
     </tr>
-    <tr>
-      <td>
-        <input type="button" value="과정 관리" 
-        onclick="location.href='view_subject.php?action=edit'">
-      </td>
-      <td>
-        <input type="button" value="수강생 관리" 
-        onclick="location.href='view_student.php?action=edit'">
-      </td>
-      <td>
-        <input type="button" value="모의고사 관리" 
-        onclick="location.href='view_examines.php?action=edit'">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <input type="button" value="과정 관리" 
-        onclick="location.href='#.php'" disabled>
-      </td>
-      <td>
-        <input type="button" value="수강생 관리" 
-        onclick="location.href='#.php'" disabled>
-      </td>
-      <td>
-        <input type="button" value="모의고사 관리" 
-        onclick="location.href='#.php'" disabled>
-      </td>
-    </tr>
+
     <tr>
       <th colspan="3">
         자료 조회
@@ -84,8 +55,46 @@ require_once 'includes/init.php';
         onclick="location.href='view_student.php'">
       </td>
       <td>
-        <input type="button" value="모의고사 성적" 
+        <input type="button" value="모의고사 현황" 
         onclick="location.href='view_examines.php'">
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3"></td>
+    </tr>
+
+    <tr>
+      <th width="120">과정 관리</th>
+      <th width="120">수강생 관리</th>
+      <th width="120">모의고사 관리</th>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" value="과정 관리" 
+        onclick="location.href='view_subject.php?action=manage'">
+      </td>
+      <td>
+        <input type="button" value="수강생 관리" 
+        onclick="location.href='view_student.php?action=manage'">
+      </td>
+      <td>
+        <input type="button" value="모의고사 관리" 
+        onclick="location.href='view_examines.php?action=manage'">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="button" value="과정 편집" 
+        onclick="location.href='edit_subject.php'">
+      </td>
+      <td>
+        <input type="button" value="수강생 편집" 
+        onclick="location.href='edit_student.php'">
+      </td>
+      <td>
+        <input type="button" value="모의고사 편집" 
+        onclick="location.href='edit_examines.php'">
       </td>
     </tr>
 
