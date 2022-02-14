@@ -24,7 +24,7 @@ if (isset($_REQUEST['studnumb'])) {
 $whereSql = "WHERE subjcode = '$subjcode' 
              AND studnumb = '$studnumb' ";
 
-if (isset($_POST['update'])) {
+if (isset($_POST['confirm'])) {
   $action = $_POST['action'];
 
   $serialno = $_POST['serialno'];
@@ -35,10 +35,40 @@ if (isset($_POST['update'])) {
   $exam_3rd = $_POST['exam_3rd'];
   
   if ($action == 'update') {
+    $sql = "UPDATE examines
+            SET
+            subjcode = '$subjcode',
+            studnumb = '$studnumb',
+            exam_1st = '$exam_1st',
+            exam_2nd = '$exam_2nd',
+            exam_3rd = '$exam_3rd'
+            WHERE serialno = '$serialno'
+            ";
+    echo $sql;
 
   } elseif ($action == 'insert') {
+    $sql = "INSERT INTO examines 
+            (
+              subjcode,
+              studnumb,
+              exam_1st,
+              exam_2nd,
+              exam_3rd
+            )
+            VALUES (
+              '$subjcode',
+              '$studnumb',
+              '$exam_1st',
+              '$exam_2nd',
+              '$exam_3rd'
+            )
+            ";
+    echo $sql;
 
   } elseif ($action == 'delete') {
+    $sql = "DELETE FROM examines
+            WHERE serialno = '$serialno'";
+    echo $sql;
 
   }
 
@@ -75,6 +105,7 @@ $res = mysqli_query($db, $sql);
   <table cellpadding="3" cellspacing="0">
     <?php
       while ($a = mysqli_fetch_assoc($res)) {
+        $serialno = $a['serialno'];
         // echo '<tr>';
         // echo '<th>시리얼</th>';
         // echo '<td>';
@@ -154,9 +185,9 @@ $res = mysqli_query($db, $sql);
   
   <div class="tbMenu">
     <input type="hidden" name="action" value="<?=$action?>">
-    <input type="hidden" name="subjcode" value="<?=$subjcode?>">
+    <input type="hidden" name="serialno" value="<?=$serialno?>">
     <? if ($action=='update') { ?>
-      <input type="submit" name="update" value="입력">
+      <input type="submit" name="confirm" value="입력">
       <input type="reset" value="취소">
       <input type="button" value="뒤로"
         onclick="location.href='view_examines.php?action=manage'">
@@ -164,7 +195,7 @@ $res = mysqli_query($db, $sql);
       <strong class="red" style="margin-right:10px">
       삭제하겠습니까?
       </strong>
-      <input type="submit" name="delete" value="확인">
+      <input type="submit" name="confirm" value="확인">
       <input type="button" value="뒤로"
         onclick="location.href='view_examines.php?action=manage'">
     <? } ?>

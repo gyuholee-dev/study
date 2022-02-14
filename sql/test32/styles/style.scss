@@ -1,0 +1,225 @@
+@charset "UTF-8";
+body {
+  font-family: "맑은 고딕";
+  text-align: center;
+}
+
+table {
+  // width: 100%;
+  border: 2px solid #404040;
+  border-collapse: collapse;
+  // margin: 20px 10px;
+  // border-width: 2px;
+  &.main, &.sub {
+    border-width: 2px;
+  }
+  th, td {
+    border: 1px solid #404040;
+  }
+  &.inner {
+    border: none;
+    th, td {
+      border: none;
+      padding: 0px;
+    }
+  }
+  th {
+    background-color: lightblue;
+  }
+  &.UPDATE th {
+    background-color: #f6d0fd;
+  }
+  &.DELETE th, &.RECORD th {
+    background-color: #ffb7b7;
+  }
+  &.edit th, &.update th, &.delete th {
+    background-color: #ffb7b7;
+  }
+  &.headers {
+    border: none;
+    tr, td {
+      border: none;
+    }
+    th {
+      font-size: 90%;
+      padding: 3px 10px;
+    }
+    td {
+      padding: 5px 10px;
+    }
+  }
+}
+
+th, td {
+  padding: 5px 10px;
+  // width: 50px;
+  text-align: center;
+  &.left {
+    text-align: left;
+  }
+  &.center {
+    text-align: center;
+  }
+  &.right {
+    text-align: right;
+  }
+}
+
+select {
+  // width: 100%;
+  font-size: 100%;
+  padding: 3px 6px;
+}
+
+a {
+  &:link, &:visited {
+    color: #000fcb;
+    text-decoration: none;    
+  }
+  &:hover, &:active, &:focus {
+    color: orangered;
+  }
+}
+
+span, strong {
+  &.page {
+    margin: 0 10px;
+  }
+  &.red {
+    font-weight: bold;
+    color: red;
+  }
+  &.large {
+    font-size: 150%;
+  }
+}
+
+label {
+  // font-weight: bold;
+  &.light {
+    font-weight: unset;
+  }
+}
+
+hr {
+  margin-bottom: 20px;
+}
+
+form {
+  margin: 0;
+}
+
+input {
+  &[type=button],
+  &[type=reset],
+  &[type=submit] {
+    font-weight: bold;
+    font-size: 90%;
+    padding: 2px 10px;
+    cursor: pointer;
+    min-width: 68px;
+  }
+  &[type=text],
+  &[type=number] {
+    font-size: 100%;
+    padding: 3px 6px;
+  }
+  &[type=date] {
+    font-family: "맑은 고딕";
+    font-size: 100%;
+    width: -webkit-fill-available;
+    padding: 0 6px;
+  }
+  &[type=number] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      opacity: 1;
+    }    
+  }
+  &.left {
+    text-align: left;
+  }
+  &.center {
+    text-align: center;
+  }
+  &.right {
+    text-align: right;
+  }
+}
+
+input[type=button].selected {
+  background-color: #5dd2ff;
+  border: 1px solid #4f52ff;
+  // border-radius: 2px;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #50c1ee;
+  }
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  margin: 0;
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  font-family: "맑은 고딕";
+  font-size: 100%;
+}
+
+input[readonly] {
+  background-color: #dddddd;
+  border: 1px solid rgb(133, 133, 133);
+  border-radius: 1px;
+}
+
+input[disabled] {
+  cursor: default;
+}
+
+div {
+  &.tbContents {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  &.tbMenu {
+    padding: 10px;
+  }
+  &.result {
+    text-align: left;
+    background-color: #efefef;
+    padding: 20px;
+    border: 1px solid #8b8b8b;
+    border-radius: 10px;
+  }
+  &.boxwrap {
+    position: relative;
+  }
+  &.dimm {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    &.disabled {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+img.paint {
+  height: 120px;
+}
+
+// input:not([type=radio]), 
+// select,
+// textarea {
+//   padding: 3px 5px;
+//   border: 1px solid #8b8b8b;
+//   border-radius: 5px;
+//   &:focus {
+//     background-color: #50c1ee;
+//   }
+// }

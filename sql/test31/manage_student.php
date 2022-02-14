@@ -24,7 +24,7 @@ if (isset($_REQUEST['studnumb'])) {
 $whereSql = "WHERE subjcode = '$subjcode' 
              AND studnumb = '$studnumb' ";
 
-if (isset($_POST['update'])) {
+if (isset($_POST['confirm'])) {
   $action = $_POST['action'];
 
   $subjcode = $_POST['subjcode'];
@@ -36,10 +36,36 @@ if (isset($_POST['update'])) {
 
   
   if ($action == 'update') {
+    $sql = "UPDATE student
+            SET
+            studname = '$studname',
+            studgend = '$studgend',
+            phonnumb = '$phonnumb',
+            areaname = '$areaname'
+            WHERE subjcode = '$subjcode'
+            AND studnumb = '$studnumb'
+            ";
+    echo $sql;
 
   } elseif ($action == 'insert') {
+    $sql = "INSERT INTO student
+            VALUES (
+              '$subjcode',
+              '$studnumb',
+              '$studname',
+              '$studgend',
+              '$phonnumb',
+              '$areaname',
+            )
+            ";
+    echo $sql;
 
   } elseif ($action == 'delete') {
+    $sql = "DELETE FROM student
+            WHERE subjcode = '$subjcode'
+            AND studnumb = '$studnumb'
+            ";
+    echo $sql;
 
   }
 
@@ -134,7 +160,7 @@ $res = mysqli_query($db, $sql);
     <input type="hidden" name="action" value="<?=$action?>">
     <input type="hidden" name="subjcode" value="<?=$subjcode?>">
     <? if ($action=='update') { ?>
-      <input type="submit" name="update" value="입력">
+      <input type="submit" name="confirm" value="입력">
       <input type="reset" value="취소">
       <input type="button" value="뒤로"
         onclick="location.href='view_student.php?action=manage'">
@@ -142,7 +168,7 @@ $res = mysqli_query($db, $sql);
       <strong class="red" style="margin-right:10px">
       삭제하겠습니까?
       </strong>
-      <input type="submit" name="delete" value="확인">
+      <input type="submit" name="confirm" value="확인">
       <input type="button" value="뒤로"
         onclick="location.href='view_student.php?action=manage'">
     <? } ?>

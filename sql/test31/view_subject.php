@@ -156,6 +156,21 @@ $res = mysqli_query($db, $sql);
   </table>
 
   <div class="tbMenu">
+
+    <?php if ($action == 'manage') { ?>
+      <table class="inner" width="100%">
+        <td class="left">
+          <!-- TODO: 과정 선택 -->
+        </td>
+        <td class="right">
+          <input type="button" value="편집"
+          onclick="location.href='edit_student.php'">
+          <input type="button" value="추가"
+          onclick="location.href='manage_subject.php?action=insert'">
+        </td>
+      </table>
+    <?php } ?>
+
     <?php
       if ($pageCount != 1) {
         $listMin = 1;

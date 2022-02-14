@@ -9,18 +9,31 @@ if (isset($_REQUEST['action'])) {
 }
 if ($action == 'delete') {
   $title = '개설과정 삭제';
+} elseif ($action == 'insert') {
+  $title = '개설과정 추가';
 }
 
-$subjcode = 'all';
+$subjcode = '11';
 $whereSql = '';
 if (isset($_REQUEST['subjcode'])) {
   $subjcode = $_REQUEST['subjcode'];
-  if ($subjcode != 'all') {
-    $whereSql = "WHERE subjcode = '$subjcode' ";
-  }
+} elseif ($action != 'insert') {
+  echo "잘못된 접근입니다";
+  return false;
+}
+if ($action == 'insert') {
+  $sql = "SELECT MAX(subjcode) FROM subject";
+  $res = mysqli_query($db, $sql);
+  $subjcode = mysqli_fetch_row($res)[0];
 }
 
-if (isset($_POST['update'])) {
+
+if ($subjcode != '') {
+  $whereSql = "WHERE subjcode = '$subjcode' ";
+}
+
+
+if (isset($_POST['confirm'])) {
   $action = $_POST['action'];
 
   $subjcode = $_POST['subjcode'];
@@ -33,10 +46,38 @@ if (isset($_POST['update'])) {
   $usestate = $_POST['usestate'];
   
   if ($action == 'update') {
+    $sql = "UPDATE subject 
+            SET 
+            subjname = '$subjname',
+            subjkind = '$subjkind',
+            opendate = '$opendate',
+            noperson = '$noperson',
+            teacname = '$teacname',
+            amtprice = '$amtprice',
+            usestate = '$usestate'
+            WHERE subjcode = '$subjcode'
+            ";
+    echo $sql;
 
   } elseif ($action == 'insert') {
+    $sql = "INSERT INTO subject 
+            VALUES (
+              '$subjcode',
+              '$subjname',
+              '$subjkind',
+              '$opendate',
+              '$noperson',
+              '$teacname',
+              '$amtprice',
+              '$usestate'
+            )
+            ";
+    echo $sql;
 
   } elseif ($action == 'delete') {
+    $sql = "DELETE FROM subject
+            WHERE subjcode = '$subjcode'";
+    echo $sql;
 
   }
 
@@ -60,6 +101,19 @@ $res = mysqli_query($db, $sql);
   <table cellpadding="3" cellspacing="0">
     <?php
       while ($a = mysqli_fetch_assoc($res)) {
+        if ($action == 'insert') {
+          $a = [
+            'subjcode' => $subjcode+1,
+            'subjname' => '',
+            'subjname' => '',
+            'subjkind' => '1',
+            'opendate' => date('Y-m-d'),
+            'noperson' => '',
+            'teacname' => '',
+            'amtprice' => '',
+            'usestate' => 'Y',
+          ];
+        }
         echo '<tr>';
         echo '<th>코드</th>';
         echo '<td>';
@@ -158,9 +212,9 @@ $res = mysqli_query($db, $sql);
 
   <div class="tbMenu">
     <input type="hidden" name="action" value="<?=$action?>">
-    <input type="hidden" name="subjcode" value="<?=$subjcode?>">
-    <? if ($action=='update') { ?>
-      <input type="submit" name="update" value="입력">
+    <!-- <input type="hidden" name="subjcode" value="<?=$subjcode?>"> -->
+    <? if ($action=='update' || $action=='insert') { ?>
+      <input type="submit" name="confirm" value="입력">
       <input type="reset" value="취소">
       <input type="button" value="뒤로"
         onclick="location.href='view_subject.php?action=manage'">
@@ -168,7 +222,7 @@ $res = mysqli_query($db, $sql);
       <strong class="red" style="margin-right:10px">
       삭제하겠습니까?
       </strong>
-      <input type="submit" name="delete" value="확인">
+      <input type="submit" name="confirm" value="확인">
       <input type="button" value="뒤로"
         onclick="location.href='view_subject.php?action=manage'">
     <? } ?>
