@@ -1,12 +1,23 @@
 @charset "UTF-8";
 body {
-  font-family: "맑은 고딕";
+  font-family: NanumGothic, "맑은 고딕";
   text-align: center;
+  font-size: 15px;
+  background-color: #cccccc;
+}
+
+#tableWrap {
+  display: block;
+  overflow: hidden;
+  border: 1px solid #6b6b6b;
+  border-radius: 12px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 table {
-  border: 2px solid #404040;
+  background-color: #ffffff;
   border-collapse: collapse;
+  border-style: hidden;
 }
 
 table.main, table.sub {
@@ -14,11 +25,12 @@ table.main, table.sub {
 }
 
 table th, table td {
-  border: 1px solid #404040;
+  border: 1px solid #6b6b6b;
 }
 
 table.inner {
   border: none;
+  background-color: unset;
 }
 
 table.inner th, table.inner td {
@@ -27,7 +39,7 @@ table.inner th, table.inner td {
 }
 
 table th {
-  background-color: lightblue;
+  background-color: #bbeeff;
 }
 
 table.UPDATE th {
@@ -44,6 +56,7 @@ table.edit th, table.update th, table.delete th {
 
 table.headers {
   border: none;
+  background-color: unset;
 }
 
 table.headers tr, table.headers td {
@@ -56,11 +69,11 @@ table.headers th {
 }
 
 table.headers td {
-  padding: 5px 10px;
+  padding: 6px 12px;
 }
 
 th, td {
-  padding: 5px 10px;
+  padding: 8px 14px;
   text-align: center;
 }
 
@@ -118,21 +131,31 @@ form {
 input[type=button], input[type=reset], input[type=submit] {
   font-weight: bold;
   font-size: 90%;
-  padding: 2px 10px;
+  padding: 4px 12px;
   cursor: pointer;
-  min-width: 68px;
+  height: 32px;
+  min-width: 72px;
+  border: 1px solid #858585;
+  border-radius: 10px;
+  box-shadow: -1px -1px 12px inset rgba(0, 0, 0, 0.1), 1px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type=button]:hover, input[type=button]:active, input[type=button]:focus, input[type=reset]:hover, input[type=reset]:active, input[type=reset]:focus, input[type=submit]:hover, input[type=submit]:active, input[type=submit]:focus {
+  background-color: #d5d5d5;
 }
 
 input[type=text], input[type=number] {
   font-size: 100%;
-  padding: 3px 6px;
+  padding: 4px 8px;
+  border: 1px solid #858585;
+  border-radius: 6px;
 }
 
 input[type=date] {
   font-family: "맑은 고딕";
   font-size: 100%;
   width: -webkit-fill-available;
-  padding: 0 6px;
+  padding: 2px 8px;
 }
 
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
@@ -151,12 +174,12 @@ input.right {
   text-align: right;
 }
 
-input[type=button].selected {
+input.selected, input.active {
   background-color: #5dd2ff;
   border: 1px solid #4f52ff;
 }
 
-input[type=button].selected:hover, input[type=button].selected:active, input[type=button].selected:focus {
+input.selected:hover, input.selected:active, input.selected:focus, input.active:hover, input.active:active, input.active:focus {
   background-color: #50c1ee;
 }
 
@@ -173,8 +196,6 @@ textarea {
 
 input[readonly] {
   background-color: #dddddd;
-  border: 1px solid #858585;
-  border-radius: 1px;
 }
 
 input[disabled] {
@@ -211,9 +232,16 @@ div.dimm {
 }
 
 div.dimm.disabled {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 0, 0, 0.2);
 }
 
 img.paint {
   height: 120px;
+}
+
+input:not([type=radio]),
+select,
+textarea {
+  border: 1px solid #858585;
+  border-radius: 6px;
 }

@@ -38,19 +38,19 @@ require_once 'includes/init.php';
     <tr>
       <td>
         <input type="button" value="고정자산 등록" 
-        onclick="location.href='#'" <?=$disabled?>>
+        onclick="location.href='edit.php?action=register'" <?=$disabled?>>
       </td>
     </tr>
     <tr>
       <td>
         <input type="button" value="고정자산 편집" 
-        onclick="location.href='#'" <?=$disabled?>>
+        onclick="location.href='view.php?action=manage'" <?=$disabled?>>
       </td>
     </tr>
     <tr>
       <td>
         <input type="button" value="고정자산 폐기" 
-        onclick="location.href='#'" <?=$disabled?>>
+        onclick="location.href='edit.php?action=dispose'" <?=$disabled?>>
       </td>
     </tr>
     <tr>
