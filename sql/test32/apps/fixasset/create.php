@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/init.php';
+require_once 'init.php';
 
 if (isset($_POST['create'])) {
   $sql = "DROP TABLE IF EXISTS fixasset";
@@ -32,13 +32,13 @@ if (isset($_POST['create'])) {
 ?>
 <!-- html -->
 <?php
-  include 'includes/_header.php';
+  include $htmlHeader;
 ?>
-<h3>고정자산 생성</h3>
-<hr>
+<h2 class="title">고정자산 생성</h2>
+<!-- <hr> -->
 <!-- contents -->
 <div class="tbContents">
-  <strong class="red">
+  <strong class="red" style="font-size:125%">
     고정자산을 생성하겠습니까?
   </strong>
   <br>
@@ -51,5 +51,5 @@ if (isset($_POST['create'])) {
 </div>
 <!-- contents -->
 <?php
-  include 'includes/_footer.php';
+  include $htmlFooter;
 ?>

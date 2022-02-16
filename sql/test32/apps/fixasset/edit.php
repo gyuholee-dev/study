@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/init.php';
+require_once 'init.php';
 
 $fileName = 'edit.php';
 $action = 'update';
@@ -26,13 +26,6 @@ $stat = 'all';
 if (isset($_REQUEST['stat'])) {
   $stat = $_REQUEST['stat'];
 }
-
-// 리테이크
-$retake = false;
-if (isset($_REQUEST['retake'])) {
-  $retake = $_REQUEST['retake'];
-}
-
 
 // 수정, 추가, 삭제, 등록, 폐기 처리
 if (isset($_POST['confirm'])) {
@@ -164,14 +157,13 @@ if ($action == 'dispose') {
   $res = mysqli_query($db, $sql);
 }
 
-
 ?>
 <!-- html -->
 <?php
-  include 'includes/_header.php';
+  include $htmlHeader;
 ?>
-<h3><?=$title?></h3>
-<hr>
+<h2 class="title"><?=$title?></h2>
+<!-- <hr> -->
 <!-- contents -->
 <div class="tbContents">
   <form method="post">
@@ -342,7 +334,7 @@ if ($action == 'dispose') {
 
       if ($action=='delete') {
         echo "
-          <strong class='red' style='margin-right:10px'>
+          <strong class='red' style='margin-right:10px; font-size:125%;'>
           삭제하겠습니까?</strong> 
           <input type='submit' name='confirm' value='확인'> ";
       } else {
@@ -370,5 +362,5 @@ if ($action == 'dispose') {
 </div>
 <!-- contents -->
 <?php
-  include 'includes/_footer.php';
+  include $htmlFooter;
 ?>

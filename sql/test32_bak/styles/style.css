@@ -4,16 +4,6 @@ body {
   text-align: center;
   font-size: 15px;
   background-color: #cccccc;
-  margin: 0;
-}
-
-h2.title {
-  background-color: white;
-  margin: 0;
-  padding: 18px 0;
-  box-shadow: 0px -10px 64px 13px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  border-bottom: 1px solid #aaaaaa;
 }
 
 #tableWrap {
@@ -101,7 +91,7 @@ th.right, td.right {
 
 select {
   font-size: 100%;
-  padding: 3px 8px;
+  padding: 5px 8px 3px 8px;
 }
 
 a:link, a:visited {
@@ -140,7 +130,7 @@ form {
 
 input[type=button], input[type=reset], input[type=submit] {
   font-weight: bold;
-  font-size: 95%;
+  font-size: 90%;
   padding: 4px 12px;
   cursor: pointer;
   height: 32px;
@@ -158,7 +148,7 @@ input[type=text], input[type=number] {
   font-size: 100%;
   padding: 4px 8px;
   border: 1px solid #858585;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 input[type=date] {
@@ -253,13 +243,5 @@ input:not([type=radio]),
 select,
 textarea {
   border: 1px solid #858585;
-  border-radius: 8px;
-}
-
-input:not([type=radio]):focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  border: 1px solid #29cdff;
-  outline: 1px solid #0072ff;
-  box-shadow: 0 0 6px #0014ff;
+  border-radius: 6px;
 }
