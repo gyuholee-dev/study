@@ -74,7 +74,7 @@ $res = mysqli_query($db, $sql);
     }
   </style>
 
-<div class="tbMenu">
+  <div class="tbMenu">
     <script>
       function changeView() {
         var form = document.getElementById('tbmenu');

@@ -31,13 +31,13 @@ FIELDS TERMINATED BY '^'; */
 
 CREATE TABLE dailyreport (
   seqn INT AUTO_INCREMENT,
-  date CHAR(10),
-  name CHAR(10),
+  yymd CHAR(10),
+  empl CHAR(10),
   innn CHAR(4),
   outt CHAR(4),
-  posn CHAR(2),
-  amwk CHAR(30),
-  pmwk CHAR(30),
+  kind CHAR(2),
+  todw CHAR(30),
+  nxdw CHAR(30),
   PRIMARY KEY (seqn)
 );
 
@@ -46,10 +46,10 @@ CREATE TABLE dailyreport (
 -- posn 
 
 LOAD DATA INFILE 
-'C:/Workspaces/study/sql/test<>/data/dailyreport.txt' 
+'C:/Workspaces/study/sql/test33/data/dailyreport.txt' 
 INTO TABLE dailyreport 
 FIELDS TERMINATED BY '^' 
-(date, name, innn, outt, posn, amwk, mwk);
+(yymd, empl, innn, outt, kind, todw, nxdw);
 
 LOAD DATA INFILE 
 'C:/Workspaces/study/sql/text/qualific.txt' 
