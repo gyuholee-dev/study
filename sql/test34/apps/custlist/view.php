@@ -240,7 +240,7 @@ $res = mysqli_query($db, $sql);
           $url = "view.php?action=manage$linkUrlParam";
           echo "
             <input type='button' value='편집' 
-            onclick='location.href=\"$url\"'>
+            onclick='location.href=\"$url\"' disabled>
           ";
         } elseif ($action == 'manage') {
           $url = "edit.php?action=insert$linkUrlParam";
