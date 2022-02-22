@@ -4,7 +4,7 @@ require_once 'init.php';
 // 변수
 $table = 'insurance';
 $tableName = '보험가입';
-$title = "<i class='xi-list-dot'></i> $tableName 별 판매실적";
+$title = "<i class='xi-list-dot'></i> $tableName"."별 판매실적";
 $fileName = 'detail.php';
 
 // 파라메터 처리
@@ -27,7 +27,7 @@ if (isset($_REQUEST['area'])) {
 
 // 카테고리
 $gend = 'all';
-$whereSql = 'WHERE 1 = 1 ';
+$whereSql = '';
 if (isset($_REQUEST['gend'])) {
   $gend = $_REQUEST['gend'];
 }
@@ -41,18 +41,15 @@ if ($gend !== 'all') {
   $whereSql .= "AND gend = '$gend' "; 
 }
 
-// area 리스트
-$areaList = array();
-
 // SELECT 처리
-// $sql = "SELECT 
-//         DISTINCT(cont)
-//         FROM $table ";
-// $sql .= $whereSql;
-// $sql .= "GROUP BY cont ";
-// $sql .= "ORDER BY cont ASC, area ASC ";
+/* $sql = "SELECT 
+        DISTINCT(cont)
+        FROM $table ";
+$sql .= $whereSql;
+$sql .= "GROUP BY cont ";
+$sql .= "ORDER BY cont ASC, area ASC "; */
 
-$sql = "SELECT 
+/* $sql = "SELECT 
         DISTINCT(cont) AS conts,
         (
           SELECT SUM(prem) FROM insurance 
@@ -76,13 +73,50 @@ $sql = "SELECT
           WHERE area = '호남' AND cont = conts LIMIT 1
         ) AS honam 
         FROM insurance 
-        GROUP BY cont";
-// $sql = "SELECT *, 
-//         (seoul+chungcheong+gangwon+yeongnam+honam) AS total_prem
-//         FROM ($sql) ";
+        GROUP BY cont"; */
 
-echo $sql;
+// echo $sql;
+// $res = mysqli_query($db, $sql);
+
+// 보험 리스트
+$contList = array();
+$sql = "SELECT DISTINCT(cont) AS cont 
+        FROM insurance ORDER BY cont ASC";
 $res = mysqli_query($db, $sql);
+while ($a = mysqli_fetch_assoc($res)) {
+  array_push($contList, $a['cont']);
+}
+
+// 지역 리스트
+$areaList = array();
+$sql = "SELECT DISTINCT(area) AS area 
+        FROM insurance ORDER BY area ASC";
+$res = mysqli_query($db, $sql);
+while ($a = mysqli_fetch_assoc($res)) {
+  array_push($areaList, $a['area']);
+}
+
+// 데이터셋
+$dataSet = array();
+foreach($contList as $key) {
+  $dataSet[$key] = array();
+  $sql = "SELECT area,
+        SUM(prem) AS prem 
+        FROM insurance 
+        WHERE cont = '$key' $whereSql
+        GROUP BY area ";
+  $res = mysqli_query($db, $sql);
+  while ($a = mysqli_fetch_assoc($res)) {
+    $dataSet[$key][$a['area']] = $a['prem'];
+  }
+  // 데이터 검증하고 없으면 0으로 채움
+  foreach ($areaList as $area) {
+    if (!isset($dataSet[$key][$area])) {
+      $dataSet[$key][$area] = 0;
+    }
+  }
+
+}
 
 ?>
 <!-- html -->
@@ -92,12 +126,6 @@ $res = mysqli_query($db, $sql);
 <h2 class="title"><?=$title?></h2>
 <!-- contents -->
 <div class="tbContents">
-  <style>
-    tr.red td {
-      color: red;
-      font-weight: bold;
-    }
-  </style>
 
   <div class="tbMenu">
     <script>
@@ -118,13 +146,15 @@ $res = mysqli_query($db, $sql);
               $checked = ['all'=>'', 'M'=>'', 'F'=>''];
               $checked[$gend] = 'checked';
             ?>
-            <b>성별:</b>
-            <label><input onchange="changeView()" <?=$checked['all']?>
-              type="radio" name="order" value="all">전체</label>
-            <label><input onchange="changeView()" <?=$checked['M']?>
-              type="radio" name="order" value="M">남성</label>
-            <label><input onchange="changeView()" <?=$checked['F']?>
-              type="radio" name="order" value="F">여성</label>
+            <div class="submenu">
+              <b>성별:</b>
+              <label><input onchange="changeView()" <?=$checked['all']?>
+                type="radio" name="gend" value="all">전체</label>
+              <label><input onchange="changeView()" <?=$checked['M']?>
+                type="radio" name="gend" value="M">남성</label>
+              <label><input onchange="changeView()" <?=$checked['F']?>
+                type="radio" name="gend" value="F">여성</label>
+            </div>
           </form>
         </td>
         <td class="right" style="vertical-align:bottom;">
@@ -149,35 +179,61 @@ $res = mysqli_query($db, $sql);
         <th>호남</th>
         <th>합계</th>
       ";
-      while ($data = mysqli_fetch_assoc($res)) {
-        // 데이터 선언
-        $prod = $data['prod'];
-        $prces = $data['prces'];
-        $qntys = $data['qntys'];
-        $prces_sum = $data['prces_sum'];
-        $qntys_total += (int)$qntys;
-        $prces_total += (int)$prces_sum;
 
-        // 데이터 가공
-        $prces = number_format($prces).'원';
-        $prces_sum = number_format($prces_sum).'원';
+      $total_seoul = 0;
+      $total_chung = 0;
+      $total_kangw = 0;
+      $total_yungn = 0;
+      $total_honam = 0;
+      foreach ($dataSet as $key => $data) {
+        // 데이터 선언
+        $seoul = number_format($data['서울']).'원';
+        $chung = number_format($data['충청']).'원';
+        $kangw = number_format($data['강원']).'원';
+        $yungn = number_format($data['영남']).'원';
+        $honam = number_format($data['호남']).'원';
+        $total = number_format($data['서울']+
+                 $data['충청']+$data['강원']+
+                 $data['영남']+$data['호남']).'원';
+
+        $total_seoul += $data['서울'];
+        $total_chung += $data['충청'];
+        $total_kangw += $data['강원'];
+        $total_yungn += $data['영남'];
+        $total_honam += $data['호남'];
 
         // 데이터 출력
         echo "
           <tr>
-          <td>$prod</td>
-          <td class='right'>$qntys</td>
-          <td class='right'>$prces_sum</td>
+            <td>$key</td>
+            <td class='right'>$seoul</td>
+            <td class='right'>$chung</td>
+            <td class='right'>$kangw</td>
+            <td class='right'>$yungn</td>
+            <td class='right'>$honam</td>
+            <td class='right'>$total</td>
           </tr>
         ";
       }
 
-      $prces_total = number_format($prces_total).'원';
+      $total_all = number_format($total_seoul+
+                   $total_chung+$total_kangw+
+                   $total_yungn+$total_honam).'원';
+      $total_seoul = number_format($total_seoul).'원';
+      $total_chung = number_format($total_chung).'원';
+      $total_kangw = number_format($total_kangw).'원';
+      $total_yungn = number_format($total_yungn).'원';
+      $total_honam = number_format($total_honam).'원';
+
       echo "
-        <tr class='red'>
-        <td>합계</td>
-        <td class='right'>$qntys_total</td>
-        <td class='right'>$prces_total</td>
+        <tr class='yellow'>
+          <td>합계</td>
+          <td class='right'>$total_seoul</td>
+          <td class='right'>$total_chung</td>
+          <td class='right'>$total_kangw</td>
+          <td class='right'>$total_yungn</td>
+          <td class='right'>$total_honam</td>
+          <td class='right'>$total_all</td>
         </tr>
       ";
 

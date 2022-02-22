@@ -272,3 +272,18 @@ input.selected:hover, input.selected:active, input.selected:focus, input.active:
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+tr.yellow td {
+  background-color: #ffffb9;
+}
+
+.submenu {
+  display: block;
+  width: fit-content;
+  padding: 5px 10px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: -3px;
+  margin-left: -10px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+}
