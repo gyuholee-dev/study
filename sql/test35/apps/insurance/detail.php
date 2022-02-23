@@ -101,10 +101,10 @@ $dataSet = array();
 foreach($contList as $key) {
   $dataSet[$key] = array();
   $sql = "SELECT area,
-        SUM(prem) AS prem 
-        FROM insurance 
-        WHERE cont = '$key' $whereSql
-        GROUP BY area ";
+          SUM(prem) AS prem 
+          FROM insurance 
+          WHERE cont = '$key' $whereSql
+          GROUP BY area ";
   $res = mysqli_query($db, $sql);
   while ($a = mysqli_fetch_assoc($res)) {
     $dataSet[$key][$a['area']] = $a['prem'];
@@ -115,8 +115,8 @@ foreach($contList as $key) {
       $dataSet[$key][$area] = 0;
     }
   }
-
 }
+console_log($dataSet);
 
 ?>
 <!-- html -->
@@ -169,7 +169,7 @@ foreach($contList as $key) {
   <table width="100%" cellpading="3" cellspacing="1">
     <?php 
       // 헤더
-      echo "<tr>";
+      echo "<tr class='header'>";
       echo "
         <th>보험구분</th>
         <th>서울</th>

@@ -62,10 +62,10 @@ if ($action == 'selectA') {
   foreach ($subjList as $key) {
     $dataSetA[$key] = [];
   }
-  $sql = "SELECT subj, prce, 
+  $sql = "SELECT subj, 
           COUNT(*) AS scnt,
-          SUM(qnty) AS qntys,
-          SUM((prce-(prce/100*dcnt))*qnty) AS total_sale
+          SUM(qnty) AS qnty,
+          SUM(ROUND(prce-(prce/100*dcnt))*qnty) AS sale
           FROM shopping
           $whereSql
           GROUP BY subj ";
@@ -73,30 +73,28 @@ if ($action == 'selectA') {
   while ($a = mysqli_fetch_assoc($res)) {
     $dataSetA[$a['subj']] = [
       'scnt' => $a['scnt'],
-      'qnty' => $a['qntys'],
-      'sale' => $a['total_sale']
+      'qnty' => $a['qnty'],
+      'sale' => $a['sale']
     ];
   }
-  // console_log($dataSetA);
+  console_log($dataSetA);
 
 } elseif ($action == 'selectB') {
   // 데이터셋 B
   $dataSetB = array();
   for ($i=1; $i <= 12; $i++) {
     $month = numStr($i, 2);
-    $sql = "SELECT subj, prce, 
-            COUNT(*) AS scnt,
-            SUM(qnty) AS qntys,
-            SUM((prce-(prce/100*dcnt))*qnty) AS total_sale
+    $sql = "SELECT subj,
+            SUM(ROUND(prce-(prce/100*dcnt))*qnty) AS sale
             FROM shopping
             WHERE date LIKE '2021-$month%' 
             GROUP BY subj ";
     $res = mysqli_query($db, $sql);
     while ($a = mysqli_fetch_assoc($res)) {
-      $dataSetB[$month][$a['subj']] = $a['total_sale'];
+      $dataSetB[$month][$a['subj']] = $a['sale'];
     }
   }
-  // console_log($dataSetB);
+  console_log($dataSetB);
 
 }
 
@@ -152,7 +150,7 @@ if ($action == 'selectA') {
     <table width="100%" cellpading="3" cellspacing="1">
       <?php 
         // 헤더
-        echo "<tr>";
+        echo "<tr class='header'>";
         echo "
           <th>제품분류</th>
           <th>판매건수</th>
@@ -170,7 +168,7 @@ if ($action == 'selectA') {
           $sale = $data['sale'];
 
           // 데이터 가공
-          $sale = number_format(round($sale)).'원';
+          $sale = number_format($sale).'원';
 
           $total_scnt += $data['scnt'];
           $total_qnty += $data['qnty'];
@@ -187,7 +185,7 @@ if ($action == 'selectA') {
           ";
         }
 
-        $total_sale = number_format(round($total_sale)).'원';
+        $total_sale = number_format($total_sale).'원';
 
         echo "
           <tr class='yellow'>
@@ -209,7 +207,7 @@ if ($action == 'selectA') {
       <?php 
         $total_subj = [];
         // 헤더
-        echo "<tr>";
+        echo "<tr class='header'>";
         echo "<th>월</th>";
         foreach ($subjList as $subj) {
           $total_subj[$subj] = 0;
@@ -224,10 +222,10 @@ if ($action == 'selectA') {
           foreach ($subjList as $subj) {
             $total_sale += $data[$subj];
             $total_subj[$subj] += $data[$subj]; 
-            $sale = number_format(round($data[$subj])).'원';
+            $sale = number_format($data[$subj]).'원';
             echo "<td class='right'>$sale</td>";
           }
-          $total_sale = number_format(round($total_sale)).'원';
+          $total_sale = number_format($total_sale).'원';
           echo "<td>$total_sale</td>";
           echo "</tr>";
         }
@@ -239,10 +237,10 @@ if ($action == 'selectA') {
         foreach ($subjList as $subj) {
           $total_all += $total_subj[$subj];
           $total_sale = $total_subj[$subj];
-          $total_sale = number_format(round($total_sale)).'원';
+          $total_sale = number_format($total_sale).'원';
           echo "<td>$total_sale</td>";
         }
-        $total_all = number_format(round($total_all)).'원';
+        $total_all = number_format($total_all).'원';
         echo "<td>$total_all</td>";
         echo "</tr>";
 

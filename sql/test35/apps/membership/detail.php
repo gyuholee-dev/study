@@ -80,6 +80,7 @@ while ($a = mysqli_fetch_assoc($res)) {
     'total' => $a['total']
   ];
 }
+console_log($dataSet);
 
 ?>
 <!-- html -->
@@ -127,7 +128,7 @@ while ($a = mysqli_fetch_assoc($res)) {
   <table width="100%" cellpading="3" cellspacing="1">
     <?php 
       // 헤더
-      echo "<tr>";
+      echo "<tr class='header'>";
       echo "
         <th>종목</th>
         <th>이용료</th>

@@ -102,7 +102,7 @@ $res = mysqli_query($db, $sql);
   <table width="100%" cellpading="3" cellspacing="1">
     <?php 
       // 헤더
-      echo "<tr>";
+      echo "<tr class='header'>";
       echo "
         <th>번호</th>
         <th>ID</th>
@@ -124,8 +124,8 @@ $res = mysqli_query($db, $sql);
 
         // 데이터 가공
         $dues = number_format($dues).'원';
-        $stat = "<a href='detail.php?stat=$stat".
-                "&action=$action.$linkUrlParam'>$stat</a>";
+        // $stat = "<a href='detail.php?stat=$stat".
+        //         "&action=$action.$linkUrlParam'>$stat</a>";
 
         // 데이터 출력
         echo "
@@ -167,15 +167,17 @@ $res = mysqli_query($db, $sql);
       <td>
       <?php
         if ($pageCount != 1) {
+          echo "<div class='pageNav'>";
           $listMin = 1;
           $listMax = 9;
           $pageUrlParam = "&action=$action$urlParam";
 
-          echo "<span class='page'>";
+          $navFirst = "<span class='page'><i class='xi-angle-left'></i></span>";
+          echo "<span class='nav'>";
           if ($page == 1) {
-            echo "<<";
+            echo "<b class='deactive'>$navFirst</b>";
           } else {
-            echo "<a href='$fileName?page=1$pageUrlParam'><<</a>";
+            echo "<a href='$fileName?page=1$pageUrlParam'>$navFirst</a>";
           }
           echo "</span>";
           
@@ -201,27 +203,31 @@ $res = mysqli_query($db, $sql);
               if ($i < $listMin || $i > $listMax) {
                 continue;
               }
-              echo "<span class='page'>";
+              $navPage = "<span class='page'>$i</span>";
+              echo "<span class='nav'>";
               if ($i == $page) {
-                echo "<b>$i</b>";
+                echo "<b class='active'>$navPage</b>";
               } else {
-                echo "[<a href='$fileName?page=$i$pageUrlParam'>$i</a>]";
+                echo "<a href='$fileName?page=$i$pageUrlParam'>$navPage</a>";
               }
               echo '</span>';
             }
           } else {
-            echo "<span class='page'>";
-            echo "<b>1</b>";
+            echo "<span class='nav'>";
+            echo "<b class='active'>1</b>";
             echo '</span>';
           }
 
-          echo "<span class='page'>";
+          $navLast = "<span class='page'><i class='xi-angle-right'></i></span>";
+          echo "<span class='nav'>";
           if ($page == $pageCount) {
-            echo ">>";
+            echo "<b class='deactive'>$navLast</b>";
           } else {
-            echo "<a href='$fileName?page=$pageCount$pageUrlParam'>>></a>";
+            echo "<a href='$fileName?page=$pageCount$pageUrlParam'>$navLast</a>";
           }
           echo '</span>';
+
+          echo "</div>";
         }
 
       ?>

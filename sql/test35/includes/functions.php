@@ -3,17 +3,26 @@
 
 function console_log($log)
 {
+  if (is_array($log)) {
     $log = json_encode($log);
+    $script = "
+        <script id='backendLog'>
+           var log = JSON.parse('$log');
+           console.log(log);
+           backendLog.remove();
+        </script>
+    ";
+  } else {
+    $script = "
+        <script id='backendLog'>
+           var log = '$log';
+           console.log(log);
+           backendLog.remove();
+        </script>
+    ";
+  }
 
-    $script = implode("\n", [
-        '<script id="backendLog">',
-        '   var log = JSON.parse(\''.$log.'\');',
-        '   console.log(log);',
-        '   backendLog.remove();',
-        '</script>',
-    ]);
-
-    echo $script;
+  echo $script;
 }
 
 function makeCreateSql() {
@@ -79,10 +88,12 @@ function makeInsertSql($data=array()) {
 // }
 
 function sendMsg($msg, $url) {
-  echo "<script>
+  echo "
+    <script>
       alert('$msg');
       location.href='$url';
-      </script>";
+    </script>
+  ";
 }
 
 function tableExist($table) {
