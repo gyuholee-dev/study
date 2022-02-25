@@ -31,7 +31,6 @@ foreach ($reqList as $key) {
   console_log('$'.$key.': '.$$key);
 }
 
-
 // 테이블 기초 데이터
 $tableList = [
   'cousmast' => '훈련과정',
@@ -41,6 +40,17 @@ $tableList = [
 // 테이블네임, 타이틀
 $tableName = $tableList[$table];
 $title = "$tableName 관리";
+
+// 테이블 파라메터
+$couscode = 'all';
+$studnumb = 'all';
+$reqList = ['couscode', 'studnumb'];
+foreach ($reqList as $key) {
+  if (isset($_REQUEST[$key]) && $_REQUEST[$key] != '') {
+    $$key = $_REQUEST[$key];
+  }
+  console_log('$'.$key.': '.$$key);
+}
 
 
 

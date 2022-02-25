@@ -7,9 +7,38 @@
 <link rel="stylesheet" href="styles/xeicon.min.css">
 </head>
 <body>
-<h2 class="title"><i class='xi-list-dot'></i> <?=$title?></h2>
-<!-- contents -->
-<? include $content; ?>
-<!-- contents -->
+<style>
+  
+</style>
+
+<div id="container" class="wrap column">
+  <!-- topmenu -->
+  <div id="topmenu">
+    <span class="title">
+      <i class='xi-list-dot'></i> <?=$title?>
+    </span>
+  </div>
+  <!-- topmenu -->
+
+  <div id="main" class="wrap row">
+    <!-- sidemenu -->
+    <!-- <div id="sidemenu">
+    <? include 'templates/_sidemenu.php'; ?>
+    </div> -->
+    <!-- sidemenu -->
+
+    <!-- contents -->
+    <div id="contents">
+    <? include $content; ?>
+    </div>
+    <!-- contents -->
+  </div>
+
+  <!-- bottommenu -->
+  <!-- <div id="bottommenu">
+  </div> -->
+  <!-- bottommenu -->
+</div>
+
 </body>
 </html>

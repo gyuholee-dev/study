@@ -1,0 +1,68 @@
+-- Stored Function
+
+---- 프로시저
+DELIMITER //
+CREATE PROCEDURE proc1()
+BEGIN
+  SELECT * FROM lect;
+END //
+DELIMITER ;
+
+SHOW CREATE PROCEDURE proc1;
+CALL proc1();
+DROP PROCEDURE proc1;
+
+-- 숫자 인수
+DELIMITER //
+CREATE PROCEDURE proc2(ammt INT)
+BEGIN
+  SELECT * FROM lect WHERE feee > ammt
+END //
+DELIMITER ;
+
+CALL proc2(80000);
+
+-- 문자 인수
+DELIMITER //
+CREATE PROCEDURE proc3(num CHAR(3))
+BEGIN
+  SELECT * FROM lect WHERE code = num;
+END //
+DELIMITER ;
+
+---- 함수
+DELIMITER //
+CREATE FUNCTION maxno() RETURNS CHAR(3)
+BEGIN
+  DECLARE maxcode = CHAR(3);
+  SELECT MAX(code) INTO maxcode FROM lect;
+  RETURN maxcode;
+END //
+DELIMITER ;
+
+SELECT maxno();
+DROP FUNCTION IF EXISTS maxno;
+
+DELIMITER //
+DROP FUNCTION IF EXISTS inwon;
+CREATE FUNCTION inwon() RETURNS INT
+BEGIN
+  DECLARE total INT;
+  SELECT SUM(inwn) INTO total FROM lect;
+  RETURN total;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+DROP FUNCTION IF EXISTS inwon;
+CREATE FUNCTION inwon(numb CHAR(3)) RETURNS INT
+BEGIN
+  DECLARE result INT;
+  SELECT inwn INTO result FROM lect WHERE code = numb;
+  RETURN result;
+END //
+DELIMITER ;
+
+
+
