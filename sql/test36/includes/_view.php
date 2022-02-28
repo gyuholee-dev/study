@@ -14,17 +14,17 @@ $inputTemplate = [
   "<td><input name='noperson[]' value='<value-noperson>' type='number' style='width:60px;'></td",
 ];
 foreach ($inputTemplate as $key => $value) {
-  $inputTemplate[$key] = addslashes($value);
+  // $inputTemplate[$key] = addslashes($value);
 }
 
 $inputTemplate = json_encode($inputTemplate);
-echo $inputTemplate;
+// echo $inputTemplate;
 // echo "<script>var inputTemplate = JSON.parse(String('$inputTemplate')); </script>";
 
 ?>
 
 <script>
-  console.log(inputTemplate);
+  // console.log(inputTemplate);
   function expandRow() {
     lastNumb = lastNumb+1;
     var target = document.getElementById('tr_end');
