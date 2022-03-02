@@ -1,0 +1,59 @@
+@charset "UTF-8";
+* {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  font-family: "맑은 고딕";
+}
+
+body {
+  background-color: #dddddd;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#header {
+  width: 1000px;
+  height: 150px;
+  background-color: white;
+}
+
+#header .logo {
+  width: 250px;
+  height: 150px;
+  background-color: blue;
+}
+
+#nav {
+  width: 1000px;
+  height: 50px;
+  background-color: gray;
+}
+
+#nav .menu {
+  width: 600px;
+  height: 50px;
+}
+
+#nav .menu > li {
+  width: 200px;
+  float: left;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  font-weight: bold;
+}
+
+#nav .menu > li:hover {
+  cursor: pointer;
+  background-color: orange;
+}
+
+#contents {
+  width: 1000px;
+  height: 800px;
+  background-color: white;
+}

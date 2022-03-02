@@ -42,6 +42,7 @@ a:hover {
   align-items: center;
   height: 80px;
   background-color: white;
+  font-size: 80%;
 }
 
 #header .topmenu .left {
@@ -73,7 +74,7 @@ a:hover {
   display: inherit;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: 44px;
   background-color: black;
   border-bottom: 1px solid #c4994e;
 }
@@ -88,17 +89,18 @@ a:hover {
   float: left;
   font-weight: bold;
   text-align: center;
-  line-height: 40px;
+  line-height: 44px;
 }
 
 #header .mainmenu .menu-list > li a {
   display: block;
-  height: 40px;
+  height: 44px;
   min-width: 100px;
 }
 
 #header .mainmenu .menu-list > li a:hover {
   color: white;
+  text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.75);
   background-color: rgba(255, 188, 44, 0.2);
 }
 
@@ -118,6 +120,7 @@ a:hover {
   font-family: 'Times New Roman';
   color: white;
   text-shadow: 1px 2px 8px black;
+  box-shadow: 0 0 120px rgba(0, 0, 0, 0.5) inset;
 }
 
 #header .imageslide img {
@@ -168,6 +171,10 @@ a:hover {
   font-size: 110%;
 }
 
+#contents .content .header a:hover {
+  color: white;
+}
+
 #contents table {
   min-width: inherit;
   border: none;
@@ -177,6 +184,7 @@ a:hover {
 #contents table tbody {
   background-color: #c3dbff;
   border: 1px solid #c3dbff;
+  border-top: none;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   overflow: hidden;
@@ -205,6 +213,6 @@ a:hover {
   display: inherit;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: 44px;
   background-color: black;
 }
