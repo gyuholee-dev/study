@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #aaaaaa;
+    }
+    #box {
+      display: flex;
+      width: 270px;
+      padding: 15px;
+      border-radius: 15px;
+      margin: 10px auto;
+      flex-direction: column;
+      background-color: white;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    textarea {
+      height: 120px;
+      margin-bottom: 10px;
+    }
+    .button {
+      width: 80px;
+      align-self: flex-end;
+    }
+  </style>
+</head>
+<body>
+  <form action="result04.php" method="post">
+    <div id="box">
+      <label>글쓴이
+        <input type="text" name="name">
+      </label>
+      <label>글내용</label>
+      <textarea name="text"></textarea>
+      <input type="submit" class="button" value="입력">
+    </div>
+  </form>
+</body>
+</html>

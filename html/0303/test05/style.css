@@ -1,0 +1,45 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "맑은 고딕";
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+table {
+  margin: 15px auto;
+  border-collapse: collapse;
+  border-top: 2px solid #999;
+  border-bottom: 2px solid #999;
+}
+
+table tbody {
+  display: block;
+  background-color: white;
+}
+
+table th, table td {
+  text-align: center;
+  padding: 5px 10px;
+}
+
+table tr:not(:last-of-type) th, table tr:not(:last-of-type) td {
+  border-bottom: 1px solid #aaaaaa;
+}
+
+table tr:not(:first-of-type):not(:last-of-type):hover {
+  cursor: pointer;
+  background-color: #eeeeee;
+}
+
+.button {
+  min-width: 65px;
+  font-size: 100%;
+  font-weight: bold;
+  padding: 3px 10px;
+}

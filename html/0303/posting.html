@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #aaaaaa;
+    }
+    table {
+      margin: 15px auto;
+    }
+    tbody {
+      display: block;
+      background-color: white;
+      /* padding: 15px; */
+      border-radius: 15px;
+    }
+    th, td {
+      padding: 5px 10px;
+      vertical-align: top;
+    }
+    td.input {
+      text-align: center;
+    }
+    .button {
+      font-weight: bold;
+      padding: 3px 8px
+    }
+  </style>
+</head>
+<body>
+
+<form method="post" action="post_result.php">
+  <table cellspacing="0" cellpadding="3">
+    <tr>
+      <th>이름</th>
+      <td>
+        <input type="text" name="name">
+      </td>
+    </tr>
+    <tr>
+      <th>아이디</th>
+      <td align="right">
+        <input type="text" name="id"><br>
+        <input type="button" class="button" style="margin-top:5px;" value="중복확인">
+      </td>
+    </tr>
+    <tr>
+      <th>패스워드</th>
+      <td>
+        <input type="password" name="password">
+      </td>
+    </tr>
+    <tr>
+      <th>패스워드 확인</th>
+      <td>
+        <input type="password" name="">
+      </td>
+    </tr>
+    <tr>
+      <th>성별</th>
+      <td>
+        <label>
+          <input type="radio" name="gender" value="M"> 남성
+        </label>
+        <label>
+          <input type="radio" name="gender" value="F"> 여성
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <th>최종학력</th>
+      <td>
+        <select name="education">
+          <option></option>
+          <option value="고등학교">고등학교</option>
+          <option value="고등학교">전문대학</option>
+          <option value="고등학교">대학교</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>이메일 수신</th>
+      <td>
+        <input type="checkbox" name="receive_mail">
+      </td>
+    </tr>
+    <tr>
+      <th>남기는 말</th>
+      <td>
+        <textarea name="comment"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="input">
+        <input type="submit" class="button" value="회원가입">
+      </td>
+    </tr>
+
+  </table>
+</form>
+
+
+</body>
+</html>

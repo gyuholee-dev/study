@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<form name="frm1" method="post" action="write_ok.html">
+  <table class="table1">
+    <tr>
+      <th>제목</th>
+      <td><input type="text" name="title" style="width:100%;"></td>
+    </tr>
+    <tr>
+      <th>내용</th>
+      <td>
+        <textarea name="content" rows="5" cols="60"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <input class="button" type="button" value="확인" onclick="send()">
+        <input class="button" type="reset" value="취소">
+      </td>
+    </tr>
+  </table>
+</form>
+
+</body>
+</html>
+
+<script>
+  function send() {
+    // 제목 체크
+    if (frm1.title.value == '') {
+      alert('제목을 입력하세요');
+      frm1.title.focus();
+      return false;
+    }
+    // 내용 체크
+    if (frm1.content.value == '') {
+      alert('내용을 입력하세요');
+      frm1.content.focus();
+      return false;
+    }
+    // 다 썼으면 제출
+    document.frm1.submit();
+  }
+</script>
