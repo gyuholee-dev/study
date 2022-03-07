@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>SIGNUP</title>
+</head>
+<body>
+
+  <div id="header">
+    <ul class="topmenu">
+      <li><a href="idpass.html">ID/PASS</a></li>
+      <li><a href="signup.html">SIGNUP</a></li>
+      <li><a href="login.html">LOGIN</a></li>
+    </ul>
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo/logo.png">
+      </a>
+    </div>
+  </div>
+  
+  <div id="nav">
+    <div class="menu_s">&#9776;</div>
+    <ul class="menu">
+      <li>여행가이드 소개</li>
+      <li>국내 여행지</li>
+      <li>해외 여행지</li>
+    </ul>
+  </div>
+  
+  <div id="wrap">
+    <div id="content">
+
+      <form class="member signup" method="post" action="">
+
+          <div class="title">회원가입</div>
+          <div class="input">
+            <table>
+              <tr>
+                <th>이름</th>
+                <td><input type="text"></td>
+              </tr>
+              <tr>
+                <th>아이디</th>
+                <td>
+                  <input type="text">
+                  <span class="check">&#10004;</span>
+                </td>
+              </tr>
+              <tr>
+                <th>패스워드</th>
+                <td><input type="password"></td>
+              </tr>
+              <tr>
+                <th>확인</th>
+                <td><input type="password"></td>
+              </tr>
+              <tr>
+                <th>성별</th>
+                <td>
+                  <label>
+                  <input type="radio" name="gend" value="M">남성</label>
+                  <label>
+                  <input type="radio" name="gend" value="F">여성</label>
+                </td>
+              </tr>
+              <tr>
+                <th>최종학력</th>
+                <td>
+                  <!-- <input type="text"> -->
+                  <select>
+                    <option>대학교</option>
+                    <option>전문대학교</option>
+                    <option>고등학교</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>관심사항</th>
+                <td>
+                  <!-- <input type="text"> -->
+                  <label><input type="checkbox" name="">HTML</label>
+                  <label><input type="checkbox" name="">CSS</label>
+                  <label><input type="checkbox" name="">JS</label>
+                  <label><input type="checkbox" name="">DB</label>
+                </td>
+              </tr>
+              <tr>
+                <th>남기는 말</th>
+                <td><input type="text"></td>
+              </tr>
+            </table>
+          </div>
+          <div class="bottom">
+            <a href="signup.html">회원가입</a>
+            <a href="signup.html">재작성</a>
+          </div>
+
+      </form>
+
+    </div>
+  </div>
+  
+  <div id="footer">
+    <!-- 바닥글 영역 -->
+    All rights reserved by Mypage.com since 2022
+  </div>
+
+</body>
+</html>
