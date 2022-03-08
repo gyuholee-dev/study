@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>0307</title>
+  <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 </head>
 <body>
 
@@ -32,6 +33,7 @@
   </div>
   
   <div id="wrap">
+
     <div id="imgslide">
       <div class="imgs">
         <!-- 이미지 -->
@@ -43,12 +45,14 @@
           background-color:blue;"></div>   -->
     </div>
     </div>
-    <div id="content">
+    <div id="content1">
       <!-- 콘텐츠 -->
       <div class="notice">
+
         <div class="title">
           <img src="images/flight.png" width="20" height="20"> 공지사항
         </div>
+        
         <table class="table1">
           <tr>
             <th>제목</th>
@@ -75,19 +79,92 @@
             <td>2022.03.03</td>
           </tr>
         </table>
+
       </div>
+
       <div class="partner">
         <div class="title">
           <img src="images/flight.png" width="20" height="20"> 정보나눔
         </div>
         <img src="images/partner/info.png" width="100%">
       </div>
+
     </div>
+
+    <div id="content2">
+      <div class="bg">
+        <img src="images/bg.png">
+      </div>
+      <div class="icons">
+        <div class="imgbtn">
+          <img src="images/icons/새소식.png">
+          <input type="button" class="btn" value="새소식">
+        </div>
+        <div class="imgbtn">
+          <img src="images/icons/여행음악.png">
+          <input type="button" class="btn" value="여행음악">
+        </div>
+        <div class="imgbtn">
+          <img src="images/icons/여행매뉴얼.png">
+          <input type="button" class="btn" value="여행매뉴얼">
+        </div>
+        <br>
+        <br>
+        <p style="color:#999;font-size:0.9em;">
+          Copyright admin@test.com all rights reserved.
+        </p>
+      </div>
+    </div>
+
+    <div id="content3">
+      <div class="box">
+        <!-- 대표님 인터뷰 -->
+        <iframe width="100%" height="100%" 
+          src="https://www.youtube.com/embed/u7NXcHuHaIw" 
+          title="YouTube video player" frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>        
+      </div>
+      <div class="box">
+        <!-- 찾아오시는 길 -->
+        <div id="daumRoughmapContainer1646706772523" class="root_daum_roughmap root_daum_roughmap_landing">
+          <script charset="UTF-8">
+            new daum.roughmap.Lander({
+              "timestamp" : "1646706772523",
+              "key" : "29e68",
+              "mapWidth" : "460",
+              "mapHeight" : "310"
+            }).render();
+          </script>
+          <style>
+            #daumRoughmapContainer1646706772523 {
+              width: 100% !important;
+            }
+            .wrap_controllers {
+              display: none;
+            }
+          </style>
+        </div>
+      </div>
+    </div>
+
   </div>
   
   <div id="footer">
     <!-- 바닥글 영역 -->
-    All rights reserved by Mypage.com since 2022
+    <div class="box">
+      <span>이메일 무단수집 거부</span>
+      <span>개인정보 처리방침</span>
+    </div>
+    <div class="box">
+      <p>
+        상호명: 여행을 사랑하는 사람들(주) <br>
+        대표자: 홍길동 <br>
+        개인정보책임자: 유관순 <br>
+        상담전화: 1588-9000 <br>
+        주소: 부산광역시 해운대구 우동 정릉빌딩 504호
+      </p>
+    </div>
   </div>
 
 </body>

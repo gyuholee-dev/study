@@ -127,37 +127,36 @@ body {
   background-repeat: no-repeat;
 }
 
-#wrap #content {
+#wrap #content1 {
   display: inherit;
   justify-content: center;
   width: 100%;
   max-width: 1000px;
-  min-height: 300px;
-  padding: 15px 0;
+  padding: 10px 0;
 }
 
-#wrap #content .title {
+#wrap #content1 .title {
   font-size: 1.1em;
   font-weight: bold;
   color: #893700;
   padding: 5px;
 }
 
-#wrap #content .notice {
+#wrap #content1 .notice {
   width: 500px;
   padding: 20px;
   text-align: center;
   float: left;
 }
 
-#wrap #content .partner {
+#wrap #content1 .partner {
   width: 500px;
   padding: 20px;
   text-align: center;
   float: left;
 }
 
-#wrap #content .member {
+#wrap #content1 .member {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -168,21 +167,21 @@ body {
   overflow: hidden;
 }
 
-#wrap #content .member.signup {
+#wrap #content1 .member.signup {
   max-width: 600px;
   height: auto;
 }
 
-#wrap #content .member .title {
+#wrap #content1 .member .title {
   height: 40px;
   text-align: center;
   line-height: 40px;
   padding: 0;
-  color: #000;
-  border-bottom: 2px solid #4298cc;
+  color: #893700;
+  border-bottom: 1px solid #4298cc;
 }
 
-#wrap #content .member .input {
+#wrap #content1 .member .input {
   width: 100%;
   max-width: 400px;
   display: inherit;
@@ -193,17 +192,22 @@ body {
   margin: 0 auto;
 }
 
-#wrap #content .member table {
+#wrap #content1 .member table {
   width: 100%;
   text-align: center;
 }
 
-#wrap #content .member table th, #wrap #content .member table td {
+#wrap #content1 .member table th {
+  font-size: .9em;
+  color: #444444;
+}
+
+#wrap #content1 .member table th, #wrap #content1 .member table td {
   padding: 5px 10px;
   position: relative;
 }
 
-#wrap #content .member table input:not([type="radio"]):not([type="checkbox"]), #wrap #content .member table select {
+#wrap #content1 .member table input:not([type="radio"]):not([type="checkbox"]), #wrap #content1 .member table select {
   width: 100%;
   height: 30px;
   padding: 3px 10px;
@@ -212,21 +216,21 @@ body {
   border-radius: 10px;
 }
 
-#wrap #content .member table input:not([type="radio"]):not([type="checkbox"]):focus-visible, #wrap #content .member table select:focus-visible {
+#wrap #content1 .member table input:not([type="radio"]):not([type="checkbox"]):focus-visible, #wrap #content1 .member table select:focus-visible {
   border: 1px solid #29cdff;
   outline: 1px solid #0072ff;
   box-shadow: 0 0 6px #0014ff;
 }
 
-#wrap #content .member table td > label:not(:last-of-type) {
+#wrap #content1 .member table td > label:not(:last-of-type) {
   margin-right: 15px;
 }
 
-#wrap #content .member table input[type=radio], #wrap #content .member table input[type=checkbox] {
+#wrap #content1 .member table input[type=radio], #wrap #content1 .member table input[type=checkbox] {
   margin-right: 5px;
 }
 
-#wrap #content .member table .button {
+#wrap #content1 .member table .button {
   cursor: pointer;
   background-color: #5dd2ff;
   border: 1px solid #4f52ff;
@@ -236,7 +240,7 @@ body {
   border-radius: 10px;
 }
 
-#wrap #content .member table .check {
+#wrap #content1 .member table .check {
   color: #30d394;
   font-weight: bold;
   position: absolute;
@@ -244,8 +248,16 @@ body {
   top: 8px;
 }
 
-#wrap #content .member .bottom {
-  border-top: 2px solid #4298cc;
+#wrap #content1 .member table .cutline {
+  border: none;
+  height: 1px;
+  background-color: #aaaaaa;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#wrap #content1 .member .bottom {
+  border-top: 1px solid #4298cc;
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -254,15 +266,88 @@ body {
   font-weight: bold;
 }
 
+#wrap #content2 {
+  display: inherit;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  padding: 10px 0;
+}
+
+#wrap #content2 .bg {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+#wrap #content2 .bg img {
+  width: 90%;
+}
+
+#wrap #content2 .icons {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+#wrap #content2 .icons .imgbtn {
+  display: inline-block;
+  text-align: center;
+  width: 130px;
+  height: 130px;
+  border: 1px solid #cccccc;
+  margin-top: 30px;
+  padding: 10px 0;
+}
+
+#wrap #content2 .icons .imgbtn > img {
+  width: 100px;
+}
+
+#wrap #content2 .icons .imgbtn .btn {
+  width: 100px;
+  font-size: 0.8em;
+  background-color: #333333;
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+#wrap #content2 .icons .imgbtn .btn:hover {
+  cursor: pointer;
+  background-color: #aaaaaa;
+}
+
+#wrap #content3 {
+  display: inherit;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 300px;
+  padding: 10px 0;
+}
+
+#wrap #content3 .box {
+  width: 100%;
+  max-width: 500px;
+  height: 350px;
+  padding: 20px;
+  text-align: center;
+}
+
 @media (max-width: 640px) {
-  #wrap #content {
+  #wrap #content1 {
     flex-wrap: wrap;
   }
-  #wrap #content .notice {
+  #wrap #content1 .notice {
     width: 100%;
   }
-  #wrap #content .partner {
+  #wrap #content1 .partner {
     width: 100%;
+  }
+  #wrap #content2, #wrap #content3 {
+    flex-wrap: wrap;
   }
 }
 
@@ -294,11 +379,17 @@ table.table1 tr:not(:first-child):hover {
 #footer {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 100%;
   height: 150px;
-  background: linear-gradient(to right bottom, blue, white);
-  text-align: center;
-  font-weight: bold;
+  background-color: #8686dd;
   color: white;
+}
+
+#footer .box {
+  font-size: .9em;
+}
+
+#footer .box > span:not(:last-of-type) {
+  margin-right: 20px;
 }
