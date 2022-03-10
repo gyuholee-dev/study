@@ -51,10 +51,10 @@ body {
     .logo {
       height: 120px;
       align-self: start;
-      filter: drop-shadow(0 0 4px black) saturate(1.5);
+      filter: drop-shadow(0 0 10px black) saturate(1.5);
       >img {
         height: 100%;
-        filter: drop-shadow(0 0 2px black);
+        // filter: drop-shadow(0 0 2px black);
       }
     }
     .usermenu {

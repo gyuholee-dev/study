@@ -11,9 +11,9 @@ body { font-family: "맑은 고딕"; font-size: 16px; background-color: #dddddd;
 
 #header .head { display: inherit; align-items: center; justify-content: space-between; width: 100%; height: 300px; padding: 0 10px; background-color: black; background-image: url("images/slide/images(1).jpg"); background-size: cover; background-repeat: no-repeat; background-position: center; box-shadow: inset 0px 0px 60px rgba(0, 0, 0, 0.5); position: relative; }
 
-#header .head .logo { height: 120px; align-self: start; filter: drop-shadow(0 0 4px black) saturate(1.5); }
+#header .head .logo { height: 120px; align-self: start; filter: drop-shadow(0 0 10px black) saturate(1.5); }
 
-#header .head .logo > img { height: 100%; filter: drop-shadow(0 0 2px black); }
+#header .head .logo > img { height: 100%; }
 
 #header .head .usermenu { align-self: baseline; margin-top: 5px; font-size: .9em; color: white; }
 

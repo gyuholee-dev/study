@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "맑은 고딕";
+  background-color: #aaaaaa;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#header {
+  display: flex;
+  width: 100%;
+  // max-width: 1000px;
+  height: 110px;
+  // margin: 0 auto;
+  background-color: white;
+  .logo {
+    display: flex;
+    width: 250px;
+    height: inherit;
+    // background-color: red;
+    >img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .nav {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    // width: 750px;
+    height: inherit;
+    // background-color: blue;
+    // color: white;
+    >.navtop {
+      width: 100%;
+      height: 70px;
+      // background-color: red;
+      text-align: right;
+      font-size: 0.8em;
+      >a {
+        margin-right: 10px;
+      }
+    }
+    >.navbottom {
+      width: 100%;
+      height: 40px;
+      // background-color: pink;
+      .menu {
+        >li {
+          width: 200px;
+          text-align: center;
+          line-height: 40px;
+          font-size: 0.9em;
+          font-weight: bold;
+          color: #333333;
+          float: left;
+          &:hover {
+            cursor: pointer;
+            background-color: #4298cc;
+            // border-bottom: 4px solid #4298cc;
+            color: white;
+            transition: all 0.4s;
+          }
+        }
+      }
+    }
+  }
+}
+
+#imgslide {
+  width: 100%;
+  // max-width: 1000px;
+  height: 350px;
+  margin: 0 auto;
+  .imgs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    >img {
+      // width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+#content {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  background-color: white;
+  padding: 10px;
+  .box1 {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 300px;
+    padding: 10px;
+    .icons {
+      width: 130px;
+      height: 150px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      text-align: center;
+      padding: 10px;
+      &:not(:last-of-type) {
+        margin-right: 15px;
+      }
+    }
+  } 
+}
+
+#footer {
+  width: 100%;
+  height: 150px;
+  background-color: aliceblue;
+  text-align: center;
+  line-height: 150px;
+  font-size: 0.9em;
+  color: #999999;
+  font-weight: bold;
+}
