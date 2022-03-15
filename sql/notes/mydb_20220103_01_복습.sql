@@ -20,7 +20,7 @@ SELECT [필드] FROM [테이블]
   AND(OR) [필드명][연산자][필드깂]
   GROUP BY [필드명],[필드명]
   ORDER BY [필드명] [asc/desc]
-  LIMIT [시작열] [열수]
+  LIMIT [시작열], [열수]
   ;
 
 -- 셀렉트 조인
