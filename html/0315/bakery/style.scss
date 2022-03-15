@@ -1,9 +1,13 @@
 // 변수
 $max-width: 1200px;
+$media-width-middle: 800px;
+$media-width-min: 640px;
 $color-emp: #bb692d;
 $color-shine: #ffede0;
 $color-light: #f1c19e;
 $color-dark: #7b422e;
+$color-black: #2e1811;
+$color-background: #f3e8e0;
 
 * {
   margin: 0;
@@ -14,9 +18,9 @@ $color-dark: #7b422e;
 
 body {
   font-family: "맑은 고딕";
-  color: #2e1811;
+  color: $color-black;
   font-size: 16px;
-  background-color: $color-light;
+  background-color: $color-background;
 }
 
 a {
@@ -41,10 +45,17 @@ a {
 
 #header {
   height: 115px;
-  padding: 0 15px;
+  // padding: 0 15px;
+  position: relative;
+  @media screen and (max-width: $media-width-middle) {
+    height: 140px;
+  }
   .logo {
     height: 100px;
     width: 200px;
+    position: absolute;
+    left: 15px;
+    z-index: 2;
     // margin-top: 15px;
     img {
       width: 100%;
@@ -54,19 +65,22 @@ a {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    // background-color: white;
+    z-index: 1;
     .topmenu {
       display: flex;
       align-items: flex-start;
       justify-content: end;
-      height: 65px;
+      // height: 65px;
+      flex-grow: 1;
       font-size: .9em;
       position: relative;
       z-index: 2;
       background-color: white;
       >a {
         color: #aaa;
-        margin-right: 10px;
+        padding: 3px;
+        margin-right: 15px;
         &:hover {
           color: $color-emp;
         }
@@ -77,6 +91,7 @@ a {
       justify-content: center;
       height: 50px;
       line-height: 50px;
+      // font-size: 1.2em;
       // background-color: white;
       >li {
         height: inherit;
@@ -92,16 +107,21 @@ a {
           position: relative;
           z-index: 2;
           background-color: white;
+          &.active {
+            border-bottom: 4px solid $color-emp;
+          }
         }
         &:hover {
           height: fit-content;
           >a {
             cursor: pointer;
             color: $color-emp;
-            // background-color: $color-emp;
-            // border-bottom: 4px solid $color-emp;
-            transition: all 0.15s;
             background-color: $color-shine;
+            transition: all 0.1s;
+            &:not(.active) {
+              height: 51px;
+              border-bottom: 1px solid $color-emp;
+            }
           }
           .submenu {
             display: block;
@@ -115,7 +135,7 @@ a {
         position: relative;
         // top: -100%;
         z-index: 1;
-        background-color: rgba(255, 255, 255, 0.65);
+        background-color: rgba(white, 0.65);
         font-weight: bold;
         font-size: .9em;
         line-height: initial;
@@ -175,10 +195,12 @@ a {
       width: 960px;
       height: 400px;
       position: absolute;
-      transition: all 0.65s;
+      // transition: transform linear 0.65s;
+      transition: opacity linear 0.65s;
       z-index: 0;
       &.hide {
-        transform: translateY(100%);
+        // transform: translateY(100%);
+        opacity: 0;
       }
       >img {
         width: 100%;
@@ -195,7 +217,7 @@ a {
         font-family: "나눔명조";
         font-size: 1.25em;
         text-shadow: 0 0 1px black, 0 1px 3px black;
-        background-color: rgba(255, 255, 255, 0.25);
+        background-color: rgba(white, 0.25);
         backdrop-filter: blur(5px);
       }
     }
@@ -220,12 +242,13 @@ a {
     // right: 15px;
     // bottom: 10px;
     // width: 100%;
-    padding: 15px 25px;
+    padding: 15px 30px;
     border-radius: 15px;
     // border-bottom-left-radius: 15px;
     // border-bottom-right-radius: 15px;
     // text-align: right;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba($color-black, 0.25);
+    // background-color: $color-black;
     backdrop-filter: blur(5px);
     // &:hover {
     //   cursor: pointer;
@@ -248,7 +271,7 @@ a {
     padding: 15px;
     &.half { 
       width: 50%; 
-      @media screen and (max-width: 640px) {
+      @media screen and (max-width: $media-width-min) {
         width: 100%;
       }
     }
@@ -359,9 +382,12 @@ a {
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  min-height: 100px;
+  min-height: 115px;
   background-color: $color-dark !important;
-  color: white;
+  color: $color-light;
+  a:hover {
+    color: white;
+  }
   >div {
     display: flex;
     width: 100%;

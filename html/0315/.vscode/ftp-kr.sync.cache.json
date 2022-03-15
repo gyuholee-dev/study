@@ -1,6 +1,64 @@
 {
   "ftp://gyuholee@gyuholee.cafe24.com": {
-    "www": {}
+    "bakery": {},
+    "travel": {},
+    "www": {
+      "bakery": {
+        "images": {
+          "logo": {
+            "logo.jpg": {
+              "type": "-",
+              "size": 48388,
+              "lmtime": 0,
+              "modified": false
+            },
+            "logo.psd": {
+              "type": "-",
+              "size": 152082,
+              "lmtime": 1647357922640,
+              "modified": false
+            },
+            "logo.png": {
+              "type": "-",
+              "size": 33183,
+              "lmtime": 1647357935287,
+              "modified": false
+            }
+          }
+        },
+        "index.php": {
+          "type": "-",
+          "size": 4771,
+          "lmtime": 1647363338355,
+          "modified": false
+        },
+        "script.js": {
+          "type": "-",
+          "size": 602,
+          "lmtime": 1647360568953,
+          "modified": false
+        },
+        "style.css": {
+          "type": "-",
+          "size": 6576,
+          "lmtime": 1647363410200,
+          "modified": false
+        },
+        "style.scss": {
+          "type": "-",
+          "size": 9169,
+          "lmtime": 1647363410150,
+          "modified": false
+        },
+        "template.html": {
+          "type": "-",
+          "size": 1137,
+          "lmtime": 0,
+          "modified": false
+        }
+      },
+      "travel": {}
+    }
   },
   "$version": 1
 }

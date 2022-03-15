@@ -7,7 +7,7 @@ $db = mysqli_connect($host, $user, $pass);
 mysqli_select_db($db, 'gyuholee');
 
 // 변수 선언
-$sitetitle = 'BAKERY';
+$sitetitle = 'DD베이커리';
 $logo = '';
 $topmenu = '';
 $mainmenu = '';
@@ -20,17 +20,26 @@ $privacy = '';
 $company = '';
 $postscript = '';
 
+// 페이지
+$page = '';
+$page = isset($_REQUEST['page'])?$_REQUEST['page']:'';
+$sitetitle .= isset($_REQUEST['page'])?' : '.$_REQUEST['page']:'';
+
+// 슬라이드 딜레이
+$slidedelay = 3500;
+
+
 // 로고
 $logo = "
   <a href='index.php'>
-    <img src='images/logo/logo.jpg'>
+    <img src='images/logo/logo.png'>
   </a>
 ";
 
 // 탑메뉴
 $topmenu = "
-  <a href='#'>LOGIN</a>
-  <a href='#'>SIGNUP</a>
+  <a href='#login'>로그인</a>
+  <a href='#register'>회원가입</a>
 ";
 
 // 메인메뉴
@@ -52,14 +61,15 @@ $menulist = array(
   ]
 );
 foreach ($menulist as $key => $value) {
+  $active = ($key==$page)?'active':'';
   $mainmenu .= "
     <li> 
-      <a href='#'>$key</a>
+      <a class='$active' href='?page=$key'>$key</a>
       <ul class='submenu'>
   ";
   foreach ($value as $val) {
     $mainmenu .= "
-      <li><a href='#'>$val</a></li>
+      <li><a href='?page=$key'>$val</a></li>
     ";
   }
   $mainmenu .= "
@@ -203,7 +213,7 @@ $company = "
 // 포스트스크립트
 $postscript = "
   <script>
-    carousel();
+    imgSlide($slidedelay);
   </script>
 ";
 

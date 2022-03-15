@@ -1,8 +1,9 @@
 var i = 0;
 var hi = 0;
 
-function carousel() {
+function imgSlide(delay=2000) {
   var x = document.querySelectorAll('#imgslide>.imgs>.img');
+  x[i].style.opacity = 1;
   x[i].className = 'img';
   x[i].style.zIndex = 1;
   hi = i-2;
@@ -14,13 +15,16 @@ function carousel() {
     bi = bi+x.length;
   }
   x[hi].className = 'img hide';
+  x[hi].style.opacity = 0;
   x[bi].style.zIndex = 0;
+  // x[bi].style.display = 'none';
   if (i+1 == x.length) {
     i = 0;
   } else {
     i++;
   }
-  setTimeout(carousel, 2000);
+  // setTimeout(imgSlide, 3500);
+  setTimeout(() => {
+    imgSlide(delay);
+  }, delay);
 }
-
-// carousel();
