@@ -90,6 +90,7 @@ a {
       display: flex;
       justify-content: center;
       height: 50px;
+      padding: 0 25px;
       line-height: 50px;
       // font-size: 1.2em;
       // background-color: white;
@@ -100,6 +101,9 @@ a {
         max-width: 160px;
         line-height: inherit;
         font-weight: bold;
+        // @media screen and (max-width: $media-width-min) {
+        //   max-width: 120px;
+        // }
         >a {
           display: block;
           width: 100%;
@@ -214,7 +218,7 @@ a {
         padding: 5px 20px;
         border-radius: 15px;
         color: white;
-        font-family: "나눔명조";
+        font-family: "나눔명조", "Nanum Myeongjo", serif;
         font-size: 1.25em;
         text-shadow: 0 0 1px black, 0 1px 3px black;
         background-color: rgba(white, 0.25);
@@ -228,7 +232,7 @@ a {
     box-sizing: initial;
     // align-self: top;
     color: white;
-    font-family: "나눔명조";
+    font-family: "나눔명조", "Nanum Myeongjo", serif;
     font-size: 1.5em;
     letter-spacing: .15em;
     text-shadow: 0 0 1px black, 0 1px 3px black;
