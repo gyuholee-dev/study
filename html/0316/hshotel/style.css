@@ -1,0 +1,378 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "맑은 고딕";
+  color: #001018;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 500px;
+  position: relative;
+  background-color: black;
+  background-image: url("images/ing_main_banner01.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+#header .shadow {
+  position: absolute;
+  width: 100%;
+  height: 180px;
+}
+
+#header .shadow.black {
+  top: 0;
+  opacity: 0.5;
+  background: linear-gradient(to bottom, black, transparent);
+}
+
+#header .shadow.white {
+  bottom: 0;
+  opacity: 0.35;
+  background: linear-gradient(to top, white, transparent);
+}
+
+#header .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 80px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  line-height: 1;
+  text-shadow: 0 0 1px black, 0 1px 3px black;
+}
+
+#header .logo img {
+  width: 140px;
+  filter: invert(1) contrast(1.5) brightness(1.2) drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+}
+
+#header .logo h1 {
+  font-family: "Cambria", "나눔명조", "Nanum Myeongjo", serif;
+  font-size: 2em;
+  font-weight: initial;
+  letter-spacing: 0.15em;
+}
+
+#header .logo span {
+  font-size: .8em;
+  letter-spacing: 0.2em;
+}
+
+#header .mainmenu {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  padding: 0 25px;
+  line-height: 50px;
+  font-size: 1.15em;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+#header .mainmenu > li {
+  height: inherit;
+  text-align: center;
+  width: 100%;
+  max-width: 160px;
+  line-height: inherit;
+}
+
+#header .mainmenu > li > a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+#header .mainmenu > li:hover {
+  height: fit-content;
+}
+
+#header .mainmenu > li:hover > a {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.15s;
+}
+
+#header .mainmenu > li.active > a {
+  border-bottom: 4px solid #0085e6;
+}
+
+#header .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+#header .welcome {
+  transform: translateY(-35%);
+  font-family: "나눔명조", "Nanum Myeongjo", serif;
+  font-size: 1.3em;
+  text-shadow: 0 0 1px black, 0 1px 3px black;
+  text-align: center;
+}
+
+#header .welcome h1 {
+  font-weight: initial;
+  margin-bottom: 10px;
+  letter-spacing: 0.125em;
+}
+
+#header .welcome span {
+  letter-spacing: 0.2em;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#content .wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  margin: 0 auto 15px;
+}
+
+#content .wrap.blue {
+  background-color: #002d4e;
+  color: #bbe3ff;
+}
+
+#content .wrap .conbox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 250px;
+  padding: 15px;
+}
+
+#content .wrap .conbox.max {
+  max-width: initial;
+}
+
+#content .title {
+  font-family: "나눔명조", "Nanum Myeongjo", serif;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.75em;
+  letter-spacing: 0.12em;
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+  margin-bottom: 10px;
+}
+
+#content .title:hover {
+  cursor: pointer;
+  color: #0085e6;
+  border-bottom: 1px solid #0085e6;
+  transition: all 0.15s;
+}
+
+#content .title:hover::before {
+  filter: grayscale(0);
+}
+
+#content .box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+#content .box.row {
+  flex-direction: row;
+}
+
+#content .box.column {
+  flex-direction: column;
+}
+
+#content .box.half {
+  width: 50%;
+}
+
+@media screen and (max-width: 680px) {
+  #content .box.half {
+    width: 100%;
+  }
+}
+
+#content .box img {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  border-radius: 8px;
+}
+
+#content #intro .article {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  min-width: 220px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#content #intro .article > h1 {
+  font-size: 1.15em;
+  padding: 0 5px;
+  margin: 5px 0;
+}
+
+#content #intro .article > span {
+  font-size: 0.95em;
+  padding: 0 5px;
+}
+
+#content #intro .article img {
+  width: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  border-radius: 8px;
+}
+
+#content #intro .article:hover {
+  cursor: pointer;
+  background-color: #eeeeee;
+}
+
+#content #intro .article:hover > h1 {
+  color: #0085e6;
+}
+
+#content #intro .scroll {
+  width: inherit;
+  overflow-x: auto;
+  justify-content: start;
+}
+
+#content #story .box {
+  padding: 10px 20px;
+}
+
+#content #story h1 {
+  font-family: "나눔명조", "Nanum Myeongjo", serif;
+  font-size: 1.6em;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  font-weight: initial;
+  margin-bottom: 10px;
+  position: relative;
+  top: -5px;
+}
+
+#content #story span {
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 800px) {
+  #content #story .box.row {
+    padding: 10px 0;
+    flex-direction: column-reverse;
+  }
+  #content #story .box.half {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+#content #links .box {
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+#content #links .title {
+  font-size: 1.5em;
+  width: 100%;
+}
+
+#content #links a {
+  text-align: center;
+  width: 120px;
+  padding: 10px;
+  margin: 0 10px;
+  font-size: 0.9em;
+  color: #888888;
+}
+
+#content #links a img {
+  border: none;
+}
+
+#content #footer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 115px;
+  background-color: #dddddd !important;
+  margin-bottom: 0;
+  font-size: 0.95em;
+  text-align: center;
+}
+
+#content #footer .box {
+  align-items: center;
+}
+
+#content #footer a:hover {
+  color: #0085e6;
+}
+
+#content #footer .conbox {
+  min-height: initial;
+}
+
+#content #footer p {
+  margin-bottom: 10px;
+}
+
+#content #footer .links {
+  border-radius: 5px;
+  width: 300px;
+  padding: 5px;
+  font-size: 1em;
+  background-color: white;
+}
+
+#content #footer .links:focus-visible {
+  border: 1px solid #29cdff;
+  outline: 1px solid #0072ff;
+  box-shadow: 0 0 6px #0014ff;
+}

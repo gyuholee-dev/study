@@ -57,7 +57,6 @@ a {
     position: absolute;
     left: 15px;
     z-index: 2;
-    // margin-top: 15px;
     img {
       width: 100%;
     }
@@ -66,13 +65,11 @@ a {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    // background-color: white;
     z-index: 1;
     .topmenu {
       display: flex;
       align-items: flex-start;
       justify-content: end;
-      // height: 65px;
       flex-grow: 1;
       font-size: .9em;
       position: relative;
@@ -94,7 +91,6 @@ a {
       padding: 0 25px;
       line-height: 50px;
       // font-size: 1.2em;
-      // background-color: white;
       >li {
         height: inherit;
         text-align: center;
@@ -102,9 +98,6 @@ a {
         max-width: 160px;
         line-height: inherit;
         font-weight: bold;
-        // @media screen and (max-width: $media-width-min) {
-        //   max-width: 120px;
-        // }
         >a {
           display: block;
           width: 100%;
@@ -136,9 +129,7 @@ a {
         }
       }
       .submenu {
-        // display: none;
         position: relative;
-        // top: -100%;
         z-index: 1;
         background-color: rgba(white, 0.65);
         font-weight: bold;
@@ -147,12 +138,9 @@ a {
         padding: 10px 0;
         backdrop-filter: blur(5px);
         transform: translateY(-100%);
-        // border-top: 1px solid black;
         li {
-          // padding: 5px;
           height: 35px;
           line-height: 35px;
-          // border-left: 4px solid transparent;
           >a {
             display: block;
             width: 100%;
@@ -160,10 +148,7 @@ a {
             &:hover {
               cursor: pointer;
               color: $color-emp;
-              // border-left: 4px solid $color-emp;
-              // border-right: 4px solid white;
               background-color: white;
-              // border-bottom: 4px solid $color-emp;
               transition: all 0.15s;
             }
           }
@@ -215,7 +200,6 @@ a {
         position: absolute;
         bottom: 10px;
         right: 10px;
-        // transform: translate(-50%);
         padding: 5px 20px;
         border-radius: 15px;
         color: white;
@@ -237,23 +221,14 @@ a {
     font-size: 1.5em;
     letter-spacing: .15em;
     text-shadow: 0 0 1px black, 0 1px 3px black;
-    // margin: 0 15px 10px auto;
     position: absolute;
-    // left: 50%;
     top: 50%;
     left: 50%;
     z-index: 2;
     transform: translate(-50%, -50%);
-    // right: 15px;
-    // bottom: 10px;
-    // width: 100%;
     padding: 15px 30px;
     border-radius: 15px;
-    // border-bottom-left-radius: 15px;
-    // border-bottom-right-radius: 15px;
-    // text-align: right;
     background-color: rgba($color-black, 0.25);
-    // background-color: $color-black;
     backdrop-filter: blur(5px);
     // &:hover {
     //   cursor: pointer;
@@ -286,7 +261,6 @@ a {
     font-size: 1.2em;
     padding: 5px 10px;
     border-bottom: 2px solid #cccccc;
-    // border-radius: 15px;
     margin-bottom: 10px;
     // &::before {
     //   content: "";

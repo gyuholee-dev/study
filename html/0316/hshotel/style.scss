@@ -1,0 +1,363 @@
+// 변수
+$max-width: 1200px;
+$media-width-large: 960px;
+$media-width-middle: 800px;
+$media-width-min: 680px;
+$color-emp: #0085e6;
+$color-shine: #bbe3ff;
+$color-light: #00599a;
+$color-dark: #002d4e;
+$color-black: #001018;
+$color-background: white;
+$color-background-blue: #002d4e;
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "맑은 고딕";
+  color: $color-black;
+  font-size: 16px;
+  // background-color: $color-background;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  // max-width: $max-width;
+  margin: 0 auto;
+}
+
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 500px;
+  position: relative;
+  // @media screen and (max-width: $media-width-middle) {
+  //   height: 320px;
+  // }
+  background-color: black;
+  background-image: url("images/ing_main_banner01.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  .shadow {
+    position: absolute;
+    width: 100%;
+    height: 180px;
+    &.black {
+      top: 0;
+      opacity: 0.5;
+      background: linear-gradient(to bottom, black, transparent);
+    }
+    &.white {
+      bottom: 0;
+      opacity: 0.35;
+      background: linear-gradient(to top, white, transparent);
+    }
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 80px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    line-height: 1;
+    text-shadow: 0 0 1px black, 0 1px 3px black;
+    img {
+      width: 140px;
+      filter: 
+        invert(1) 
+        contrast(1.5) 
+        brightness(1.2)
+        drop-shadow(0 0 4px rgba(black, 0.5));
+    }
+    h1 {
+      font-family: "Cambria", "나눔명조", "Nanum Myeongjo", serif;
+      font-size: 2em;
+      font-weight: initial;
+      letter-spacing: 0.15em;
+    }
+    span {
+      font-size: .8em;
+      letter-spacing: 0.2em;
+    }
+  }
+  .mainmenu {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    padding: 0 25px;
+    line-height: 50px;
+    font-size: 1.15em;
+    border-top: 1px solid rgba(white, 0.5);
+    text-shadow: 0 0 4px rgba(black, 0.5);
+    >li {
+      height: inherit;
+      text-align: center;
+      width: 100%;
+      max-width: 160px;
+      line-height: inherit;
+      // font-weight: bold;
+      >a {
+        display: block;
+        width: 100%;
+        height: 50px;
+        position: relative;
+        z-index: 2;
+      }
+      &:hover {
+        height: fit-content;
+        >a {
+          cursor: pointer;
+          // color: $color-emp;
+          background-color: rgba(black, 0.5);
+          transition: all 0.15s;
+        }
+      }
+      &.active {
+        >a {
+          border-bottom: 4px solid $color-emp;
+        }
+      }
+    }
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-grow: 1;
+  }
+  .welcome {
+    // top: 50%;
+    transform: translateY(-35%);
+    font-family: "나눔명조", "Nanum Myeongjo", serif;
+    font-size: 1.3em;
+    text-shadow: 0 0 1px black, 0 1px 3px black;
+    text-align: center;
+    h1 {
+      font-weight: initial;
+      margin-bottom: 10px;
+      letter-spacing: 0.125em;
+    }
+    span {
+      letter-spacing: 0.2em;
+    }
+  }
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  .wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    margin: 0 auto 15px;
+    &.blue {
+      background-color: $color-background-blue;
+      color: $color-shine;
+    }
+    .conbox {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: $max-width;
+      min-height: 250px;
+      padding: 15px;
+      &.max {
+        max-width: initial;
+      }
+    }
+  }
+  .title {
+    font-family: "나눔명조", "Nanum Myeongjo", serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.75em;
+    letter-spacing: 0.12em;
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(grey, 0.5);
+    margin-bottom: 10px;
+    &:hover {
+      cursor: pointer;
+      color: $color-emp;
+      border-bottom: 1px solid $color-emp;
+      transition: all 0.15s;
+      &::before {
+        filter: grayscale(0);
+      }
+    }
+  }
+  .box {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    // padding: 0 10px;
+    position: relative;
+    &.row {
+      flex-direction: row;
+      // flex-wrap: wrap;
+    }
+    &.column {
+      flex-direction: column;
+    }
+    &.half { 
+      width: 50%; 
+      @media screen and (max-width: $media-width-min) {
+        width: 100%;
+      }
+    }
+    img {
+      width: 100%;
+      border: 1px solid rgba(grey, 0.5);
+      border-radius: 8px;
+    }
+  }
+  
+  #intro { 
+    .article {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      min-width: 220px;
+      padding: 10px;
+      border-radius: 10px;
+      >h1 {
+        font-size: 1.15em;
+        padding: 0 5px;
+        margin: 5px 0;
+      }
+      >span {
+        font-size: 0.95em;
+        padding: 0 5px;
+      }
+      img {
+        width: 100%;
+        border: 1px solid rgba(grey, 0.5);
+        border-radius: 8px;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: #eeeeee;
+        >h1 {
+          color: $color-emp;
+        }
+      }
+    }
+    .scroll {
+      width: inherit;
+      overflow-x: auto;
+      justify-content: start;
+    }
+  }
+
+  #story {
+    .box {
+      padding: 10px 20px;
+    }
+    h1 {
+      font-family: "나눔명조", "Nanum Myeongjo", serif;
+      font-size: 1.6em;
+      letter-spacing: 0.12em;
+      line-height: 1.5;
+      font-weight: initial;
+      margin-bottom: 10px;
+      position: relative;
+      top: -5px;
+    }
+    span {
+      font-size: 0.9em;
+    }
+    @media screen and (max-width: $media-width-middle) {
+      .box.row {
+        padding: 10px 0;
+        flex-direction: column-reverse;
+      }
+      .box.half {
+        width: 100%;
+        align-items: center;
+      }
+    }
+  }
+
+  #links {
+    .box {
+      flex-wrap: wrap;
+      padding: 0 10px;
+    }
+    .title {
+      font-size: 1.5em;
+      width: 100%;
+    }
+    a {
+      text-align: center;
+      width: 120px;
+      padding: 10px;
+      margin: 0 10px;
+      font-size: 0.9em;
+      color: #888888;
+      img {
+        border: none;
+      }
+    }
+  }
+
+  #footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 115px;
+    background-color: #dddddd !important;
+    margin-bottom: 0;
+    font-size: 0.95em;
+    text-align: center;
+    .box {
+      align-items: center;
+    }
+    a:hover {
+      color: $color-emp;
+    }
+    .conbox {
+      min-height: initial;
+    }
+    p {
+      margin-bottom: 10px;
+    }
+    .links {
+      border-radius: 5px;
+      width: 300px;
+      padding: 5px;
+      font-size: 1em;
+      background-color: white;
+      &:focus-visible {
+        border: 1px solid #29cdff;
+        outline: 1px solid #0072ff;
+        box-shadow: 0 0 6px #0014ff;
+      }
+    }
+  }
+
+}
