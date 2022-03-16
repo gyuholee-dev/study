@@ -9,25 +9,25 @@
         "index.php": {
           "type": "-",
           "size": 4778,
-          "lmtime": 1647446058428,
+          "lmtime": 0,
           "modified": false
         },
         "style.css": {
           "type": "-",
-          "size": 7505,
-          "lmtime": 1647446197855,
+          "size": 7557,
+          "lmtime": 1647447701980,
           "modified": false
         },
         "style.scss": {
           "type": "-",
-          "size": 9058,
-          "lmtime": 1647446197806,
+          "size": 9110,
+          "lmtime": 1647447701541,
           "modified": false
         },
         "template.html": {
           "type": "-",
           "size": 1422,
-          "lmtime": 1647446098634,
+          "lmtime": 0,
           "modified": false
         }
       }
