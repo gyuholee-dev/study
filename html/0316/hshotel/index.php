@@ -33,6 +33,11 @@ $menulist = array(
   '다이닝'=>[],
   '웨딩&연회'=>[],
 );
+$mainmenu .= "
+  <li class='menu'>
+    <a href='#'>&#9776;</a>
+  </li>
+";
 foreach ($menulist as $key => $menu) {
   $str = $key;
   $key = str_replace('&', '_', $key);
@@ -47,7 +52,7 @@ foreach ($menulist as $key => $menu) {
 // 웰컴
 $welcome = "
   <h1>Enjoy All Day All Night</h1>
-  <span>아름다운 부산의 풍경이 파노라마처럼 펼쳐지는 곳</span>
+  <p>아름다운 부산의 풍경이 파노라마처럼 펼쳐지는 곳</p>
 ";
 
 // 인트로
@@ -81,9 +86,9 @@ $intro .= "
 foreach ($introlist as $key => $data) {
   $intro .= "
     <div class='article'>
-      <a href='#'><img src='images/$data[image]'></a>
+      <a class='image' href='#intro'><img src='images/$data[image]'></a>
       <h1>$data[title]</h1>
-      <span>$data[description]</span>
+      <p>$data[description]</p>
     </div>
   ";
 }
@@ -96,14 +101,15 @@ $story .= "
   <div class='title'>Brand Story</div>
   <div class='box row'>
     <div class='box column half'>
-      <h1><i>\"잊지못할 특별한 순간,<br>&nbsp;행복의 경험을 선물하다\"</i></h1>
-      <span>
+      <h1><i>\"잊지못할 특별한 순간, 행복의 경험을 선물하다\"</i></h1>
+      <p>
         머무르는 공간의 이야기가 풍부할수록 기억은 더 특별해집니다.
         일상에서 무뎌진 감정과 설렘을 다시 깨우는 HS HOTEL만의 이야기를 만나세요.
-      </span>
+      </p>
+      <a class='button' href='#story'>스토리 더보기</a>
     </div>
     <div class='box columns half'>
-      <a href='#'><img src='images/ing_brandstory01.jpg'></a>
+      <a class='image' href='#story'><img src='images/ing_brandstory01.jpg'></a>
     </div>
   </div>
 ";
@@ -112,22 +118,22 @@ $story .= "
 $membership = "
   <div class='box row half'>
     <div class='title'>Membership Guide</div>
-    <a href='#'>
+    <a href='#links'>
       <img src='images/ico_membershipguide01.png'>
       <span>FITNESS</span>
     </a>
-    <a href='#'>
+    <a href='#links'>
       <img src='images/ico_membershipguide02.png'>
       <span>GOLF CLUB</span>
     </a>
   </div>
-  <div class='box rows half'>
+  <div class='box row half'>
     <div class='title'>Other Service</div>
-    <a href='#'>
+    <a href='#links'>
       <img src='images/ico_otherservice01.png'>
       <span>CS CENTER</span>
     </a>
-    <a href='#'>
+    <a href='#links'>
       <img src='images/ico_otherservice02.png'>
       <span>EVENT</span>
     </a>
@@ -137,9 +143,9 @@ $membership = "
 // 프라이버시
 $privacy = "
   <p>
-    <a href='#'>고객센터</a> |
-    <a href='#'>이용약관</a> |
-    <a href='#'>개인정보보호</a>
+    <a href='#footer'>고객센터</a> |
+    <a href='#footer'>이용약관</a> |
+    <a href='#footer'>개인정보보호</a>
   </p>
 ";
 

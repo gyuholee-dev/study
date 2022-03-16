@@ -5,6 +5,7 @@
   list-style: none;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  word-break: keep-all;
 }
 
 body {
@@ -108,6 +109,11 @@ a {
   line-height: inherit;
 }
 
+#header .mainmenu > li.menu {
+  display: none;
+  font-size: 1.25em;
+}
+
 #header .mainmenu > li > a {
   display: block;
   width: 100%;
@@ -130,6 +136,17 @@ a {
   border-bottom: 4px solid #0085e6;
 }
 
+@media screen and (max-width: 680px) {
+  #header .mainmenu > li.menu {
+    display: block;
+    width: 100%;
+    max-width: initial;
+  }
+  #header .mainmenu > li:not(.menu) {
+    display: none;
+  }
+}
+
 #header .title {
   display: flex;
   align-items: center;
@@ -150,10 +167,12 @@ a {
   font-weight: initial;
   margin-bottom: 10px;
   letter-spacing: 0.125em;
+  padding: 0 10px;
 }
 
-#header .welcome span {
+#header .welcome p {
   letter-spacing: 0.2em;
+  padding: 0 10px;
 }
 
 #content {
@@ -168,7 +187,7 @@ a {
   justify-content: center;
   width: 100%;
   background-color: white;
-  margin: 0 auto 15px;
+  margin: 0 auto 10px;
 }
 
 #content .wrap.blue {
@@ -182,7 +201,7 @@ a {
   width: 100%;
   max-width: 1200px;
   min-height: 250px;
-  padding: 15px;
+  padding: 15px 0;
 }
 
 #content .wrap .conbox.max {
@@ -203,8 +222,8 @@ a {
 #content .title:hover {
   cursor: pointer;
   color: #0085e6;
-  border-bottom: 1px solid #0085e6;
-  transition: all 0.15s;
+  border-color: #0085e6;
+  transition: color 0.15s;
 }
 
 #content .title:hover::before {
@@ -220,6 +239,7 @@ a {
 
 #content .box.row {
   flex-direction: row;
+  justify-content: space-around;
 }
 
 #content .box.column {
@@ -236,10 +256,32 @@ a {
   }
 }
 
-#content .box img {
-  width: 100%;
-  border: 1px solid rgba(128, 128, 128, 0.5);
+#content .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
   border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+#content .image img {
+  width: 100%;
+}
+
+#content .image::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(128, 128, 128, 0.5);
+}
+
+#content .image:hover::after {
+  box-shadow: inset 0 0 0 1px #0085e6;
+  transition: box-shadow 0.25s;
 }
 
 #content #intro .article {
@@ -257,28 +299,25 @@ a {
   margin: 5px 0;
 }
 
-#content #intro .article > span {
+#content #intro .article > p {
   font-size: 0.95em;
   padding: 0 5px;
-}
-
-#content #intro .article img {
-  width: 100%;
-  border: 1px solid rgba(128, 128, 128, 0.5);
-  border-radius: 8px;
 }
 
 #content #intro .article:hover {
   cursor: pointer;
   background-color: #eeeeee;
+  transition: all 0.15s;
 }
 
 #content #intro .article:hover > h1 {
   color: #0085e6;
+  transition: all 0.15s;
 }
 
 #content #intro .scroll {
   width: inherit;
+  padding: 0 10px;
   overflow-x: auto;
   justify-content: start;
 }
@@ -295,11 +334,30 @@ a {
   font-weight: initial;
   margin-bottom: 10px;
   position: relative;
-  top: -5px;
+  padding: 0 10px;
 }
 
-#content #story span {
+#content #story p {
   font-size: 0.9em;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+#content #story .button {
+  align-self: center;
+  font-size: 1.15em;
+  padding: 6px 20px;
+  border: 1px solid #bbe3ff;
+  border-radius: 20px;
+}
+
+#content #story .button:hover {
+  color: white;
+  border-color: white;
+  text-shadow: 0 0 4px white;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: all 0.15s;
 }
 
 @media screen and (max-width: 800px) {
@@ -310,6 +368,9 @@ a {
   #content #story .box.half {
     width: 100%;
     align-items: center;
+  }
+  #content #story h1, #content #story p {
+    text-align: center;
   }
 }
 
