@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{sitetitle}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<div id="container">
+
+  <header>
+    <div class="logo">
+      {logo}
+    </div>
+    <nav>
+      <div class="topmenu">
+        {topmenu}
+      </div>
+      <ul class="mainmenu">
+        {mainmenu}
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article> 
+      <section id="imgslide">
+        <div class="imgs">
+          {imgs}
+        </div>
+        <div class="welcome">
+          {welcome}
+        </div>
+      </section>
+
+      <section id="content">
+        <div class="box half">
+          {notice}
+        </div>
+        <div class="box half">
+          {partner}
+        </div>
+        <div class="box">
+          {link}
+        </div>
+      </section>
+    </article>
+
+    <aside class="left">
+      <div class="ad">
+        <img src="images/bakery-ad-flyer.png">
+      </div>
+    </aside>
+
+    <aside class="right">
+      <div class="sidemenu"></div>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="left">
+      {privacy}
+    </div>
+    <div class="right">
+      {company}
+    </div>
+  </footer>
+
+</div>
+{postscript}
+</body>
+</html>

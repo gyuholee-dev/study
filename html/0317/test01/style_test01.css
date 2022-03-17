@@ -1,0 +1,248 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  word-break: keep-all;
+}
+
+body {
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  color: black;
+  font-size: 16px;
+  background-color: #dddddd;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#container {
+  width: 1000px;
+  background-color: white;
+}
+
+header {
+  display: flex;
+  width: 1000px;
+  height: 110px;
+  margin: 0 auto;
+}
+
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 1000px;
+  min-height: 500px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+article {
+  width: 500px;
+  min-height: 350px;
+}
+
+aside {
+  width: 0;
+  height: 100%;
+  flex-grow: 0;
+  position: relative;
+  left: 20px;
+  top: 0;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 1000px;
+  height: 150px;
+  margin: 0 auto;
+  background-color: navy;
+}
+
+header .logo {
+  width: 250px;
+  height: 110px;
+}
+
+header .logo img {
+  height: 100%;
+}
+
+header nav {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  width: 750px;
+  height: 110px;
+  position: relative;
+}
+
+header nav .menu {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+}
+
+header nav .menu > li {
+  width: 200px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  position: relative;
+}
+
+header nav .menu > li:hover {
+  cursor: pointer;
+  background-color: orange;
+}
+
+header nav .menu > li:hover .submenu {
+  height: 160px;
+  transition: all linear 0.25s;
+}
+
+header nav .menu > li .submenu {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  z-index: 2;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+header nav .menu > li .submenu > li:hover {
+  background-color: white;
+}
+
+header nav .topmenu {
+  align-self: end;
+  margin-right: 15px;
+}
+
+section #imgslide {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+
+section #imgslide img {
+  position: absolute;
+  width: 100%;
+}
+
+section #imgslide .welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  align-self: center;
+  text-align: center;
+  width: 250px;
+  height: 100px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 1.2em;
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+section #imgbox {
+  display: flex;
+  height: 230px;
+}
+
+section #imgbox .imgs {
+  width: 200px;
+  height: 180px;
+  border: 1px solid #666;
+}
+
+section #imgbox .imgs img {
+  width: 90%;
+  height: auto;
+}
+
+article {
+  padding: 15px;
+}
+
+article:first-of-type {
+  border-right: 1px solid #ddd;
+}
+
+article .title {
+  font-size: 1.2em;
+  padding: 5px;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+}
+
+article .title:hover {
+  cursor: pointer;
+  color: #bb692d;
+  border-color: #bb692d;
+}
+
+article table {
+  width: calc(100% - 30px);
+  margin: 0 15px;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+article table th, article table td {
+  padding: 5px 10px;
+}
+
+article table tr:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+
+article table tr:nth-child(2n) {
+  background-color: #eee;
+}
+
+article table tr:not(:first-child):hover {
+  cursor: pointer;
+  background-color: #fce3da;
+}
+
+article::after {
+  content: "";
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  border-top: 2px solid #ddd;
+}
+
+footer {
+  color: white;
+  /* .box {
+    width: 50%;
+  } */
+}
+
+aside .sidemenu {
+  position: fixed;
+  bottom: 20%;
+  width: 80px;
+  height: 200px;
+  border: 1px solid;
+  background-color: white;
+}
