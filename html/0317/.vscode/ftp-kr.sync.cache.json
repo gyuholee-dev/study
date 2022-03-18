@@ -5,34 +5,11 @@
     "travel": {},
     "www": {
       "bakery": {
-        "images": {
-          "icons": {},
-          "index.png": {
-            "type": "-",
-            "size": 1012297,
-            "lmtime": 0,
-            "modified": false
-          },
-          "index2.png": {
-            "type": "-",
-            "size": 71318,
-            "lmtime": 0,
-            "modified": false
-          },
-          "logo": {},
-          "partner": {},
-          "slide": {},
-          "bakery-ad-flyer.png": {
-            "type": "-",
-            "size": 223127,
-            "lmtime": 1647501936492,
-            "modified": false
-          }
-        },
+        "images": {},
         "index.php": {
           "type": "-",
           "size": 4782,
-          "lmtime": 1647500628620,
+          "lmtime": 0,
           "modified": false
         },
         "script.js": {
@@ -44,19 +21,19 @@
         "style.css": {
           "type": "-",
           "size": 7646,
-          "lmtime": 1647502217034,
+          "lmtime": 0,
           "modified": false
         },
         "style.scss": {
           "type": "-",
           "size": 9908,
-          "lmtime": 1647502217014,
+          "lmtime": 0,
           "modified": false
         },
         "template.html": {
           "type": "-",
           "size": 1563,
-          "lmtime": 1647502047743,
+          "lmtime": 0,
           "modified": false
         }
       }

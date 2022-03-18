@@ -1,0 +1,245 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  word-break: keep-all;
+}
+
+body {
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  color: #26170d;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  height: 100%;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+#container header,
+#container nav,
+#container main,
+#container article,
+#container section,
+#container aside,
+#container footer,
+#container > div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+header {
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+main {
+  flex-direction: column;
+  justify-content: start !important;
+}
+
+section {
+  flex-direction: column;
+  align-items: center;
+  justify-content: start !important;
+}
+
+button {
+  min-width: 100px;
+  font-size: 1em;
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: 1px solid rgba(66, 45, 32, 0.5);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+header {
+  position: fixed !important;
+  z-index: 9;
+}
+
+header .logo {
+  height: 60px;
+  margin: 5px 0;
+}
+
+header .logo img {
+  height: 100%;
+}
+
+header .mainmenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  font-size: 0.9em;
+  text-align: center;
+  border-bottom: 1px solid rgba(66, 45, 32, 0.25);
+}
+
+header .mainmenu > .menu {
+  width: 100%;
+  max-width: 140px;
+  height: inherit;
+}
+
+header .mainmenu > .menu > a {
+  display: block;
+  height: 100%;
+  font-family: "Quicksand";
+  line-height: 40px;
+}
+
+header .mainmenu > .menu:hover > a {
+  color: #e68f38;
+}
+
+main {
+  margin-top: 110px;
+}
+
+main article {
+  margin-bottom: 15px;
+}
+
+main section {
+  width: 100%;
+  max-width: 1140px;
+  height: 400px;
+  padding: 15px;
+}
+
+main section h1, main section h2, main section h3, main section h4, main section h5 {
+  font-family: "나눔명조", "Nanum Myeongjo", serif;
+  letter-spacing: 0.1em;
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: #a05913;
+}
+
+main section p {
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
+
+main section .title {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  font-family: "나눔명조", "Nanum Myeongjo", serif;
+  font-size: 1.6em;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  border-bottom: 1px solid rgba(66, 45, 32, 0.5);
+  color: #a05913;
+}
+
+main section .title.left {
+  text-align: left;
+}
+
+main section .title.right {
+  text-align: right;
+}
+
+main section .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+main section .box.half {
+  width: 50%;
+}
+
+main section .box.con {
+  padding: 15px;
+  flex-direction: column;
+}
+
+main section .box button {
+  align-self: center;
+}
+
+main section .box .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 240px;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid rgba(66, 45, 32, 0.5);
+}
+
+main section .box .image img {
+  width: 100%;
+  height: auto;
+}
+
+main #imgslide .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid rgba(66, 45, 32, 0.25);
+  color: #ffeddb;
+}
+
+main #imgslide .image img {
+  position: absolute;
+  height: 400px;
+}
+
+main #imgslide .image .title {
+  width: initial;
+  border: none;
+  font-size: 2em;
+}
+
+main #imgslide #wedding_dress {
+  background-color: #7a697c;
+}
+
+main #imgslide #wedding_photo {
+  background-color: #d1b59d;
+}
+
+main #imgslide #wedding_planner {
+  background-color: #cdc7bb;
+}
+
+footer {
+  height: 120px;
+  background-color: #422d20;
+}
+
+footer section {
+  width: 100%;
+  max-width: 1140px;
+}

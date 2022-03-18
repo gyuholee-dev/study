@@ -1,0 +1,365 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "맑은 고딕";
+  font-size: 16px;
+  background-color: #dddddd;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#container > div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+}
+
+#header {
+  height: 100px;
+}
+
+#header .logo {
+  width: 200px;
+}
+
+#header .logo img {
+  width: 100%;
+}
+
+#header .menu {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+#header .menu .topmenu {
+  display: flex;
+  align-items: flex-start;
+  justify-content: end;
+  height: 50px;
+  font-size: .9em;
+  position: relative;
+  z-index: 2;
+  background-color: white;
+}
+
+#header .menu .topmenu > a {
+  color: #aaa;
+  margin-right: 10px;
+}
+
+#header .menu .topmenu > a:hover {
+  color: #4298cc;
+}
+
+#header .menu .bottommenu {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+#header .menu .bottommenu > li {
+  height: inherit;
+  text-align: center;
+  width: 100%;
+  max-width: 160px;
+  line-height: inherit;
+  font-weight: bold;
+}
+
+#header .menu .bottommenu > li > a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  position: relative;
+  z-index: 2;
+  background-color: white;
+}
+
+#header .menu .bottommenu > li:hover {
+  height: fit-content;
+}
+
+#header .menu .bottommenu > li:hover > a {
+  cursor: pointer;
+  color: #4298cc;
+  border-bottom: 4px solid #4298cc;
+  transition: all 0.15s;
+}
+
+#header .menu .bottommenu > li:hover .submenu {
+  display: block;
+  transform: translateY(0);
+  transition: all 0.25s;
+}
+
+#header .menu .bottommenu .submenu {
+  position: relative;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.65);
+  font-weight: bold;
+  font-size: .9em;
+  line-height: initial;
+  padding: 10px 0;
+  backdrop-filter: blur(5px);
+  transform: translateY(-100%);
+  border-top: 1px solid black;
+}
+
+#header .menu .bottommenu .submenu li {
+  height: 35px;
+  line-height: 35px;
+}
+
+#header .menu .bottommenu .submenu li > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#header .menu .bottommenu .submenu li > a:hover {
+  cursor: pointer;
+  color: #4298cc;
+  background-color: white;
+  transition: all 0.15s;
+}
+
+#imgslide {
+  height: 300px;
+  position: relative;
+  z-index: 0;
+}
+
+#imgslide .imgs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  border: 1px solid black;
+  overflow: hidden;
+  position: relative;
+}
+
+#imgslide .imgs .img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: all 0.5s;
+  z-index: 0;
+}
+
+#imgslide .imgs .img.hide {
+  transform: translateX(100%);
+}
+
+#imgslide .imgs .img > img {
+  width: 100%;
+  height: 100%;
+}
+
+#imgslide .imgs .img > .title {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 5px 20px;
+  border-radius: 15px;
+  color: white;
+  font-family: "나눔명조";
+  font-size: 1.25em;
+  text-shadow: 0 0 1px black, 0 1px 3px black;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+}
+
+#imgslide .welcome {
+  box-sizing: initial;
+  align-self: top;
+  color: white;
+  font-family: "나눔명조";
+  font-size: 1.5em;
+  text-shadow: 0 0 1px black, 0 1px 3px black;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  padding: 8px 18px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+}
+
+#content {
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+#content .box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 250px;
+  padding: 15px;
+}
+
+#content .box.half {
+  width: 50%;
+}
+
+@media screen and (max-width: 640px) {
+  #content .box.half {
+    width: 100%;
+  }
+}
+
+#content .title {
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 5px;
+  border-bottom: 2px solid #cccccc;
+  margin-bottom: 10px;
+}
+
+#content .title::before {
+  content: "";
+  background-image: url("images/icons/flight.png");
+  background-size: cover;
+  display: inline-block;
+  width: 20px;
+  height: 18px;
+  margin-right: 10px;
+  filter: grayscale(1);
+}
+
+#content .title:hover {
+  cursor: pointer;
+  color: #4298cc;
+  border-bottom: 2px solid #4298cc;
+  transition: all 0.15s;
+}
+
+#content .title:hover::before {
+  filter: grayscale(0);
+}
+
+#content .links {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+#content .links > a {
+  display: inline-block;
+  width: 120px;
+  height: 100px;
+  padding: 10px;
+  border: 2px solid #cccccc;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+}
+
+#content .links > a:not(:last-of-type) {
+  margin-right: 10px;
+}
+
+#content .links > a > img {
+  width: 80px;
+  filter: grayscale(1);
+}
+
+#content .links > a > span {
+  font-size: .9em;
+  background-color: white;
+  border: none;
+  position: relative;
+  top: -4px;
+}
+
+#content .links > a:hover {
+  border: 2px solid #4298cc;
+  transition: all 0.15s;
+}
+
+#content .links > a:hover > img {
+  filter: grayscale(0);
+}
+
+#content table {
+  width: 100%;
+  width: -webkit-fill-available;
+  text-align: center;
+  border-collapse: collapse;
+  margin: 0 10px;
+}
+
+#content table tr:first-of-type {
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: 5px;
+}
+
+#content table tr:not(:first-of-type):hover {
+  cursor: pointer;
+  background-color: #eeeeee;
+}
+
+#content table th,
+#content table td {
+  padding: 5px;
+}
+
+#content .hr {
+  margin-top: 10px;
+  border-bottom: 2px solid #cccccc;
+}
+
+#footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  min-height: 100px;
+  background-color: #3a75ff !important;
+  color: white;
+}
+
+#footer > div {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 10px 25px;
+}
+
+#footer > div.left {
+  align-items: center;
+  justify-content: center;
+}
+
+#footer > div.right {
+  font-size: .9em;
+  align-items: center;
+  justify-content: center;
+}
