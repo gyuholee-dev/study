@@ -3,12 +3,14 @@ $max-width: 1200px;
 $media-width-large: 960px;
 $media-width-middle: 800px;
 $media-width-min: 680px;
-$color-emp: #4298cc;
+$color-emp: #34a3e7;
 $color-shine: #eee;
 $color-light: #bbb;
+$color-grey: #808080;
 $color-dark: #444;
 $color-black: #222;
 $color-background: #eeeeee;
+// $color-background: #222;
 // $color-background: #74c5ff;
 // $color-background: #dff1ff;
 
@@ -24,7 +26,7 @@ body {
   font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
   color: $color-black;
   font-size: 16px;
-  word-break: keep-all;
+  word-break: break-all;
   background-color: $color-background;
 }
 
@@ -48,9 +50,13 @@ img {
   position: relative;
 }
 
-header, main, footer,
-article, section,
-nav, aside {
+header,
+main,
+footer,
+article,
+section,
+nav,
+aside {
   width: 100%;
   display: flex;
   align-items: start;
@@ -88,24 +94,26 @@ aside {
   }
 } */
 
-#container {
+/* #container {
   &::before {
     content: "";
     width: 100%;
-    height: 400px;
-    position: absolute;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(white, 0.5), transparent);
+    position: fixed;
     top: 0;
-    background: linear-gradient(to bottom, white, transparent);
-    opacity: 0.5;
+    z-index: 1;
   }
-}
+} */
 
 header {
   height: 140px;
   // flex-direction: column;
   align-items: center;
   // background-color: white;
+  // background-color: rgba(white, 0.5);
   z-index: 9;
+
   .logo {
     width: 120px;
     height: 120px;
@@ -116,6 +124,7 @@ header {
     overflow: hidden;
     position: absolute;
     z-index: 9;
+
     img {
       filter: drop-shadow(0 0 4px rgba(black, 0.15));
     }
@@ -130,16 +139,21 @@ header {
     align-items: start;
     justify-content: space-between;
     padding: 5px;
-    >.links {
+
+    i {
       font-size: 1.25em;
-      >a {
-        &:hover {
-          color: $color_emp;
-        }
-      }
     }
+
+    a:hover {
+      color: $color_emp;
+      transition: all 0.25s;
+    }
+
+    /* >.links {
+      
+    } */
+
     >.search {
-      // align-self: end;
       input {
         width: 160px;
         font-size: 1em;
@@ -160,12 +174,23 @@ nav {
   // justify-content: space-between;
   position: sticky;
   top: 0;
-  background-color: white;
+  // background-color: white;
   // background-color: rgba(white, 0.5);
-  background-color: transparent;
-  backdrop-filter: blur(8px);
+  // background-color: transparent;
+  // backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(black, 0.25);
-  z-index: 9;
+  z-index: 8;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(to top, rgba(white, 0.65), white);
+    backdrop-filter: blur(12px);
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+  }
 
   &::after {
     content: "";
@@ -181,7 +206,7 @@ nav {
     width: 100%;
     max-width: $max-width;
     height: inherit;
-    padding: 0 15px;
+    // padding: 0 15px;
     display: flex;
     flex-direction: row;
     align-items: start;
@@ -189,6 +214,8 @@ nav {
     font-family: "Quicksand";
     font-size: 0.95em;
     font-weight: bold;
+    letter-spacing: 0.05em;
+    overflow: hidden;
     $height-menu: 40px;
 
     >li {
@@ -200,16 +227,17 @@ nav {
       >a {
         display: block;
         // height: 39px;
-        height: $height-menu - 1;
+        // height: $height-menu - 1;
         padding: 10px;
 
         &:hover {
           cursor: pointer;
           color: $color-emp;
-          // background-color: rgba(black, 0.15);
+          // background-color: rgba(black, 0.5);
           background-color: white;
           // border-bottom: 4px solid $color-emp;
           transition: all 0.25s;
+          box-shadow: 0 0 24px rgba(black, 0.05);
         }
       }
 
@@ -232,7 +260,8 @@ main {
     flex-wrap: wrap;
 
     >li {
-      height: 160px;
+      height: 180px;
+      min-width: 180px;
       padding: 5px;
       flex-grow: 1;
     }
@@ -304,33 +333,43 @@ main {
       justify-content: center;
       width: 100%;
       height: 100%;
-      // padding: 10px;
-      background-color: white;
-      border: 1px solid rgba(black, 0.25);
+      padding: 8px;
+      background-color: $color-grey;
+      background-blend-mode: hard-light;
+      background-position: center;
+      background-size: auto 100%; 
+      // border: 1px solid rgba(black, 0.25);
+      border: 4px solid white;
+      box-shadow: 0 0 0 1px rgba(black, 0.25), inset 0 0 32px rgba(black, 0.25);
+      // box-shadow: inset 0 0 0 1px rgba(black, 0.25);
       border-radius: 10px;
+      position: relative;
       overflow: hidden;
+      color: white;
 
       img {
         height: 100%;
         width: auto;
       }
 
-      h1 {
+      .title {
         align-self: start;
         justify-self: top;
-        position: absolute;
-        color: white;
-        font-size: 2em;
-        font-weight: initial;
-        text-shadow: 0 1px 2px black;
-        margin-left: 10px;
+        // font-family: "Catamaran";
+        font-size: 2.4em;
+        // letter-spacing: 0.05em;
+        line-height: 1;
+        // font-weight: initial;
+        text-shadow: 0 0 2px black, 0 1px 2px black;
       }
 
       &:hover {
-        border: 1px solid rgba(black, 0.5);
+        cursor: pointer;
+        // border: 1px solid rgba(black, 0.5);
         box-shadow: 0 0 8px rgba(black, 0.25);
-        transform: scale(105%);
+        transform: scale(110%);
         transition: all 0.5s;
+        z-index: 5;
       }
     }
   }
@@ -339,6 +378,7 @@ main {
 footer {
   width: 100%;
   height: 60px;
+  align-items: center;
   margin: 0 auto;
   background-color: white;
   border-top: 1px solid rgba(black, 0.25);

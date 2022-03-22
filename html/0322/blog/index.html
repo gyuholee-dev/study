@@ -30,17 +30,18 @@
           <a href="kakaotalk"><i class="xi-kakaotalk"></i></a>
         </div>
         <div class="search">
-          <input type="text"><button>검색</button>
+          <a href="search"><i class="xi-search"></i></a>
+          <!-- <input type="text"><button>검색</button> -->
         </div>
       </div>
     </header>
 
     <nav id="nav">
       <ul class="menu main">
-        <li><a href="#nav?page=profile">GyuhoLee</a></li>
-        <li><a href="#nav?page=resume">Resume</a></li>
-        <li><a href="#nav?page=diary">Diary</a></li>
+        <li><a href="#nav?page=profile">LeeGyuho</a></li>
+        <li><a href="#nav?page=profile">Portpolio</a></li>
         <li><a href="#nav?page=study">Study</a></li>
+        <li><a href="#nav?page=diary">Diary</a></li>
         <li><a href="#nav?page=hobby">Hobby</a></li>
       </ul>
     </nav>
@@ -50,26 +51,31 @@
         <section class="list tile">
           <ul class="card">
             <li>
-              <div class="box">
-                <h1>Profile</h1>
-                <img src="images/slide/images(1).jpg">
+              <div class="box" 
+                onclick="location.href='#'"
+                style="background-image:url('images/BI-header_r.png')">
+                <span class="title">PROFILE</span>
               </div>
             </li>
             <li>
-              <div class="box">
-                <h1>Resume</h1>
-                <img src="images/slide/images(2).jpg">
+              <div class="box" 
+                onclick="location.href='#'" 
+                style="background-image:url('images/slide/images(1).jpg')">
+                <span class="title">DEVELOPMENT</span>
               </div>
             </li>
             <li>
-              <div class="box">
-                <h1>Portpolio</h1>
-                <img src="images/slide/images(3).jpg">
+              <div class="box" 
+                onclick="location.href='http\://www.artstation.com/geoflowerstudio'" 
+                style="background-image:url('images/slide/images(2).jpg')">
+                <span class="title">ART &<br>GRAPHIC</span>
               </div>
             </li>
             <li>
-              <div class="box">
-                Artstation
+              <div class="box" 
+                onclick="location.href='https\://github.com/leegyuho-dev'" 
+                style="background-image:url('images/slide/images(3).jpg')">
+                <span class="title">GITHUB</span>
               </div>
             </li>
             
@@ -138,7 +144,7 @@
     </main>
     
     <footer>
-      copyright(c)test.com all right reserved. 
+      <p>copyright(c)gyuholee all right reserved.</p>
     </footer>
 
   </div>
