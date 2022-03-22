@@ -1,0 +1,347 @@
+// 변수
+$max-width: 1200px;
+$media-width-large: 960px;
+$media-width-middle: 800px;
+$media-width-min: 680px;
+$color-emp: #4298cc;
+$color-shine: #eee;
+$color-light: #bbb;
+$color-dark: #444;
+$color-black: #222;
+$color-background: #eeeeee;
+// $color-background: #74c5ff;
+// $color-background: #dff1ff;
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  color: $color-black;
+  font-size: 16px;
+  word-break: keep-all;
+  background-color: $color-background;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
+}
+
+#container {
+  width: 100%;
+  // max-width: $max-width;
+  margin: 0 auto;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+header, main, footer,
+article, section,
+nav, aside {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  position: relative;
+}
+
+aside {
+  width: 0;
+}
+
+
+// ---------------------------------------------------------
+
+/* body {
+  &::before {
+    content: "";
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    background: url(images/beach.webp);
+    background-size: cover;
+    // background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+  }
+  &::after {
+    content: "";
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    top: 200px;
+    background: linear-gradient(to top, $color-background, transparent);
+    z-index: -1;
+  }
+} */
+
+#container {
+  &::before {
+    content: "";
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    background: linear-gradient(to bottom, white, transparent);
+    opacity: 0.5;
+  }
+}
+
+header {
+  height: 140px;
+  // flex-direction: column;
+  align-items: center;
+  // background-color: white;
+  z-index: 9;
+  .logo {
+    width: 120px;
+    height: 120px;
+    padding: 3px;
+    margin: 10px;
+    // background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+    z-index: 9;
+    img {
+      filter: drop-shadow(0 0 4px rgba(black, 0.15));
+    }
+  }
+
+  .menu {
+    align-self: start;
+    width: 100%;
+    max-width: $max-width;
+    height: inherit;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding: 5px;
+    >.links {
+      font-size: 1.25em;
+      >a {
+        &:hover {
+          color: $color_emp;
+        }
+      }
+    }
+    >.search {
+      // align-self: end;
+      input {
+        width: 160px;
+        font-size: 1em;
+        border: 1px solid $color-light;
+        border-radius: 5px;
+        margin-right: 5px;
+      }
+
+    }
+  }
+
+}
+
+nav {
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  // justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  // background-color: rgba(white, 0.5);
+  background-color: transparent;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(black, 0.25);
+  z-index: 9;
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to bottom, black, transparent);
+    position: absolute;
+    bottom: -4px;
+    opacity: 0.15;
+  }
+
+  .menu {
+    width: 100%;
+    max-width: $max-width;
+    height: inherit;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    font-family: "Quicksand";
+    font-size: 0.95em;
+    font-weight: bold;
+    $height-menu: 40px;
+
+    >li {
+      width: 120px;
+      height: $height-menu;
+      text-align: center;
+      align-self: end;
+
+      >a {
+        display: block;
+        // height: 39px;
+        height: $height-menu - 1;
+        padding: 10px;
+
+        &:hover {
+          cursor: pointer;
+          color: $color-emp;
+          // background-color: rgba(black, 0.15);
+          background-color: white;
+          // border-bottom: 4px solid $color-emp;
+          transition: all 0.25s;
+        }
+      }
+
+    }
+  }
+}
+
+main {
+  // margin-top: 60px;
+
+  article {
+    width: 100%;
+    max-width: $max-width;
+    padding: 15px;
+  }
+
+  .card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    >li {
+      height: 160px;
+      padding: 5px;
+      flex-grow: 1;
+    }
+
+    >li:nth-child(1) {
+      width: 40%;
+    }
+
+    >li:nth-child(2) {
+      width: 20%;
+    }
+
+    >li:nth-child(3) {
+      width: 20%;
+    }
+
+    >li:nth-child(4) {
+      width: 20%;
+    }
+
+    >li:nth-child(5) {
+      width: 40%;
+    }
+
+    >li:nth-child(6) {
+      width: 20%;
+    }
+
+    >li:nth-child(7) {
+      width: 40%;
+    }
+
+    >li:nth-child(8) {
+      width: 40%;
+    }
+
+    >li:nth-child(9) {
+      width: 40%;
+    }
+
+    >li:nth-child(10) {
+      width: 20%;
+    }
+
+    >li:nth-child(11) {
+      width: 20%;
+    }
+
+    >li:nth-child(12) {
+      width: 20%;
+    }
+
+    >li:nth-child(13) {
+      width: 20%;
+    }
+
+    >li:nth-child(14) {
+      width: 20%;
+    }
+
+    >li:nth-child(15) {
+      width: 20%;
+    }
+
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      // padding: 10px;
+      background-color: white;
+      border: 1px solid rgba(black, 0.25);
+      border-radius: 10px;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+
+      h1 {
+        align-self: start;
+        justify-self: top;
+        position: absolute;
+        color: white;
+        font-size: 2em;
+        font-weight: initial;
+        text-shadow: 0 1px 2px black;
+        margin-left: 10px;
+      }
+
+      &:hover {
+        border: 1px solid rgba(black, 0.5);
+        box-shadow: 0 0 8px rgba(black, 0.25);
+        transform: scale(105%);
+        transition: all 0.5s;
+      }
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  height: 60px;
+  margin: 0 auto;
+  background-color: white;
+  border-top: 1px solid rgba(black, 0.25);
+  font-family: "Quicksand";
+  font-size: 0.9em;
+}
