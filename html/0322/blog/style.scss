@@ -264,66 +264,14 @@ main {
       min-width: 180px;
       padding: 5px;
       flex-grow: 1;
-    }
-
-    >li:nth-child(1) {
-      width: 40%;
-    }
-
-    >li:nth-child(2) {
       width: 20%;
-    }
 
-    >li:nth-child(3) {
-      width: 20%;
-    }
-
-    >li:nth-child(4) {
-      width: 20%;
-    }
-
-    >li:nth-child(5) {
-      width: 40%;
-    }
-
-    >li:nth-child(6) {
-      width: 20%;
-    }
-
-    >li:nth-child(7) {
-      width: 40%;
-    }
-
-    >li:nth-child(8) {
-      width: 40%;
-    }
-
-    >li:nth-child(9) {
-      width: 40%;
-    }
-
-    >li:nth-child(10) {
-      width: 20%;
-    }
-
-    >li:nth-child(11) {
-      width: 20%;
-    }
-
-    >li:nth-child(12) {
-      width: 20%;
-    }
-
-    >li:nth-child(13) {
-      width: 20%;
-    }
-
-    >li:nth-child(14) {
-      width: 20%;
-    }
-
-    >li:nth-child(15) {
-      width: 20%;
+      &.s {
+        width: 20%;
+      }
+      &.l {
+        width: 40%;
+      }
     }
 
     .box {
@@ -346,6 +294,7 @@ main {
       position: relative;
       overflow: hidden;
       color: white;
+      filter: grayscale(1);
 
       img {
         height: 100%;
@@ -370,6 +319,7 @@ main {
         transform: scale(110%);
         transition: all 0.5s;
         z-index: 5;
+        filter: grayscale(0);
       }
     }
   }
