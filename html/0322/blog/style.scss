@@ -223,6 +223,11 @@ nav {
       height: $height-menu;
       text-align: center;
       align-self: end;
+      overflow: hidden;
+
+      &.active {
+        border-bottom: 4px solid $color-emp;
+      }
 
       >a {
         display: block;
@@ -266,10 +271,7 @@ main {
       flex-grow: 1;
       width: 20%;
 
-      &.s {
-        width: 20%;
-      }
-      &.l {
+      &.wide {
         width: 40%;
       }
     }
@@ -277,34 +279,36 @@ main {
     .box {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: start;
       justify-content: center;
       width: 100%;
       height: 100%;
       padding: 8px;
-      background-color: $color-grey;
+      background-color: $color-dark;
       background-blend-mode: hard-light;
       background-position: center;
+      background-repeat: no-repeat;
       background-size: auto 100%; 
-      // border: 1px solid rgba(black, 0.25);
       border: 4px solid white;
       box-shadow: 0 0 0 1px rgba(black, 0.25), inset 0 0 32px rgba(black, 0.25);
-      // box-shadow: inset 0 0 0 1px rgba(black, 0.25);
       border-radius: 10px;
       position: relative;
       overflow: hidden;
       color: white;
       filter: grayscale(1);
 
-      img {
-        height: 100%;
-        width: auto;
+      &:hover {
+        cursor: pointer;
+        background-color: $color-grey;
+        box-shadow: 0 0 8px rgba(black, 0.25);
+        transform: scale(110%);
+        transition: all 0.5s;
+        z-index: 5;
+        filter: grayscale(0);
       }
 
       .title {
-        align-self: start;
-        justify-self: top;
-        // font-family: "Catamaran";
+        // font-family: "나눔명조", "Nanum Myeongjo", serif;s
         font-size: 2.4em;
         // letter-spacing: 0.05em;
         line-height: 1;
@@ -312,17 +316,23 @@ main {
         text-shadow: 0 0 2px black, 0 1px 2px black;
       }
 
-      &:hover {
-        cursor: pointer;
-        // border: 1px solid rgba(black, 0.5);
-        box-shadow: 0 0 8px rgba(black, 0.25);
-        transform: scale(110%);
-        transition: all 0.5s;
-        z-index: 5;
-        filter: grayscale(0);
+      .summary {
+        max-height: 80px;
+        margin-top: 10px;
+        overflow: hidden;
+        text-shadow: 0 0 2px black, 0 1px 2px black;
       }
+
     }
   }
+}
+
+#loading {
+  align-self: center;
+  font-size: 1.5em;
+  position: relative;
+  top: -5px;
+  margin-bottom: 10px;
 }
 
 footer {
