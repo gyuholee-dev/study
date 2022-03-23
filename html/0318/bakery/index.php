@@ -1,8 +1,11 @@
 <?php
 // DB
-$host = 'localhost';
-$user = 'gyuholee';
-$pass = 'guho1978';
+$dbconfig = json_decode(
+  file_get_contents('dbconfig.json'), 
+  true);
+$host = $dbconfig['host'];
+$user = $dbconfig['user'];
+$pass = $dbconfig['pass'];
 $db = mysqli_connect($host, $user, $pass);
 mysqli_select_db($db, 'gyuholee');
 
