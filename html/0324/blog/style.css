@@ -52,39 +52,6 @@ aside {
   width: 0;
 }
 
-/* body {
-  &::before {
-    content: "";
-    width: 100%;
-    height: 600px;
-    position: absolute;
-    background: url(images/beach.webp);
-    background-size: cover;
-    // background-position: center;
-    background-repeat: no-repeat;
-    z-index: -2;
-  }
-  &::after {
-    content: "";
-    width: 100%;
-    height: 400px;
-    position: absolute;
-    top: 200px;
-    background: linear-gradient(to top, $color-background, transparent);
-    z-index: -1;
-  }
-} */
-/* #container {
-  &::before {
-    content: "";
-    width: 100%;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(white, 0.5), transparent);
-    position: fixed;
-    top: 0;
-    z-index: 1;
-  }
-} */
 header {
   height: 140px;
   align-items: center;
@@ -109,7 +76,7 @@ header .logo img {
 header .menu {
   align-self: start;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   height: inherit;
   display: flex;
   align-items: start;
@@ -145,15 +112,6 @@ nav {
   top: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   z-index: 8;
-  /* &::after {
-    content: "";
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(to bottom, black, transparent);
-    position: absolute;
-    bottom: -4px;
-    opacity: 0.15;
-  } */
 }
 
 nav::before {
@@ -169,7 +127,7 @@ nav::before {
 
 nav .menu {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   height: inherit;
   display: flex;
   flex-direction: row;
@@ -214,11 +172,14 @@ main {
 main article {
   flex-direction: column;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   padding: 15px;
 }
 
 main section {
+  width: 100%;
+  display: flex;
+  padding: 15px;
   flex-direction: column;
   background-color: white;
 }
@@ -238,14 +199,115 @@ main section > .title::before {
   margin-right: 5px;
 }
 
-main .tile {
+main section.post .header {
+  width: 100%;
+  height: 140px;
+  padding: 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+main section.post .header.img {
+  height: 180px;
+  padding: 10px;
+  color: white;
+  text-shadow: 0 1px 4px black;
+}
+
+main section.post .header > .bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #666;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: overlay;
+}
+
+main section.post .header .title {
+  font-size: 2.5em;
+  line-height: 1;
+  z-index: 1;
+}
+
+main section.post .header .subcategoty {
+  margin-top: 5px;
+  z-index: 1;
+}
+
+main section.post .header .info {
+  display: flex;
+  justify-self: end;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  z-index: 1;
+}
+
+main section.post .header .info > div:first-child {
+  margin-right: 10px;
+}
+
+main section.post .content {
+  padding: 10px 5px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+main section.post .footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+main section.post .footer .tags {
+  align-self: end;
+  font-size: 0.9em;
+}
+
+main section.post .footer .info {
+  display: flex;
+  justify-self: end;
+  z-index: 1;
+}
+
+main section.post .footer .info > div:first-child {
+  margin-right: 10px;
+}
+
+main section.post.media .header {
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  padding: 0 5px;
+}
+
+main section.post.media .header .title {
+  font-size: 1.6em;
+}
+
+main section.post.media .header .subcategoty {
+  margin: 0;
+  align-self: end;
+}
+
+main section.list {
+  padding: 5px;
+}
+
+main section.list ul.tile {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
 }
 
-main .tile > li {
+main section.list ul.tile > li {
   height: 180px;
   min-width: 180px;
   padding: 5px;
@@ -254,15 +316,15 @@ main .tile > li {
   overflow: hidden;
 }
 
-main .tile > li.wide {
+main section.list ul.tile > li.wide {
   width: 40%;
 }
 
-main .tile > li:hover {
+main section.list ul.tile > li:hover {
   overflow: visible;
 }
 
-main .tile .box {
+main section.list ul.tile .box {
   display: flex;
   flex-direction: column;
   box-sizing: content-box;
@@ -275,7 +337,7 @@ main .tile .box {
   overflow: hidden;
 }
 
-main .tile .box > .post {
+main section.list ul.tile .box > .post {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -286,18 +348,18 @@ main .tile .box > .post {
   z-index: 1;
 }
 
-main .tile .box > .post > .title {
+main section.list ul.tile .box > .post > .title {
   font-size: 1.6em;
 }
 
-main .tile .box > .post > .summary {
+main section.list ul.tile .box > .post > .summary {
   max-height: 80px;
   margin-top: 10px;
   overflow: hidden;
   line-height: 1.25;
 }
 
-main .tile .box > .bg {
+main section.list ul.tile .box > .bg {
   position: absolute;
   left: 0;
   top: 0;
@@ -309,12 +371,12 @@ main .tile .box > .bg {
   background-size: cover;
 }
 
-main .tile .box:not(.active) > .bg {
+main section.list ul.tile .box:not(.active) > .bg {
   background-blend-mode: darken;
   filter: grayscale(1);
 }
 
-main .tile .box:hover {
+main section.list ul.tile .box:hover {
   cursor: pointer;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
   transform: translate(-10px, -10px) scale(110%);
@@ -322,23 +384,23 @@ main .tile .box:hover {
   z-index: 5;
 }
 
-main .tile .box:hover > .bg {
+main section.list ul.tile .box:hover > .bg {
   background-color: white;
   filter: grayscale(0);
   transition: all 0.5s;
 }
 
-main .tile .box.link, main .tile .box.media {
+main section.list ul.tile .box.link, main section.list ul.tile .box.media {
   color: white;
   text-shadow: 0 1px 4px black;
 }
 
-main .tile .box.link > .post > .title, main .tile .box.media > .post > .title {
+main section.list ul.tile .box.link > .post > .title, main section.list ul.tile .box.media > .post > .title {
   font-size: 2.5em;
   line-height: 1;
 }
 
-main .tile .box.link > .post > .summary {
+main section.list ul.tile .box.link > .post > .summary {
   display: none;
 }
 

@@ -1,2 +1,2 @@
 <?
-header('Location:/blog');
+header('Location:/blog/view.php');

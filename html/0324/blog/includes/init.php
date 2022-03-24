@@ -14,20 +14,16 @@ mysqli_select_db($db, 'gyuholee');
 
 // 글로벌 변수
 $filename = '';
-$post = '';
+$page = 'main';
 
 $filename = basename($_SERVER['PHP_SELF']);
-$post = isset($_REQUEST['post'])?$_REQUEST['post']:'';
+$page = isset($_REQUEST['page'])?$_REQUEST['page']:$page;
 
-/** 기본 파라메터 변수
- * table=blog
- *       traineee
- * action=view
- *        edit
- *        create
- * view&do=select
- *         manage
- * edit&do=update
- *         insert
- *         delete
- */
+/* 기본 파라메터 변수
+  page = main
+         profile
+         portpolio
+         study
+         diary
+         board
+*/

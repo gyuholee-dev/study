@@ -13,13 +13,40 @@ https://rkd3116.cafe24.com
 스터디 (스터디 목록)
 취미 (취미 목록)
 
-index.html 
-탑페이지: 최근 모든 포스트를 타일로 배열
-resume.html
-이력서 페이지
-diary.html
-일기 페이지
-study.html
-공부 페이지
-hobby.html
-취미 페이지
+인사말
+프로필
+사진첩
+각종게시판
+
+
+# 카테고리 구조
+
+profile
+  profile
+  resume
+  link
+    profile
+    jobkorea
+    artstation
+    github
+
+portpolio
+  development
+  art&graphic
+  link
+    portpolio
+    github
+    artstation
+    github
+
+study
+  sql
+  php
+  html&css
+  javascript
+
+diary
+  life
+  
+
+
