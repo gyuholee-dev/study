@@ -1,3 +1,9 @@
+https://nickjoit.tistory.com/m/144
+
+-- 유저 조회
+mysql > use mysql;
+mysql > select host, user, password from user;
+
 -- 유저 추가
 create user userid@localhost identified by '비밀번호';
 
