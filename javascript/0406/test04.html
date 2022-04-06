@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예제</title>
+</head>
+<body>
+  
+  <script>
+
+    /* let numberOne = prompt('숫자를 입력하세요');
+    if (numberOne % 2 === 0) {
+      alert('짝수입니다.');
+    } else if (numberOne % 2 >= 0) {
+      alert('홀수입니다.');
+    } else {
+      alert('잘못 입력하셨습니다.');
+    } */
+
+    // 값을 입력받아 3의 배수인지 판별하는 조건문
+    /* let number = prompt('숫자를 입력하세요');
+    if (number % 3 === 0) {
+      alert('3의 배수입니다.');
+    } else if (number % 3 >= 0) {
+      alert('3의 배수가 아닙니다.');
+    } else {
+      alert('잘못 입력하셨습니다.');
+    } */
+
+    let height = Number(prompt('키를 입력하세요'));
+    let weight = Number(prompt('몸무게를 입력하세요'));
+    height = height / 100; // 미터로 변환
+    let bmi = weight / (height * height);
+    // Math.ceil(bmi); // 올림
+    // Math.floor(bmi); // 내림
+    // Math.round(bmi); // 반올림
+    bmi = Math.round(bmi*100)/100; // 소숫점 세자리 반올림
+    console.log(bmi);
+    if (bmi < 18.5) {
+      alert('bmi '+ bmi + ' 저체중입니다.');
+    } else if (bmi >= 18.5 && bmi < 23) {
+      alert('bmi '+ bmi + ' 정상체중입니다.');
+    } else if (bmi >= 23 && bmi < 25) {
+      alert('bmi '+ bmi + ' 과체중입니다.');
+    } else if (bmi >= 25 && bmi < 30) {
+      alert('bmi '+ bmi + ' 비만입니다.');
+    } else if (bmi >= 30) {
+      alert('bmi '+ bmi + ' 고도비만입니다.');
+    } else {
+      alert('잘못 입력하셨습니다.');
+    }
+
+
+
+  </script>
+  
+</body>
+</html>

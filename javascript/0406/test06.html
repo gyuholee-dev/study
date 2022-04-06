@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계산기</title>
+</head>
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #eee;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* justify-content: center; */
+    }
+    form {
+      width: fit-content;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      margin: 50px auto 20px;
+    }
+    .title {
+      font-size: 1.35em;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      height: 40px;
+      padding: 5px;
+    }
+    tr:first-of-type, tr:nth-last-child(2) {
+      border-bottom: 1px solid #ccc;
+    }
+    tr th:not(:first-of-type) {
+      width: 66px;
+    }
+    tr td:not(:first-of-type) {
+      text-align: center;
+    }
+    input:not(.btn):not([type=radio]) {
+      height: 100%;
+      width: 100%;
+      padding: 5px;
+    }
+    input[type=radio] {
+      width: 14px;
+      height: 14px;
+    }
+    input[type=radio]:hover {
+      cursor: pointer;
+    }
+    td.buttons {
+      height: 40px;
+      padding: 0;
+    }
+    div.buttons {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding-top: 15px;
+    }
+    div.buttons .btn {
+      padding: 3px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      height: 35px;
+      min-width: 50px;
+      /* flex-grow: 1; */
+    }
+    div.buttons .btn:hover {
+      cursor: pointer;
+    }
+
+    /* #resultBox {
+      display: inline-block;
+      margin: 0 auto;
+    } */
+
+  </style>
+  
+  <script>
+
+    function calc() {
+      const answer01 = Number(calculator.answer01.value);
+      const answer02 = Number(calculator.answer02.value);
+      const answer03 = Number(calculator.answer03.value);
+      const answer04 = Number(calculator.answer04.value);
+      const answer05 = Number(calculator.answer05.value);
+
+      result = answer01 + answer02 + answer03 + answer04 + answer05;
+      let level = '';
+      if (result <= 3) {
+        level = '우울증이 아닌';
+      } else if (result >= 4 && result <= 10) {
+        level = '약간 우울한';
+      } else if (result >= 11) {
+        level = '심한 우울증';
+      }
+
+      resultBox.innerHTML = `
+        귀하의 진단점수는 ${result}점 이며 ${level} 단계입니다.
+      `;
+    }
+
+  </script>
+
+  <main>
+    <form name="calculator" action="">
+      <div class="title">우울증 자가진단 테스트</div>
+      <table>
+        <tr>
+          <th>지난 2주동안</th>
+          <th>없음</th>
+          <th>2~6일</th>
+          <th>7~12일</th>
+          <th>매일</th>
+        </tr>
+        <tr>
+          <td>기분이 가라앉고 희망이 없다</td>
+          <td><input type="radio" name="answer01" value="0"></td>
+          <td><input type="radio" name="answer01" value="1"></td>
+          <td><input type="radio" name="answer01" value="2"></td>
+          <td><input type="radio" name="answer01" value="3"></td>
+        </tr>
+        <tr>
+          <td>평소 하던 일에 흥미가 사라짐</td>
+          <td><input type="radio" name="answer02" value="0"></td>
+          <td><input type="radio" name="answer02" value="1"></td>
+          <td><input type="radio" name="answer02" value="2"></td>
+          <td><input type="radio" name="answer02" value="3"></td>
+        </tr>
+        <tr>
+          <td>잠들기가 어렵다</td>
+          <td><input type="radio" name="answer03" value="0"></td>
+          <td><input type="radio" name="answer03" value="1"></td>
+          <td><input type="radio" name="answer03" value="2"></td>
+          <td><input type="radio" name="answer03" value="3"></td>
+        </tr>
+        <tr>
+          <td>평소보다 식욕이 떨어졌다</td>
+          <td><input type="radio" name="answer04" value="0"></td>
+          <td><input type="radio" name="answer04" value="1"></td>
+          <td><input type="radio" name="answer04" value="2"></td>
+          <td><input type="radio" name="answer04" value="3"></td>
+        </tr>
+        <tr>
+          <td>죽는게 낫겠다고 생각한다</td>
+          <td><input type="radio" name="answer05" value="0"></td>
+          <td><input type="radio" name="answer05" value="1"></td>
+          <td><input type="radio" name="answer05" value="2"></td>
+          <td><input type="radio" name="answer05" value="3"></td>
+        </tr>
+
+        <tr>
+          <td colspan="5" class="buttons">
+            <div class="buttons">
+              <input type="button" class="btn" value="진단결과" onclick="calc()">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <div id="resultBox"></div>
+
+
+  </main>
+  
+</body>
+</html>

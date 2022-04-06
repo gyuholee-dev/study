@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계산기</title>
+</head>
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #eee;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* justify-content: center; */
+    }
+    form {
+      width: fit-content;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      margin: 50px auto 20px;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      height: 40px;
+      padding: 5px;
+    }
+    input:not(.btn) {
+      height: 100%;
+      width: 100%;
+      padding: 5px;
+    }
+    /* input[type=number] {
+      max-width: 150px;
+    } */
+    td.buttons {
+      height: 40px;
+    }
+    div.buttons {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
+    div.buttons .btn {
+      padding: 3px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      height: 100%;
+      min-width: 50px;
+      /* flex-grow: 1; */
+    }
+    div.buttons .btn:hover {
+      cursor: pointer;
+    }
+
+    /* #resultBox {
+      display: inline-block;
+      margin: 0 auto;
+    } */
+
+  </style>
+  
+  <script>
+
+    function calc() {
+      const studName = calculator.studName.value;
+      const score1 = Number(calculator.score1.value);
+      const score2 = Number(calculator.score2.value);
+      const score3 = Number(calculator.score3.value);
+      const resultBox = document.querySelector('#resultBox');
+
+      let result = Math.round((score1 + score2 + score3) / 3);
+      let score;
+
+      if (result <= 100 && result >= 90) {
+        score = 'A';
+      } else if (result <= 89 && result >= 80) {
+        score = 'B';
+      } else if (result <= 79 && result >= 70) {
+        score = 'C';
+      } else if (result <= 69 && result >= 60) {
+        score = 'D';
+      } else if (result <= 59 && result >= 0) {
+        score = 'F';
+      } 
+    
+      resultBox.innerHTML = `${studName}님의 평균은 ${result}점이며 학점은 ${score}입니다.`;
+
+      if (score1 >= 80 && score2 >= 80 && score3 >= 80) {
+        alert('우등상 축하합니다.');
+      }
+
+    }
+
+  </script>
+
+  <main>
+    <form name="calculator" action="">
+      <table>
+        <tr>
+          <td>이름</td>
+          <td><input type="text" name="studName" required></td>
+          <td rowspan="4">
+            90 ~ 100 점: A <br>
+            80 ~ 89 점: B <br>
+            70 ~ 79 점: C <br>
+            60 ~ 69 점: D <br>
+            59 점 미만: F <br>
+          </td>
+        </tr>
+        <tr>
+          <td>국어</td>
+          <td><input type="number" name="score1" required></td>
+        </tr>
+        <tr>
+          <td>영어</td>
+          <td><input type="number" name="score2" required></td>
+        </tr>
+        <tr>
+          <td>수학</td>
+          <td><input type="number" name="score3" required></td>
+        </tr>
+
+        <tr>
+          <td colspan="3" class="buttons">
+            <div class="buttons">
+              <input type="button" class="btn" value="학점확인" onclick="calc()">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <div id="resultBox"></div>
+
+
+  </main>
+  
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계산기</title>
+</head>
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #eee;
+    }
+    form {
+      width: fit-content;
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      margin: 50px auto;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      height: 40px;
+      padding: 5px;
+    }
+    input:not(.btn) {
+      height: 100%;
+      width: 100%;
+      padding: 5px;
+    }
+    input[type=number] {
+      max-width: 150px;
+    }
+    td.buttons {
+      height: 40px;
+    }
+    div.buttons {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+    }
+    div.buttons .btn {
+      font-size: 20px;
+      font-weight: bold;
+      height: 100%;
+      min-width: 50px;
+      /* flex-grow: 1; */
+    }
+    div.buttons .btn:hover {
+      cursor: pointer;
+    }
+
+  </style>
+  
+  <script>
+
+    function calc(operator) {
+      let fistValue = Number(calculator.fistValue.value);
+      let secondValue = Number(calculator.secondValue.value);
+      let result;
+
+      if (fistValue == '' || secondValue == '') {
+        alert('값을 입력하세요');
+        return false;
+      }
+
+      if (operator == '+') {
+        result = fistValue + secondValue;
+      } else if (operator == '-') {
+        result = fistValue - secondValue;
+      } else if (operator == '*') {
+        result = fistValue * secondValue;
+      } else if (operator == '/') {
+        result = fistValue / secondValue;
+      }
+
+      calculator.result.value = fistValue + operator + secondValue + '=' + result;
+
+    }
+
+  </script>
+
+  <main>
+    <form name="calculator" action="">
+      <table>
+        <tr>
+          <td colspan="2"><input type="text" name="result"></td>
+        </tr>
+        <tr>
+          <td>첫번째 값</td>
+          <td><input type="number" name="fistValue"></td>
+        </tr>
+        <tr>
+          <td>두번째 값</td>
+          <td><input type="number" name="secondValue"></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="buttons">
+            <div class="buttons">
+              <input type="button" class="btn" value="+" onclick="calc('+')">
+              <input type="button" class="btn" value="-" onclick="calc('-')">
+              <input type="button" class="btn" value="*" onclick="calc('*')">
+              <input type="button" class="btn" value="/" onclick="calc('/')">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </main>
+  
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!-- <h1 id="heading" style="color:black">자바스크립트</h1> -->
+  <!-- <p id="text">위의 텍스트를 클릭해봅시다.</p> -->
+  
+  <script>
+    /* let heading = document.querySelector('#heading');
+    heading.onclick=function(){
+      let color = heading.style.color;
+      console.log(color);
+      if (color=='red') {
+        heading.style.color='black';
+      } else if (color=='black') { 
+        heading.style.color='red';
+      }
+      heading.style.color='red';
+      let text = document.querySelector('#text');
+      text.innerHTML = '안녕하세요';
+    } */
+
+    // 알림창
+    // alert('안녕하세요');
+    // 확인창
+    // let reply = confirm('정말로 삭제하시겠습니까?');
+    // console.log(reply);
+
+    // 웹브라우저 출력
+    /* document.write('안녕하세요');
+    document.write('<br>');
+    let str = 
+      '<b>홍길동</b>'+
+      '<br>'+
+      '<a href="http://www.naver.com">네이버</a><br>';
+    document.write(str); */
+
+    // let name = prompt('이름을 입력하세요');
+    // document.write(name+'<br>');
+    // console.log(name);
+
+    // let name = prompt('이름을 입력하세요');
+
+    let name;
+    let tel;
+    let addr;
+    
+    name = prompt('이름을 입력하세요');
+    tel = prompt('전화번호를 입력하세요');
+    addr = prompt('주소를 입력하세요');
+
+    // document.write('이름: ' + name + '<br>');
+    // document.write('전화번호: ' + tel + '<br>');
+    // document.write('주소: ' + addr + '<br>');
+
+    var table = ''+
+      '<table border="1">'+
+        '<tr>'+
+          '<th>이름</th>'+
+          '<th>전화번호</th>'+
+          '<th>주소</th>'+
+        '</tr>'+
+        '<tr>'+
+          '<td>'+name+'</td>'+
+          '<td>'+tel+'</td>'+
+          '<td>'+addr+'</td>'+
+        '</tr>'+
+      '</table>';
+
+    var table = `
+      <table>
+        <tr>
+          <th> 이름 </th>
+          <th> 전화번호 </th>
+          <th> 주소 </th>
+        </tr>
+        <tr>
+          <td> ${name} </td>
+          <td> ${tel} </td>
+          <td> ${addr} </td>
+        </tr>
+      </table>
+    `;
+    
+    document.write(table);
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국나이 계산</title>
+</head>
+<body>
+  <script>
+    var currentYear, birthYear, age;
+    currentYear = new Date().getFullYear();
+    birthYear = prompt('출생년도를 입력하세요');
+    age = currentYear - birthYear + 1;
+    document.write('당신의 한국나이는 ' + age + '세 입니다.');
+  </script>
+
+변수의 자료형
+1. Number 숫자형: 따옴표없이 숫자로 1,2,3,4,5,6,7,8,9,0 
+2. String 문자열: 따옴표를 붙여서 표기 "김영삼"
+3. Boolean 논리형: true, false
+4. Array 배열: ['봄', '여름', '가을', '겨울']
+5. Object 객체: {'봄':'여름', '여름':'가을', '가을':'겨울', '겨울':'봄'}
+  
+</body>
+</html>
