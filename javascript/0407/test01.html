@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 첫시간 수업
+    /*
+      for (초기값; 조건식; 증감식) {
+        실행문;
+      }
+    */
+    // 반복문 예제
+    for (var i = 0; i <= 5; i++) {
+      document.write('안녕하세요');
+      document.write('<br>');
+    }
+
+    // 1부터 5까지 합을 구한다
+    // 1+2+3+4+5...
+    var i;
+    var result;
+    for (i = 1, result = 0; i <= 5; i++) {
+      result += i;
+    }
+    document.write('1부터 5까지의 합은 ' + result + '입니다.<br>');
+
+    // 1부터 100까지 합을 구한다
+    var i;
+    var result;
+    for (i = 1, result = 0; i <= 100; i++) {
+      result += i;
+    }
+    document.write('1부터 100까지의 합은 ' + result + '입니다.<br>');
+
+
+    // 테스트
+
+    // 1부터 입력값 까지의 합을 구하는 함수
+    function calc() {
+      var max = form01.max.value;
+      var result = 0;
+      for (i = 1; i <= max; i++) {
+        result += i;
+      }
+      // 알림창으로 띄움
+      alert('1부터 ' + max + '까지의 합은 ' + result + '입니다.');
+    }
+
+    
+  </script>
+
+  <!-- 1부터 입력값까지의 합을 구하는 입력창 -->
+  <div class="box">
+    <form name="form01">
+      값: <input name="max" type="number"> 
+      <input type="button" value="계산" onclick="calc()">
+    </form>
+  </div>
+  
+</body>
+</html>

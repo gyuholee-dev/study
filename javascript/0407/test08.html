@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main {
+            display: flex;
+            width: fit-content;
+            line-height: 1.5;
+            letter-spacing: 5px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 25px;
+            border: 1px solid gray;
+        }
+        .space{
+            display: inline-block;
+            width: 21px
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <section id="left"></section>
+        <section id="right"></section>
+    </main>
+
+    <script>
+        // 박스를 먼저 만들고 스크립트를 실행하기 위해 이번에는 아래쪽에 스크립트를 씁니다
+
+        var resultLeft = '';
+        var resultRight = '';
+        var star = '&#9733;'; // ★
+        // var space = '&nbsp;' // 공백
+        var space = '<span class="space"></span>' // 공백
+        var num; // 현재 줄에서 출력할 별 갯수
+        var maxNum = 10; // 최대 별 갯수
+        
+        // 왼쪽 별 출력
+        for (num=maxNum; num >= 1; num--) { // num 이 10 에서 1까지 줄어듬
+            // console.log(num);
+            for (i = 1; i <= num; i++) { // num 갯수만큼 반복해서 별을 출력
+                resultLeft += star;
+            }
+            resultLeft += '<br>'; // 반복문이 한번 돌때마다 줄바꿈
+        }
+        // 왼쪽 박스에 출력
+        document.querySelector('#left').innerHTML = resultLeft;
+
+        // 오른쪽 별 출력
+        // 사실 박스의 text-align 을 right 로 하면 되긴 하지만...
+        for (num=maxNum; num >= 1; num--) { // num 이 10 에서 1까지 줄어듬
+            // console.log(num);
+            for (i=1; i<=maxNum; i++) {  // 무조건 10번 반복
+                if (i >= num) { // i 가 num 보다 작으면 스타 아니면 공백
+                    resultRight += star;
+                } else {
+                    resultRight += space;
+                }
+            }
+            resultRight += '<br>'; // 반복문이 한번 돌때마다 줄바꿈
+        }
+        // 오른쪽 박스에 출력
+        document.querySelector('#right').innerHTML = resultRight;
+
+    </script>
+
+
+</body>
+
+</html>

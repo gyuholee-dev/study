@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 3교시 수업
+    
+    // 별을 1개에서 10 개까지 줄바꾸면서 출력
+    var star = '&#9733;'; // ★
+    var num; // 현재 줄에서 출력할 별 갯수
+    var maxNum = 10; // 최대 별 갯수
+    for (num=1; num <= maxNum; num++) { // num 을 1에서 시작해 maxNum 까지 증가시킨다
+      for (var i = 1; i <= num; i++) { // 현재 라인에서 num 만큼 별을 반복 출력한다
+        document.write(star); // 별 출력
+      }
+      document.write('<br>'); // 한 라인이 끝날때마다 줄바꿈
+    }
+
+    // 5의 팩토리얼값을 구한다
+    // 5! = 5 * 4 * 3 * 2 * 1
+    var num = 5; // 팩토리얼을 구할 숫자
+    var result = 1; // 결과값: 반복문 밖에 선언해야 값을 유지하며 바꿀수 있음
+    for (i = num; i >= 1; i--) { // i 를 num(5)에서 시작해 1까지 감소시킨다 
+      // result = result * i; // result 에 i 를 반복적으로 곱한다
+      result *= i; // 할당연산자로 처리하면 더 간단하다
+    }
+    document.write('5의 팩토리얼은 ' + result + '입니다.<br>');
+
+
+  </script>
+
+
+</body>
+</html>

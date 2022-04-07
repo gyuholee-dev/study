@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // continue, break
+    // continue 는 당장 다음 반복으로 넘어간다.
+    // break 는 당장 반복을 멈추고 반복문을 탈출한다
+
+    // continue 예제: 1~10 숫자에서 3의 배수만 빼고 출력한다
+    var nums = [];
+    var idx = 0; // -1 에서 시작은 안좋음
+    for (i = 1; i <= 10; i++) {
+      if (i % 3 == 0) { // 3의 배수라면 컨티뉴
+        continue;
+      }
+      // document.write(i + '<br>');
+      nums[idx] = i;
+      idx++;
+    }
+    console.log(nums); // 콘솔에 출력
+
+    // 사실 위 반복문은 이렇게 써도 됨
+    var nums = [];
+    for (i = 1; i <= 10; i++) {
+      if (i % 3 != 0) { // 3의 배수가 아닐때만
+        // document.write(i + '<br>');
+        nums.push(i); // 배열에 추가
+      }
+    }
+    console.log(nums); // 콘솔에 출력
+
+
+  </script>
+  
+</body>
+</html>

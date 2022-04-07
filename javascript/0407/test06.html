@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #eee;
+        }
+
+        form {
+            background-color: white;
+            padding: 10px;
+            width: 200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // 선생님은 html 밖에 짜는데 저거 안좋음. 위치에 따라 실행시기가 달라지기 때문
+        var userName = new Array(); // 이름 배열
+        var userHeight = new Array(); // 키 배열
+        var idx = 0;
+
+        // 입력하는 값을 각 배열에 저장한다
+        function input() {
+            // userName[idx] = frm1.userName.value;
+            // userHeight[idx] = parseInt(frm1.userHeight.value);
+            // frm1.userName.value = '';
+            // frm1.userHeight.value = '';
+            // frm1.userName.focus();
+            // idx++;
+
+            // 이쪽이 좀 더 쉬움
+            userName.push(frm1.userName.value);
+            userHeight.push(parseInt(frm1.userHeight.value));
+            frm1.userName.value = '';
+            frm1.userHeight.value = '';
+            frm1.userName.focus();
+            idx++;
+
+            // 입력할때마다 콘솔에 출력하면 좋을듯
+            console.log(userName, userHeight);
+        }
+
+        // 저장된 배열을 출력한다
+        function output() {
+            // for (var i = 0; i < userName.length; i++) {
+            //   document.write(userName[i] + ': ' + userHeight[i] + '<br>');
+            // }
+            // 이쪽이 좀 더 쉬움
+            var result = '';
+            for (var i = 0; i < idx; i++) {
+                var output = `${userName[i]} : ${userHeight[i]} <br>`;
+                result = result + output;
+            }
+            document.write(result);
+        }
+
+        // 저장된 배열에서 키가 170 이상인 학생만 출력한다
+        function output170() {
+            var result = '';
+            for (var i = 0; i < idx; i++) {
+                if (userHeight[i] < 170) {
+                    continue;
+                }
+                var output = `${userName[i]} : ${userHeight[i]} <br>`;
+                result = result + output;
+            }
+            document.write(result);
+        }
+    </script>
+
+    <form name="frm1">
+        이름: <input type="text" name="userName"><br>
+        키: <input type="text" name="userHeight"><br>
+        <input type="button" value="입력" onclick="input()">
+        <!-- <input type="button" value="출력" onclick="output()"> -->
+        <input type="button" value="출력" onclick="output170()">
+    </form>
+
+</body>
+
+</html>

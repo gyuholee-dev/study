@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      display: inline-block;
+      padding: 20px;
+      margin: 15px;
+      border: 1px solid #ccc;
+      line-height: 2;
+    }
+    .box h3 {
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    // 2교시 수업
+
+    // 구구단 7단 출력
+    for (i = 1; i <= 9; i++) {
+      document.write('7 x ' + i + ' = ' + 7 * i + '<br>');
+    }
+
+    // 구구단 7단 출력: n단 변수 분리
+    var dan = 7;
+    for (i = 1; i <= 9; i++) {
+      document.write(dan + ' x ' + i + ' = ' + dan * i + '<br>');
+    }
+
+    // 구구단 7단 출력: 조금 더 쉽게
+    var dan = 7;
+    for (i = 1; i <= 9; i++) {
+      result = dan * i;
+      document.write(`${dan} x ${i} = ${result}<br>`);
+    }
+
+    // 중첩 반복문
+    var i, j;
+    for (i=1; i<=9; i++) {
+      document.write('<h3>' + i + '단</h3>');
+      for (j=1; j<=9; j++) {
+        document.write(i + ' x ' + j + ' = ' + i * j + '<br>');
+      }
+    }
+
+
+    // 중첩 반복문: 조금 더 쉽게
+    var dan; // 단
+    for (dan=1; dan<=9; dan++) { // 1~9 까지 단이 증가
+      document.write('<div class="box">'); // 박스 시작
+      document.write(`<h3>구구단 ${dan} 단</h3>`); // 구구단 제목 출력
+      var gob; // 곱할 수
+      for (gob=1; gob<=9; gob++) { // 1~9 까지 곱할 수가 증가
+        result = dan * gob;
+        document.write(`${dan} x ${gob} = ${result}<br>`); // 구구단 결과 출력
+      }
+      document.write('</div>'); // 박스 끝
+    }
+
+    // document.write 는 php 의 echo 와 같은거라고 기억하면 됨
+    document.write('<br>');
+
+    // 실습
+    // 내 이름을 5행 5열로 출력한다
+    var myName = '홍길동';
+    var row = 5; // 행, 가로줄
+    var column = 5; // 열, 세로줄
+    for (i=1; i<=row; i++) { // 가로줄 한줄씩, i 가 row 값이 될때까지 반복.
+      for (j=1; j<=column; j++) { // 세로줄, j 가 column 값이 될때까지 반복.
+        document.write(myName); // 이름 출력
+      }
+      document.write('<br>'); // 이름 다섯번 출력했으면 줄바꿈 출력
+    }
+
+
+  </script>
+
+
+  
+
+
+
+
+</body>
+</html>

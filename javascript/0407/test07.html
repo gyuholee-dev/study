@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #eee;
+        }
+
+        form {
+            background-color: white;
+            padding: 10px;
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        #result {
+            display: block;
+            width: fit-content;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // 이번에는 실전적 코드로 작성합니다
+        var students = {}; // 객체 생성
+
+        function addStudents() {
+            stud = {
+                studName: frm1.studName.value,
+                studHeight: frm1.studHeight.value,
+                studGender: frm1.studGender.value,
+            }
+            students[stud.studName] = stud;
+            console.log(students);
+        }
+
+        function showStudents(height, gender) {
+            var result = '';
+            for (key in students) {
+                data = students[key];
+                if (data['studHeight'] >= height && data['studGender'] == gender) {
+                    console.log(data);
+                    result += data['studName'] + ': ' + data['studHeight'] + ' ' + data['studGender'] + '<br>';
+                }
+            }   
+            document.getElementById('result').innerHTML = result;
+        }
+
+    </script>
+
+    <main>
+
+        <form name="frm1">
+            이름: <input type="text" name="studName"><br>
+            키: <input type="text" name="studHeight"><br>
+            남성: <input type="radio" name="studGender" value="M">
+            여성: <input type="radio" name="studGender" value="F"><br>
+            <input type="button" value="입력" onclick="addStudents()">
+            <input type="button" value="출력" onclick="showStudents(175, 'M')">
+        </form>
+
+        <div id="result"><!-- 결과 출력 --></div>
+    </main>
+
+</body>
+
+</html>
