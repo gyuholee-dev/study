@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0 auto;
+    }
+    body {
+      background-color: #eee;
+    }
+    table {
+      border-collapse: collapse;
+      margin-bottom: 15px;
+      margin-top: 15px;
+      background-color: white;
+    }
+    th, td {
+      padding: 3px 5px;
+      border: 1px solid #ccc;
+    }
+    #result {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <form name="students">
+      <table>
+        <tr>
+          <th>학번</th>
+          <td>
+            <!-- number 타입으로 받으면 숫자 체크 생략 가능 -->
+            <input type="number" name="studNumb" readonly>
+          </td>
+        </tr>
+        <tr>
+          <th>이름</th>
+          <td>
+            <input type="text" name="studName">
+          </td>
+        </tr>
+        <tr>
+          <th>국어</th>
+          <td>
+            <input type="number" name="recKor">
+          </td>
+        </tr>
+        <tr>
+          <th>영어</th>
+          <td>
+            <input type="number" name="recEng">
+          </td>
+        </tr>
+        <tr>
+          <th>수학</th>
+          <td>
+            <input type="number" name="recMath">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <input type="button" value="입력" onclick="input()">
+            <!-- <input type="button" value="출력" onclick="output()"> -->
+            <input type="button" value="클리어" onclick="clear()">
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <hr>
+
+    <!-- 출력 박스 -->
+    <div id="result"></div>
+
+  </main>
+
+  <script>
+    var studNumb = 1;
+    students.studNumb.value = studNumb;
+
+    var records = [];
+    /* 다차원 배열로 구성
+      records = [
+        [1, '홍길동', 90, 80, 70],
+        [2, '임꺽정', 80, 70, 60],
+        [3, '유관순', 70, 60, 50],
+        [4, '안중근', 60, 50, 40],
+        [5, '이순신', 50, 40, 30]
+        ...
+      ];
+    */
+    var avrs = [];
+
+    // 배열에서 입력값이 몇번째 순위인지 구한다
+    function rank(num, array) {
+      var r = 1;
+      for (value of array) {
+        // console.log(value, num);
+        if (value > num) {
+          r++;
+        }
+      }
+      return r;
+    }
+
+    // 입력
+    function input() {
+      // 입력 체크는 생략
+      // data = [1, '홍길동', 90, 80, 70];
+      data = [
+        Number(students.studNumb.value),
+        students.studName.value,
+        Number(students.recKor.value),
+        Number(students.recEng.value),
+        Number(students.recMath.value)
+      ];
+      data[5] = (data[2] + data[3] + data[4]); // 총점 추가
+      data[6] = Math.round((data[2] + data[3] + data[4]) / 3); // 평균 추가
+      data[7] = ''; // 학점 추가
+      if (data[6] >= 90) {
+        data[7] = 'A';
+      } else if (data[6] >= 80) {
+        data[7] = 'B';
+      } else if (data[6] >= 70) {
+        data[7] = 'C';
+      } else if (data[6] >= 60) {
+        data[7] = 'D';
+      } else {
+        data[7] = 'F';
+      }
+
+      console.log(data); // 입력된 데이터 콘솔에 출력
+      records.push(data); // records 배열에 저장 
+      avrs.push(data[6]); // 평균을 avrs 배열에 저장
+      output(); // 입력하면 무조건 출력하도록
+
+      // 입력된 데이터 초기화
+      studNumb++;
+      students.studNumb.value = studNumb;
+      students.studName.value = '';
+      students.recKor.value = '';
+      students.recEng.value = '';
+      students.recMath.value = '';
+      students.studName.focus();
+    }
+
+    // 출력
+    function output() {
+      var result = '<table>';
+      result += `
+        <tr>
+          <th>학번</th>
+          <th>이름</th>
+          <th>국어</th>
+          <th>영어</th>
+          <th>수학</th>
+          <th>총점</th>
+          <th>평균</th>
+          <th>학점</th>
+          <th>순위</th>
+        </tr>`;
+
+      for (data of records) { // records 배열의 요소를 하나씩 data 변수로 선언하는 반복문 
+        result += `
+          <tr>
+            <td>${data[0]}</td>
+            <td>${data[1]}</td>
+            <td>${data[2]}</td>
+            <td>${data[3]}</td>
+            <td>${data[4]}</td>
+            <td>${data[5]}</td>
+            <td>${data[6]}</td>
+            <td>${data[7]}</td>
+            <td>${rank(data[6], avrs)}</td>
+        `;
+      }
+      result += '</table>';
+      // id 가 result 인 엘리먼트를 찾아서 내용에 result 를 집어넣는다
+      document.getElementById('result').innerHTML = result;
+    }
+
+    // 데이터 및 출력 초기화
+    function clear() {
+      records = [];
+      output();
+    }
+
+  </script>
+  
+</body>
+</html>

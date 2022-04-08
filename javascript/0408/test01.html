@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1교시
+    // while 반복문
+    
+    // 예제 1
+    var i = 1;
+    while (i <= 10) { // i 가 10보다 작거나 같을 때까지 반복, , '==' '>=' 안됨
+      document.write(i + ". 반갑습니다. <br>");
+      i++;
+    }
+
+    // 예제 2
+    var j = 1;
+    var result = 0;
+    while (j <= 10) { // j 가 10보다 작거나 같을 때까지 반복, '==' '>=' 안됨
+      result += j;
+      j++;
+    }
+    document.write("1부터 10까지의 합은 " + result + "입니다.<br>");
+
+    // 문제: 2단부터 9단까지 구구단을 출력해보자
+    var dan = 2;
+    while (dan <= 9) { // 2단부터 9단까지
+      document.write('<b>구구단 ' + dan + "단</b><br>");
+      var gob = 1;
+      while (gob <= 9) { // 1부터 9까지 곱하기
+        document.write(dan + " x " + gob + " = " + dan * gob + "<br>");
+        gob++; // 증가식을 일단 먼저 쓰고 시작하자
+      }
+      dan++; // 증가식 안넣어주면 무한루프 돌아서 브라우저 뻗음-_-
+    }
+
+
+  </script>
+  
+</body>
+</html>

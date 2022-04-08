@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #eee;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 15px auto;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 3px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- frm1 -->
+    <form name="frm1">
+        <table>
+            <tr>
+                <!-- enumb -->
+                <th>사번:</th>
+                <td><input type="number" name="enumb"></td>
+            </tr>
+            <tr>
+                <!-- ename -->
+                <th>이름:</th>
+                <td><input type="text" name="ename"></td>
+            </tr>
+            <tr>
+                <!-- level -->
+                <th>직급:</th>
+                <td>
+                    <!-- <input type="text" name="level"> -->
+                    <select name="level">
+                        <option value="사원">사원</option>
+                        <option value="대리">대리</option>
+                        <option value="과장">과장</option>
+                        <option value="부장">부장</option>
+                        <option value="사장">사장</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <!-- otime -->
+                <th>추가근무:</th>
+                <td><input type="number" name="otime"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" value="입력" onclick="input()">
+                    <input type="button" value="출력" onclick="output()">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        // 사원정보 스크립트
+
+        //  변수 선언 -----------------------------------------------
+
+        var pay_sajang = 500; // 사장 기본급
+        var pay_bujang = 400; // 부장 기본급
+        var pay_gwajang = 300; // 과장 기본급
+        var pay_deary = 250; // 대리 기본급
+        var pay_sawon = 200; // 사원 기본급
+
+        var enumb_array = new Array(); // 사번 배열
+        var ename_array = new Array(); // 이름 배열
+        var level_array = new Array(); // 직급 배열
+        var otime_array = new Array(); // 추가근무 배열
+        var overpay_array = new Array(); // 초과급 배열
+        var totalpay_array = new Array(); // 총급여 배열
+        var realpay_array = new Array(); // 실수령액 배열
+
+        var count = 0; // 입력된 사원 수
+
+        // 입력 함수 -----------------------------------------------
+
+        function input() {
+            // 인풋값으로부터 각 항목 변수 선언
+            var enumb = Number(frm1.enumb.value); // 사번
+            var ename = frm1.ename.value; // 이름
+            var level = frm1.level.value; // 직급
+            var otime = Number(frm1.otime.value); // 추가근무
+            var overpay = otime * 2; // 초과급(시간당 2만원)
+            var totalpay = 0; // 총급여
+            if (level == "사장") {
+                totalpay = pay_sajang + overpay;
+            } else if (level == "부장") {
+                totalpay = pay_bujang + overpay;
+            } else if (level == "과장") {
+                totalpay = pay_gwajang + overpay;
+            } else if (level == "대리") {
+                totalpay = pay_deary + overpay;
+            } else if (level == "사원") {
+                totalpay = pay_sawon + overpay;
+            }
+            var realpay = Math.round(totalpay * 0.8); // 실수령액(80%)
+
+            // 입력된 사원 정보 콘솔 출력
+            console.log(enumb, ename, level, otime, overpay, totalpay, realpay);
+
+            // 입력된 사원 정보 저장
+            enumb_array[count] = enumb;
+            ename_array[count] = ename;
+            level_array[count] = level;
+            otime_array[count] = otime;
+            overpay_array[count] = overpay;
+            totalpay_array[count] = totalpay;
+            realpay_array[count] = realpay;
+
+            // 입력된 사원 수 증가
+            count++;
+
+            // 입력된 사원 정보 초기화
+            frm1.enumb.value = enumb + 1;
+            frm1.ename.value = '';
+            frm1.level.value = '사원';
+            frm1.otime.value = '';
+            frm1.ename.focus();
+        }
+
+        // 출력 함수 -----------------------------------------------
+ 
+        function output() {
+
+            var css = `
+                <style>
+                    body {
+                        background-color: #eee;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        margin: 15px auto;
+                        background-color: white;
+                    }
+                    th, td {
+                        border: 1px solid #ccc;
+                        padding: 3px 5px;
+                    }
+                </style>
+            `;
+            document.write(css);
+
+            document.write("<table>");
+                document.write("<tr>");
+                document.write("<th>사번</th>");
+                document.write("<th>이름</th>");
+                document.write("<th>직급</th>");
+                document.write("<th>추가근무</th>");
+                document.write("<th>초과급</th>");
+                document.write("<th>총급여</th>");
+                document.write("<th>실수령액</th>");
+                document.write("<th>순위</th>");
+                document.write("</tr>");
+
+            for (var i = 0; i < count; i++) { // 입력된 사원 수 만큼 반복
+                document.write("<tr>");
+                document.write("<td>" + enumb_array[i] + "</td>");
+                document.write("<td>" + ename_array[i] + "</td>");
+                document.write("<td>" + level_array[i] + "</td>");
+                document.write("<td>" + otime_array[i] + "시간</td>");
+                document.write("<td>" + overpay_array[i] + "만원</td>");
+                document.write("<td>" + totalpay_array[i] + "만원</td>");
+                document.write("<td>" + realpay_array[i] + "만원</td>");
+                document.write("<td>" + ranking(realpay_array[i]) + "</td>");
+                document.write("</tr>");
+            }
+
+            document.write("</table>");
+
+        }
+
+        // 순위 함수 -----------------------------------------------
+        function ranking(thispay) {
+            var rank = 1;
+            for (var i = 0; i < count; i++) {
+                // console.log(realpay_array[i], thispay);
+                if (realpay_array[i] > thispay) {
+                    rank++;
+                }
+            }
+            return rank;
+        }
+
+    </script>
+
+</body>
+
+</html>
