@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <form name="frm1">
+        <h3>BTS 군대가야 하나?</h3>
+        <input type="radio" name="answer" value="y"> 가야한다 <br>
+        <input type="radio" name="answer" value="n"> 면제해줘야 <br>
+        <input type="radio" name="answer" value="x"> 모르겠다 <br>
+        <br>
+        <div class="buttons">
+            <input type="button" value="투표" id="vote">
+            <input type="button" value="결과보기" id="result">
+        </div>
+    </form>
+
+    <script>
+        // 투표 결과를 저장할 배열
+        var voteData = {
+            y: 0,
+            n: 0,
+            x: 0
+        };
+        var voteCount = 0; // 투표 횟수
+
+        // 투표
+        $('#vote').click(function() {
+            var answer = $('input[name=answer]:checked').val(); // 체크된 래디오의 밸류만 가져옴
+            voteData[answer]++; // 투표결과 배열의 해당 값을 1증가
+            voteCount++;
+            console.log(voteData);
+        });
+
+        // 결과보기
+        $('#result').click(function() {
+            var percentY = voteData.y / voteCount * 100; // 가야한다 퍼센트
+            var percentN = voteData.n / voteCount * 100; // 면제해줘야 퍼센트
+            var percentX = voteData.x / voteCount * 100; // 모르겠다 퍼센트
+
+            // 출력
+            document.write('<div class="result">');
+            document.write('<h3>투표 결과</h3>');
+            document.write('<p>가야한다 : ' + percentY.toFixed(2) + '%</p>');
+            document.write('<p>면제해줘야 : ' + percentN.toFixed(2) + '%</p>');
+            document.write('<p>모르겠다 : ' + percentX.toFixed(2) + '%</p>');
+            document.write('</div>');
+        });
+
+    </script>
+
+</body>
+</html>

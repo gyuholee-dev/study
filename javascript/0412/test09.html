@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+        body {
+            background-color: #eee;
+        }
+        form {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            padding: 15px;
+            margin: 25px auto;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+        input:not([type=checkbox]), select {
+            font-size: 1em;
+            padding: 3px;
+        }
+        select {
+            margin-bottom: 10px;
+        }
+        input[type=checkbox] {
+            margin-left: 15px;
+        }
+        .buttons>input {
+            padding: 5px 10px;
+        }
+        .buttons>input:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form name="order">
+        이름 <input type="text" name="empl">
+        부서 <input type="text" name="dept">
+        메뉴
+        <select name="menu">
+            <option value="짜장면">짜장면 (6000원)</option>
+            <option value="짬뽕">짬뽕 (7000원)</option>
+            <option value="볶음밥">볶음밥 (8000원)</option>
+        </select>
+        <label><input type="checkbox" name="samsun"> 삼선 (+2000원)</label>
+        <label><input type="checkbox" name="gobbagi"> 곱배기 (+1000원)</label>
+        <div class="buttons">
+            <!-- <input type="button" value="입력" onclick="input()"> -->
+            <!-- <input type="button" value="출력" onclick="output()"> -->
+            <input type="button" value="입력" id="orderInput">
+            <input type="button" value="출력" id="orderOutput">
+        </div>
+    </form>
+
+    <script>
+        var orderData = new Array(); // 주문을 저장할 배열
+        var orderCount = 0; // 주문 갯수
+        var totalPrice = 0; // 총 가격
+
+        // 주문 입력
+        $('#orderInput').click(function() {
+            var order = {
+                empl: $('input[name=empl]').val(),
+                dept: $('input[name=dept]').val(),
+                menu: $('select[name=menu]').val(),
+                samsun: $('input[name=samsun]').is(':checked'),
+                gobbagi: $('input[name=gobbagi]').is(':checked')
+            };
+            console.log(order);
+            orderData[orderCount] = order;
+            orderCount++;
+        });
+
+        // 주문 출력
+        $('#orderOutput').click(function() {
+
+            // 테이블 CSS
+            var css = `
+                <style>
+                    body {
+                        background-color: #eee;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        margin: 15px auto;
+                        background-color: white;
+                    }
+                    th, td {
+                        border: 1px solid #ccc;
+                        padding: 3px 5px;
+                    }
+                </style>
+            `;
+            document.write(css);
+
+            var result = '';
+
+            result += '<table>';
+            result += '<tr>';
+            result += '<th>이름</th>';
+            result += '<th>부서</th>';
+            result += '<th>메뉴</th>';
+            result += '<th>금액</th>';
+
+            for (var i = 0; i < orderCount; i++) {
+                var menu = orderData[i].menu;
+                var price = 0;
+
+                if (menu == '짜장면') {
+                    price = 6000;
+                } else if (menu == '짬뽕') {
+                    price = 7000;
+                } else if (menu == '볶음밥') {
+                    price = 8000;
+                }
+                if (orderData[i].samsun) {
+                    menu = '삼선' + menu;
+                    price += 2000;
+                }
+                if (orderData[i].gobbagi) {
+                    menu = menu + '곱배기';
+                    price += 1000;
+                }
+
+                totalPrice += price;
+
+                result += '<tr>';
+                result += '<td>' + orderData[i].empl + '</td>';
+                result += '<td>' + orderData[i].dept + '</td>';
+                result += '<td>' + menu + '</td>';
+                result += '<td>' + price + '원' + '</td>';
+                result += '</tr>';
+
+            }            
+    
+            result += '<tr><td align="right" colspan="4">총 가격: ' + totalPrice + '원</td></tr>';
+            document.write(result);
+        });
+
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <form name="frm1">
+    년도입력 <input type="number" name="year">
+    <input type="button" value="윤년체크" onclick="check()">
+  </form>
+
+  <script>
+    // 윤년체크
+    // 연도를 400 으로 나누어서 떨어지면 윤년
+    // or
+    // 연도를 4로 나누어 떨어지고 and 100으로 나누어 떨어지지 않으면 윤년
+    function check() {
+      var year = document.frm1.year.value;
+      if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+        alert(year + "년은 윤년입니다.");
+      } else {
+        alert(year + "년은 윤년이 아닙니다.");
+      }
+    }
+
+  </script>
+  
+</body>
+</html>

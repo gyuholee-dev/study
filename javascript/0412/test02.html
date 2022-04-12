@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+    <style>
+        body {
+            background-color: #eee;
+        }
+        form {
+            width: 200px;
+            margin: 25px auto;
+            background-color: white;
+            padding: 15px;
+        }
+        .input {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type=button] {
+            width: 30px;
+            height: 30px;
+        }
+        input[type=button]:not(:last-of-type) {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <form name="calculator">
+        <div class="input">
+            첫째값 <input type="number" name="firstValue">
+            둘째값 <input type="number" name="secondValue">
+        </div>
+        <div class="buttons">
+            <input type="button" value="+" 
+                onclick="plus(calculator.firstValue.value, calculator.secondValue.value)">
+            <input type="button" value="-" onclick="minus()">
+            <input type="button" value="*" onclick="multiply()">
+            <input type="button" value="/" onclick="divide()">
+            <input type="button" value="%" onclick="mod()">
+        </div>
+    </form>
+
+    <script>
+        // 입력값 선언을 밖으로 빼면 동작하지 않음. 
+        // 함수 실행 시점에서 입력값을 가져와야 하기 때문.
+
+        // 더하기 (매개변수 없는 예제)
+        /* function plus() {
+            var firstValue = calculator.firstValue.value;
+            var secondValue = calculator.secondValue.value;
+            var result = Number(firstValue) + Number(secondValue);
+            alert(result);
+        } */
+        // 더하기 (매개변수를 받는 예제)
+        function plus(firstValue, secondValue) {
+            var result = Number(firstValue) + Number(secondValue);
+            alert(result);
+        }
+        // 빼기
+        function minus() {
+            var firstValue = calculator.firstValue.value;
+            var secondValue = calculator.secondValue.value;
+            var result = Number(firstValue) - Number(secondValue);
+            alert(result);
+        }
+        // 곱하기
+        function multiply() {
+            var firstValue = calculator.firstValue.value;
+            var secondValue = calculator.secondValue.value;
+            var result = Number(firstValue) * Number(secondValue);
+            alert(result);
+        }
+        // 나누기
+        function divide() {
+            var firstValue = calculator.firstValue.value;
+            var secondValue = calculator.secondValue.value;
+            var result = Number(firstValue) / Number(secondValue);
+            alert(result);
+        }
+        // 나머지
+        function mod() {
+            var firstValue = calculator.firstValue.value;
+            var secondValue = calculator.secondValue.value;
+            var result = Number(firstValue) % Number(secondValue);
+            alert(result);
+        }
+
+    </script>
+
+</body>
+
+</html>

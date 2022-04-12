@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 리턴값이 없는 함수 -------------------------------------------------
+        function send(myName) {
+            alert(myName + "님 안녕하세요?");
+        }
+        // 리턴값이 없는 함수 호출
+        send("홍길동");
+
+
+        // 리턴값이 있는 함수 -------------------------------------------------
+        function getHello(myName) {
+            return myName + "님 안녕하세요?";
+        }
+        // 리턴값이 있는 함수 호출
+        // 변수를 선언하면서 함수의 리턴으로 값을 받는다
+        var hello = getHello("유관순");
+        document.write(hello);
+        
+    </script>
+
+</body>
+</html>

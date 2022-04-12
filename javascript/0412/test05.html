@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="frm1">
+        <input type="text" name="jumin1"> <!-- 주민번호 앞자리 -->
+        <input type="text" name="jumin2"> <!-- 주민번호 뒷자리 -->
+        <input type="button" value="주민번호 체크" onclick="send()">
+    </form>
+
+
+    <script>
+        // 주민번호가 13자리인지 체크한다
+        function send() {
+            var jumin1 = frm1.jumin1.value;
+            var jumin2 = frm1.jumin2.value;
+            var length = jumin1.length + jumin2.length;
+
+            if (length != 13) { // 13자리가 아니면 취소
+                alert("주민번호가 올바르지 않습니다.");
+                return false;
+            }
+            
+            // 주민번호 유효성 체크 알고리즘
+            // 1. 주민번호 마지막 자리를 빼고 각 자리수에 2,3,4,5,6,7  8,9,2,3,4,5 를 곱한다.
+            // 2. 곱한 값을 전부 더하고 11로 나눈 나머지를 구한다.
+            // 3. 나머지 값을 11에서 뺀 값이 주민번호 마지막 자리와 일치하면 유효
+
+            // 주민번호
+            var juminNum = frm1.jumin1.value + frm1.jumin2.value;
+            // 주민번호 마지막 자리
+            var lastNum = Number(juminNum.charAt(12));
+
+            // 1자리~12자리 까지 자리수에 2,3,4,5,6,7  8,9,2,3,4,5 를 곱하고 더한다
+            var checkResult = 
+                (Number(juminNum.charAt(0)) * 2) +
+                (Number(juminNum.charAt(1)) * 3) +
+                (Number(juminNum.charAt(2)) * 4) +
+                (Number(juminNum.charAt(3)) * 5) +
+                (Number(juminNum.charAt(4)) * 6) +
+                (Number(juminNum.charAt(5)) * 7) +
+                (Number(juminNum.charAt(6)) * 8) +
+                (Number(juminNum.charAt(7)) * 9) +
+                (Number(juminNum.charAt(8)) * 2) +
+                (Number(juminNum.charAt(9)) * 3) +
+                (Number(juminNum.charAt(10)) * 4) +
+                (Number(juminNum.charAt(11)) * 5);
+
+            // 참고: 반복문 (어려움!)
+            /* for (var i = 0; i < juminNum.length; i++) {
+                var mNum = i + 2;
+                if (i >= 8) {
+                    mNum = i - 8 + 2;
+                }
+                if (i == 12) {
+                    break;
+                }
+                checkResult += Number(juminNum.charAt(i)) * mNum;
+            } */
+
+            // 곱한 값의 11 나머지를 구해서 11에서 뺀다
+            checkResult = 11-(checkResult % 11);
+            // console.log(checkResult);
+
+            if (checkResult == lastNum) {
+                alert("유효한 주민번호입니다.");
+            } else {
+                alert("유효하지 않은 주민번호입니다.");
+                return false;
+            }
+
+        }
+    </script>
+
+</body>
+</html>
