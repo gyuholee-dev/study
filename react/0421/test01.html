@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+  
+      let title = `Hello World`;
+      let desc = `This is a simple example of a React component`;
+      const text = {
+        title: title,
+        desc: desc
+      }
+
+      function MyApp(text) {
+        return (
+          <div>
+            <h1>{text.title}</h1>
+            <button onClick={()=>change()}>change</button>
+          </div>
+        );
+      }
+
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp />);
+
+    </script>
+
+  </body>
+</html>
