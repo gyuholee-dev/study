@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#imgslide {
+    width: 1000px;
+    height: 350px;
+    position: relative;
+    .imgs {
+        width: 1000px;
+        >img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+    }
+    .btn {
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        line-height: 40px;
+        font-size: 80px;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: rgba(white, 0.5);
+        color: black;
+        padding: 10px;
+        position: absolute;
+        z-index: 9;
+        top: 50%;
+        transform: translateY(-50%);
+        &.prev {
+            left: 15px;
+        }
+        &.next {
+            right: 15px;
+        }
+        &.off {
+            opacity: 0.2;
+            cursor: default;
+        }
+    }
+}
