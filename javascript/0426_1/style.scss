@@ -1,0 +1,164 @@
+$max-width: 1200px;
+
+// ----------------------------------------------------
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+}
+
+body {
+    font-family: '맑은 고딕', 'Malgun Gothic', '돋움', 'Dotum', 'Helvetica', 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100%;
+    padding: 15px;
+}
+main {
+    width: 100%;
+}
+section {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+}
+
+// ----------------------------------------------------
+
+#imgslide {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    .imgs {
+        width: inherit;
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        background-color: white;
+        >img {
+            height: 100%;
+            position: absolute;
+            transition: transform 0.25s;
+        }
+    }
+    .blend {
+        position: absolute;
+        width: 240px;
+        height: 100%;
+        background: white;
+        z-index: 1;
+        &.left {
+            left: 0;
+            background: linear-gradient(to left, transparent 0%, rgba(black, 0.5) 100%);
+        }
+        &.right {
+            right: 0;
+            background: linear-gradient(to right, transparent 0%, rgba(black, 0.5) 100%);
+        }
+    }
+    .btn {
+        position: absolute;
+        z-index: 9;
+        button {
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            text-shadow: 0 1px 3px black;
+        }
+        &.nav {
+            width: 100%;
+            top: 50%;
+            transform: translateY(-35px);
+            >button {
+                color: white;
+                line-height: 0.25;
+                font-size: 70px;
+                width: 75px;
+                height: 75px;
+                text-align: center;
+                border-radius: 50%;
+                &.prev {
+                    position: absolute;
+                    left: 15px;
+                }
+                &.next {
+                    position: absolute;
+                    right: 15px;
+                }
+                &:hover {
+                    background-color: rgba(black, 0.5);
+                }
+                >span {
+                    position: relative;
+                    top: -5px;
+                }
+            }
+        }
+        &.page {
+            bottom: 15px;
+            button {
+                color: #ddd;
+                font-size: 20px;
+                width: 25px;
+                height: 25px;
+                &:not(:last-of-type) {
+                    margin-right: 10px;
+                }
+                &.active {
+                    color: yellow;
+                }
+            }
+        }
+    }
+}
+
+// ----------------------------------------------------
+
+#newsslide {
+    display: flex;
+    margin: 0 auto;
+    height: 30px;
+    overflow: hidden;
+    // line-height: 32px;
+    .pub {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    .news {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        flex-grow: 1;
+        background-color: white;
+        >a {
+            height: 30px;
+            position: absolute;
+            transition: transform 0.5s;
+            &:hover {
+                color: rgb(0, 84, 211);
+            }
+        }
+    }
+}

@@ -1,0 +1,179 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+body {
+  font-family: '맑은 고딕', 'Malgun Gothic', '돋움', 'Dotum', 'Helvetica', 'Arial', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+  padding: 15px;
+}
+
+main {
+  width: 100%;
+}
+
+section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#imgslide {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#imgslide .imgs {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: white;
+}
+
+#imgslide .imgs > img {
+  height: 100%;
+  position: absolute;
+  transition: transform 0.25s;
+}
+
+#imgslide .blend {
+  position: absolute;
+  width: 240px;
+  height: 100%;
+  background: white;
+  z-index: 1;
+}
+
+#imgslide .blend.left {
+  left: 0;
+  background: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+#imgslide .blend.right {
+  right: 0;
+  background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+#imgslide .btn {
+  position: absolute;
+  z-index: 9;
+}
+
+#imgslide .btn button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  text-shadow: 0 1px 3px black;
+}
+
+#imgslide .btn.nav {
+  width: 100%;
+  top: 50%;
+  transform: translateY(-35px);
+}
+
+#imgslide .btn.nav > button {
+  color: white;
+  line-height: 0.25;
+  font-size: 70px;
+  width: 75px;
+  height: 75px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+#imgslide .btn.nav > button.prev {
+  position: absolute;
+  left: 15px;
+}
+
+#imgslide .btn.nav > button.next {
+  position: absolute;
+  right: 15px;
+}
+
+#imgslide .btn.nav > button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#imgslide .btn.nav > button > span {
+  position: relative;
+  top: -5px;
+}
+
+#imgslide .btn.page {
+  bottom: 15px;
+}
+
+#imgslide .btn.page button {
+  color: #ddd;
+  font-size: 20px;
+  width: 25px;
+  height: 25px;
+}
+
+#imgslide .btn.page button:not(:last-of-type) {
+  margin-right: 10px;
+}
+
+#imgslide .btn.page button.active {
+  color: yellow;
+}
+
+#newsslide {
+  display: flex;
+  margin: 0 auto;
+  height: 30px;
+  overflow: hidden;
+}
+
+#newsslide .pub {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#newsslide .news {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  flex-grow: 1;
+  background-color: white;
+}
+
+#newsslide .news > a {
+  height: 30px;
+  position: absolute;
+  transition: transform 0.5s;
+}
+
+#newsslide .news > a:hover {
+  color: #0054d3;
+}
