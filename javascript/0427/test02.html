@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <style>
+        #box {
+            width: 500px;
+            height: 35px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+        .news {
+            position: relative;
+        }
+        .news>p {
+            margin: 0;
+            height: 30px;
+            padding-top: 5px;
+            padding-left: 5px;
+            position: absolute;
+        }
+    </style>
+    <script>
+        $(function() {
+            var now = 0;
+            var imgs = 4;
+
+            start();
+            
+            function start() {
+                $('.news>p').eq(0).css('top', '0px');
+                $('.news>p').eq(1).css('top', '35px');
+                $('.news>p').eq(2).css('top', '70px');
+                $('.news>p').eq(3).css('top', '105px');
+                $('.news>p').eq(4).css('top', '140px');
+
+                setInterval(function() {
+                    slide();
+                }, 2000);
+            }
+
+            function slide() {
+                now++;
+                if(now == 5) {
+                    now = 0;
+                }
+                if (now == 1) {
+                    $('.news>p').eq(0).css('display', 'block');
+                    $('.news>p').eq(1).css('display', 'block');
+                    $('.news>p').eq(2).css('display', 'none');
+                    $('.news>p').eq(3).css('display', 'none');
+                    $('.news>p').eq(4).css('display', 'none');
+                    $('.news>p').eq(1).animate({top: '0px'});
+                    $('.news>p').eq(2).animate({top: '35px'});
+                    $('.news>p').eq(3).animate({top: '70px'});
+                    $('.news>p').eq(4).animate({top: '105px'});
+                    $('.news>p').eq(0).animate({top: '-35px'});
+                } else if (now == 2) {
+                    $('.news>p').eq(1).css('display', 'block');
+                    $('.news>p').eq(2).css('display', 'block');
+                    $('.news>p').eq(3).css('display', 'none');
+                    $('.news>p').eq(4).css('display', 'none');
+                    $('.news>p').eq(0).css('display', 'none');
+                    $('.news>p').eq(2).animate({top: '0px'});
+                    $('.news>p').eq(3).animate({top: '35px'});
+                    $('.news>p').eq(4).animate({top: '70px'});
+                    $('.news>p').eq(0).animate({top: '105px'});
+                    $('.news>p').eq(1).animate({top: '-35px'});
+                } else if (now == 3) {
+                    $('.news>p').eq(2).css('display', 'block');
+                    $('.news>p').eq(3).css('display', 'block');
+                    $('.news>p').eq(4).css('display', 'none');
+                    $('.news>p').eq(0).css('display', 'none');
+                    $('.news>p').eq(1).css('display', 'none');
+                    $('.news>p').eq(3).animate({top: '0px'});
+                    $('.news>p').eq(4).animate({top: '35px'});
+                    $('.news>p').eq(0).animate({top: '70px'});
+                    $('.news>p').eq(1).animate({top: '105px'});
+                    $('.news>p').eq(2).animate({top: '-35px'});
+                } else if (now == 4) {
+                    $('.news>p').eq(3).css('display', 'block');
+                    $('.news>p').eq(4).css('display', 'block');
+                    $('.news>p').eq(0).css('display', 'none');
+                    $('.news>p').eq(1).css('display', 'none');
+                    $('.news>p').eq(2).css('display', 'none');
+                    $('.news>p').eq(4).animate({top: '0px'});
+                    $('.news>p').eq(0).animate({top: '35px'});
+                    $('.news>p').eq(1).animate({top: '70px'});
+                    $('.news>p').eq(2).animate({top: '105px'});
+                    $('.news>p').eq(3).animate({top: '-35px'});
+                } else if (now == 0) {
+                    $('.news>p').eq(4).css('display', 'block');
+                    $('.news>p').eq(0).css('display', 'block');
+                    $('.news>p').eq(1).css('display', 'none');
+                    $('.news>p').eq(2).css('display', 'none');
+                    $('.news>p').eq(3).css('display', 'none');
+                    $('.news>p').eq(0).animate({top: '0px'});
+                    $('.news>p').eq(1).animate({top: '35px'});
+                    $('.news>p').eq(2).animate({top: '70px'});
+                    $('.news>p').eq(3).animate({top: '105px'});
+                    $('.news>p').eq(4).animate({top: '-35px'});
+                }
+            }
+
+
+        });
+    </script>
+</head>
+<body>
+    <div id="box">
+        <div class="news">
+            <p>첫번째 뉴스입니다</p>
+            <p>두번째 뉴스입니다</p>
+            <p>세번째 뉴스입니다</p>
+            <p>네번째 뉴스입니다</p>
+            <p>다섯번째 뉴스입니다</p>
+        </div>
+    </div>
+</body>
+</html>

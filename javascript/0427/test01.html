@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style01.css">
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="script01.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0 auto;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        #pop01 {
+            width: 300px;
+            height: 400px;
+            background-color: #3d3d3d;
+            color: white;
+            position: absolute;
+            top: 10px;
+            left: 100px;
+            text-align: center;
+            border: 2px solid black;
+            display: none;
+        }
+        #pop02 {
+            width: 300px;
+            height: 400px;
+            background-color: #3d3d3d;
+            color: white;
+            position: absolute;
+            top: 10px;
+            left: 500px;
+            text-align: center;
+            border: 2px solid black;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form name="frmPopup" method="post">
+        <div id="pop01">
+            <div style="height:350px">
+                안녕하세요 늑대털쓴 양입니다.<br>
+                <a href="#"><b>팝업강좌 바로가기</b></a>
+            </div>
+            <div>
+                <input type="checkbox" name="pop01">오늘하루 이창을 열지않음
+                <div id="close01" style="width:100px;margin:auto;cursor:pointer;">close</div>
+            </div>
+        </div>
+        <div id="pop02">
+            <div style="height:350px">
+                안녕하세요 늑대털쓴 양입니다.<br>
+                <a href="#"><b>팝업강좌 바로가기</b></a>
+            </div>
+            <div>
+                <input type="checkbox" name="pop02">오늘하루 이창을 열지않음
+                <div id="close02" style="width:100px;margin:auto;cursor:pointer;">close</div>
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>
