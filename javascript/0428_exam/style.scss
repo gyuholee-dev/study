@@ -1,0 +1,74 @@
+// 웹폰트 ---------------------------------------------------------
+// @import url('https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css');
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+// @import '_font.scss';
+// 변수 ---------------------------------------------------------
+// @import "_variables.scss";
+$blue: #1351f9;
+$shine: white;
+$light: #a5a5a5;
+$grey: #808080; 
+$darkgrey: #1b1b1b;
+$max-width: 1200px;
+
+
+// 글로벌 ---------------------------------------------------------
+// @import "_global.scss";
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    // font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    font-family: "Noto Sans KR", "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    color: $light;
+    font-size: 18px;
+    line-height: 1.6;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: $darkgrey;
+}
+
+header,
+main,
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+}
+
+main {
+    min-height: 600px;
+}
+
+section {
+    width: 100%;
+    max-width: $max-width;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    height: 8px;
+    border-radius: 0;
+    background-color: $light;
+}
+
+// 엘리먼트 ---------------------------------------------------------

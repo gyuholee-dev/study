@@ -1,0 +1,34 @@
+https://www.wavve.com/index.html
+wavve.com 카피
+모달팝업
+스크롤탑(무한스크롤)
+이미지슬라이드
+이전/다음 이미지(스크롤)
+검색팝업
+공지사항(텍스트슬라이드)
+
+wavve : 웨이브
+hot_episodes : 실시간 인기 프로그램
+wavve_original : 웨이브 오리지널
+hbo_series : HBO 시리즈
+sports : 스포츠
+webtoon : 웹툰
+top20 : TOP 20
+blockbuster : 블록버스터
+sf_fantasy : SF 판타지
+justice : 정의구현
+coming_soon : Coming Soon
+weekly_top : 이번주 급상승
+daily_top : 어제오늘 급상승
+animation : 애니메이션
+reviewers_choice : 평론가 선택
+writers_choice : 작가 선택
+agony_advice : 고민상담
+recommended : 꼭 봐야 하는 이슈
+entertainment : 예능
+office_romance : 사내로맨스
+only_in_wavve : 웨이브에서만
+movies_in_tv : TV속 영화
+love_story : 사랑테마
+award_winning : 수상작
+movieplus_best : 영화플러스 추천
