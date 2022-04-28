@@ -21,6 +21,7 @@ $light: #a5a5a5;
 $grey: #808080; 
 $dark: #2f2f2f;
 $darkblack: #1b1b1b;
+$black: #101010;
 $max-width: 1240px;
 
 @mixin flex($align:center, $justify:center, $direction:row, $wrap:nowrap) {
@@ -73,6 +74,7 @@ main {
 nav, section {
     width: 100%;
     max-width: $max-width;
+    // padding: 0 20px;
 }
 
 a {
@@ -116,6 +118,12 @@ img {
 // 엘리먼트 ---------------------------------------------------------
 // @import "_elements.scss";
 
+#floatbox {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+
 header {
     height: 108px;
     nav {
@@ -144,16 +152,43 @@ header {
             }
             >.menu {
                 position: relative;
+                height: inherit;
                 >li {
+                    @include flex(center, start);
+                    height: inherit;
                     padding: 5px 10px;
                     margin-right: 20px;
                     &.active {
                         color: $shine;
                     }
                 }
+                >.item.list:hover {
+                    >.submenu {
+                        display: block;
+                    }
+                }
                 .submenu {
+                    min-width: 210px;
+                    padding: 20px;
                     position: absolute;
+                    top: 74px;
+                    z-index: 10;
                     display: none;
+                    background-color: $black;
+                    font-size: 14px;
+                    line-height: 34px;
+                    .hr {
+                        margin: 10px 0;
+                    }
+                    >li {
+                        a {
+                            display: block;
+                            width: 100%;
+                        }
+                        &.active *, a:hover {
+                            color: $shine;
+                        }
+                    }
                 }
             }
             >.search {
@@ -172,6 +207,7 @@ header {
 #imgslide {
     height: 598px;
     max-width: none;
+    padding: 0;
     position: relative;
     overflow: hidden;
     .imgs {
@@ -184,7 +220,7 @@ header {
             position: absolute;
             width: 100%;
             height: inherit;
-            transition: transform 0.5s;
+            // transition: transform 0.5s;
             >img {
                 position: absolute;
                 height: inherit;
@@ -192,6 +228,10 @@ header {
             }
         }
     }
+    &.active .imgs>.item {
+        transition: transform 0.5s;
+    }
+
     .buttons {
         position: absolute;
         &.nav {
@@ -200,17 +240,24 @@ header {
             width: 100%;
             z-index: 9;
             .btn {
-                &.prev::before {
-                    content: url(../images/ui/ui_prev_L.png);
+                position: relative;
+                &.prev {
+                    left: 100px;
+                    &::before {
+                        content: url(../images/ui/ui_prev_L.png);
+                    }
+                    &:hover::before {
+                        content: url(../images/ui/ui_prev_LH.png);
+                    }
                 }
-                &.next::before {
-                    content: url(../images/ui/ui_next_L.png);
-                }
-                &.prev:hover::before {
-                    content: url(../images/ui/ui_prev_LH.png);
-                }
-                &.next:hover::before {
-                    content: url(../images/ui/ui_next_LH.png);
+                &.next {
+                    right: 100px;
+                    &::before {
+                        content: url(../images/ui/ui_next_L.png);
+                    }
+                    &:hover::before {
+                        content: url(../images/ui/ui_next_LH.png);
+                    }
                 }
             }
         }
@@ -231,10 +278,10 @@ header {
                     top: 2px;
                 }
                 &.play::before {
-                    content: url(../images/ui/icon_play.svg);
+                    content: url(../images/ui/icon_stop.svg);
                 }
                 &.stop::before {
-                    content: url(../images/ui/icon_stop.svg);
+                    content: url(../images/ui/icon_play.svg);
                 }
                 &.dot::before {
                     content: "●";
@@ -244,9 +291,9 @@ header {
     }
 }
 
-section.list {
+section.dramalist {
     margin-bottom: 80px;
-    .title {
+    >.title {
         @include flex(center, space-between);
         width: 100%;
         margin-bottom: 20px;
@@ -264,14 +311,129 @@ section.list {
         }
     }
     .list {
-        @include flex(center, center);
+        @include flex(start, start);
         overflow: hidden;
         position: relative;
         width: 100%;
         height: 392px;
-        >.item {
-            width: 240px;
+        .items {
+            @include flex(start, center);
+            width: max-content;
+            height: inherit;
             position: absolute;
+            transition: transform 0.5s;
+        }
+        .item {
+            @include flex(start, start, column);
+            width: 240px;
+            height: inherit;
+            &:not(:last-of-type) {
+                margin-right: 10px;
+            }
+            >.img {
+                @include flex(center, center);
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                margin-bottom: 8px;
+                &:hover img {
+                    transform: scale(105%);
+                    transition: transform 0.25s;
+                }
+            }
+            >.title {
+                width: 100%;
+                height: 24px;
+                flex-shrink: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        .buttons {
+            @include flex(center, space-between);
+            position: absolute;
+            top: 180px;
+            transform: translateY(-50%);
+            width: 100%;
+            z-index: 9;
+            .btn {
+                position: relative;
+                transition: transform 0.25s;
+                &.prev {
+                    left: 0;
+                    transform: translateX(-100%);
+                    &::before {
+                        content: url(../images/ui/ui_prev_M.png);
+                    }
+                }
+                &.next {
+                    right: 0;
+                    transform: translateX(100%);
+                    &::before {
+                        content: url(../images/ui/ui_next_M.png);
+                    }
+                }
+                &.disabled {
+                    pointer-events: none;
+                    opacity: 0.3;
+                }
+            }
+        }
+        &:hover .buttons .btn {
+            transform: translateX(0);
         }
     }
+}
+
+footer {
+    border-top: 1px solid $dark;
+    nav {
+        flex-direction: row;
+    }
+    #newsslide {
+        height: 50px;
+        .notice {
+            margin-right: 23px;
+            padding: 0 5px;
+        }
+        .news {
+            @include flex(start, center, column);
+            height: inherit;
+            overflow: hidden;
+            position: relative;
+            flex-grow: 1;
+            background-color: $darkblack;
+            .item {
+                position: absolute;
+                transition: transform 0.5s;
+            }
+        }
+        .nav {
+            border-left: 1px solid $dark;
+            &:last-of-type {
+                border-right: 1px solid $dark;
+            }
+        }
+    }
+    .menu {
+        a:hover {
+            color: $blue;
+        }
+        .links {
+            @include flex(center, start);
+            height: 50px;
+            >a {
+                margin-right: 24px;
+            }
+        }
+        .copyright {
+            font-size: 12px;
+        }
+    }
+
+    .family {
+        display: none;
+    }
+
 }

@@ -1,21 +1,22 @@
-$(document).ready(function(){
+$(async()=>{
+
+    // imgslide
+    const $imgslide = $('#imgslide');
 
     // 이미지
     const $imgs = $('#imgslide>.imgs>.item');
     const imgCnt = $imgs.length;
-    const imgWidth = $imgs.children('img')[0].clientWidth;
     const margin = 20;
-    const delay = 2500;
+    const delay = 2500; //2500
     let repeat;
     let ci = Math.floor(Math.random() * imgCnt-1); // 현재 가운데 이미지 랜덤
+    let imgWidth = 1240; // 고정값
+    // imgWidth = $imgs.eq(ci).children('img')[0].clientWidth;
 
     // 버튼
     const $navs = $('#imgslide .buttons.nav>button');
     const $play = $('#imgslide .buttons.page>button.play');
     const $dots = $('#imgslide .buttons.page>button.dot');
-
-    // imgslide
-    const $imgslide = $('#imgslide');
 
     // -------------------------------------------------------
 
@@ -58,7 +59,7 @@ $(document).ready(function(){
     function replay() {
         play(false);
         slide();
-        setTimeout(function(){
+        setTimeout(()=>{
             play(true);
         }, delay);
     }
@@ -83,7 +84,10 @@ $(document).ready(function(){
 
     // 슬라이드 시작
     slide();
-    play(true);
+    setTimeout(()=>{
+        $imgslide.addClass('active');
+        play(true);
+    }, 300); // 0.3초 지연
 
     // 버튼 이전 다음
     $navs.on('click', function(){

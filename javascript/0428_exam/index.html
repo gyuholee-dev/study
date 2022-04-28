@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <title>웨이브(wavve)</title>
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
@@ -34,7 +33,8 @@
                     <button class="btn">카테고리</button>
                     <ul class="submenu">
                         <li><a href="#">전체 카테고리 보기</a></li>
-                        <li><p>추천 메뉴</p></li>
+                        <div class="hr"></div>
+                        <li class="active"><p>추천 메뉴</p></li>
                         <li><a href="#">드라마</a></li>
                         <li><a href="#">예능</a></li>
                         <li><a href="#">영화</a></li>
@@ -59,7 +59,6 @@
     <main>
         <section id="imgslide">
             <div class="imgs">
-                <!-- 반복 -->
                 <a class="item" href="#">
                     <img src="images/imgslide/banner_181234.jpg" alt="스탠드">
                     <img src="images/imgslide/title_181234.png" alt="스탠드">
@@ -95,7 +94,6 @@
             </div>
             <div class="buttons page">
                 <button class="btn play stop"></button>
-                <!-- 반복 -->
                 <button class="btn dot"></button>
                 <button class="btn dot"></button>
                 <button class="btn dot"></button>
@@ -103,34 +101,86 @@
                 <button class="btn dot"></button>
                 <button class="btn dot"></button>
                 <button class="btn dot"></button>
-                <!-- 반복 -->
             </div>
         </section>
-        <!-- 반복 -->
-        <!-- <section id="dramalist" class="list thum">
-            <div class="title">
-                <label>실시간 인기 프로그램</label>
-                <button class="btn more">더보기</button>
-            </div>
-            <div class="list">
-                <a class="item" href="#">
-                    <img src="${url}" alt="${title}">
-                    <div class="info">${title}</div>
-                </a>
-            </div>     
-        </section> -->
-        <!-- 반복 -->
+        <!-- dramalist -->
         <div id="listend"></div>
 
     </main>
 
-    <footer>
+    <div id="floatbox">
+        <button class="btn scrolltop" style="display:none;">
+            <img src="images/ui/ui_scrolltop.png">
+        </button>
+    </div>
 
+    <footer>
+        <nav id="newsslide" class="top">
+            <button class="btn notice">공지사항</button>
+            <div class="news">
+                <a class="item" href="#">
+                    원스토어 마켓 app 업데이트
+                </a>
+                <a class="item" href="#">
+                    wavve오리지널 'EXO의 사다리 타고 세계여행3' 시청 이벤트 안내
+                </a>
+                <a class="item" href="#">
+                    [안드로이드 app] 구글플레이결제 적용 안내 (2022.4.1 업데이트)
+                </a>
+            </div>
+            <button class="btn nav prev">
+                <img src="images/ui/ui_prev.png">
+            </button>
+            <button class="btn nav next">
+                <img src="images/ui/ui_next.png">
+            </button>
+        </nav>
+        <div class="hr"></div>
+        <nav class="menu">
+            <div class="info">
+                <div class="links">
+                    <a href="#">회사소개</a>
+                    <a href="#">인재채용</a>
+                    <a href="#">서비스 소개</a>
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보 처리방침</a>
+                    <a href="#">고객센터</a>
+                </div>
+                <div class="copyright">
+                    콘텐츠웨이브 주식회사 | 대표이사 이태현 | 고객센터 1599-3709 (평일 09:00~18:00 / 점심시간 12:00~13:00 / 주말 및 공휴일 휴무)<br>
+                    사업자등록번호 220-88-38020 | 호스팅서비스제공자 : 마이크로소프트 유한회사<br>
+                    통신판매업 신고번호 : 제 2021-서울영등포-0585호 | 통신판매업 정보 공개 : <a href="#">http://www.ftc.go.kr/bizCommPop.do?wrkr_no=220-88-38020</a><br>
+                    서울특별시 영등포구 여의나루로 60 포스트타워 19층 | 전자우편주소 : <a href="mailto:helpdesk@wavve.com">helpdesk@wavve.com</a><br>
+                    Copyright© 콘텐츠웨이브(주) All rights reserved.
+                </div>
+            </div>
+            <div class="family">
+                <label>
+                    <img src="images/ui/logo_wavve_on.png" alt="wavve on">
+                    <select id="wavveon" onchange="if(this.value){location.href=(this.value);}">
+                        <option value="" selected disabled hidden>사업자용 웨이브 가입</option>
+                        <option value="#">웨이브온 서비스 소개</option>
+                        <option value="#">웨이브온 PC방 서비스</option>
+                        <option value="#">웨이브온 도서관 서비스</option>
+                        <option value="#">웨이브온 병원 서비스</option>
+                        <option value="#">웨이브온 숙박 서비스</option>
+                        <option value="#">웨이브온 일반 서비스</option>
+                    </select>
+                </label>
+                <div class="buttons">
+                    <a href="#"><img src="images/ui/ext_facebook.png"></a>
+                    <a href="#"><img src="images/ui/ext_naverblog.png"></a>
+                </div>
+
+            </div>
+        </nav>
     </footer>
-    
+
     <script src="scripts/script.js"></script>
     <script src="scripts/imgslide.js"></script>
     <script src="scripts/newsslide.js"></script>
+    <script src="scripts/listswipe.js"></script>
+    <script src="scripts/scroll.js"></script>
 
 </body>
 </html>

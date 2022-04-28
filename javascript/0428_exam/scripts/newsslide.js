@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(async()=>{
 
     // 뉴스
     const $news = $('#newsslide .news a');
@@ -7,9 +7,10 @@ $(document).ready(function(){
     const margin = 0;
     const delay = 5000;
     let repeat;
-    let ci = 2; // 현재 가운데 뉴스 인덱스
+    let ci = 0; // 현재 가운데 뉴스 인덱스
 
     // 버튼
+    const $navs = $('#newsslide .btn.nav');
 
     // newsslide
     const $newsslide = $('#newsslide');
@@ -77,6 +78,16 @@ $(document).ready(function(){
     // 슬라이드 시작
     slide();
     play(true);
+
+    // 버튼 이전 다음
+    $navs.on('click', function(){
+        let $this = $(this);
+        if ($this.hasClass('prev')) {
+            prev();
+        } else if ($this.hasClass('next')) {
+            next();
+        }
+    });
 
     // newsslide 호버
     $newsslide.on('mouseenter', function(){

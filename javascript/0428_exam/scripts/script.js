@@ -1,42 +1,49 @@
-// 리스트 출력
-// document.addEventListener('DOMContentLoaded', async() => {
-// $(document).ready(async function() { // DEPRECATED
-$(async()=>{
-
+function shuffle(array) { 
+    array.sort(() => Math.random() - 0.5); 
+}
+// 드라마 리스트 출력
+async function renderList() {
+    
     let listData = await $.getJSON('data/list.json');
     let dramaData = await $.getJSON('data/drama.json');
-    // console.log(listData);
-    // console.log(dramaData);
 
     let html = '';
     for (let category in listData) {
-        let title = listData[category];
-        html += `
-            <section class="list thum">
-                <div class="title">
-                    <label>${title}</label>
-                    <button class="btn more">더보기</button>
-                </div>
-                <div class="list">
-        `;
-        
-        let list = '';
-        for (let title in dramaData[category]) {
+        let dramaList = '';
+        let titles = Object.keys(dramaData[category]);
+        shuffle(titles);
+        for (let title of titles) {
             let url = dramaData[category][title];
-            list += `
+            dramaList += `
                 <a class="item" href="#">
-                    <img src="${url}" alt="${title}">
-                    <div class="info">${title}</div>
+                    <div class="img">
+                        <img src="${url}" alt="${title}">
+                    </div>
+                    <div class="title">${title}</div>
                 </a>
             `;
         }
-        html += list;
 
+        let listTitle = listData[category];
         html += `
+            <section id="${category}" class="dramalist" data="0">
+                <div class="title">
+                    <label>${listTitle}</label>
+                    <button class="btn more">더보기</button>
+                </div>
+                <div class="list">
+                    <div class="items">
+                        ${dramaList}
+                    </div>
+                    <div class="buttons nav">
+                        <button class="btn prev disabled" data="${category}"></button>
+                        <button class="btn next" data="${category}"></button>
+                    </div>
                 </div>     
             </section>
         `;
     }
     $(html).insertBefore($('#listend'));
     
-});
+}
+let listReady = renderList();
