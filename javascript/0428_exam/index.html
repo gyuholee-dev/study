@@ -6,15 +6,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <title>웨이브(wavve)</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
-    <script src="script.js"></script>
+
+    <header>
+        <nav class="top">
+            <a href="#">로그인</a>
+            <span>|</span>
+            <a href="#">이용권</a>
+            <span>|</span>
+            <a href="#">이벤트</a>
+        </nav>
+        <div class="hr"></div>  
+        <nav class="main">
+            <a class="logo" href="index.html">
+                <img src="images/ui/logo_wavve.png" alt="wavve">
+            </a>
+            <ul class="menu">
+                <li class="item link active">
+                    <a class="btn" href="index.html">홈</a>
+                </li>
+                <li class="item list">
+                    <button class="btn">카테고리</button>
+                    <ul class="submenu">
+                        <li><a href="#">전체 카테고리 보기</a></li>
+                        <li><p>추천 메뉴</p></li>
+                        <li><a href="#">드라마</a></li>
+                        <li><a href="#">예능</a></li>
+                        <li><a href="#">영화</a></li>
+                        <li><a href="#">영화플러스</a></li>
+                        <li><a href="#">해외시리즈</a></li>
+                        <li><a href="#">프로야구</a></li>
+                        <li><a href="#">ORIGINAL</a></li>
+                        <li><a href="#">CLASSIC</a></li>
+                    </ul>
+                </li>
+                <li class="item link">
+                    <a class="btn" href="#">LIVE</a>
+                </li>
+                <li class="item link">
+                    <a class="btn" href="#">MY</a>
+                </li>
+            </ul>
+            <button class="btn search">검색하기</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="imgslide">
+            <div class="imgs">
+                <!-- 반복 -->
+                <a class="item" href="#">
+                    <img src="images/imgslide/banner_181234.jpg" alt="스탠드">
+                    <img src="images/imgslide/title_181234.png" alt="스탠드">
+                </a>
+                <a class="item" href="#">
+                    <img src="images/imgslide/banner_031429.jpg" alt="서약">
+                    <img src="images/imgslide/title_031429.png" alt="서약">
+                </a>
+                <a class="item" href="#">
+                    <img src="images/imgslide/banner_200113.jpg" alt="리스타트">
+                    <img src="images/imgslide/title_200113.png" alt="리스타트">
+                </a>
+                <a class="item" href="#">
+                    <img src="images/imgslide/banner_184831.jpg" alt="크레이지 러브">
+                    <img src="images/imgslide/title_184831.png" alt="크레이지 러브">
+                </a>
+                <a class="item" href="#">
+                    <img src="images/imgslide/banner_142757.jpg" alt="내일">
+                    <img src="images/imgslide/title_142757.png" alt="내일">
+                </a>
+                <a class="item" href="#">
+                    <img src="images/imgslide/banner_165721.jpg" alt="어게인 마이 라이프">
+                    <img src="images/imgslide/title_165721.png" alt="어게인 마이 라이프">
+                </a>
+                <a class="item" href="#">
+                    <img src="images/imgslide/banner_103350.jpg" alt="이상한 나라의 수학자">
+                    <img src="images/imgslide/title_103350.png" alt="이상한 나라의 수학자">
+                </a>
+            </div>
+            <div class="buttons nav">
+                <button class="btn prev"></button>
+                <button class="btn next"></button>
+            </div>
+            <div class="buttons page">
+                <button class="btn play stop"></button>
+                <!-- 반복 -->
+                <button class="btn dot"></button>
+                <button class="btn dot"></button>
+                <button class="btn dot"></button>
+                <button class="btn dot"></button>
+                <button class="btn dot"></button>
+                <button class="btn dot"></button>
+                <button class="btn dot"></button>
+                <!-- 반복 -->
+            </div>
+        </section>
+        <!-- 반복 -->
+        <!-- <section id="dramalist" class="list thum">
+            <div class="title">
+                <label>실시간 인기 프로그램</label>
+                <button class="btn more">더보기</button>
+            </div>
+            <div class="list">
+                <a class="item" href="#">
+                    <img src="${url}" alt="${title}">
+                    <div class="info">${title}</div>
+                </a>
+            </div>     
+        </section> -->
+        <!-- 반복 -->
+        <div id="listend"></div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+    
+    <script src="scripts/script.js"></script>
+    <script src="scripts/imgslide.js"></script>
+    <script src="scripts/newsslide.js"></script>
+
 </body>
 </html>

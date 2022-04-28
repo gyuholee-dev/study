@@ -1,0 +1,277 @@
+// 웹폰트 ---------------------------------------------------------
+// @import url('https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css');
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+// @import '_font.scss';
+@font-face {
+    font-family: NotoSans;
+    src: url(./fonts/noto-sans-kr-regular.woff2) format('woff2');
+    font-weight: 400;
+}
+@font-face {
+    font-family: NotoSans;
+    src: url(./fonts/noto-sans-kr-bold.woff2) format('woff2');
+    font-weight: 700;
+}
+
+// 변수 ---------------------------------------------------------
+// @import "_variables.scss";
+$blue: #1351f9;
+$shine: white;
+$light: #a5a5a5;
+$grey: #808080; 
+$dark: #2f2f2f;
+$darkblack: #1b1b1b;
+$max-width: 1240px;
+
+@mixin flex($align:center, $justify:center, $direction:row, $wrap:nowrap) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+    flex-wrap: $wrap;
+}
+
+@mixin font() {
+    font-family: "Noto Sans KR", "NotoSans", "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+}
+
+// 글로벌 ---------------------------------------------------------
+// @import "_global.scss";
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    background: none;
+    font-size: inherit;
+    color: inherit;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    // font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    font-family: "Noto Sans KR", "NotoSans", "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+    color: $light;
+    font-size: 16px;
+    line-height: 1.5;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: $darkblack;
+}
+
+header, main, footer,
+section, article, aside, nav {
+    @include flex(center, start, column);
+    width: 100%;
+}
+
+main {
+    min-height: 600px;
+}
+
+nav, section {
+    width: 100%;
+    max-width: $max-width;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+button {
+    @include font;
+}
+
+.hr {
+    width: 100%;
+    border-bottom: 1px solid $dark;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    height: 8px;
+    border-radius: 0;
+    background-color: $light;
+}
+
+// 엘리먼트 ---------------------------------------------------------
+// @import "_elements.scss";
+
+header {
+    height: 108px;
+    nav {
+        flex-direction: row;
+        &.top {
+            height: 34px;
+            justify-content: end;
+            font-size: 12px;
+            >a {
+                padding: 5px 10px;
+            }
+            >span {
+                color: $dark;
+            }
+        }
+        &.main {
+            height: 74px;
+            font-size: 20px;
+            > * {
+                @include flex(center, center);
+                height: 40px;
+            }
+            >.logo {
+                width: 111px;
+                margin-right: 80px;
+            }
+            >.menu {
+                position: relative;
+                >li {
+                    padding: 5px 10px;
+                    margin-right: 20px;
+                    &.active {
+                        color: $shine;
+                    }
+                }
+                .submenu {
+                    position: absolute;
+                    display: none;
+                }
+            }
+            >.search {
+                margin-left: auto;
+                &::before {
+                    content: url(../images/ui/icon_search.svg);
+                    position: relative;
+                    top: 3px;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+
+#imgslide {
+    height: 598px;
+    max-width: none;
+    position: relative;
+    overflow: hidden;
+    .imgs {
+        @include flex(center, center);
+        width: 100%;
+        max-width: $max-width;
+        height: 508px;
+        >.item {
+            @include flex(center, center);
+            position: absolute;
+            width: 100%;
+            height: inherit;
+            transition: transform 0.5s;
+            >img {
+                position: absolute;
+                height: inherit;
+                width: auto;
+            }
+        }
+    }
+    .buttons {
+        position: absolute;
+        &.nav {
+            @include flex(center, space-between);
+            top: 204px;
+            width: 100%;
+            z-index: 9;
+            .btn {
+                &.prev::before {
+                    content: url(../images/ui/ui_prev_L.png);
+                }
+                &.next::before {
+                    content: url(../images/ui/ui_next_L.png);
+                }
+                &.prev:hover::before {
+                    content: url(../images/ui/ui_prev_LH.png);
+                }
+                &.next:hover::before {
+                    content: url(../images/ui/ui_next_LH.png);
+                }
+            }
+        }
+        &.page {
+            @include flex(center, center);
+            height: 34px;
+            bottom: 36px;
+            .btn {
+                font-size: 10px;
+                padding: 3px;
+                margin: 0 4px;
+                &.active {
+                    color: $shine;
+                }
+                &.play {
+                    padding: 0;
+                    position: relative;
+                    top: 2px;
+                }
+                &.play::before {
+                    content: url(../images/ui/icon_play.svg);
+                }
+                &.stop::before {
+                    content: url(../images/ui/icon_stop.svg);
+                }
+                &.dot::before {
+                    content: "●";
+                }
+            }
+        }
+    }
+}
+
+section.list {
+    margin-bottom: 80px;
+    .title {
+        @include flex(center, space-between);
+        width: 100%;
+        margin-bottom: 20px;
+        >label {
+            font-size: 24px;
+            color: $shine;
+        }
+        >.more {
+            &::after {
+                content: url(../images/ui/icon-arrow.svg);
+                margin-left: 5px;
+                position: relative;
+                top: 2px;
+            }
+        }
+    }
+    .list {
+        @include flex(center, center);
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        height: 392px;
+        >.item {
+            width: 240px;
+            position: absolute;
+        }
+    }
+}

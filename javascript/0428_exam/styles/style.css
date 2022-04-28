@@ -1,0 +1,104 @@
+@charset "UTF-8";
+@font-face { font-family: NotoSans; src: url(./fonts/noto-sans-kr-regular.woff2) format("woff2"); font-weight: 400; }
+
+@font-face { font-family: NotoSans; src: url(./fonts/noto-sans-kr-bold.woff2) format("woff2"); font-weight: 700; }
+
+* { margin: 0; padding: 0; list-style: none; box-sizing: border-box; background: none; font-size: inherit; color: inherit; border: none; -webkit-tap-highlight-color: transparent; }
+
+body { font-family: "Noto Sans KR", "NotoSans", "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; color: #a5a5a5; font-size: 16px; line-height: 1.5; word-break: break-all; word-wrap: break-word; background-color: #1b1b1b; }
+
+header, main, footer, section, article, aside, nav { display: flex; flex-direction: column; align-items: center; justify-content: start; flex-wrap: nowrap; width: 100%; }
+
+main { min-height: 600px; }
+
+nav, section { width: 100%; max-width: 1240px; }
+
+a { text-decoration: none; color: inherit; }
+
+.btn { cursor: pointer; }
+
+button { font-family: "Noto Sans KR", "NotoSans", "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+
+.hr { width: 100%; border-bottom: 1px solid #2f2f2f; }
+
+img { width: 100%; height: auto; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; background-color: transparent; }
+
+::-webkit-scrollbar-track { border-radius: 0; background-color: transparent; }
+
+::-webkit-scrollbar-thumb { height: 8px; border-radius: 0; background-color: #a5a5a5; }
+
+header { height: 108px; }
+
+header nav { flex-direction: row; }
+
+header nav.top { height: 34px; justify-content: end; font-size: 12px; }
+
+header nav.top > a { padding: 5px 10px; }
+
+header nav.top > span { color: #2f2f2f; }
+
+header nav.main { height: 74px; font-size: 20px; }
+
+header nav.main > * { display: flex; flex-direction: row; align-items: center; justify-content: center; flex-wrap: nowrap; height: 40px; }
+
+header nav.main > .logo { width: 111px; margin-right: 80px; }
+
+header nav.main > .menu { position: relative; }
+
+header nav.main > .menu > li { padding: 5px 10px; margin-right: 20px; }
+
+header nav.main > .menu > li.active { color: white; }
+
+header nav.main > .menu .submenu { position: absolute; display: none; }
+
+header nav.main > .search { margin-left: auto; }
+
+header nav.main > .search::before { content: url(../images/ui/icon_search.svg); position: relative; top: 3px; margin-right: 5px; }
+
+#imgslide { height: 598px; max-width: none; position: relative; overflow: hidden; }
+
+#imgslide .imgs { display: flex; flex-direction: row; align-items: center; justify-content: center; flex-wrap: nowrap; width: 100%; max-width: 1240px; height: 508px; }
+
+#imgslide .imgs > .item { display: flex; flex-direction: row; align-items: center; justify-content: center; flex-wrap: nowrap; position: absolute; width: 100%; height: inherit; transition: transform 0.5s; }
+
+#imgslide .imgs > .item > img { position: absolute; height: inherit; width: auto; }
+
+#imgslide .buttons { position: absolute; }
+
+#imgslide .buttons.nav { display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: nowrap; top: 204px; width: 100%; z-index: 9; }
+
+#imgslide .buttons.nav .btn.prev::before { content: url(../images/ui/ui_prev_L.png); }
+
+#imgslide .buttons.nav .btn.next::before { content: url(../images/ui/ui_next_L.png); }
+
+#imgslide .buttons.nav .btn.prev:hover::before { content: url(../images/ui/ui_prev_LH.png); }
+
+#imgslide .buttons.nav .btn.next:hover::before { content: url(../images/ui/ui_next_LH.png); }
+
+#imgslide .buttons.page { display: flex; flex-direction: row; align-items: center; justify-content: center; flex-wrap: nowrap; height: 34px; bottom: 36px; }
+
+#imgslide .buttons.page .btn { font-size: 10px; padding: 3px; margin: 0 4px; }
+
+#imgslide .buttons.page .btn.active { color: white; }
+
+#imgslide .buttons.page .btn.play { padding: 0; position: relative; top: 2px; }
+
+#imgslide .buttons.page .btn.play::before { content: url(../images/ui/icon_play.svg); }
+
+#imgslide .buttons.page .btn.stop::before { content: url(../images/ui/icon_stop.svg); }
+
+#imgslide .buttons.page .btn.dot::before { content: "●"; }
+
+section.list { margin-bottom: 80px; }
+
+section.list .title { display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: nowrap; width: 100%; margin-bottom: 20px; }
+
+section.list .title > label { font-size: 24px; color: white; }
+
+section.list .title > .more::after { content: url(../images/ui/icon-arrow.svg); margin-left: 5px; position: relative; top: 2px; }
+
+section.list .list { display: flex; flex-direction: row; align-items: center; justify-content: center; flex-wrap: nowrap; overflow: hidden; position: relative; width: 100%; height: 392px; }
+
+section.list .list > .item { width: 240px; position: absolute; }
