@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0 auto;
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        #title {
+            width: 600px;
+            display: flex;
+        }
+        #title > li {
+            width: 150px;
+            text-align: center;
+        }
+
+        #content {
+            width: 600px;
+        }
+        #content > li {
+            display: none;
+        }
+    </style>
+    <script>
+        $(function() {
+            $('#content').children().eq(0).css('display', 'block');
+
+            $('#title > li').click(function() {
+                var idx = $(this).index();
+                console.log(idx);
+                $('#content').children().eq(idx).css('display', 'block');
+                $('#content').children().eq(idx).siblings().css('display', 'none');
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <ul id="title">
+        <li><a href="#">국민연금</a></li>
+        <li><a href="#">건강보험</a></li>
+        <li><a href="#">산재보험</a></li>
+        <li><a href="#">고용보험</a></li>
+    </ul>
+    <ul id="content">
+        <li>국민연금은 어쩌고 저쩌고</li>
+        <li>건강보험은 어쩌고 저쩌고</li>
+        <li>산재보험은 어쩌고 저쩌고</li>
+        <li>고용보험은 어쩌고 저쩌고</li>
+    </ul>
+
+</body>
+</html>
