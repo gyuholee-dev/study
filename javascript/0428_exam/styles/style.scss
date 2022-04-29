@@ -354,7 +354,8 @@ section.dramalist {
             @include flex(center, space-between);
             position: absolute;
             top: 180px;
-            transform: translateY(-50%);
+            height: 0;
+            // transform: translateY(-50%);
             width: 100%;
             z-index: 9;
             .btn {
