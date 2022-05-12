@@ -1,0 +1,257 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: dodgerblue;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+body {
+  background-color: #eee;
+  height: 100vh;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+main {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  padding: 15px 10px;
+  min-height: 400px;
+  position: relative;
+  height: calc(100vh - 120px);
+  top: 60px;
+  z-index: 1;
+  overflow-y: scroll;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background-color: white;
+  width: 100%;
+  padding: 15px;
+  min-height: 422px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  z-index: 99;
+  border-top: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+header, footer {
+  padding: 0 15px;
+}
+
+form {
+  width: 100%;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=date],
+input[type=file],
+textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+input[type=submit],
+input[type=reset],
+input[type=button],
+.btn {
+  cursor: pointer;
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  min-width: 80px;
+}
+
+header label {
+  font-size: 0.8rem;
+}
+
+header form {
+  display: flex;
+}
+
+header form > *:not(:last-child) {
+  margin-right: 10px;
+}
+
+header form input[type=text], header form input[type=password] {
+  padding: 3px 5px !important;
+}
+
+section > .header {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+#post_write {
+  position: absolute;
+  z-index: 9;
+  transform: translateX(calc(-100% - 15px));
+  transition: transform 0.5s;
+  width: calc(100% - 20px);
+  min-height: calc(100vh - 150px);
+}
+
+#post_write.open {
+  transform: translateX(0);
+}
+
+#post_write form {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#post_write .content, #post_write .file {
+  margin-bottom: 10px;
+}
+
+#post_write .content {
+  flex-grow: 1;
+}
+
+#post_write .content [name=message] {
+  font-size: 1.25rem;
+  height: calc(100vh - 332px);
+}
+
+#post_write .buttons {
+  display: flex;
+  justify-content: end;
+}
+
+#post_write .buttons > *:not(:last-child) {
+  margin-right: 10px;
+}
+
+#post_view {
+  min-height: calc(100vh - 150px);
+}
+
+#post_view .info {
+  font-size: 1.25rem;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+  width: 100%;
+}
+
+#post_view .content .photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+#post_view .content .message {
+  padding: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+#post_view .inputbox {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#post_view .inputbox > *:not(:last-child) {
+  margin-right: 10px;
+}
+
+#post_view .reply {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 10px;
+  margin-bottom: 15px;
+}
+
+#post_view .reply .message {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 3px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+#post_view .reply .message .writer {
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+footer .pagenav > * {
+  padding: 5px;
+}
+
+footer .pagenav > .current {
+  font-weight: bold;
+}

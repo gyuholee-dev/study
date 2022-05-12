@@ -1,0 +1,264 @@
+// 기본 스타일 --------------------------------------------------------------------------
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    color: dodgerblue;
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+body {
+  background-color: #eee;
+  // 세로 화면 맞춤
+  height: 100vh;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  // 화면 상단 고정
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  border-bottom: 1px solid rgba(black, 0.35);
+}
+
+main {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  width: 100%;
+  padding: 15px 10px;
+  min-height: 400px;
+  // 화면 중앙
+  position: relative;
+  height: calc(100vh - 120px);
+  top: 60px;
+  z-index: 1;
+  overflow-y: scroll;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background-color: white;
+  width: 100%;
+  // margin: 0 10px;
+  padding: 15px;
+  min-height: 422px;
+  border-radius: 10px;
+  border: 1px solid rgba(black, 0.35);
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  background-color: white;
+  // 화면 아래 고정
+  position: fixed;
+  bottom: 0;
+  z-index: 99;
+  border-top: 1px solid rgba(black, 0.35);
+}
+
+header, footer {
+  padding: 0 15px;
+}
+
+form {
+  width: 100%;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=date],
+input[type=file],
+textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+input[type=submit],
+input[type=reset], 
+input[type=button],
+.btn {
+  cursor: pointer;
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  min-width: 80px;
+}
+
+// --------------------------------------------------------------------------
+
+header {
+  label {
+    font-size: 0.8rem;
+  }
+  form {
+    display: flex;
+    >*:not(:last-child) {
+      margin-right: 10px;
+    }
+    input[type=text], input[type=password] {
+      padding: 3px 5px !important;
+    }
+  }
+}
+
+section>.header {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+#post_write {
+  position: absolute;
+  z-index: 9;
+  transform: translateX( calc(-100% - 15px) );
+  transition: transform 0.5s;
+  width: calc(100% - 20px);
+  min-height: calc(100vh - 150px);
+  &.open {
+    transform: translateX(0);
+  }
+
+  form {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .content, .file {
+    margin-bottom: 10px;
+  }
+
+  .content {
+    flex-grow: 1;
+    [name=message] {
+      font-size: 1.25rem;
+      height: calc(100vh - 332px);
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: end;
+    >*:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+#post_view {
+  min-height: calc(100vh - 150px);
+
+  .info {
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(black, 0.35);
+    width: 100%;
+  }
+
+  .content {
+    .photo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(black, 0.5);
+      border-radius: 5px;
+      // margin-bottom: 10px;
+    }
+    .message {
+      padding: 5px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(black, 0.35);
+    }
+  }
+
+  .inputbox {
+    display: flex;
+    margin-bottom: 10px;
+    >*:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  .reply {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 15px;
+    .message {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      padding: 3px 0;
+      border-bottom: 1px solid #ddd;
+      .writer {
+        white-space: nowrap;
+        margin-left: 10px;
+      }
+    }
+  }
+
+}
+
+footer {
+  .pagenav {
+    >* {
+      padding: 5px;
+    }
+    >.current {
+      font-weight: bold;
+    }
+  }
+
+}
+
+
