@@ -1,0 +1,111 @@
+* {
+  padding: 0;
+  margin: 0 auto;
+}
+
+header {
+  width: 1000px;
+  height: 150px;
+  display: flex;
+}
+
+.logo {
+  width: 250px;
+  height: 150px;
+  background-color: red;
+}
+
+.menu {
+  width: 750px;
+  height: 150px;
+  background-color: blue;
+}
+
+#imgslide {
+  width: 1000px;
+  height: 400px;
+  background-color: yellow;
+}
+
+#content {
+  width: 1000px;
+  height: 400px;
+  display: flex;
+}
+
+.notice {
+  width: 500px;
+  height: 400px;
+  background-color: navy;
+}
+
+.partner {
+  width: 500px;
+  height: 400px;
+  background-color: pink;
+}
+
+footer {
+  width: 1000px;
+  height: 100px;
+  background-color: aqua; 
+}
+
+@media (max-width:991px) {
+  header {
+    width: 100%;
+  }
+  .logo {
+    width: 25%;
+  }
+  .menu {
+    width: 75%;
+  }
+  #imgslide {
+    width: 100%;
+    height: 300px;
+  }
+  #content {
+    width: 100%;
+    height: auto;
+  }
+  .notice {
+    width: 50%;
+  }
+  .partner {
+    width: 50%;
+  }
+  footer {
+    width: 100%;
+  }
+}
+
+@media (max-width:767px) {
+  header {
+    width: 100%;
+    display: block;
+    height: auto;
+  }
+  .logo {
+    width: 50%;
+  }
+  .menu {
+    width: 100%;
+  }
+  #imgslide {
+    width: 100%;
+    height: 300px;
+  }
+  #content {
+    width: 100%;
+  }
+  .notice {
+    width: 50%;
+  }
+  .partner {
+    width: 50%;
+  }
+  footer {
+    width: 100%;
+  }
+}

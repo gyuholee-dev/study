@@ -1,0 +1,11 @@
+// large 1200~
+// middle 992 ~ 1199
+// small 768 ~ 991
+// xtra small ~767
+
+@media (max-width: 1199px) {
+  .container {
+    width: 100%;
+  }
+}
+
