@@ -1,0 +1,236 @@
+// 변수
+$sky: #29cdff;
+$blue: #21abff;
+$red: #ff4200;
+$orange: #ff6c00;
+$green: #34c234;
+$white :#ffffff;
+$shine: #eeeeee;
+$light: #a5a5a5;
+$grey: #808080; 
+$dark: #2f2f2f;
+$darkblack: #1b1b1b;
+// $black: #101010;
+$black: #000000;
+
+$grey-95: rgb(95%, 95%, 95%); // shine
+$grey-90: rgb(90%, 90%, 90%); 
+$grey-85: rgb(85%, 85%, 85%);
+$grey-80: rgb(80%, 80%, 80%);
+$grey-75: rgb(75%, 75%, 75%);
+$grey-70: rgb(70%, 70%, 70%);
+$grey-65: rgb(65%, 65%, 65%); // light
+$grey-60: rgb(60%, 60%, 60%);
+$grey-55: rgb(55%, 55%, 55%);
+$grey-50: rgb(50%, 50%, 50%); // grey
+$grey-45: rgb(45%, 45%, 45%); 
+$grey-40: rgb(40%, 40%, 40%); 
+$grey-35: rgb(35%, 35%, 35%); 
+$grey-30: rgb(30%, 30%, 30%); 
+$grey-25: rgb(25%, 25%, 25%); 
+$grey-20: rgb(20%, 20%, 20%); // dark
+$grey-15: rgb(15%, 15%, 15%); 
+$grey-10: rgb(10%, 10%, 10%); // darkblack
+$grey-5: rgb(5%, 5%, 5%); // black
+
+$max-width: 960px;
+
+@mixin flex($align:center, $justify:center, $direction:row, $wrap:nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  flex-wrap: $wrap;
+}
+
+// -------------------------------------------------------
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-break: break-all;
+  white-space: normal;
+}
+
+body {
+  background-color: $grey-95;
+}
+
+
+
+// -------------------------------------------------------
+// 헤더
+
+header {
+  width: 100%;
+  // max-width: $max-width;
+  height: 60px;
+  margin: 0 auto;
+  position: relative;
+  background-color: $white;
+  border-bottom: 1px solid $grey-85;
+  padding: 0 20px;
+  
+  nav {
+    @include flex(center, space-between);
+    width: 100%;
+    height: 100%;
+
+    .logo {
+      width: 200px;
+      height: 30px;
+      >img {
+        // width: 100%;
+        height: 100%;
+      }
+    }
+
+    .menu {
+      @include flex(center, center);
+      width: 500px;
+      >li {
+        cursor: pointer;
+        width: 100px;
+        text-align: center;
+        font-weight: bold;
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+
+    .menu_mobile {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      &.show {
+        display: block;
+      }
+
+      .menu2 {
+        width: 100%;
+        // width: 300px;
+        background-color: #18709c;
+        >li {
+          cursor: pointer;
+          width: inherit;
+          padding: 7px 10px;
+          border-bottom: 1px solid rgba(white, 0.5);
+          text-align: left;
+          text-indent: 3%;
+          // font-weight: normal;
+          color: white;
+          &:hover {
+            color: orangered;
+            background-color: #33a1d8;
+          }
+        }
+      }
+
+      .btn_close {
+        cursor: pointer;
+        width: inherit;
+        padding: 7px 10px;
+        background-color: #18709c;
+        color: white;
+        text-align: right;
+      }
+
+    }
+
+  }
+
+  .gnb_menu {
+    cursor: pointer;
+    font-size: 1.5rem;
+    // width: 25px;
+    // height: 25px;
+    padding: 0 5px;
+    position: absolute;
+    top: 10px;
+    display: none;
+    // background-color: $grey-90;
+    // >li {
+    //   border-bottom: 2px solid #999;
+    //   height: 5px;
+    // }
+    &:hover {
+      background-color: $grey-90;
+    }
+  }
+
+}
+
+// -------------------------------------------------------
+// 컨텐츠
+
+#content {
+  width: 100%;
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  
+  .card {
+    @include flex(start, center, row, wrap);
+    >li {
+      flex-grow: 1;
+      width: 20%;
+      min-width: 180px;
+      height: 180px;
+      margin: 10px;
+      padding: 10px;
+      border: 10px solid white;
+      border-radius: 10px;
+      background-color: #eee;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      &:nth-child(1),
+      &:nth-child(5),
+      &:nth-child(7),
+      &:nth-child(8),
+      &:nth-child(9) {
+        width: 40%;
+      }
+      >.box {
+        height: 160px;
+        margin-right: 0.6rem;
+        margin-bottom: 0.6rem;
+      }
+    }
+  }
+
+}
+
+// --------------------------------------------------------
+// 푸터
+footer {
+  width: 100%;
+  // max-width: $max-width;
+  height: 60px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 60px;
+  background-color: $white;
+  border-top: 1px solid $grey-85;
+}
+
+
+
+
+
+
