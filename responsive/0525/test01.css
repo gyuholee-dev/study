@@ -1,0 +1,37 @@
+* { padding: 0; margin: 0 auto; list-style: none; }
+
+a { text-decoration: none; color: inherit; }
+
+header { width: 1000px; height: 150px; }
+
+header .gmb_menu { display: none; }
+
+header .logo { width: 250px; height: 110px; float: left; }
+
+header nav { width: 600px; height: 50px; float: right; }
+
+header nav .menu { width: inherit; height: inherit; }
+
+header nav .menu > li { cursor: pointer; width: 200px; text-align: center; float: left; line-height: 50px; transition: all 0.5s; position: relative; }
+
+header nav .menu > li:hover { background: orangered; color: white; }
+
+header nav .menu > li .submenu { width: 100%; color: black; background-color: rgba(255, 255, 255, 0.8); position: absolute; z-index: 1; display: none; }
+
+header nav .menu > li .submenu > li { transition: all 0.5s; }
+
+header nav .menu > li .submenu > li:hover { background: orangered; color: white; }
+
+#imgslide { width: 1000px; height: 400px; background-color: blue; }
+
+@media (max-width: 767px) { header { width: 100%; height: 100px; }
+  header .logo { width: 50%; height: inherit; float: none; }
+  header nav { width: 200px; height: auto; margin: 0; background-color: rgba(0, 0, 0, 0.5); color: white; position: absolute; top: 60px; left: 0; bottom: 0; z-index: 10; float: none; display: none; }
+  header nav .menu { width: inherit; height: 20px; }
+  header nav .menu > li { position: relative; width: 160px; text-align: left; float: none; }
+  header nav .menu > li:hover { background-color: inherit; color: orangered; }
+  header nav .menu > li .submenu { width: 90%; text-align: left; position: relative; background-color: inherit; color: white; }
+  header nav .menu > li .submenu > li { list-style-position: inside; list-style-type: square; }
+  header nav .menu > li .submenu > li:hover { background-color: inherit; color: orangered; }
+  header .gmb_menu { cursor: pointer; display: block; font-size: 28px; text-align: center; height: 40px; width: 40px; position: absolute; top: 12px; left: 12px; }
+  header .gmb_menu:hover { background-color: orangered; color: white; } }
