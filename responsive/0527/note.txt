@@ -1,0 +1,12 @@
+1. nodejs 설치
+https://nodejs.org/ko/
+
+2. node-sass 설치
+npm install -g node-sass
+
+3. 프로젝트 디렉토리에 bootstrap 설치
+cd <project>
+npm install bootstrap
+
+4. watch
+node-sass --watch styles/style.scss --output styles --output-style compressed

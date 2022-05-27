@@ -1,0 +1,86 @@
+body {
+  background: $body-bg;
+}
+
+.container {
+  position: relative;
+}
+
+header {
+  position: relative;
+  background-color: $white;
+  .title {
+    @include flex(center, center);
+    height: 70px;
+    width: 225px;
+    position: relative;
+    overflow: hidden;
+    // margin: 0 15px;
+  }
+  .logo {
+    position: absolute;
+    left: -15px;
+    height: 90px;
+  }
+  .nav {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+nav.navbar {
+  // height: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 5px 0 !important;
+  z-index: 9;
+  .navbar-brand {
+    font-size: 1rem;
+  }
+  .navbar-nav {
+    .nav-item {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+  }
+}
+
+#imgSlide {
+  .carousel-control-prev-icon, 
+  .carousel-control-next-icon {
+    width: 40px;
+    height: 40px;
+    // font-size: 8rem;
+    text-shadow: 0 0 15px black;
+  }
+  .carousel-control-prev:hover {
+    background: linear-gradient(to right, rgba(black, 0.5), transparent);
+  }
+  .carousel-control-next:hover {
+    background: linear-gradient(to left, rgba(black, 0.5), transparent);
+  }
+  .carousel-caption {
+    // color: black;
+    background-color: rgba(black, 0.35);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    max-width: 640px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .carousel-indicators [data-bs-target] {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 8px;
+    // border: 2px solid rgba(black, 0.35);
+  }
+}
+
+footer {
+  background-color: #212529;
+  color: white;
+}
