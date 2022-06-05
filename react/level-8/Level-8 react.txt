@@ -1,0 +1,81 @@
+* Level-8 react
+
+1. level-7 에서 node_modules, dist, package-lock.json 을 제외하고 복사
+
+2. npm update 로 업데이트
+$ npm update
+
+3. react 설치
+$ npm i react react-dom
+
+4. babel 설치
+$ npm i -D babel-loader @babel/core @babel/preset-env @babel/preset-react
+- plugin-proposal-class-properties: This plugin is included in @babel/preset-env, in ES2022
+
+5. webpack.config.js 수정
+// https://haerim95.tistory.com/7
+// https://velog.io/@lee_yesol421/React-webpack-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
+// --------------------------------------------------------------------
+entry: [
+  './src/main', // 확장자 생략
+],
+resolve: {
+  extensions: [ '.js', '.jsx'], // jsx 파일 추가
+},
+rules: [
+  {
+    test: /\.jsx?$/,
+    loader: 'babel-loader',
+    options: {
+      presets: [
+       '@babel/preset-env', 
+       '@babel/preset-react'
+      ],
+      plugins: [], 
+    },
+    exclude: /node_modules/
+  },
+  ...
+]
+// --------------------------------------------------------------------
+
+6. 빌드 실행해서 테스트
+$ npm run watch
+$ npm run build
+
+7. 테스트 코드 작성
+# Component.jsx
+// --------------------------------------------------------------------
+const React = require('react');
+const { Component } = React;
+
+class ReactTest extends Component {
+	state = {
+    text : '리액트 테스트 성공!!! 😊',
+  };
+  
+  render(){
+    return <h1>{this.state.text}</h1>
+  }
+}
+
+export {
+  ReactTest,
+}
+// --------------------------------------------------------------------
+# main.jsx
+// --------------------------------------------------------------------
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { ReactTest } from './Component';
+
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(<ReactTest />);
+// --------------------------------------------------------------------
+
+8. 빌드, 와치, 개발서버 실행해서 확인
+$ npm run build
+$ npm run watch
+$ npm start
+

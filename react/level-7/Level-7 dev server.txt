@@ -1,6 +1,6 @@
-* Level-6 dev server
+* Level-7 dev server
 
-1. level-5 에서 node_modules, dist, package-lock.json 을 제외하고 복사
+1. level-6 에서 node_modules, dist, package-lock.json 을 제외하고 복사
 
 2. npm update 로 업데이트
 $ npm update
@@ -16,6 +16,7 @@ devServer: {
   watchFiles: ["./src/*"],
   open: true,
   hot: true,
+  compress: true,
   port: 9000,
 },
 - dev server 는 소스를 리얼타임 빌드하지 않고 메모리에 올려서 서브함.
