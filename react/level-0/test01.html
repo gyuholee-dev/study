@@ -1,0 +1,38 @@
+<!-- https://ko.reactjs.org/docs/add-react-to-a-website.html#add-react-in-one-minute -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      function MyApp(props) {
+        return (
+          <div>
+            <h1>{props.title}</h1>
+            <button onClick={()=>console.log(`TEST OK`)}>test</button>
+          </div>
+        );
+      }
+
+      let data = {
+        title: `Hello World`,
+        desc: `This is a simple example of a React component`,
+      }
+      const container = document.getElementById('root');
+      const root = ReactDOM.createRoot(container);
+      root.render(<MyApp 
+        title = {data.title}
+        desc = {data.desc}
+      />);
+
+    </script>
+
+  </body>
+</html>
