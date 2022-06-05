@@ -1,0 +1,33 @@
+* Level-3 css extract
+
+1. level-2 에서 node_modules, dist, package-lock.json 을 제외하고 복사
+
+2. npm update 로 업데이트하여 모듈 재설치
+$ npm update
+
+3. css 별도 저장을 위해 추가 모듈 설치
+$ npm i -D mini-css-extract-plugin
+
+4. webpack.config.js 수정
+// https://yamoo9.gitbook.io/webpack/webpack/webpack-plugins/extract-css-files
+// --------------------------------------------------------------------
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+entry : [ './src/index.js' ] // sass 제거
+plugins: [
+  new MiniCssExtractPlugin({ filename: 'styles/style.css' })
+],
+use: [ 
+  MiniCssExtractPlugin.loader, // css 별도 저장
+  "css-loader",
+  "sass-loader",
+],
+// --------------------------------------------------------------------
+
+5. main.js 에 scss 임포트 추가
+import './main.scss';
+
+6. webpack 실행
+$ npx webpack
+
+7. index.html 확인, css 태그 추가하고 확인
+<link rel="stylesheet" href="./dist/styles/style.css">

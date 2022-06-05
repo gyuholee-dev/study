@@ -1,0 +1,16 @@
+/*!********************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/main.scss ***!
+  \********************************************************************************************************/
+body {
+  background: grey;
+}
+
+#testbox {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: #ff0000;
+  margin: 50px auto;
+}
+
+/*# sourceMappingURL=style.css.map*/

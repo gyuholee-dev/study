@@ -1,0 +1,36 @@
+* Level-4 html 템플릿
+
+1. level-3 에서 node_modules, dist, package-lock.json 을 제외하고 복사
+
+2. npm update 로 업데이트하여 모듈 재설치
+$ npm update
+
+3. html 템플릿을 위해 추가 모듈 설치
+$ npm i -D html-webpack-plugin
+
+4. webpack.config.js 수정
+// https://webpack.kr/plugins/html-webpack-plugin/
+// https://github.com/jantimon/html-webpack-plugin#options
+// ------------------------------------------------------------------
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+new HtmlWebpackPlugin({
+  minify: {
+    collapseWhitespace: true
+  },
+  hash: true,
+  template: './src/index.html'
+}),
+output: {
+  path: path.resolve(__dirname, "dist"),
+  filename: "bundle.js",
+}
+// ------------------------------------------------------------------
+
+5. index.html 을 src 로 옮기고 css, js 태그를 제거
+
+6. webpack 실행
+$ npx webpack
+
+7. ./dist/index.html 실행하여 js 및 css 확인
+
+8. production 모드로 변경후 재확인

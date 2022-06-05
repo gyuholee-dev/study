@@ -1,0 +1,22 @@
+* Level-5 watch
+
+1. level-4 에서 node_modules, dist, package-lock.json 을 제외하고 복사
+
+2. npm update 로 업데이트하여 모듈 재설치
+$ npm update
+
+3. watch 모드 실행
+$ npx webpack --watch
+- 소스 파일을 변경하면서 변경사항이 반영되는지 확인
+- ctrl + c 를 누르면 watch 모드가 종료됨(nodejs 종료 기본)
+
+4. webpack.config.js 수정
+https://webpack.kr/configuration/watch/
+// ------------------------------------------------------------------
+watch: true,
+watchOptions: {
+  ignored: /node_modules/,
+},
+// ------------------------------------------------------------------
+$ npx webpack
+- watch 모드로 동작하는걸 확인

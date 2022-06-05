@@ -1,0 +1,31 @@
+* Level-1 webpack 설치 및 기초 셋업
+
+1. npm 초기화
+$ npm init
+- 적당히 엔터치고 넘어감
+- package.json 생성 확인
+
+2. webpack 설치
+# npm install --save-dev webpack webpack-cli
+# install => i
+# save-dev => -D
+$ npm i -D webpack webpack-cli
+- package.json 의 devDependencies 에 webpack webpack-cli 추가 확인
+
+3. webpack.config.js 생성
+https://webpack.kr/configuration/
+
+4. src/main.js 생성
+// ---------------------------------------------------------------------
+const message = document.createTextNode("Webpack Example");
+document.body.appendChild(message);
+// ---------------------------------------------------------------------
+
+5. index.html 생성
+<script src="dist/script.js"></script>
+<script src="dist/script.js" defer="defer"></script>
+- body 하단에 script 태그를 를 넣거나 헤드라면 defer="defer" 속성을 추가
+
+5. webpack 실행
+$ npx webpack
+- ./dist/script.js 생성 확인. index.html 실행해서 출력 확인.

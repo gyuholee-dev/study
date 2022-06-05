@@ -1,3 +1,4 @@
+<!-- https://ko.reactjs.org/docs/add-react-to-a-website.html#add-react-in-one-minute -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,26 +11,26 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
-  
-      let title = `Hello World`;
-      let desc = `This is a simple example of a React component`;
-      const text = {
-        title: title,
-        desc: desc
-      }
 
-      function MyApp(text) {
+      function MyApp(props) {
         return (
           <div>
-            <h1>{text.title}</h1>
-            <button onClick={()=>change()}>change</button>
+            <h1>{props.title}</h1>
+            <button onClick={()=>console.log(`TEST OK`)}>test</button>
           </div>
         );
       }
 
+      let data = {
+        title: `Hello World`,
+        desc: `This is a simple example of a React component`,
+      }
       const container = document.getElementById('root');
       const root = ReactDOM.createRoot(container);
-      root.render(<MyApp />);
+      root.render(<MyApp 
+        title = {data.title}
+        desc = {data.desc}
+      />);
 
     </script>
 

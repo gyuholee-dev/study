@@ -1,0 +1,14 @@
+$color-red: #ff0000;
+$color-grey: grey;
+
+body {
+	background: $color-grey;
+}
+
+#testbox {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: $color-red;
+  margin: 50px auto;
+}
