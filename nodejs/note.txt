@@ -1,0 +1,38 @@
+* Express 서버 구축
+// https://velog.io/@goody/NodeJs-Express-%EB%A1%9C-%EC%9B%B9%EC%84%9C%EB%B2%84-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0
+
+1. npm 초기화
+$ npm init
+
+2. Express 설치
+$ npm i express
+
+3. 예제코드 입력
+// ---------------------------------------------------------------
+const express = require('express');
+const server = express();
+server.listen(3000, ()=>{
+  console.log("start! express server on port 3000");
+});
+// ---------------------------------------------------------------
+
+4. 서버 스타트
+$ node server.js
+- ctrl + c 종료
+
+5. nodemon 설치
+# 서버 코드를 변경할때마다 자동으로 재시작해줌
+// https://backend-intro.vlpt.us/1/03.html
+# npm i -g nodemon (global)
+$ npm i nodemon
+
+6. nodemon 을 통해 서버 실행
+# nodemon server.js (global)
+$ npx nodemon server.js
+
+7. server.js 코드 수정하면서 확인
+
+8. package.json 에 start 스크립트 추가
+"start" : "nodemon server.js"
+$ npm start
+
