@@ -3,4 +3,7 @@
 https://github.com/webpack/webpack-dev-middleware
 
 2. 멀티 엔트리 및 멀티 html
-- https://stackoverflow.com/questions/39798095/multiple-html-files-using-webpack
+https://stackoverflow.com/questions/39798095/multiple-html-files-using-webpack
+
+3. 이미지, 폰트 에셋 구성
+https://yamoo9.gitbook.io/webpack/react/create-your-own-react-app/configure-images-fonts
