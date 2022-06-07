@@ -1,0 +1,6 @@
+1. express 서버와 결합
+- webpack-dev-middleware 사용
+https://github.com/webpack/webpack-dev-middleware
+
+2. 멀티 엔트리 및 멀티 html
+- https://stackoverflow.com/questions/39798095/multiple-html-files-using-webpack
