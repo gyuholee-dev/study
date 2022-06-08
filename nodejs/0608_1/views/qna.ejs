@@ -1,0 +1,21 @@
+<body>
+  <h1>QnA Page</h1>
+  <table style="width:100%">
+    <tr>
+      <th>글번호</th>
+      <th>글제목</th>
+      <th>작성자</th>
+      <th>작성일</th>
+      <th>조회수</th>
+    </tr>
+    <% for(let rs of data) { %>
+      <tr>
+        <td><%= rs.no %></td>
+        <td><%= rs.title %></td>
+        <td><%= rs.writer %></td>
+        <td><%= rs.wrteday %></td>
+        <td><%= rs.hit %></td>
+      </tr>
+    <% } %>
+  </table>
+</body>
