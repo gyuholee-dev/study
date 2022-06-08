@@ -14,10 +14,11 @@ export class Router {
     this.viewsPath = path.resolve(paths.view);
   }
 
-  async route (request, response) {
+  async route (request, response, params=null) {
     const method = request.method;
     const urls = url.parse(request.url, true);
-    const pathname = urls.pathname;
+    // const pathname = urls.pathname;
+    const pathname = '/' + urls.pathname.split("/")[1];
   
     if (method === 'GET') { 
 
@@ -25,12 +26,16 @@ export class Router {
       let document = 'index.ejs';
       let data = {};
       const query = urls.query;
-      // console.log('GET:', query);
+      // console.log(params);
 
       switch(pathname) {
         case '/' || '/main':
           data = await getAttendance();
           document = 'index.ejs';
+          break;
+        case '/delete':
+          data = await getAttendance();
+          document = 'delete.ejs';
           break;
         case '/insert':
           data = await getLastNum(query);

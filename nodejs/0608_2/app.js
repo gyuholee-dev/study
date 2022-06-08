@@ -23,9 +23,15 @@ function start(hostname, port, paths) {
     'view engine', 'ejs', 
     'views', viewsPath,
   );
+
+  // 라우트 패스 https://psyhm.tistory.com/7
+  APP.server.all('/*/:num', (request, response)=>{
+    APP.router.route(request, response, request.params);
+  });
   APP.server.all('*', (request, response)=>{
     APP.router.route(request, response);
   });
+
   APP.server.listen(port, hostname, ()=>{
     console.log(`SERVER STARTED: http://${hostname}:${port}/`);
   });

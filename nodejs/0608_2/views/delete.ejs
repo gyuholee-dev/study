@@ -4,17 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>출석부</title>
+  <title>출석부 편집</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>출석부</h1>
+  <h1>출석부 편집</h1>
   <table class="max">
     <tr>
       <th>학번</th>
       <th>이름</th>
       <th>출석상태</th>
       <th>결석사유</th>
+      <th>삭제</th>
     </tr>
     <% for(let res of data) { %>
       <tr>
@@ -22,12 +23,12 @@
         <td><%= res.student_name %></td>
         <td><%= res.attend_cond %></td>
         <td><%= res.absent_reason %></td>
+        <td><a href="/delete/<%=res.student_num%>" onclick="return confirm('삭제하시겠습니까?')">삭제</a></td>
       </tr>
     <% } %>
     <tr>
       <td colspan="5" align="center">
-        <input class="btn" type="button" value="삭제" onclick="location.href='/delete'">
-        <input class="btn" type="button" value="입력" onclick="location.href='/insert'">
+        <input class="btn" type="button" value="목록" onclick="location.href='/'">
       </td>
     </tr>
   </table>

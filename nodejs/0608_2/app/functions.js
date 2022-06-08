@@ -26,6 +26,15 @@ async function insertAttendance(query) {
   return result;
 }
 
+async function deleteAttendance(query) {
+  let sql = `
+    DELETE FROM attendance
+    WHERE student_num = '${query.student_num}';
+  `;
+  let result = await APP.database.query(sql);
+  return result;
+}
+
 // --------------------------------------------------------------------------------------------------------------------
 
 export { 
