@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: initial;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 2px solid #ccc;
+  width: 100%;
+  margin: 0 auto;
+}
+table.max {
+  max-width: 600px;
+}
+table.min {
+  max-width: 400px;
+}
+
+table th, 
+table td {
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+input, select {
+  width: -webkit-fill-available;
+  font-size: 1rem;
+  padding: 3px 5px;
+}
+input[readonly] {
+  background-color: #eee;
+}
+
+.btn {
+  cursor: pointer;
+  width: initial !important;
+  min-width: 80px;
+  padding: 3px;
+  font-size: 1rem;
+}

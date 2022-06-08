@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>출결기록 입력</h1>
+  <form method="post">
+    <table class="min">
+      <tr>
+        <td>학번</td>
+        <td><input type="number" name="student_num" value="<%=data.lastNum+1%>" readonly></td>
+      </tr>
+      <tr>
+        <td>이름</td>
+        <td><input type="text" name="student_name"></td>
+      </tr>
+      <tr>
+        <td>출석상태</td>
+        <td>
+          <select name="attend_cond">
+            <option value="출석">출석</option>
+            <option value="결석">결석</option>
+            <option value="공가">공가</option>
+            <option value="휴가">휴가</option>
+            <option value="조퇴">조퇴</option>
+            <option value="지각">지각</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>결석사유</td>
+        <td><input type="text" name="absent_reason"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input class="btn" type="button" value="목록" onclick="location.href='/'">
+          <input class="btn" type="submit" value="전송">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

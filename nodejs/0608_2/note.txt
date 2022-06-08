@@ -1,0 +1,22 @@
+* EJS
+// https://stackoverflow.com/a/62043129
+'<%- %>' this is help to print html code as it is.
+<% 'Scriptlet' tag, for control-flow, no output
+<%_ ‘Whitespace Slurping’ Scriptlet tag, strips all whitespace before it
+<%= Outputs the value into the template (HTML escaped)
+<%- Outputs the unescaped value into the template
+<%# Comment tag, no execution, no output
+<%% Outputs a literal '<%'
+%> Plain ending tag
+-%> Trim-mode ('newline slurp') tag, trims following newline
+_%> ‘Whitespace Slurping’ ending tag, removes all whitespace after it
+// https://ejs.co/
+
+* 인코딩
+body-parser.urlencoded({ extended: false })
+https://kirkim.github.io/javascript/2021/10/16/body_parser.html
+https://velog.io/@hyunju-song/body-parser%EC%9D%98-urlencoded%EB%8A%94-%EB%8F%84%EB%8C%80%EC%B2%B4-%EC%96%B4%EB%96%A4-%EC%97%AD%ED%95%A0%EC%9D%84-%ED%95%98%EB%8A%94-%EA%B1%B8%EA%B9%8C
+https://sjh836.tistory.com/154
+
+* 서버사이드 랜더링 리액트
+https://rhapsodist-blog.netlify.app/blog/2020/04/16/node_express_ssr_react/index

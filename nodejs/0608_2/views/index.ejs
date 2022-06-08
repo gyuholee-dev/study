@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>출석부</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>출석부</h1>
+  <table class="max">
+    <tr>
+      <th>학번</th>
+      <th>이름</th>
+      <th>출석상태</th>
+      <th>결석사유</th>
+    </tr>
+    <% for(let res of data) { %>
+      <tr>
+        <td><%= res.student_num %></td>
+        <td><%= res.student_name %></td>
+        <td><%= res.attend_cond %></td>
+        <td><%= res.absent_reason %></td>
+      </tr>
+    <% } %>
+    <tr>
+      <td colspan="5" align="center">
+        <input class="btn" type="button" value="입력" onclick="location.href='/insert'">
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
