@@ -10,10 +10,10 @@
     "start": "nodemon app.js"
   },
   "nodemonConfig": {
-    "ignore" : [
+    "ignore": [
       ".git",
       "node_modules/",
-      "sessions/", 
+      "sessions/",
       "views/"
     ]
   },
@@ -21,6 +21,7 @@
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
     "express-session": "^1.17.3",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.16",

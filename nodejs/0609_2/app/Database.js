@@ -1,8 +1,8 @@
-import fs from 'fs';
 import mysql from 'mysql';
+import fs from 'fs';
 
 // 데이터베이스 클래스
-export class Database {
+export default class Database {
   constructor (dbConfig=null) {
     if (!dbConfig) {
       // const dbConfig = JSON.parse(fs.readFileSync('./config/db.json', 'utf8'));

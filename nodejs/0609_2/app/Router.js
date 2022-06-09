@@ -1,26 +1,46 @@
 import * as url from 'url';
+import fs from 'fs';
 import path from 'path';
+
+import pages from './router/pages.js';
 
 // https://www.npmjs.com/package/path-to-regexp
 import { pathToRegexp, match, parse, compile } from 'path-to-regexp';
 const regexp = pathToRegexp('/:path?/:do?/:id?');
 
+let publicPath, viewsPath;
 
 // 라우터 클래스
-export class Router {
-  constructor (server, paths) {
-    this.server = server;
-    this.publicPath = path.resolve(paths.pub);
-    this.viewsPath = path.resolve(paths.view);
+export default class Router {
+  constructor (config) {
+    const paths = config.paths;
+    publicPath = path.resolve(paths.pub);
+    viewsPath = path.resolve(paths.view);
+    Object.assign(this, pages);
   }
 
   async route (request, response) {
     const method = request.method;
     const urls = url.parse(request.url, true);
-    const pathname = urls.pathname;
-    const params = regexp.exec(pathname);
-  
+    const paths = urls.pathname;
+    const params = regexp.exec(paths);
+    const pathname = (params[1])? params[1] : 'index';
+
+    // 파일 우선 처리
+    // TODO: 메서드로 분리
+    const ext =  paths.split('.').pop().toLowerCase();
+    if (ext !== paths && ext !== 'html') {
+      console.log(ext);
+      const filePath = path.join(publicPath, ext, paths);
+      if (fs.existsSync (filePath)) {
+        response.sendFile(filePath);
+      } else {
+        response.status(404).send('NOT FOUND');
+      }
+    }
+    
     if (method === 'GET') { 
+      // throw new Error('에러에러');
 
       // HTML 도큐먼트
       // let document = 'index.html';
@@ -40,9 +60,11 @@ export class Router {
       let data = {};
       const query = urls.query;
       // console.log('GET:', query);
+      // console.log('pathname:', pathname);
       switch(pathname) {
-        case '/' || '/main':
+        case 'index' || 'main':
           document = 'index.ejs';
+          response.render(document, {data:data});
           break;
         // case '/notice':
         //   document = 'notice.ejs';
@@ -55,10 +77,15 @@ export class Router {
         // case 'insert':
         //   document = 'insert.ejs';
         //   break;
-        // default:
-        //   document = pathname + '.ejs';
+        default:
+          // document = pathname + '.ejs';
+          // const fnName = pathname.split('/')[1];
+          // if (fnName !== 'favicon.ico') {
+          //   this[fnName]();
+          // }
+          break;
       }
-      response.render(document, {data:data});
+      // response.render(document, {data:data});
 
     } else if (method === 'POST') {
 
@@ -90,6 +117,10 @@ export class Router {
 
     }
   }
+
+  // test( request, response ) {
+  //   console.log('test');
+  // }
 
 
 }
