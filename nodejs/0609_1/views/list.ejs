@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 5px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>LIST PAGE</h1>
+  <div style="width: 100%;">
+    <% if(id) { %>
+      <a href="/insert">Insert Data</a>
+      <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/login">Login</a>
+    <% } %> 
+  </div>
+  <table>
+    <tr>
+      <th>-</th>
+      <th>-</th>
+      <th>no</th>
+      <th>memo</th>
+      <th>writer</th>
+    </tr>
+    <% for (let res of data) { %> 
+      <tr>
+      <% if (id) { %>
+        <% if (id==res.writer) {%>
+            <td><a href="/edit/<%=res.no%>">Edit</a></td>
+            <td><a href="/delete/<%=res.no%>" onclick="return confirm('삭제하시겠습니까?')">Delete</a></td>
+        <% } %>
+      <% } else { %>
+        <td>-</td>
+        <td>-</td>
+      <% } %>
+        <td><%= res.no %></td>
+        <td><%= res.memo %></td>
+        <td><%= res.writer %></td>
+      </tr>
+    <% } %>
+  </table>
+</body>
+</html>
