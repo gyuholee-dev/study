@@ -2,10 +2,10 @@ import * as url from 'url';
 import fs from 'fs';
 import path from 'path';
 
-import pages from './pages.js';
+import routes from './routes/index.js';
 
 // https://www.npmjs.com/package/path-to-regexp
-import { pathToRegexp, match, parse, compile } from 'path-to-regexp';
+import { pathToRegexp } from 'path-to-regexp';
 const regexp = pathToRegexp('/:path?/:do?/:id?/:page?');
 
 let publicPath, viewsPath;
@@ -15,8 +15,8 @@ export default class Router {
   constructor (config) {
     const paths = config.paths;
     publicPath = path.resolve(paths.pub);
-    viewsPath = path.resolve(paths.view);
-    Object.assign(this, pages);
+    viewsPath = path.resolve(paths.app, paths.view);
+    Object.assign(this, routes);
   }
 
   async route (request, response) {

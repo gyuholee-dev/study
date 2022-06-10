@@ -26,7 +26,7 @@ export default class Server {
     const config = this.config;
     const paths = config.paths;
     const publicPath = path.resolve(paths.pub);
-    const viewsPath = path.resolve(paths.view);
+    const viewsPath = path.resolve(paths.app, paths.view);
 
     this.server.use( // 미들웨어
       // session({ // 세션 
@@ -40,8 +40,11 @@ export default class Server {
       // express.json(),
       express.urlencoded({extended:false}),
     );
+    
     this.server.set( // 뷰 엔진, ejs
       'view engine', 'ejs', 
+    );
+    this.server.set( // 뷰 파일 경로
       'views', viewsPath,
     );
 
