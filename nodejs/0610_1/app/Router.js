@@ -6,7 +6,7 @@ import pages from './pages.js';
 
 // https://www.npmjs.com/package/path-to-regexp
 import { pathToRegexp, match, parse, compile } from 'path-to-regexp';
-const regexp = pathToRegexp('/:path?/:do?/:id?');
+const regexp = pathToRegexp('/:path?/:do?/:id?/:page?');
 
 let publicPath, viewsPath;
 
@@ -25,19 +25,20 @@ export default class Router {
     const paths = urls.pathname;
     const params = regexp.exec(paths);
     const pathname = (params[1])? params[1] : 'index';
+    // console.log(params);
 
     // 파일 우선 처리
     // TODO: 메서드로 분리
-    const ext =  paths.split('.').pop().toLowerCase();
+    const ext = paths.split('.').pop().toLowerCase();
     if (ext !== paths && ext !== 'html') {
-      console.log(ext);
-      const filePath = path.join(publicPath, ext, paths);
-      if (fs.existsSync (filePath)) {
+      const fileName = paths.split('/').pop();
+      const filePath = path.join(publicPath, ext, fileName);
+      if (fs.existsSync(filePath)) {
         response.sendFile(filePath);
       } else {
         response.status(404).send('404 NOT FOUND');
-        // throw new Error('404 NOT FOUND');
       }
+      return;
     }
     
     if (method === 'GET') { 
@@ -64,10 +65,19 @@ export default class Router {
           response.render(document, {data:data});
           break;
         default:
-          this[pathname](method, request, response);
+          document = pathname + '.ejs';
+          if (fs.existsSync(path.join(viewsPath, document))) {
+            if (typeof this[pathname] === 'function') {
+              this[pathname](method, request, response, params, query);
+            } else {
+              response.render(document, {data:data});
+            }
+          } else {
+            // response.status(404).send('404 NOT FOUND');
+            response.render('404.ejs');
+          }
           break;
       }
-      // response.render(document, {data:data});
 
     } else if (method === 'POST') {
 
@@ -91,7 +101,7 @@ export default class Router {
       // 포스트 페이지
       switch(pathname) {
         default:
-          this[pathname](method, request, response);
+          this[pathname](method, request, response, params);
           break;
       }
 
