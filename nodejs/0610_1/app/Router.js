@@ -24,7 +24,7 @@ export default class Router {
     const urls = url.parse(request.url, true);
     const paths = urls.pathname;
     const params = regexp.exec(paths);
-    const pathname = (params[1])? params[1] : 'index';
+    const pathname = (params[1])? params[1] : 'main';
     // console.log(params);
 
     // 파일 우선 처리
@@ -60,10 +60,10 @@ export default class Router {
       let data = {};
       const query = urls.query;
       switch(pathname) {
-        case 'index' || 'main':
-          document = 'index.ejs';
-          response.render(document, {data:data});
-          break;
+        // case 'main':
+        //   document = 'main.ejs';
+        //   response.render(document, {data:data});
+        //   break;
         default:
           document = pathname + '.ejs';
           if (fs.existsSync(path.join(viewsPath, document))) {

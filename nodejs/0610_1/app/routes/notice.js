@@ -134,15 +134,22 @@ async function getPageLinks(page, group, get=null) {
   let endPage = startPage + 9;
   let prevPage, nextPage;
 
+  let act = 'view';
+  let query = '';
+  if (get && get.query) {
+    act = 'search';
+    query = `?query=${get.query}`;
+  }
+
   pageLinks += `<div class="buttons">`;
     if (page > 1) {
-      pageLinks += `<a href="/notice/view/1">FIRST</a>`;
+      pageLinks += `<a href="/notice/${act}/1${query}">FIRST</a>`;
     } else {
       pageLinks += `<span style="color:grey;">FIRST</span>`;
     }
     if (group > 1) {
       prevPage = (group - 2) * 10 + 1;
-      pageLinks += `<a href="/notice/view/${prevPage}">PREV</a> `;
+      pageLinks += `<a href="/notice/${act}/${prevPage}${query}">PREV</a> `;
     } else {
       pageLinks += `<span style="color:grey;">PREV</span>`;
     }
@@ -157,19 +164,19 @@ async function getPageLinks(page, group, get=null) {
       if (i == page) {
         style = `font-weight:bold;color:red;`;
       }
-      pageLinks += `<a href="/notice/view/${i}" style="${style}">[${i}]</a>`;
+      pageLinks += `<a href="/notice/${act}/${i}${query}" style="${style}">[${i}]</a>`;
     }
   pageLinks += `</div>`;
 
   pageLinks += `<div class="buttons">`;
     if (group < groupCount) {
       nextPage = group * 10 + 1;
-      pageLinks += `<a href="/notice/view/${nextPage}">NEXT</a>`;
+      pageLinks += `<a href="/notice/${act}/${nextPage}${query}">NEXT</a>`;
     } else {
       pageLinks += `<span style="color:grey;">NEXT</span>`;
     }
     if (page != pageCount) {
-      pageLinks += `<a href="/notice/view/${pageCount}">LAST</a>`;
+      pageLinks += `<a href="/notice/${act}/${pageCount}${query}">LAST</a>`;
     } else {
       pageLinks += `<span style="color:grey;">LAST</span>`;
     }
