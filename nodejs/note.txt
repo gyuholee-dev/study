@@ -1,0 +1,65 @@
+[JavaScript] 자주 사용하는 ES6 문법 정리
+https://velog.io/@kimhscom/JavaScript-%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-ES6-%EB%AC%B8%EB%B2%95-%EC%A0%95%EB%A6%AC
+
+Cannot use import statement outside a module Error 해결하기
+https://gwang920.github.io/error/js-error(1)/
+
+// ------------------------------------------------------------
+Node.js를 설치한 후 어떻게 시작할 수 있을까요?
+https://nodejs.org/ko/docs/guides/getting-started-guide/
+
+Node.js v18.3.0 documentation
+https://nodejs.org/api/http.html
+
+일렉트론 시작하기
+https://thinkforthink.tistory.com/238
+
+Electron Quick Start
+https://www.electronjs.org/docs/latest/tutorial/quick-start
+
+[NodeJS] 모두 알지만 모두 모르는 package.json
+https://programmingsummaries.tistory.com/385
+
+npm scripts
+https://docs.npmjs.com/cli/v8/using-npm/scripts
+
+[Node.js] Node.js 실행중인 서버 종료하기 /  노드 서버 종료 / localhost 서버 종료 / address already in use
+https://programming119.tistory.com/118
+
+Node.js 폴더에 파일 존재 유무 확인하기
+https://iamdaeyun.tistory.com/entry/Nodejs-%ED%8F%B4%EB%8D%94%EC%97%90-%ED%8C%8C%EC%9D%BC-%EC%A1%B4%EC%9E%AC-%EC%9C%A0%EB%AC%B4-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0
+
+// ------------------------------------------------------------------------
+*** Node.js: Hello로 시작하는 Web 애플리케이션
+https://www.nextree.co.kr/p8574/
+
+App - 파일을 이용해 본문 구현
+https://opentutorials.org/course/3332/21049
+
+// ------------------------------------------------------------------------
+[node.js] 데이터 주고받기
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=lgr0406&logNo=221718953452
+
+ws: a Node.js WebSocket library
+https://www.npmjs.com/package/ws
+https://github.com/websockets/ws
+
+웹소켓(Web Socket)이란?
+https://curryyou.tistory.com/348
+
+Node.js - ws로 웹 소켓 사용해보기 (Web Socket Using ws Module)
+https://lgphone.tistory.com/122
+
+node.js ws 를 이용한 웹소켓 구현
+https://nicgoon.tistory.com/235
+
+[node.js] WebSocket
+https://lab.cliel.com/entry/nodejs-%EC%9B%B9%EC%86%8C%EC%BC%93ws-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+
+웹 소켓(Web Socket) 이용하기(with. ws 모듈, Socket.IO)
+https://velog.io/@delay100/Socket
+
+// ------------------------------------------------------------------------
+Express4.18.0
+Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크
+https://expressjs.com/ko/
